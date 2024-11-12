@@ -1,0 +1,16 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/D/5Q/9WM5UJG2PX55M4QM4U3KVZ.uasset",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/D/MG/J9STI54TXJ4V0P8OZ5CS39.uasset",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/3DAssets/Archive_Block/archive_block_01.uasset",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/3DAssets/Archive_Block/Material.uasset",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/3DAssets/Archive_Block/Material_001.uasset"
+			]
+		}
+	]
+}
