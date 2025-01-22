@@ -13,6 +13,8 @@ class UCameraComponent;
 class UInputMappingContext;
 class UInputAction;
 
+class AItems;
+
 UCLASS()
 class ARCHIVEMYSTERY_API AArchivist : public ACharacter
 {
@@ -35,9 +37,13 @@ protected:
 	UInputAction* MoveAction;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
 	UInputAction* LookAction;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	UInputAction* PickUpAction;
+
 
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
+	void PickUp(const FInputActionValue& Value);
 
 private:
 	// Camera properties
@@ -45,4 +51,10 @@ private:
 	USpringArmComponent* SpringArm;
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* ViewCamera;
+
+	UPROPERTY(VisibleInstanceOnly)
+	AItems* OverlappingItems;
+
+	public:
+		FORCEINLINE void SetOverlappingItems(AItems* Items) { OverlappingItems = Items; }
 };

@@ -4,6 +4,7 @@
 #include "Items/Items.h"
 #include "Components/SphereComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Character/Archivist.h"
 
 // Sets default values
 AItems::AItems()
@@ -31,19 +32,19 @@ void AItems::BeginPlay()
 
 void AItems::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	const FString OtherActorName = OtherActor->GetName();
-	if (GEngine)
+	AArchivist* Archivist = Cast<AArchivist>(OtherActor);
+	if (Archivist)
 	{
-		GEngine->AddOnScreenDebugMessage(1, 30.f, FColor::Red, OtherActorName);
+		Archivist->SetOverlappingItems(this);
 	}
 }
 
 void AItems::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	const FString OtherActorName = FString("Ending Overlap with:") + OtherActor->GetName();
-	if (GEngine)
+	AArchivist* Archivist = Cast<AArchivist>(OtherActor);
+	if (Archivist)
 	{
-		GEngine->AddOnScreenDebugMessage(1, 30.f, FColor::Blue, OtherActorName);
+		Archivist->SetOverlappingItems(nullptr);
 	}
 }
 

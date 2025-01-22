@@ -9,6 +9,8 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 
+#include "Items/Items.h"
+#include "Items/Box/OpenBox.h"
 AArchivist::AArchivist()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -70,6 +72,15 @@ void AArchivist::Look(const FInputActionValue& Value)
 	}
 }
 
+void AArchivist::PickUp(const FInputActionValue& Value)
+{
+	AOpenBox* OverlappingBox = Cast<AOpenBox>(OverlappingItems);
+	if (OverlappingBox)
+	{
+		OverlappingBox->Equip(GetMesh(), FName("BothHandSocket"));
+	}
+}
+
 void AArchivist::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -84,6 +95,7 @@ void AArchivist::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 	{
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AArchivist::Move);
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AArchivist::Look);
+		EnhancedInputComponent->BindAction(PickUpAction, ETriggerEvent::Triggered, this, &AArchivist::PickUp);
 
 	}
 }
