@@ -18,7 +18,7 @@ void AOpenBox::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor*
 	if (Archivist)
 	{
 		FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, true);
-		ItemMesh->AttachToComponent(Archivist->GetMesh(), TransformRules, FName("BothHandsSocket"));
+		ItemMesh->AttachToComponent(Archivist->GetMesh(), TransformRules, FName("LeftHandSocket"));
 	}
 }
 
