@@ -77,7 +77,7 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 	AOpenBox* OverlappingBox = Cast<AOpenBox>(OverlappingItems);
 	if (OverlappingBox)
 	{
-		OverlappingBox->Equip(GetMesh(), FName("BothHandSocket"));
+		OverlappingBox->Equip(GetMesh(), FName("LeftHandSocket"));
 	}
 }
 

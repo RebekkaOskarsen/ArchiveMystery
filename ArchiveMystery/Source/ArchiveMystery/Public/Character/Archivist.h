@@ -15,6 +15,13 @@ class UInputAction;
 
 class AItems;
 
+UENUM(BlueprintType)
+enum class ECharacterState : uint8
+{
+	ECS_Unequipped UMETA(DisplayName = "Unequipped"),
+	ECS_EquippedOneHandedBox UMETA(DisplayName = "Equipped One-Handed Box")
+};
+
 UCLASS()
 class ARCHIVEMYSTERY_API AArchivist : public ACharacter
 {
@@ -55,6 +62,10 @@ private:
 	UPROPERTY(VisibleInstanceOnly)
 	AItems* OverlappingItems;
 
+	ECharacterState CharacterState = ECharacterState::ECS_Unequipped;
+
 	public:
 		FORCEINLINE void SetOverlappingItems(AItems* Items) { OverlappingItems = Items; }
+
+		FORCEINLINE ECharacterState GetCharacterState() const { return CharacterState; }
 };
