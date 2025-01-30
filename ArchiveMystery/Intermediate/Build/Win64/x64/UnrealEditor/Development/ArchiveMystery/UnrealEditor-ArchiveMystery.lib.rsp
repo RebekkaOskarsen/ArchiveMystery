@@ -1,0 +1,22 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-ArchiveMystery.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\ArchiveMysteryEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.InclOrderUnreal5_3.h.obj"
+"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\ArchiveMystery.init.gen.cpp.obj"
+"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\Archivist.gen.cpp.obj"
+"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\ArchivistAnimInstance.gen.cpp.obj"
+"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\Items.gen.cpp.obj"
+"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\OpenBox.gen.cpp.obj"
+"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\ArchiveMystery.cpp.obj"
+"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\Archivist.cpp.obj"
+"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\ArchivistAnimInstance.cpp.obj"
+"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\Items.cpp.obj"
+"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\OpenBox.cpp.obj"
+"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\PerModuleInline.gen.cpp.obj"
+"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\Default.rc2.res"
+/OUT:"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\UnrealEditor-ArchiveMystery.lib"
