@@ -1,0 +1,37 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/StarterContent/Architecture/Floor_400x400.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/E/JZ/28364SMT6KX994D8FADDT5.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/D/TM/KJTRLML74DLACSVL9FMEFD.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/C/CB/F0V7QHQUTBDRTG91IPC6QQ.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/C/4N/C3NBT9FDYB4C3RI4ZXIDR3.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/B/UC/3XC8SW2H251V94SRXYE4A6.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/B/NY/QPQ9CHTLJ847SIDKZRB7KL.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/B/2U/EFKP6XAON7A9CZWK7EM16C.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/A/GG/YV57I9KIU9QHQ043HLL3FL.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/9/VN/ZC3RH3V2BU33Q0I6F6KU2W.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/8/JC/4LCDOO35EW5JQWF4OMUIKK.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/8/F1/S88TPZ1CEHUJZXQZR7OQE5.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/8/1J/Z2MPQZUEOA4R4LFOER39EA.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/7/4S/MYB7BPMJSZVH3J1EMJ076X.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/7/3O/F2EB4UJPPWFTY1KRJ8JI8L.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/6/ZE/H7TD5M8Y9VH1EPPA37UM24.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/6/8E/L30HGI48QCW2CARRPXT11A.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/5/W7/1EQRWNPDQI2MGVHVBPZ7NC.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/4/80/FKY9T190ZPGXYMERPB78LO.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/4/6M/LS6ZC0XBNV2FT5LXO9KQV8.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/3/UR/1ZUZ0G32MXZVD731QJP79W.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/2/89/LSDJOSIGBN8YRQXMWX58TF.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/1/8Q/HORTRQ4GY32A29DCGPL5DX.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalObjects__/Archive-Mystery/E/Y1/KAITRIJ8D0XCKKNL5F8YHY.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/4/NF/O6T4DVEF129V6EW7LX2C9U.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/4/42/AW2Q11UC0M6DLJ60YSBV1W.uasset"
+			]
+		}
+	]
+}
