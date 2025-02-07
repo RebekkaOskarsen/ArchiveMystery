@@ -34,6 +34,9 @@ public:
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	//Camera
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UCameraComponent* ViewCamera;
 protected:
 	virtual void BeginPlay() override;
 
@@ -56,8 +59,7 @@ private:
 	// Camera properties
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* SpringArm;
-	UPROPERTY(VisibleAnywhere)
-	UCameraComponent* ViewCamera;
+
 
 	UPROPERTY(VisibleInstanceOnly)
 	AItems* OverlappingItems;
