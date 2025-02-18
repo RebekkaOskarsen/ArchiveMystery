@@ -11,6 +11,10 @@
 
 #include "Items/Items.h"
 #include "Items/Box/OpenBox.h"
+
+#include <Kismet/GameplayStatics.h>
+#include "Blueprint/UserWidget.h"
+#include "Character/ArchiveGameInstance.h"
 AArchivist::AArchivist()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -28,6 +32,19 @@ AArchivist::AArchivist()
 void AArchivist::BeginPlay()
 {
 	Super::BeginPlay();
+
+	UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(GetGameInstance());
+	if (GameInstance && !GameInstance->SavedPlayerLocation.IsZero())
+	{
+		SetActorLocation(GameInstance->SavedPlayerLocation);
+		UE_LOG(LogTemp, Warning, TEXT("Restored player location: %s"), *GameInstance->SavedPlayerLocation.ToString());
+	}
+
+	if (MinigameTriggerBox)
+	{
+		MinigameTriggerBox->OnActorBeginOverlap.AddDynamic(this, &AArchivist::OnOverlapBegin);
+		MinigameTriggerBox->OnActorEndOverlap.AddDynamic(this, &AArchivist::OnOverlapEnd);
+	}
 	
 	if (APlayerController* PlayerController = Cast<APlayerController>(GetController()))
 	{
@@ -96,7 +113,54 @@ void AArchivist::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AArchivist::Move);
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AArchivist::Look);
 		EnhancedInputComponent->BindAction(PickUpAction, ETriggerEvent::Triggered, this, &AArchivist::PickUp);
-
+		EnhancedInputComponent->BindAction(EnterMinigameAction, ETriggerEvent::Triggered, this, &AArchivist::TryEnterMinigame);
 	}
 }
 
+void AArchivist::OnOverlapBegin(AActor* OverlappedActor, AActor* OtherActor)
+{
+	if (OtherActor == this) // Sjekk om det er spilleren som går inn i triggeren
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Player entered minigame trigger area!"));
+
+		if (MinigamePromptWidgetClass && !MinigamePromptWidget)
+		{
+			MinigamePromptWidget = CreateWidget<UUserWidget>(GetWorld(), MinigamePromptWidgetClass);
+			if (MinigamePromptWidget)
+			{
+				MinigamePromptWidget->AddToViewport();
+			}
+		}
+	}
+}
+
+void AArchivist::OnOverlapEnd(AActor* OverlappedActor, AActor* OtherActor)
+{
+	if (OtherActor == this) // Sjekk om det er spilleren som går ut av triggeren
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Player left minigame trigger area!"));
+
+		if (MinigamePromptWidget)
+		{
+			MinigamePromptWidget->RemoveFromParent();
+			MinigamePromptWidget = nullptr;
+		}
+	}
+}
+
+void AArchivist::TryEnterMinigame()
+{
+
+	if (MinigameTriggerBox && MinigameTriggerBox->IsOverlappingActor(this))
+	{
+		// Hent GameInstance og lagre posisjonen
+		UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(GetGameInstance());
+		if (GameInstance)
+		{
+			GameInstance->SavedPlayerLocation = GetActorLocation();
+			UE_LOG(LogTemp, Warning, TEXT("Saved player location: %s"), *GameInstance->SavedPlayerLocation.ToString());
+		}
+
+		UGameplayStatics::OpenLevel(this, "Minigame");
+	}
+}

@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
+#include "Engine/TriggerBox.h"
+#include "Blueprint/UserWidget.h"
 #include "Archivist.generated.h"
 
 class USpringArmComponent;
@@ -70,4 +72,26 @@ private:
 		FORCEINLINE void SetOverlappingItems(AItems* Items) { OverlappingItems = Items; }
 
 		FORCEINLINE ECharacterState GetCharacterState() const { return CharacterState; }
+
+		void TryEnterMinigame();
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
+		UInputAction* EnterMinigameAction;
+
+		UFUNCTION()
+		void OnOverlapBegin(AActor* OverlappedActor, AActor* OtherActor);
+
+		UFUNCTION()
+		void OnOverlapEnd(AActor* OverlappedActor, AActor* OtherActor);
+
+		UPROPERTY(EditAnywhere, Category = "Minigame")
+		ATriggerBox* MinigameTriggerBox;
+
+		UPROPERTY(EditAnywhere, Category = "UI")
+		TSubclassOf<UUserWidget> MinigamePromptWidgetClass;
+
+		UUserWidget* MinigamePromptWidget;
+
+		UPROPERTY()
+		FVector LastSavedLocation;
 };
