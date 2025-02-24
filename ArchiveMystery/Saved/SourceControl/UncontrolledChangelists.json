@@ -44,7 +44,6 @@
 				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Quest_System/UI/W_Delivery_Organization.uasset",
 				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/2DAssets/Delivery_organization_concept_art.uasset",
 				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/W_E_To_Interact.uasset",
-				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/5/07/A1K2FBYZHS0DM4FMXPVIA7.uasset",
 				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Quest_System/UI/W_QuestLog.uasset",
 				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Quest_System/UI/W_QuestLog_QuestEntry.uasset",
 				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/FirstPerson/Blueprints/BP_FirstPersonGameMode.uasset",
@@ -52,7 +51,6 @@
 				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Quest_System/UI/W_QuestLog_Objectives.uasset",
 				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Quest_System/BP_Computer.uasset",
 				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/7/R5/1AEFGU6RFDZ60RQE29LUCX.uasset",
-				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/8/JX/23ATR4LXWV06IIHQ3H1KT8.uasset",
 				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Quest_System/UI/W_HUD_Quests.uasset",
 				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Quest_System/UI/W_Quest_Notification.uasset",
 				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Quest_System/BP_Location_Marker.uasset",
@@ -62,6 +60,17 @@
 				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Save_and_Load_System/S_QuestSaveData.uasset",
 				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Save_and_Load_System/My_Game_Instance.uasset",
 				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Quest_System/UI/W_Tracker.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Quest_System/S_Quest_Details.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Quest_System/BP_Delivery_Organization.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Quest_System/BP_QuestGiver.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/C/F9/EJKVQEA53NK9FAVM2JNLU2.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Quest_System/UI/W_Delivery_Rewards.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/9/49/3HWR2R6U1ZE6HQXP9KEN53.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/B/7N/HWDZDNATY8F9QR36WRDB4C.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Shelf/SM_Shelf.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/2/LG/A6T5G4YBMRN5ZDJM2HTK22.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/5/07/A1K2FBYZHS0DM4FMXPVIA7.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/8/JX/23ATR4LXWV06IIHQ3H1KT8.uasset",
 				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/B/HR/X0D6BXJ1N4TZD3ZYHWQURS.uasset"
 			]
 		}
