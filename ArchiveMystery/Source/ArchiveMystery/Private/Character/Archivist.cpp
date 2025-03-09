@@ -15,6 +15,10 @@
 #include <Kismet/GameplayStatics.h>
 #include "Blueprint/UserWidget.h"
 #include "Character/ArchiveGameInstance.h"
+
+#include "HUD/MainMenuWidget.h"
+
+
 AArchivist::AArchivist()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -27,11 +31,32 @@ AArchivist::AArchivist()
 	ViewCamera->SetupAttachment(SpringArm);
 
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
+
+	MainMenuWidgetClass = nullptr;
 }
 
 void AArchivist::BeginPlay()
 {
 	Super::BeginPlay();
+
+	// Sjekk om vi er i riktig nivå (startmenyen)
+	if (GetWorld()->GetMapName().Contains("MainMenuLevel"))
+	{
+		// Sjekk om MainMenuWidgetClass er satt
+		if (MainMenuWidgetClass)
+		{
+			// Opprett og vis startmenyen
+			MainMenuWidget = CreateWidget<UMainMenuWidget>(GetWorld(), MainMenuWidgetClass);
+			if (MainMenuWidget)
+			{
+				MainMenuWidget->AddToViewport();
+			}
+		}
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("MainMenuWidgetClass is not set in AArchivist!"));
+		}
+	}
 
 	UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(GetGameInstance());
 	if (GameInstance && !GameInstance->SavedPlayerLocation.IsZero())
@@ -44,6 +69,16 @@ void AArchivist::BeginPlay()
 	{
 		MinigameTriggerBox->OnActorBeginOverlap.AddDynamic(this, &AArchivist::OnOverlapBegin);
 		MinigameTriggerBox->OnActorEndOverlap.AddDynamic(this, &AArchivist::OnOverlapEnd);
+	}
+
+	for (FPaintingInfo& PaintingInfo : Paintings)
+	{
+		if (PaintingInfo.PaintingTriggerBox)
+		{
+			// Bind overlap-hendelsene til triggerboksene
+			PaintingInfo.PaintingTriggerBox->OnActorBeginOverlap.AddDynamic(this, &AArchivist::OnPaintingTriggerBeginOverlap);
+			PaintingInfo.PaintingTriggerBox->OnActorEndOverlap.AddDynamic(this, &AArchivist::OnPaintingTriggerEndOverlap);
+		}
 	}
 	
 	if (APlayerController* PlayerController = Cast<APlayerController>(GetController()))
@@ -102,6 +137,16 @@ void AArchivist::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	// Hvis inputen er låst, oppdater tiden og frigjør input når cooldown er over
+	if (bIsInputLocked)
+	{
+		CurrentInputTime += DeltaTime;
+		if (CurrentInputTime >= InputLockTime)
+		{
+			bIsInputLocked = false;
+		}
+	}
+
 }
 
 void AArchivist::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -114,6 +159,7 @@ void AArchivist::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AArchivist::Look);
 		EnhancedInputComponent->BindAction(PickUpAction, ETriggerEvent::Triggered, this, &AArchivist::PickUp);
 		EnhancedInputComponent->BindAction(EnterMinigameAction, ETriggerEvent::Triggered, this, &AArchivist::TryEnterMinigame);
+		EnhancedInputComponent->BindAction(LookAtPaintingAction, ETriggerEvent::Triggered, this, &AArchivist::LookAtPainting);
 	}
 }
 
@@ -163,4 +209,122 @@ void AArchivist::TryEnterMinigame()
 
 		UGameplayStatics::OpenLevel(this, "Minigame");
 	}
+}
+
+void AArchivist::OnPaintingTriggerBeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
+{
+	if (OtherActor == this) // Sjekk om det er spilleren som går inn i triggeren
+	{
+		for (FPaintingInfo& PaintingInfo : Paintings)
+		{
+			if (PaintingInfo.PaintingTriggerBox && PaintingInfo.PaintingTriggerBox->IsOverlappingActor(OtherActor))
+			{
+				// Spilleren har gått inn i triggerområdet for denne maleren
+				UE_LOG(LogTemp, Warning, TEXT("Player entered the painting trigger area!"));
+
+				// Vis instruksjons-widgeten
+				if (PaintingInfo.PaintingInstructionWidgetClass && !PaintingInfo.PaintingInstructionWidgetInstance)
+				{
+					PaintingInfo.PaintingInstructionWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), PaintingInfo.PaintingInstructionWidgetClass);
+					if (PaintingInfo.PaintingInstructionWidgetInstance)
+					{
+						PaintingInfo.PaintingInstructionWidgetInstance->AddToViewport();
+					}
+				}
+			}
+		}
+	}
+}
+
+
+void AArchivist::OnPaintingTriggerEndOverlap(AActor* OverlappedActor, AActor* OtherActor)
+{
+	if (!GetWorld() || !GetWorld()->GetFirstPlayerController())
+	{
+		UE_LOG(LogTemp, Error, TEXT("World or PlayerController is null!"));
+		return;
+	}
+
+	APawn* PlayerPawn = GetWorld()->GetFirstPlayerController()->GetPawn();
+	if (OtherActor != PlayerPawn)
+	{
+		return; // Ignorer hvis det ikke er spilleren
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("OnPaintingTriggerEndOverlap triggered!"));
+	UE_LOG(LogTemp, Warning, TEXT("Player left the painting trigger area!"));
+
+	for (FPaintingInfo& PaintingInfo : Paintings)
+	{
+		if (!PaintingInfo.PaintingTriggerBox)
+		{
+			//UE_LOG(LogTemp, Error, TEXT("PaintingTriggerBox is null for painting: %s"), *PaintingInfo.PaintingName.ToString());
+			continue;
+		}
+
+		if (!PaintingInfo.PaintingTriggerBox->IsOverlappingActor(OtherActor))
+		{
+			//UE_LOG(LogTemp, Warning, TEXT("Checking if widget exists for removal for painting: %s"), *PaintingInfo.PaintingName.ToString());
+
+			if (PaintingInfo.PaintingInstructionWidgetInstance && PaintingInfo.PaintingInstructionWidgetInstance->IsInViewport())
+			{
+				//UE_LOG(LogTemp, Warning, TEXT("Removing widget from parent for painting: %s"), *PaintingInfo.PaintingName.ToString());
+				PaintingInfo.PaintingInstructionWidgetInstance->RemoveFromParent();
+				PaintingInfo.PaintingInstructionWidgetInstance = nullptr;
+			}
+		}
+	}
+}
+
+
+
+void AArchivist::LookAtPainting(const FInputActionValue& Value)
+{
+	if (bIsInputLocked)
+	{
+		// Hvis inputen er låst, ikke gjør noe
+		return;
+	}
+
+	// Lås input for en stund etter at det er trykket på E
+	bIsInputLocked = true;
+
+	for (FPaintingInfo& PaintingInfo : Paintings)
+	{
+		if (PaintingInfo.PaintingTriggerBox && PaintingInfo.PaintingTriggerBox->IsOverlappingActor(this))
+		{
+			if (!PaintingInfo.bIsLookingAtPainting)
+			{
+				// Spilleren er i triggerområdet og trykker på E, vis widgeten med malerbildet
+				PaintingInfo.bIsLookingAtPainting = true;
+				bIsMovementLocked = true;  // Lås bevegelsen
+
+				// Vis widgetet med malerbildet
+				if (PaintingInfo.PaintingWidgetClass && !PaintingInfo.PaintingWidgetInstance)
+				{
+					PaintingInfo.PaintingWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), PaintingInfo.PaintingWidgetClass);
+					if (PaintingInfo.PaintingWidgetInstance)
+					{
+						PaintingInfo.PaintingWidgetInstance->AddToViewport();
+					}
+				}
+			}
+			else
+			{
+				// Hvis spilleren allerede ser på malerbildet, skjul widgetet og gå tilbake til normal tilstand
+				PaintingInfo.bIsLookingAtPainting = false;
+				bIsMovementLocked = false;  // Frigjør bevegelsen
+
+				// Fjern widgetet
+				if (PaintingInfo.PaintingWidgetInstance)
+				{
+					PaintingInfo.PaintingWidgetInstance->RemoveFromViewport();
+					PaintingInfo.PaintingWidgetInstance = nullptr;
+				}
+			}
+		}
+	}
+
+	// Sett cooldown-tiden før neste input kan brukes
+	CurrentInputTime = 0.0f;
 }

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
+#include "PaintingInfo.h"
 #include "Engine/TriggerBox.h"
 #include "Blueprint/UserWidget.h"
 #include "Archivist.generated.h"
@@ -57,6 +58,13 @@ protected:
 	void Look(const FInputActionValue& Value);
 	void PickUp(const FInputActionValue& Value);
 
+	// Referanse til Widget Blueprint-klassen for startmenyen
+	UPROPERTY(EditDefaultsOnly, Category = "UI")
+	TSubclassOf<class UMainMenuWidget> MainMenuWidgetClass;
+
+	UPROPERTY()
+	class UMainMenuWidget* MainMenuWidget;
+
 private:
 	// Camera properties
 	UPROPERTY(VisibleAnywhere)
@@ -94,4 +102,37 @@ private:
 
 		UPROPERTY()
 		FVector LastSavedLocation;
+
+		//--------------------------------------------------------------------------------------
+
+		// Legg til en ny InputAction
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
+		UInputAction* LookAtPaintingAction;
+
+		 // Variabel som holder en liste over malere
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Painting")
+		TArray<FPaintingInfo> Paintings; // Liste med flere maler
+
+		ATriggerBox* PaintingTriggerBox;
+
+		// Variabel som holder styr på om karakteren ser på maleriet
+		bool bIsLookingAtPainting = false;
+
+		UFUNCTION()
+		void OnPaintingTriggerBeginOverlap(AActor* OverlappedActor, AActor* OtherActor);
+		UFUNCTION()
+		void OnPaintingTriggerEndOverlap(AActor* OverlappedActor, AActor* OtherActor);
+
+		void LookAtPainting(const FInputActionValue& Value);
+
+
+		// Variabel som holder styr på om spilleren er låst i visningen av malerbildet
+		bool bIsMovementLocked = false;
+
+
+		UUserWidget* PaintingWidgetInstance;  // Instans av widgeten som vil bli lagt til på skjermen
+
+		bool bIsInputLocked = false;  // For å hindre gjentatte inputtriggere
+		float InputLockTime = 0.3f;   // Tid i sekunder før input kan brukes igjen (juster etter behov)
+		float CurrentInputTime = 0.0f;
 };
