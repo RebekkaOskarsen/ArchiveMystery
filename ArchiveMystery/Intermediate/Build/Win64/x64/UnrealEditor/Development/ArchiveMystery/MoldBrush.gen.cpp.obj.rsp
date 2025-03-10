@@ -1,12 +1,12 @@
-"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\UnrealEditor\Inc\ArchiveMystery\UHT\MoldBrush.gen.cpp"
-/FI"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\ArchiveMysteryEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.InclOrderUnreal5_3.h"
-/FI"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\Definitions.ArchiveMystery.h"
-/Yu"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\ArchiveMysteryEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.InclOrderUnreal5_3.h"
-/Fp"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\ArchiveMysteryEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.InclOrderUnreal5_3.h.pch"
-/Fo"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\MoldBrush.gen.cpp.obj"
-/experimental:log "C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\MoldBrush.gen.cpp.sarif"
-/sourceDependencies "C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\MoldBrush.gen.cpp.dep.json"
-@"C:\Users\minas\OneDrive\Dokumenter\Personal Projects\NGA 2025\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\ArchiveMystery.Shared.rsp"
+"C:\Bachelor-Project\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\UnrealEditor\Inc\ArchiveMystery\UHT\MoldBrush.gen.cpp"
+/FI"C:\Bachelor-Project\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\ArchiveMysteryEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.InclOrderUnreal5_3.h"
+/FI"C:\Bachelor-Project\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\Definitions.ArchiveMystery.h"
+/Yu"C:\Bachelor-Project\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\ArchiveMysteryEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.InclOrderUnreal5_3.h"
+/Fp"C:\Bachelor-Project\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\ArchiveMysteryEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.InclOrderUnreal5_3.h.pch"
+/Fo"C:\Bachelor-Project\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\MoldBrush.gen.cpp.obj"
+/experimental:log "C:\Bachelor-Project\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\MoldBrush.gen.cpp.sarif"
+/sourceDependencies "C:\Bachelor-Project\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\MoldBrush.gen.cpp.dep.json"
+@"C:\Bachelor-Project\ArchiveMystery\ArchiveMystery\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchiveMystery\ArchiveMystery.Shared.rsp"
 /d2ssa-cfg-question-
 /Zc:inline
 /nologo

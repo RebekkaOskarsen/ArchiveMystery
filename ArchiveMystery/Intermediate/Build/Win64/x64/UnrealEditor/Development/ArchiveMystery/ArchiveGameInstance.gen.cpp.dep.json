@@ -1,13 +1,13 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "c:\\users\\minas\\onedrive\\dokumenter\\personal projects\\nga 2025\\archivemystery\\archivemystery\\intermediate\\build\\win64\\unrealeditor\\inc\\archivemystery\\uht\\archivegameinstance.gen.cpp",
+        "Source": "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\unrealeditor\\inc\\archivemystery\\uht\\archivegameinstance.gen.cpp",
         "ProvidedModule": "",
-        "PCH": "c:\\users\\minas\\onedrive\\dokumenter\\personal projects\\nga 2025\\archivemystery\\archivemystery\\intermediate\\build\\win64\\x64\\archivemysteryeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderunreal5_3.h.pch",
+        "PCH": "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\x64\\archivemysteryeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderunreal5_3.h.pch",
         "Includes": [
-            "c:\\users\\minas\\onedrive\\dokumenter\\personal projects\\nga 2025\\archivemystery\\archivemystery\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\archivemystery\\definitions.archivemystery.h",
-            "c:\\users\\minas\\onedrive\\dokumenter\\personal projects\\nga 2025\\archivemystery\\archivemystery\\source\\archivemystery\\public\\character\\archivegameinstance.h",
-            "c:\\users\\minas\\onedrive\\dokumenter\\personal projects\\nga 2025\\archivemystery\\archivemystery\\intermediate\\build\\win64\\unrealeditor\\inc\\archivemystery\\uht\\archivegameinstance.generated.h"
+            "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\archivemystery\\definitions.archivemystery.h",
+            "c:\\bachelor-project\\archivemystery\\archivemystery\\source\\archivemystery\\public\\character\\archivegameinstance.h",
+            "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\unrealeditor\\inc\\archivemystery\\uht\\archivegameinstance.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

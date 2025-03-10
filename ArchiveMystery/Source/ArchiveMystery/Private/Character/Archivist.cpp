@@ -30,6 +30,10 @@ AArchivist::AArchivist()
 	ViewCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("ViewCamera"));
 	ViewCamera->SetupAttachment(SpringArm);
 
+	bUseControllerRotationPitch = true;
+
+	SpringArm->bInheritPitch = false;
+
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
 
 	MainMenuWidgetClass = nullptr;
@@ -116,7 +120,7 @@ void AArchivist::Look(const FInputActionValue& Value)
 		FRotator ControlRotation = Controller->GetControlRotation();
 
 		// Clamped pitch stays between -45 and 80 degrees.
-		float NewPitch = FMath::Clamp(ControlRotation.Pitch + LookAxisValue.Y, -45.0f, 80.0f);
+		float NewPitch = FMath::Clamp(ControlRotation.Pitch - LookAxisValue.Y, -45.0f, 80.0f);
 		float NewYaw = ControlRotation.Yaw + LookAxisValue.X;
 
 		// Set the new rotation
