@@ -1,0 +1,29 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/StarterContent/Architecture/Floor_400x400.uasset",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/3DAssets/Mold/M_large_mold.uasset",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/3DAssets/Mold/SM_Large_Mold.uasset",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/D/UZ/H0KVXKZ6N1V8FKQUZF9B8O.uasset",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/Minigame-Mold/MoldRoom.umap",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/Minigame-Mold/Blueprint/BP_MoldBrush.uasset",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/Minigame-Mold/Blueprint/BP_Mold.uasset",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/3DAssets/Brushes/M_Big_Brush.uasset",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/3DAssets/Brushes/M_Small_Brush.uasset",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/3DAssets/Brushes/SM_Big_Brush.uasset",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/3DAssets/Brushes/SM_Small_Brush.uasset",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/Mold_minigame/MoldRoom.umap",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/Mold_minigame/Blueprints/BP_Mold.uasset",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/Mold_minigame/Blueprints/MyMoldBrush.uasset",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/Mold_minigame/Blueprints/MyMoldPlayerController.uasset",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/Mold_minigame/Blueprints/BP_MoldBrush.uasset",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/Mold_minigame/Blueprints/BP_MoldPlayerController.uasset",
+				"C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Content/Mold_minigame/Blueprints/BP_MoldGameMode.uasset"
+			]
+		}
+	]
+}

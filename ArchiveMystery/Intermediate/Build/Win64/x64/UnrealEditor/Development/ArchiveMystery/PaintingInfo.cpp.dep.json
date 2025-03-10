@@ -1,0 +1,13 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\bachelor-project\\archivemystery\\archivemystery\\source\\archivemystery\\private\\character\\paintinginfo.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\x64\\archivemysteryeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderunreal5_3.h.pch",
+        "Includes": [
+            "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\archivemystery\\definitions.archivemystery.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

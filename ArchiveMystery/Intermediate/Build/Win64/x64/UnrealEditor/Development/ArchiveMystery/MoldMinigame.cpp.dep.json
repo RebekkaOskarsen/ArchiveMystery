@@ -1,0 +1,30 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\bachelor-project\\archivemystery\\archivemystery\\source\\archivemystery\\private\\mold\\moldminigame.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\x64\\archivemysteryeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderunreal5_3.h.pch",
+        "Includes": [
+            "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\archivemystery\\definitions.archivemystery.h",
+            "c:\\bachelor-project\\archivemystery\\archivemystery\\source\\archivemystery\\public\\mold\\moldminigame.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\engine\\classes\\camera\\cameracomponent.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\cameracomponent.generated.h",
+            "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\unrealeditor\\inc\\archivemystery\\uht\\moldminigame.generated.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\engine\\classes\\kismet\\gameplaystatics.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\engine\\classes\\kismet\\kismetsystemlibrary.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\coreuobject\\public\\uobject\\propertyaccessutil.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\kismetsystemlibrary.generated.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\engine\\classes\\sound\\dialoguetypes.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\dialoguetypes.generated.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\engine\\classes\\kismet\\gameplaystaticstypes.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\gameplaystaticstypes.generated.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\gameplaystatics.generated.h",
+            "c:\\bachelor-project\\archivemystery\\archivemystery\\source\\archivemystery\\public\\mold\\mold.h",
+            "c:\\bachelor-project\\archivemystery\\archivemystery\\source\\archivemystery\\public\\mold\\moldbrush.h",
+            "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\unrealeditor\\inc\\archivemystery\\uht\\moldbrush.generated.h",
+            "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\unrealeditor\\inc\\archivemystery\\uht\\mold.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

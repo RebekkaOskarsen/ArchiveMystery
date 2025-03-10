@@ -1,7 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "Camera/CameraComponent.h"
 #include "ShreddedPaper/Minigame.h"
+#include "Camera/CameraComponent.h"
+
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
 
