@@ -10,13 +10,13 @@
                         "text": "'UUserWidget::RemoveFromViewport': RemoveFromViewport is deprecated. Use RemoveFromParent instead. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
                     },
                     "analysisTarget": {
-                        "uri": "file:///C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
+                        "uri": "file:///C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
                     },
                     "locations": [
                         {
                             "physicalLocation": {
                                 "artifactLocation": {
-                                    "uri": "file:///C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
+                                    "uri": "file:///C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
                                 },
                                 "region": {
                                     "startLine": 149,
@@ -32,13 +32,13 @@
                         "text": "'UUserWidget::RemoveFromViewport': RemoveFromViewport is deprecated. Use RemoveFromParent instead. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
                     },
                     "analysisTarget": {
-                        "uri": "file:///C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
+                        "uri": "file:///C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
                     },
                     "locations": [
                         {
                             "physicalLocation": {
                                 "artifactLocation": {
-                                    "uri": "file:///C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
+                                    "uri": "file:///C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
                                 },
                                 "region": {
                                     "startLine": 155,
@@ -54,13 +54,13 @@
                         "text": "'UUserWidget::RemoveFromViewport': RemoveFromViewport is deprecated. Use RemoveFromParent instead. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
                     },
                     "analysisTarget": {
-                        "uri": "file:///C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
+                        "uri": "file:///C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
                     },
                     "locations": [
                         {
                             "physicalLocation": {
                                 "artifactLocation": {
-                                    "uri": "file:///C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
+                                    "uri": "file:///C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
                                 },
                                 "region": {
                                     "startLine": 181,

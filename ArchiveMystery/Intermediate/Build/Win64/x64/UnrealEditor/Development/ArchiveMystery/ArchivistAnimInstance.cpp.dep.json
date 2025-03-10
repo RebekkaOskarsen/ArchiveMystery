@@ -1,13 +1,13 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "c:\\bachelor-project\\archivemystery\\archivemystery\\source\\archivemystery\\private\\character\\archivistaniminstance.cpp",
+        "Source": "c:\\users\\minas\\onedrive\\dokumenter\\personal projects\\nga 2025\\archivemystery\\archivemystery\\source\\archivemystery\\private\\character\\archivistaniminstance.cpp",
         "ProvidedModule": "",
-        "PCH": "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\x64\\archivemysteryeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderunreal5_3.h.pch",
+        "PCH": "c:\\users\\minas\\onedrive\\dokumenter\\personal projects\\nga 2025\\archivemystery\\archivemystery\\intermediate\\build\\win64\\x64\\archivemysteryeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderunreal5_3.h.pch",
         "Includes": [
-            "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\archivemystery\\definitions.archivemystery.h",
-            "c:\\bachelor-project\\archivemystery\\archivemystery\\source\\archivemystery\\public\\character\\archivistaniminstance.h",
-            "c:\\bachelor-project\\archivemystery\\archivemystery\\source\\archivemystery\\public\\character\\archivist.h",
+            "c:\\users\\minas\\onedrive\\dokumenter\\personal projects\\nga 2025\\archivemystery\\archivemystery\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\archivemystery\\definitions.archivemystery.h",
+            "c:\\users\\minas\\onedrive\\dokumenter\\personal projects\\nga 2025\\archivemystery\\archivemystery\\source\\archivemystery\\public\\character\\archivistaniminstance.h",
+            "c:\\users\\minas\\onedrive\\dokumenter\\personal projects\\nga 2025\\archivemystery\\archivemystery\\source\\archivemystery\\public\\character\\archivist.h",
             "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\engine\\classes\\gameframework\\character.h",
             "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\engine\\classes\\gameframework\\charactermovementreplication.h",
             "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\net\\core\\public\\net\\core\\nettoken\\nettokenexportcontext.h",
@@ -19,7 +19,7 @@
             "c:\\program files\\epic games\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\character.generated.h",
             "c:\\program files\\epic games\\ue_5.5\\engine\\plugins\\enhancedinput\\source\\enhancedinput\\public\\inputactionvalue.h",
             "c:\\program files\\epic games\\ue_5.5\\engine\\plugins\\enhancedinput\\intermediate\\build\\win64\\unrealeditor\\inc\\enhancedinput\\uht\\inputactionvalue.generated.h",
-            "c:\\bachelor-project\\archivemystery\\archivemystery\\source\\archivemystery\\public\\character\\paintinginfo.h",
+            "c:\\users\\minas\\onedrive\\dokumenter\\personal projects\\nga 2025\\archivemystery\\archivemystery\\source\\archivemystery\\public\\character\\paintinginfo.h",
             "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\umg\\public\\blueprint\\userwidget.h",
             "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\umg\\public\\blueprint\\widgetchild.h",
             "c:\\program files\\epic games\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\umg\\uht\\widgetchild.generated.h",
@@ -56,9 +56,9 @@
             "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\engine\\classes\\engine\\triggerbase.h",
             "c:\\program files\\epic games\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\triggerbase.generated.h",
             "c:\\program files\\epic games\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\triggerbox.generated.h",
-            "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\unrealeditor\\inc\\archivemystery\\uht\\paintinginfo.generated.h",
-            "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\unrealeditor\\inc\\archivemystery\\uht\\archivist.generated.h",
-            "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\unrealeditor\\inc\\archivemystery\\uht\\archivistaniminstance.generated.h"
+            "c:\\users\\minas\\onedrive\\dokumenter\\personal projects\\nga 2025\\archivemystery\\archivemystery\\intermediate\\build\\win64\\unrealeditor\\inc\\archivemystery\\uht\\paintinginfo.generated.h",
+            "c:\\users\\minas\\onedrive\\dokumenter\\personal projects\\nga 2025\\archivemystery\\archivemystery\\intermediate\\build\\win64\\unrealeditor\\inc\\archivemystery\\uht\\archivist.generated.h",
+            "c:\\users\\minas\\onedrive\\dokumenter\\personal projects\\nga 2025\\archivemystery\\archivemystery\\intermediate\\build\\win64\\unrealeditor\\inc\\archivemystery\\uht\\archivistaniminstance.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

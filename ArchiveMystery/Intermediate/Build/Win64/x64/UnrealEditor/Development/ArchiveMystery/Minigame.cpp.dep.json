@@ -1,12 +1,12 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "c:\\bachelor-project\\archivemystery\\archivemystery\\source\\archivemystery\\private\\shreddedpaper\\minigame.cpp",
+        "Source": "c:\\users\\minas\\onedrive\\dokumenter\\personal projects\\nga 2025\\archivemystery\\archivemystery\\source\\archivemystery\\private\\shreddedpaper\\minigame.cpp",
         "ProvidedModule": "",
-        "PCH": "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\x64\\archivemysteryeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderunreal5_3.h.pch",
+        "PCH": "c:\\users\\minas\\onedrive\\dokumenter\\personal projects\\nga 2025\\archivemystery\\archivemystery\\intermediate\\build\\win64\\x64\\archivemysteryeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderunreal5_3.h.pch",
         "Includes": [
-            "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\archivemystery\\definitions.archivemystery.h",
-            "c:\\bachelor-project\\archivemystery\\archivemystery\\source\\archivemystery\\public\\shreddedpaper\\minigame.h",
+            "c:\\users\\minas\\onedrive\\dokumenter\\personal projects\\nga 2025\\archivemystery\\archivemystery\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\archivemystery\\definitions.archivemystery.h",
+            "c:\\users\\minas\\onedrive\\dokumenter\\personal projects\\nga 2025\\archivemystery\\archivemystery\\source\\archivemystery\\public\\shreddedpaper\\minigame.h",
             "c:\\program files\\epic games\\ue_5.5\\engine\\plugins\\enhancedinput\\source\\enhancedinput\\public\\enhancedinputcomponent.h",
             "c:\\program files\\epic games\\ue_5.5\\engine\\plugins\\enhancedinput\\source\\enhancedinput\\public\\inputaction.h",
             "c:\\program files\\epic games\\ue_5.5\\engine\\plugins\\enhancedinput\\source\\enhancedinput\\public\\inputmodifiers.h",
@@ -80,7 +80,7 @@
             "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\umg\\public\\components\\textwidgettypes.h",
             "c:\\program files\\epic games\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\umg\\uht\\textwidgettypes.generated.h",
             "c:\\program files\\epic games\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\umg\\uht\\textblock.generated.h",
-            "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\unrealeditor\\inc\\archivemystery\\uht\\minigame.generated.h",
+            "c:\\users\\minas\\onedrive\\dokumenter\\personal projects\\nga 2025\\archivemystery\\archivemystery\\intermediate\\build\\win64\\unrealeditor\\inc\\archivemystery\\uht\\minigame.generated.h",
             "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\engine\\classes\\camera\\cameracomponent.h",
             "c:\\program files\\epic games\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\cameracomponent.generated.h"
         ],
