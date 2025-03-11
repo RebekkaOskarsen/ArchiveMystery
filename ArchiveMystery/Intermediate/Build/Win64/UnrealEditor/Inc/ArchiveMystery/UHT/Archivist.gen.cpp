@@ -15,6 +15,7 @@ ARCHIVEMYSTERY_API UClass* Z_Construct_UClass_AArchivist();
 ARCHIVEMYSTERY_API UClass* Z_Construct_UClass_AArchivist_NoRegister();
 ARCHIVEMYSTERY_API UClass* Z_Construct_UClass_AItems_NoRegister();
 ARCHIVEMYSTERY_API UClass* Z_Construct_UClass_UMainMenuWidget_NoRegister();
+ARCHIVEMYSTERY_API UClass* Z_Construct_UClass_UPauseMenuWidget_NoRegister();
 ARCHIVEMYSTERY_API UEnum* Z_Construct_UEnum_ArchiveMystery_ECharacterState();
 ARCHIVEMYSTERY_API UScriptStruct* Z_Construct_UScriptStruct_FPaintingInfo();
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
@@ -388,6 +389,36 @@ struct Z_Construct_UClass_AArchivist_Statics
 		{ "ToolTip", "Variabel som holder en liste over malere" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PauseAction_MetaData[] = {
+		{ "Category", "Input" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Legg til en ny InputAction\n" },
+#endif
+		{ "ModuleRelativePath", "Public/Character/Archivist.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Legg til en ny InputAction" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PauseMenuWidget_MetaData[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Referanse til pause-menyen\n" },
+#endif
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/Character/Archivist.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Referanse til pause-menyen" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PauseMenuWidgetClass_MetaData[] = {
+		{ "Category", "UI" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Referanse til Widget Blueprint-klassen for pause-menyen\n" },
+#endif
+		{ "ModuleRelativePath", "Public/Character/Archivist.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Referanse til Widget Blueprint-klassen for pause-menyen" },
+#endif
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ViewCamera;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CharacterMappingContext;
@@ -405,6 +436,9 @@ struct Z_Construct_UClass_AArchivist_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_LookAtPaintingAction;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_Paintings_Inner;
 	static const UECodeGen_Private::FArrayPropertyParams NewProp_Paintings;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_PauseAction;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_PauseMenuWidget;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_PauseMenuWidgetClass;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -435,6 +469,9 @@ const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AArchivist_Sta
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AArchivist_Statics::NewProp_LookAtPaintingAction = { "LookAtPaintingAction", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AArchivist, LookAtPaintingAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_LookAtPaintingAction_MetaData), NewProp_LookAtPaintingAction_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AArchivist_Statics::NewProp_Paintings_Inner = { "Paintings", nullptr, (EPropertyFlags)0x0000008000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FPaintingInfo, METADATA_PARAMS(0, nullptr) }; // 2745162639
 const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AArchivist_Statics::NewProp_Paintings = { "Paintings", nullptr, (EPropertyFlags)0x0010008000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AArchivist, Paintings), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Paintings_MetaData), NewProp_Paintings_MetaData) }; // 2745162639
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AArchivist_Statics::NewProp_PauseAction = { "PauseAction", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AArchivist, PauseAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PauseAction_MetaData), NewProp_PauseAction_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AArchivist_Statics::NewProp_PauseMenuWidget = { "PauseMenuWidget", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AArchivist, PauseMenuWidget), Z_Construct_UClass_UPauseMenuWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PauseMenuWidget_MetaData), NewProp_PauseMenuWidget_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AArchivist_Statics::NewProp_PauseMenuWidgetClass = { "PauseMenuWidgetClass", nullptr, (EPropertyFlags)0x0044000000010001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AArchivist, PauseMenuWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UPauseMenuWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PauseMenuWidgetClass_MetaData), NewProp_PauseMenuWidgetClass_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AArchivist_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AArchivist_Statics::NewProp_ViewCamera,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AArchivist_Statics::NewProp_CharacterMappingContext,
@@ -452,6 +489,9 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AArchivis
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AArchivist_Statics::NewProp_LookAtPaintingAction,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AArchivist_Statics::NewProp_Paintings_Inner,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AArchivist_Statics::NewProp_Paintings,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AArchivist_Statics::NewProp_PauseAction,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AArchivist_Statics::NewProp_PauseMenuWidget,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AArchivist_Statics::NewProp_PauseMenuWidgetClass,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AArchivist_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AArchivist_Statics::DependentSingletons[])() = {
@@ -491,18 +531,18 @@ AArchivist::~AArchivist() {}
 // End Class AArchivist
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_Statics
+struct Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
 		{ ECharacterState_StaticEnum, TEXT("ECharacterState"), &Z_Registration_Info_UEnum_ECharacterState, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 328310748U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AArchivist, AArchivist::StaticClass, TEXT("AArchivist"), &Z_Registration_Info_UClass_AArchivist, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AArchivist), 4103037037U) },
+		{ Z_Construct_UClass_AArchivist, AArchivist::StaticClass, TEXT("AArchivist"), &Z_Registration_Info_UClass_AArchivist, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AArchivist), 1133876351U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_4254674861(TEXT("/Script/ArchiveMystery"),
-	Z_CompiledInDeferFile_FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_3175695153(TEXT("/Script/ArchiveMystery"),
+	Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_Statics::ClassInfo),
 	nullptr, 0,
-	Z_CompiledInDeferFile_FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_Statics::EnumInfo));
+	Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_Statics::EnumInfo));
 // End Registration
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

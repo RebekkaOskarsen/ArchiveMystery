@@ -66,6 +66,9 @@
     <ClCompile Include="..\..\Source\ArchiveMystery\Private\HUD\MainMenuWidget.cpp">
       <Filter>Source\ArchiveMystery\Private\HUD</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\ArchiveMystery\Private\HUD\PauseMenuWidget.cpp">
+      <Filter>Source\ArchiveMystery\Private\HUD</Filter>
+    </ClCompile>
     <Filter Include="Source\ArchiveMystery\Private\Items">
       <UniqueIdentifier>{130BEC83-C651-3ABD-AF2A-29CA2EC349B8}</UniqueIdentifier>
     </Filter>
@@ -127,6 +130,9 @@
       <UniqueIdentifier>{3577D531-72AE-3B85-A2D8-4D9A19D035B2}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\ArchiveMystery\Public\HUD\MainMenuWidget.h">
+      <Filter>Source\ArchiveMystery\Public\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\ArchiveMystery\Public\HUD\PauseMenuWidget.h">
       <Filter>Source\ArchiveMystery\Public\HUD</Filter>
     </ClCompile>
     <Filter Include="Source\ArchiveMystery\Public\Items">

@@ -17,6 +17,7 @@
 #include "Character/ArchiveGameInstance.h"
 
 #include "HUD/MainMenuWidget.h"
+#include "HUD/PauseMenuWidget.h"
 
 
 AArchivist::AArchivist()
@@ -37,6 +38,11 @@ AArchivist::AArchivist()
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
 
 	MainMenuWidgetClass = nullptr;
+
+	// Initialiser variabler
+	bIsPaused = false;
+	PauseMenuWidget = nullptr;
+	PauseMenuWidgetClass = nullptr;
 }
 
 void AArchivist::BeginPlay()
@@ -164,6 +170,7 @@ void AArchivist::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 		EnhancedInputComponent->BindAction(PickUpAction, ETriggerEvent::Triggered, this, &AArchivist::PickUp);
 		EnhancedInputComponent->BindAction(EnterMinigameAction, ETriggerEvent::Triggered, this, &AArchivist::TryEnterMinigame);
 		EnhancedInputComponent->BindAction(LookAtPaintingAction, ETriggerEvent::Triggered, this, &AArchivist::LookAtPainting);
+		EnhancedInputComponent->BindAction(PauseAction, ETriggerEvent::Triggered, this, &AArchivist::TogglePauseMenu);
 	}
 }
 
@@ -331,4 +338,55 @@ void AArchivist::LookAtPainting(const FInputActionValue& Value)
 
 	// Sett cooldown-tiden før neste input kan brukes
 	CurrentInputTime = 0.0f;
+}
+
+void AArchivist::TogglePauseMenu()
+{
+	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+	if (!PlayerController)
+	{
+		return;
+	}
+
+	if (bIsPaused)
+	{
+		// Fortsett spillet
+		UGameplayStatics::SetGamePaused(this, false);
+
+		// Fjern pause-menyen fra skjermen
+		if (PauseMenuWidget)
+		{
+			PauseMenuWidget->RemoveFromParent();
+			PauseMenuWidget = nullptr;
+		}
+
+		// Skjul musepekeren og sett inputmodus tilbake til spillmodus
+		PlayerController->bShowMouseCursor = false;
+		PlayerController->SetInputMode(FInputModeGameOnly());
+	}
+	else
+	{
+		// Paus spillet
+		UGameplayStatics::SetGamePaused(this, true);
+
+		// Opprett og vis pause-menyen
+		if (PauseMenuWidgetClass)
+		{
+			PauseMenuWidget = CreateWidget<UPauseMenuWidget>(GetWorld(), PauseMenuWidgetClass);
+			if (PauseMenuWidget)
+			{
+				PauseMenuWidget->AddToViewport();
+			}
+		}
+
+		// Vis musepekeren og sett inputmodus til UI-modus
+		PlayerController->bShowMouseCursor = true;
+		FInputModeUIOnly InputMode;
+		InputMode.SetWidgetToFocus(PauseMenuWidget->TakeWidget());
+		InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+		PlayerController->SetInputMode(InputMode);
+	}
+
+	// Toggle pause-tilstanden
+	bIsPaused = !bIsPaused;
 }

@@ -67,7 +67,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{613521C4-613E-35AF-80FA-7354FFB4838C}</ProjectGuid>
+    <ProjectGuid>{11598B30-1D12-3829-A599-1C123F402379}</ProjectGuid>
     <RootNamespace>ArchiveMystery</RootNamespace>
   </PropertyGroup>
   <Import Project="UECommon.props" />
@@ -280,6 +280,9 @@
     <ClCompile Include="..\..\Source\ArchiveMystery\Private\HUD\MainMenuWidget.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\ArchiveMystery\Private\HUD\PauseMenuWidget.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\ArchiveMystery\Private\Items\Items.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -320,6 +323,9 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\ArchiveMystery\Public\HUD\MainMenuWidget.h">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\ArchiveMystery\Public\HUD\PauseMenuWidget.h">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\ArchiveMystery\Public\Items\Items.h">

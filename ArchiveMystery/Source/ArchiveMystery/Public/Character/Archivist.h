@@ -135,4 +135,23 @@ private:
 		bool bIsInputLocked = false;  // For å hindre gjentatte inputtriggere
 		float InputLockTime = 0.3f;   // Tid i sekunder før input kan brukes igjen (juster etter behov)
 		float CurrentInputTime = 0.0f;
+
+		// Legg til en ny InputAction
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
+		UInputAction* PauseAction;
+
+	private:
+		// Referanse til pause-menyen
+		UPROPERTY()
+		class UPauseMenuWidget* PauseMenuWidget;
+
+		// Referanse til Widget Blueprint-klassen for pause-menyen
+		UPROPERTY(EditDefaultsOnly, Category = "UI")
+		TSubclassOf<class UPauseMenuWidget> PauseMenuWidgetClass;
+
+		// Funksjon for å håndtere pause-tasten
+		void TogglePauseMenu();
+
+		// Sjekk om spillet er pauset
+		bool bIsPaused;
 };

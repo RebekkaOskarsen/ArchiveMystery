@@ -10,16 +10,16 @@
                         "text": "'UUserWidget::RemoveFromViewport': RemoveFromViewport is deprecated. Use RemoveFromParent instead. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
                     },
                     "analysisTarget": {
-                        "uri": "file:///C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/Archivist.cpp"
+                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/Archivist.cpp"
                     },
                     "locations": [
                         {
                             "physicalLocation": {
                                 "artifactLocation": {
-                                    "uri": "file:///C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/Archivist.cpp"
+                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/Archivist.cpp"
                                 },
                                 "region": {
-                                    "startLine": 325,
+                                    "startLine": 332,
                                     "startColumn": 41
                                 }
                             }

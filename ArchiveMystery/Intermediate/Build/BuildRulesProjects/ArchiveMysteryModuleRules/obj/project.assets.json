@@ -5964,19 +5964,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\rebek\\.nuget\\packages\\": {}
+    "C:\\Users\\cathr\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Bachelor-Project\\ArchiveMystery\\ArchiveMystery\\Intermediate\\Build\\BuildRulesProjects\\ArchiveMysteryModuleRules\\ArchiveMysteryModuleRules.csproj",
+      "projectUniqueName": "C:\\ArchiveMystery\\ArchiveMystery\\ArchiveMystery\\Intermediate\\Build\\BuildRulesProjects\\ArchiveMysteryModuleRules\\ArchiveMysteryModuleRules.csproj",
       "projectName": "ArchiveMysteryModuleRules",
-      "projectPath": "C:\\Bachelor-Project\\ArchiveMystery\\ArchiveMystery\\Intermediate\\Build\\BuildRulesProjects\\ArchiveMysteryModuleRules\\ArchiveMysteryModuleRules.csproj",
-      "packagesPath": "C:\\Users\\rebek\\.nuget\\packages\\",
-      "outputPath": "C:\\Bachelor-Project\\ArchiveMystery\\ArchiveMystery\\Intermediate\\Build\\BuildRulesProjects\\ArchiveMysteryModuleRules\\obj\\",
+      "projectPath": "C:\\ArchiveMystery\\ArchiveMystery\\ArchiveMystery\\Intermediate\\Build\\BuildRulesProjects\\ArchiveMysteryModuleRules\\ArchiveMysteryModuleRules.csproj",
+      "packagesPath": "C:\\Users\\cathr\\.nuget\\packages\\",
+      "outputPath": "C:\\ArchiveMystery\\ArchiveMystery\\ArchiveMystery\\Intermediate\\Build\\BuildRulesProjects\\ArchiveMysteryModuleRules\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\rebek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\cathr\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

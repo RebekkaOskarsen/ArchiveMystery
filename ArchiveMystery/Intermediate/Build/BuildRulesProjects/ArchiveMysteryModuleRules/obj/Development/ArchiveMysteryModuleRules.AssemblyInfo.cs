@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ArchiveMysteryModuleRules")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Development")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+59fb6bcd8aab5265a1d6202961ad19c5d8925ab0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a194f82a2e983b5a25e8e17787385ba990a40ff7")]
 [assembly: System.Reflection.AssemblyProductAttribute("ArchiveMysteryModuleRules")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ArchiveMysteryModuleRules")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
