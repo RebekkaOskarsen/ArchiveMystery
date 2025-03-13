@@ -48,14 +48,33 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
 	UInputAction* MoveAction;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
 	UInputAction* LookAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	UInputAction* JumpAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	UInputAction* RunAction;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
 	UInputAction* PickUpAction;
 
 
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
+	virtual void Jump() override;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Movement")
+	float WalkSpeed = 400.0f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Movement")
+	float RunSpeed = 700.0f;
+
+	void StartRunning();
+	void StopRunning();
+
 	void PickUp(const FInputActionValue& Value);
 
 	// Referanse til Widget Blueprint-klassen for startmenyen
@@ -66,6 +85,7 @@ protected:
 	class UMainMenuWidget* MainMenuWidget;
 
 private:
+
 	// Camera properties
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* SpringArm;

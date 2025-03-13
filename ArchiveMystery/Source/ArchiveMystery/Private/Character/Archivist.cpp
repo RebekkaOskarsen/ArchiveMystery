@@ -3,6 +3,7 @@
 
 #include "Character/Archivist.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Camera/CameraComponent.h"
 
 #include "Components/InputComponent.h"
@@ -34,6 +35,7 @@ AArchivist::AArchivist()
 	bUseControllerRotationPitch = true;
 
 	SpringArm->bInheritPitch = false;
+	SpringArm->bUsePawnControlRotation = true;
 
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
 
@@ -43,6 +45,8 @@ AArchivist::AArchivist()
 	bIsPaused = false;
 	PauseMenuWidget = nullptr;
 	PauseMenuWidgetClass = nullptr;
+
+	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
 }
 
 void AArchivist::BeginPlay()
@@ -126,12 +130,27 @@ void AArchivist::Look(const FInputActionValue& Value)
 		FRotator ControlRotation = Controller->GetControlRotation();
 
 		// Clamped pitch stays between -45 and 80 degrees.
-		float NewPitch = FMath::Clamp(ControlRotation.Pitch - LookAxisValue.Y, -45.0f, 80.0f);
+		float NewPitch = FMath::Clamp(ControlRotation.Pitch - LookAxisValue.Y * 0.04f, -45.0f, 80.0f);
 		float NewYaw = ControlRotation.Yaw + LookAxisValue.X;
 
-		// Set the new rotation
-		Controller->SetControlRotation(FRotator(NewPitch, NewYaw, 0.0f));
+		AddControllerPitchInput(LookAxisValue.Y);
+		AddControllerYawInput(LookAxisValue.X);
 	}
+}
+
+void AArchivist::Jump()
+{
+	Super::Jump();
+}
+
+void AArchivist::StartRunning()
+{
+	GetCharacterMovement()->MaxWalkSpeed = RunSpeed;
+}
+
+void AArchivist::StopRunning()
+{
+	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
 }
 
 void AArchivist::PickUp(const FInputActionValue& Value)
@@ -142,6 +161,7 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 		OverlappingBox->Equip(GetMesh(), FName("LeftHandSocket"));
 	}
 }
+
 
 void AArchivist::Tick(float DeltaTime)
 {
@@ -165,9 +185,23 @@ void AArchivist::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 
 	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
 	{
+		// Walking
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AArchivist::Move);
+
+		// Look around
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AArchivist::Look);
+
+		// Jumping
+		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &AArchivist::Jump);
+
+		// Running
+		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Started, this, &AArchivist::StartRunning);
+		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Completed, this, &AArchivist::StopRunning);
+
+		// PickUp
 		EnhancedInputComponent->BindAction(PickUpAction, ETriggerEvent::Triggered, this, &AArchivist::PickUp);
+
+		//
 		EnhancedInputComponent->BindAction(EnterMinigameAction, ETriggerEvent::Triggered, this, &AArchivist::TryEnterMinigame);
 		EnhancedInputComponent->BindAction(LookAtPaintingAction, ETriggerEvent::Triggered, this, &AArchivist::LookAtPainting);
 		EnhancedInputComponent->BindAction(PauseAction, ETriggerEvent::Triggered, this, &AArchivist::TogglePauseMenu);
