@@ -15,8 +15,11 @@ AMold::AMold()
 
 	MoldMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MoldMesh"));
 	RootComponent = MoldMesh;
-	MoldSize = EMoldSize::Small; // Default to small mold
-	MoldHealth = 100.0f; // Starts at 100%
+
+	MoldHealth = 100.0f;
+	MaxHealth = 100.0f;
+	MinHealth = 50.0f;
+	MoldSize = EMoldSize::Big;
 
 	// Enable collision and allow raycast detection
 	MoldMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
@@ -44,72 +47,31 @@ void AMold::Tick(float DeltaTime)
 
 	TArray<AActor*> OverlappingActors;
 	MoldMesh->GetOverlappingActors(OverlappingActors);
-
-	for (AActor* Actor : OverlappingActors)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("MOLD: Currently overlapping with: %s"), *Actor->GetName());
-	}
 }
 
 
 void AMold::OnBrushed(EBrushSize BrushSize)
 {
-	UE_LOG(LogTemp, Warning, TEXT("OnBrushed CALLED! Mold health before: %f"), MoldHealth);
+	bool bCorrectBrush = (BrushSize == EBrushSize::Big && MoldHealth > MinHealth && MinHealth == 50) ||
+		(BrushSize == EBrushSize::Big && MoldHealth == MinHealth && MinHealth == 50) ||
+		(BrushSize == EBrushSize::Small && MoldHealth > MinHealth && MinHealth == 0) ||
+		(BrushSize == EBrushSize::Small && MoldHealth == MinHealth && MinHealth == 0);
 
-	if ((MoldHealth > 50.0f && BrushSize == EBrushSize::Big) ||
-		(MoldHealth <= 50.0f && BrushSize == EBrushSize::Small))
+	if (bCorrectBrush)
 	{
 		MoldHealth -= 5.0f;
-		UE_LOG(LogTemp, Warning, TEXT("Mold Health After Brush: %f"), MoldHealth);
 
-		if (MoldHealth <= 50.0f && MoldSize == EMoldSize::Big)
+		if (MoldHealth <= MinHealth && MoldSize == EMoldSize::Big)
 		{
 			MoldSize = EMoldSize::Small;
-			UE_LOG(LogTemp, Warning, TEXT("Mold is now small and can only be cleaned with the small brush."));
 		}
 
-		if (MoldHealth <= 0.0f)
+		if ((BrushSize == EBrushSize::Big && MoldHealth <= MinHealth && MinHealth == 50) ||
+			(BrushSize == EBrushSize::Small && MoldHealth <= MinHealth && MinHealth == 0))
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Mold completely cleaned! Destroying mold."));
-			Destroy(); UE_LOG(LogTemp, Warning, TEXT("OnBrushed CALLED! Mold health before: %f"), MoldHealth);
-
-			if ((MoldHealth > 50.0f && BrushSize == EBrushSize::Big) ||
-				(MoldHealth <= 50.0f && BrushSize == EBrushSize::Small))
-			{
-				MoldHealth -= 5.0f;
-				UE_LOG(LogTemp, Warning, TEXT("Mold Health After Brush: %f"), MoldHealth);
-
-				if (MoldHealth <= 50.0f && MoldSize == EMoldSize::Big)
-				{
-					MoldSize = EMoldSize::Small;
-					UE_LOG(LogTemp, Warning, TEXT("Mold is now small and can only be cleaned with the small brush."));
-				}
-
-				/*if (MoldHealth <= 0.0f)
-				{
-					UE_LOG(LogTemp, Warning, TEXT("Mold completely cleaned! Destroying mold."));
-					Destroy();
-				}*/
-
-				if (MoldHealth <= 0.0f)
-				{
-					UE_LOG(LogTemp, Warning, TEXT("Mold completely cleaned! Destroying mold."));
-					if (MoldMinigameRef)
-					{
-						MoldMinigameRef->OnMoldDestroyed();
-					}
-					Destroy();
-				}
-			}
-			else
-			{
-				UE_LOG(LogTemp, Warning, TEXT("Incorrect brush size!"));
-			}
+			MoldMinigameRef->OnMoldDestroyed();
+			Destroy();
 		}
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Incorrect brush size!"));
 	}
 }
 

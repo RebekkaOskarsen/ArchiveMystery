@@ -30,9 +30,31 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Camera")
 	UCameraComponent* MoldCamera;
 
+	// Track which paper is active
+	int32 CurrentPaperIndex;
+
+	// References to the papers
+	UPROPERTY(EditAnywhere, Category = "Papers")
+	AActor* Paper1;
+
+	UPROPERTY(EditAnywhere, Category = "Papers")
+	AActor* Paper2;
+
 	// Track number of mold pieces
 	int32 MoldCount;
 
+	// Spawn mold for the current paper
+	void SpawnMoldForCurrentPaper();
+
 	// Check if the minigame is won
 	void CheckWinCondition();
+
+
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> ExitWidgetClass;
+
+	UPROPERTY()
+	UUserWidget* ExitWidget;
+
+	void ShowExitUI();
 };

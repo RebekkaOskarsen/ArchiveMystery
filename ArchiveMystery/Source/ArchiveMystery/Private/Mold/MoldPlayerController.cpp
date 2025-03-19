@@ -4,6 +4,8 @@
 #include "Mold/MoldPlayerController.h"
 #include "Mold/Mold.h"
 #include "Engine/World.h"
+#include "Mold/BrushSelectionWidget.h"
+#include "Blueprint/UserWidget.h"
 
 AMoldPlayerController::AMoldPlayerController()
 {
@@ -18,6 +20,39 @@ void AMoldPlayerController::BeginPlay()
 {
     Super::BeginPlay();
 
+    // Load and display the UI widget
+    TSubclassOf<UUserWidget> BrushSelectionClass = LoadClass<UUserWidget>(nullptr, TEXT("/Game/Minigame-Mold/Blueprint/UI/WBP_BrushSelectionWidget.WBP_BrushSelectionWidget_C"));
+
+    if (!BrushSelectionClass)
+    {
+        UE_LOG(LogTemp, Error, TEXT("Failed to load WBP_BrushSelection UI Blueprint! Check the path."));
+        return;
+    }
+
+    UE_LOG(LogTemp, Warning, TEXT("BrushSelectionClass loaded successfully!"));
+
+    // Create the widget
+    UUserWidget* WidgetInstance = CreateWidget<UUserWidget>(this, BrushSelectionClass);
+
+    if (!WidgetInstance)
+    {
+        UE_LOG(LogTemp, Error, TEXT("Failed to create UI Widget!"));
+        return;
+    }
+
+    // Add it to the viewport
+    WidgetInstance->AddToViewport();
+    BrushSelectionUI = Cast<UBrushSelectionWidget>(WidgetInstance);
+
+    if (BrushSelectionUI)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("BrushSelection UI successfully created and assigned!"));
+        UpdateBrushUI(true); // Start with small brush selected
+    }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("Failed to cast UI Widget to BrushSelectionWidget!"));
+    }
 }
 
 void AMoldPlayerController::SetupInputComponent()
@@ -50,16 +85,31 @@ void AMoldPlayerController::SpawnBrush(EBrushSize BrushSize)
     }
 }
 
+void AMoldPlayerController::UpdateBrushUI(bool bIsSmallBrush)
+{
+    if (BrushSelectionUI)
+    {
+        BrushSelectionUI->UpdateBrushSelection(bIsSmallBrush);
+        UE_LOG(LogTemp, Warning, TEXT("Brush UI Updated - Small Brush: %s"), bIsSmallBrush ? TEXT("Selected") : TEXT("Not Selected"));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("BrushSelectionUI is null!"));
+    }
+}
+
 void AMoldPlayerController::UseSmallBrush()
 {
     UE_LOG(LogTemp, Warning, TEXT("Switching to Small Brush"));
     SpawnBrush(EBrushSize::Small);
+    UpdateBrushUI(true); // Select Small Brush
 }
 
 void AMoldPlayerController::UseBigBrush()
 {
     UE_LOG(LogTemp, Warning, TEXT("Switching to Big Brush"));
     SpawnBrush(EBrushSize::Big);
+    UpdateBrushUI(false); // Select Big Brush
 }
 
 void AMoldPlayerController::BrushMold()
@@ -69,32 +119,15 @@ void AMoldPlayerController::BrushMold()
 
     if (bHitSuccess)
     {
-        UE_LOG(LogTemp, Warning, TEXT("BrushMold: Hit something at location: %s"), *Hit.Location.ToString());
-
         AActor* HitActor = Hit.GetActor();
         if (HitActor)
         {
-            UE_LOG(LogTemp, Warning, TEXT("BrushMold: Hit actor: %s"), *HitActor->GetName());
-
             AMold* HitMold = Cast<AMold>(HitActor);
             if (HitMold && MoldBrush)
             {
-                UE_LOG(LogTemp, Warning, TEXT("BrushMold: Hit a mold! Calling OnBrushed."));
                 HitMold->OnBrushed(MoldBrush->GetBrushSize());
             }
-            else
-            {
-                UE_LOG(LogTemp, Warning, TEXT("BrushMold: Not a mold actor!"));
-            }
         }
-        else
-        {
-            UE_LOG(LogTemp, Warning, TEXT("BrushMold: Hit nothing!"));
-        }
-    }
-    else
-    {
-        UE_LOG(LogTemp, Warning, TEXT("BrushMold: No hit detected!"));
     }
 }
 

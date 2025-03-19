@@ -7,6 +7,7 @@
 #include "MoldBrush.h"
 #include "MoldPlayerController.generated.h"
 
+class UBrushSelectionWidget;
 /**
  * 
  */
@@ -32,4 +33,11 @@ private:
 
     UPROPERTY()
     AMoldBrush* MoldBrush;
+
+    // UI Reference
+    UPROPERTY()
+    UBrushSelectionWidget* BrushSelectionUI;
+
+    // Update UI when switching brushes
+    void UpdateBrushUI(bool bIsSmallBrush);
 };
