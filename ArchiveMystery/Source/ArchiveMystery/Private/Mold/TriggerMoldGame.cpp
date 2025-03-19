@@ -4,7 +4,11 @@
 #include "Mold/TriggerMoldGame.h"
 #include "Components/BoxComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "GameFramework/PlayerController.h"
+
 #include "Character/Archivist.h"
+
+#include "Blueprint/UserWidget.h"
 
 // Sets default values
 ATriggerMoldGame::ATriggerMoldGame()
@@ -16,6 +20,8 @@ ATriggerMoldGame::ATriggerMoldGame()
 	RootComponent = TriggerBox;
 	TriggerBox->OnComponentBeginOverlap.AddDynamic(this, &ATriggerMoldGame::OnOverlapBegin);
 
+	bPlayerIsInside = false; // Player starts outside the trigger
+	MiniGamePrompt = nullptr; // No UI at the start
 }
 
 // Called when the game starts or when spawned
@@ -23,6 +29,12 @@ void ATriggerMoldGame::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	// Enable input for this actor
+	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+	if (PlayerController)
+	{
+		EnableInput(PlayerController);
+	}
 }
 
 // Called every frame
@@ -30,14 +42,71 @@ void ATriggerMoldGame::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	CheckForInteraction();
 }
 
 void ATriggerMoldGame::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (OtherActor && OtherActor->IsA(AArchivist::StaticClass()))
 	{
-		// Open Maze Level
-		UGameplayStatics::OpenLevel(this, FName("MoldRoom"));
+		bPlayerIsInside = true;
+		ShowPrompt();
+	}
+}
+
+void ATriggerMoldGame::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	if (OtherActor && OtherActor->IsA(AArchivist::StaticClass()))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Player left the trigger zone. Hiding prompt."));
+		bPlayerIsInside = false;
+		HidePrompt(); // Ensure the prompt disappears
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("OnOverlapEnd called, but OtherActor is invalid!"));
+	}
+}
+
+void ATriggerMoldGame::CheckForInteraction()
+{
+	if (!bPlayerIsInside && MiniGamePrompt)
+	{
+		HidePrompt(); // Force prompt removal if player isn't inside
+	}
+
+	if (bPlayerIsInside)
+	{
+		APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+		if (PlayerController && PlayerController->WasInputKeyJustPressed(EKeys::E))
+		{
+			UE_LOG(LogTemp, Warning, TEXT("E key pressed! Loading MoldRoom..."));
+			HidePrompt(); // Hide UI before loading
+			UGameplayStatics::OpenLevel(this, FName("MoldRoom"));
+		}
+	}
+}
+
+void ATriggerMoldGame::ShowPrompt()
+{
+	if (!MiniGamePrompt && MiniGamePromptClass)
+	{
+		MiniGamePrompt = CreateWidget<UUserWidget>(GetWorld(), MiniGamePromptClass);
+		if (MiniGamePrompt)
+		{
+			MiniGamePrompt->AddToViewport();
+			UE_LOG(LogTemp, Warning, TEXT("MiniGame Prompt Displayed!"));
+		}
+	}
+}
+
+void ATriggerMoldGame::HidePrompt()
+{
+	if (MiniGamePrompt)
+	{
+		MiniGamePrompt->RemoveFromParent();
+		MiniGamePrompt = nullptr;
+		UE_LOG(LogTemp, Warning, TEXT("MiniGame Prompt Removed!"));
 	}
 }
 

@@ -97,6 +97,28 @@ void AMoldMinigame::OnMoldDestroyed()
 	CheckWinCondition();
 }
 
+void AMoldMinigame::SwitchToPaper2()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Switching to Paper 2!"));
+
+	if (Paper1)
+	{
+		Paper1->SetActorHiddenInGame(true);
+		Paper1->SetActorEnableCollision(false);
+		UE_LOG(LogTemp, Warning, TEXT("Paper 1 is now HIDDEN and COLLISION DISABLED."));
+	}
+
+	if (Paper2)
+	{
+		Paper2->SetActorHiddenInGame(false);
+		Paper2->SetActorEnableCollision(true);
+		UE_LOG(LogTemp, Warning, TEXT("Paper 2 is now VISIBLE and COLLISION ENABLED."));
+	}
+
+	CurrentPaperIndex = 2;
+	SpawnMoldForCurrentPaper();
+}
+
 void AMoldMinigame::SpawnMoldForCurrentPaper()
 {
 	TArray<AActor*> MoldActors;
@@ -122,24 +144,14 @@ void AMoldMinigame::CheckWinCondition()
 	{
 		if (CurrentPaperIndex == 1)
 		{
+			UE_LOG(LogTemp, Warning, TEXT("All mold on Paper 1 is cleaned! Showing Arrow UI."));
 
-			if (Paper1)
-			{
-				Paper1->SetActorHiddenInGame(true);
-				Paper1->SetActorEnableCollision(false);
-			}
-
-			if (Paper2)
-			{
-				Paper2->SetActorHiddenInGame(false);
-				Paper2->SetActorEnableCollision(true);
-			}
-
-			CurrentPaperIndex = 2;
-			SpawnMoldForCurrentPaper();
+			// Show arrow UI instead of switching immediately
+			ShowArrowUI();
 		}
 		else
 		{
+			UE_LOG(LogTemp, Warning, TEXT("MoldMinigame: All mold is cleaned! Showing Exit UI."));
 			ShowExitUI();
 		}
 	}
@@ -155,6 +167,26 @@ void AMoldMinigame::ShowExitUI()
 			ExitWidget->AddToViewport();
 			UE_LOG(LogTemp, Warning, TEXT("Exit UI Displayed."));
 		}
+	}
+}
+
+void AMoldMinigame::ShowArrowUI()
+{
+	if (!ArrowWidgetClass)
+	{
+		UE_LOG(LogTemp, Error, TEXT("ArrowWidgetClass is NULL! Assign WBP_NextPaperArrow in the Blueprint."));
+		return;
+	}
+
+	ArrowWidget = CreateWidget<UUserWidget>(GetWorld(), ArrowWidgetClass);
+	if (ArrowWidget)
+	{
+		ArrowWidget->AddToViewport();
+		UE_LOG(LogTemp, Warning, TEXT("Arrow UI Displayed Successfully!"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Failed to create Arrow UI widget!"));
 	}
 }
 

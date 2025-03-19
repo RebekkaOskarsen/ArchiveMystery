@@ -26,6 +26,9 @@ public:
 
 	void OnMoldDestroyed();
 
+	UFUNCTION(BlueprintCallable, Category = "Minigame")
+	void SwitchToPaper2();
+
 private:
 	UPROPERTY(EditAnywhere, Category = "Camera")
 	UCameraComponent* MoldCamera;
@@ -49,7 +52,8 @@ private:
 	// Check if the minigame is won
 	void CheckWinCondition();
 
-
+	//// Widget
+	//Exit
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> ExitWidgetClass;
 
@@ -57,4 +61,18 @@ private:
 	UUserWidget* ExitWidget;
 
 	void ShowExitUI();
+
+
+	// Next paper
+
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> ArrowWidgetClass;
+
+	UPROPERTY()
+	UUserWidget* ArrowWidget;
+
+	void ShowArrowUI();
+
+
+
 };

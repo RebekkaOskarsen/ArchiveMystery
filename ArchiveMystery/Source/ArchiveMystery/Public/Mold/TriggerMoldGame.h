@@ -33,7 +33,29 @@ public:
 		bool bFromSweep,
 		const FHitResult& SweepResult);
 
+	UFUNCTION()
+	void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex);
+
+	// Function to check key input
+	void CheckForInteraction();
+
 private:
 	UPROPERTY(EditAnywhere, Category = "Trigger")
 	UBoxComponent* TriggerBox;
+
+	bool bPlayerIsInside; // Tracks if the player is inside the trigger box
+
+
+	// UI Widget
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> MiniGamePromptClass;
+
+	UPROPERTY()
+	UUserWidget* MiniGamePrompt;
+
+	void ShowPrompt();
+	void HidePrompt();
 };
