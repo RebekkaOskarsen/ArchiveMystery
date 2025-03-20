@@ -12,12 +12,17 @@ void UBrushSelectionWidget::UpdateBrushSelection(bool bIsSmallBrush)
 			bIsSmallBrush ? TEXT("Selected") : TEXT("Not Selected"),
 			bIsSmallBrush ? TEXT("Not Selected") : TEXT("Selected"));
 
-		// White border for selected brush, transparent for unselected
-		FLinearColor SelectedColor = FLinearColor::White;
-		FLinearColor TransparentColor = FLinearColor(0, 0, 0, 0); // Fully transparent
+		// Define Colors
+		FLinearColor SelectedColor = FLinearColor::White;  // White border when selected
+		FLinearColor TransparentColor = FLinearColor(1, 1, 1, 0); // Invisible border when not selected
 
+		// Apply Colors
 		Border_SmallBrush->SetBrushColor(bIsSmallBrush ? SelectedColor : TransparentColor);
 		Border_BigBrush->SetBrushColor(!bIsSmallBrush ? SelectedColor : TransparentColor);
+
+		// Ensure visibility is always ON
+		Border_SmallBrush->SetVisibility(ESlateVisibility::HitTestInvisible);
+		Border_BigBrush->SetVisibility(ESlateVisibility::HitTestInvisible);
 	}
 	else
 	{

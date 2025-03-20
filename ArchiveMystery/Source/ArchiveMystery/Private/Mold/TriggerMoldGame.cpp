@@ -10,6 +10,7 @@
 
 #include "Blueprint/UserWidget.h"
 
+
 // Sets default values
 ATriggerMoldGame::ATriggerMoldGame()
 {
@@ -19,6 +20,8 @@ ATriggerMoldGame::ATriggerMoldGame()
 	TriggerBox = CreateDefaultSubobject<UBoxComponent>(TEXT("TriggerBox"));
 	RootComponent = TriggerBox;
 	TriggerBox->OnComponentBeginOverlap.AddDynamic(this, &ATriggerMoldGame::OnOverlapBegin);
+
+	TriggerBox->OnComponentEndOverlap.AddDynamic(this, &ATriggerMoldGame::OnOverlapEnd);
 
 	bPlayerIsInside = false; // Player starts outside the trigger
 	MiniGamePrompt = nullptr; // No UI at the start
@@ -58,30 +61,20 @@ void ATriggerMoldGame::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AA
 {
 	if (OtherActor && OtherActor->IsA(AArchivist::StaticClass()))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Player left the trigger zone. Hiding prompt."));
 		bPlayerIsInside = false;
-		HidePrompt(); // Ensure the prompt disappears
-	}
-	else
-	{
-		UE_LOG(LogTemp, Error, TEXT("OnOverlapEnd called, but OtherActor is invalid!"));
+		HidePrompt();
 	}
 }
 
 void ATriggerMoldGame::CheckForInteraction()
 {
-	if (!bPlayerIsInside && MiniGamePrompt)
-	{
-		HidePrompt(); // Force prompt removal if player isn't inside
-	}
-
 	if (bPlayerIsInside)
 	{
 		APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 		if (PlayerController && PlayerController->WasInputKeyJustPressed(EKeys::E))
 		{
 			UE_LOG(LogTemp, Warning, TEXT("E key pressed! Loading MoldRoom..."));
-			HidePrompt(); // Hide UI before loading
+			HidePrompt();
 			UGameplayStatics::OpenLevel(this, FName("MoldRoom"));
 		}
 	}

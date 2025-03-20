@@ -58,4 +58,5 @@ public:
 
 	UPROPERTY()
 	AMoldMinigame* MoldMinigameRef;
+
 };

@@ -19,9 +19,15 @@ class ARCHIVEMYSTERY_API AMoldPlayerController : public APlayerController
 public:
     AMoldPlayerController();
 
+
+    void ShowBrushUI();
+    void HideBrushUI();
+
+
 protected:
     virtual void BeginPlay() override;
     virtual void SetupInputComponent() override;
+
 
 private:
     void SpawnBrush(EBrushSize BrushSize);
@@ -40,4 +46,6 @@ private:
 
     // Update UI when switching brushes
     void UpdateBrushUI(bool bIsSmallBrush);
+
+
 };

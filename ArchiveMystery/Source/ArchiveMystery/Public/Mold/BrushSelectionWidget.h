@@ -16,13 +16,14 @@ class ARCHIVEMYSTERY_API UBrushSelectionWidget : public UUserWidget
 	
 public:
 	// Border for Small Brush
-	UPROPERTY(meta = (BindWidget))
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	class UBorder* Border_SmallBrush;
 
 	// Border for Big Brush
-	UPROPERTY(meta = (BindWidget))
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	class UBorder* Border_BigBrush;
 
 	// Function to update UI selection
+	UFUNCTION(BlueprintCallable)
 	void UpdateBrushSelection(bool bIsSmallBrush);
 };

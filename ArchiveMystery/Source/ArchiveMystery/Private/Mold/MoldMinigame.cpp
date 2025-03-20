@@ -6,6 +6,7 @@
 #include "Kismet/GameplayStatics.h"
 
 #include "Mold/Mold.h"
+#include "Mold/BrushSelectionWidget.h"
 
 #include "Blueprint/UserWidget.h"
 
@@ -21,6 +22,9 @@ AMoldMinigame::AMoldMinigame()
 
 	CurrentPaperIndex = 1; // Start with Paper 1
 	MoldCount = 0;
+
+	bCanBrush = false;
+	BrushSelectionWidget = nullptr;
 }
 
 // Called when the game starts or when spawned
@@ -82,6 +86,12 @@ void AMoldMinigame::BeginPlay()
 	}
 
 	SpawnMoldForCurrentPaper();
+
+	HideBrushUI();
+
+	ShowTutorial();
+
+
 }
 
 // Called every frame
@@ -119,6 +129,12 @@ void AMoldMinigame::SwitchToPaper2()
 	SpawnMoldForCurrentPaper();
 }
 
+void AMoldMinigame::EnableBrushing()
+{
+	bCanBrush = true; // Player can now brush mold
+	ShowBrushUI();
+}
+
 void AMoldMinigame::SpawnMoldForCurrentPaper()
 {
 	TArray<AActor*> MoldActors;
@@ -144,14 +160,11 @@ void AMoldMinigame::CheckWinCondition()
 	{
 		if (CurrentPaperIndex == 1)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("All mold on Paper 1 is cleaned! Showing Arrow UI."));
-
 			// Show arrow UI instead of switching immediately
 			ShowArrowUI();
 		}
 		else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("MoldMinigame: All mold is cleaned! Showing Exit UI."));
 			ShowExitUI();
 		}
 	}
@@ -165,7 +178,6 @@ void AMoldMinigame::ShowExitUI()
 		if (ExitWidget)
 		{
 			ExitWidget->AddToViewport();
-			UE_LOG(LogTemp, Warning, TEXT("Exit UI Displayed."));
 		}
 	}
 }
@@ -174,7 +186,6 @@ void AMoldMinigame::ShowArrowUI()
 {
 	if (!ArrowWidgetClass)
 	{
-		UE_LOG(LogTemp, Error, TEXT("ArrowWidgetClass is NULL! Assign WBP_NextPaperArrow in the Blueprint."));
 		return;
 	}
 
@@ -182,11 +193,41 @@ void AMoldMinigame::ShowArrowUI()
 	if (ArrowWidget)
 	{
 		ArrowWidget->AddToViewport();
-		UE_LOG(LogTemp, Warning, TEXT("Arrow UI Displayed Successfully!"));
 	}
-	else
+}
+
+void AMoldMinigame::ShowTutorial()
+{
+	if (!MoldTutorialWidgetClass)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Failed to create Arrow UI widget!"));
+		return;
+	}
+
+	MoldTutorialWidget = CreateWidget<UUserWidget>(GetWorld(), MoldTutorialWidgetClass);
+	if (MoldTutorialWidget)
+	{
+		MoldTutorialWidget->AddToViewport();
+	}
+}
+
+void AMoldMinigame::ShowBrushUI()
+{
+	if (!BrushSelectionWidget && BrushSelectionWidgetClass)
+	{
+		BrushSelectionWidget = CreateWidget<UUserWidget>(GetWorld(), BrushSelectionWidgetClass);
+		if (BrushSelectionWidget)
+		{
+			BrushSelectionWidget->AddToViewport();
+		}
+	}
+}
+
+void AMoldMinigame::HideBrushUI()
+{
+	if (BrushSelectionWidget)
+	{
+		BrushSelectionWidget->RemoveFromParent();
+		BrushSelectionWidget = nullptr;
 	}
 }
 

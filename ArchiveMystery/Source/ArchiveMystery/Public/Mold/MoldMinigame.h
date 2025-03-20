@@ -5,7 +5,9 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Camera/CameraComponent.h"
+#include "BrushSelectionWidget.h"
 #include "MoldMinigame.generated.h"
+
 
 UCLASS()
 class ARCHIVEMYSTERY_API AMoldMinigame : public AActor
@@ -28,6 +30,11 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Minigame")
 	void SwitchToPaper2();
+
+	UFUNCTION(BlueprintCallable, Category = "Minigame")
+	void EnableBrushing(); // Function to allow brushing after the tutorial
+
+	bool bCanBrush; // Tracks if the player can brush mold
 
 private:
 	UPROPERTY(EditAnywhere, Category = "Camera")
@@ -74,5 +81,24 @@ private:
 	void ShowArrowUI();
 
 
+	// Tutorial
 
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> MoldTutorialWidgetClass;
+
+	UPROPERTY()
+	UUserWidget* MoldTutorialWidget;
+
+	void ShowTutorial();
+
+
+	// Brush Selection
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> BrushSelectionWidgetClass;
+
+	UPROPERTY()
+	UUserWidget* BrushSelectionWidget;
+
+	void ShowBrushUI();
+	void HideBrushUI();
 };

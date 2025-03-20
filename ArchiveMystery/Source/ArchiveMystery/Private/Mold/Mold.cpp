@@ -3,6 +3,8 @@
 
 #include "Mold/Mold.h"
 #include "Components/StaticMeshComponent.h"
+#include "Kismet/GameplayStatics.h"
+
 #include "Mold/MoldMinigame.h"
 
 AMoldMinigame* MoldMinigameRef = nullptr;
@@ -52,6 +54,15 @@ void AMold::Tick(float DeltaTime)
 
 void AMold::OnBrushed(EBrushSize BrushSize)
 {
+	// Get the MoldMinigame instance
+	AMoldMinigame* Minigame = Cast<AMoldMinigame>(UGameplayStatics::GetActorOfClass(GetWorld(), AMoldMinigame::StaticClass()));
+
+	if (Minigame && !Minigame->bCanBrush)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Cannot brush yet! Complete the tutorial first."));
+		return;
+	}
+
 	bool bCorrectBrush = (BrushSize == EBrushSize::Big && MoldHealth > MinHealth && MinHealth == 50) ||
 		(BrushSize == EBrushSize::Big && MoldHealth == MinHealth && MinHealth == 50) ||
 		(BrushSize == EBrushSize::Small && MoldHealth > MinHealth && MinHealth == 0) ||
