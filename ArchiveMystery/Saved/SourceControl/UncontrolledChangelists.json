@@ -1,0 +1,24 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/StarterContent/Architecture/Floor_400x400.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/SaveGame/BP_Checkpoint_Save.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/BP_Archivist.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/FirstPerson/Blueprints/My_Player_Controller.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Save_and_Load_System/S_QuestSaveData.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Save_and_Load_System/My_Save_Data.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Quest_System/BAC_Quest_Log.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Quest_System/BAC_Quest_Giver.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Quest_System/BP_QuestGiver.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Quest_System/UI/W_Delivery_Organization.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Save_and_Load_System/My_Game_Instance.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Quest_System/BP_Quest_Base.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Archive-Mystery.umap"
+			]
+		}
+	]
+}
