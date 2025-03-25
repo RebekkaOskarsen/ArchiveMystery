@@ -5,10 +5,26 @@
 #include "Components/Button.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "Components/InputComponent.h"
+#include "Engine/World.h"
+#include "GameFramework/PlayerController.h"
+
+
+
 
 void UMainMenuWidget::NativeConstruct()
 {
     Super::NativeConstruct();
+
+    // Sett input-modus
+    if (GetWorld())
+    {
+        if (APlayerController* PC = GetWorld()->GetFirstPlayerController())
+        {
+            PC->SetInputMode(FInputModeUIOnly());
+            PC->bShowMouseCursor = true;
+        }
+    }
 
     // Bind "OnStartGameClicked" til "Start Game"-knappen
     if (StartGameButton)
@@ -25,6 +41,16 @@ void UMainMenuWidget::NativeConstruct()
 
 void UMainMenuWidget::OnStartGameClicked()
 {
+    // Gjør musepekeren usynlig når spillet starter
+    if (GetWorld())
+    {
+        if (APlayerController* PC = GetWorld()->GetFirstPlayerController())
+        {
+            PC->SetInputMode(FInputModeGameOnly());
+            PC->bShowMouseCursor = false;
+        }
+    }
+
     // Last "Archive-Mystery"-nivået
     UGameplayStatics::OpenLevel(this, FName("Archive-Mystery"));
 }

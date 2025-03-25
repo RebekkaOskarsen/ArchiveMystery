@@ -26,6 +26,7 @@ public:
 protected:
     // Kalles når widgeten er opprettet
     virtual void NativeConstruct() override;
+ 
 
 private:
     // Referanse til "Start Game"-knappen (sett i Blueprint)

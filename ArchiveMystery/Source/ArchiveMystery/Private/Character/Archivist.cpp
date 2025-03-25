@@ -53,6 +53,24 @@ void AArchivist::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// Sjekk om dette er spilleren eller en duplikat
+	if (GetWorld())
+	{
+		TArray<AActor*> FoundArchivists;
+		UGameplayStatics::GetAllActorsOfClass(GetWorld(), AArchivist::StaticClass(), FoundArchivists);
+
+		// Hvis det finnes mer enn én, og denne IKKE er spilleren, ødelegg den
+		if (FoundArchivists.Num() > 1)
+		{
+			APlayerController* PC = GetWorld()->GetFirstPlayerController();
+			if (PC && PC->GetPawn() != this) // Hvis dette ikke er spilleren
+			{
+				Destroy();
+				return;
+			}
+		}
+	}
+
 	// Sjekk om vi er i riktig nivå (startmenyen)
 	if (GetWorld()->GetMapName().Contains("MainMenuLevel"))
 	{
@@ -106,6 +124,7 @@ void AArchivist::BeginPlay()
 
 void AArchivist::Move(const FInputActionValue& Value)
 {
+
 	const FVector2D DirectionValue = Value.Get<FVector2D>();
 
 	if (Controller != nullptr)
@@ -204,7 +223,7 @@ void AArchivist::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 		//
 		EnhancedInputComponent->BindAction(EnterMinigameAction, ETriggerEvent::Triggered, this, &AArchivist::TryEnterMinigame);
 		EnhancedInputComponent->BindAction(LookAtPaintingAction, ETriggerEvent::Triggered, this, &AArchivist::LookAtPainting);
-		EnhancedInputComponent->BindAction(PauseAction, ETriggerEvent::Triggered, this, &AArchivist::TogglePauseMenu);
+		EnhancedInputComponent->BindAction(PauseAction, ETriggerEvent::Started, this, &AArchivist::TogglePauseMenu);
 	}
 }
 
@@ -384,26 +403,18 @@ void AArchivist::TogglePauseMenu()
 
 	if (bIsPaused)
 	{
-		// Fortsett spillet
-		UGameplayStatics::SetGamePaused(this, false);
-
-		// Fjern pause-menyen fra skjermen
 		if (PauseMenuWidget)
 		{
 			PauseMenuWidget->RemoveFromParent();
 			PauseMenuWidget = nullptr;
 		}
 
-		// Skjul musepekeren og sett inputmodus tilbake til spillmodus
 		PlayerController->bShowMouseCursor = false;
 		PlayerController->SetInputMode(FInputModeGameOnly());
 	}
 	else
 	{
-		// Paus spillet
-		UGameplayStatics::SetGamePaused(this, true);
-
-		// Opprett og vis pause-menyen
+	
 		if (PauseMenuWidgetClass)
 		{
 			PauseMenuWidget = CreateWidget<UPauseMenuWidget>(GetWorld(), PauseMenuWidgetClass);
@@ -413,14 +424,15 @@ void AArchivist::TogglePauseMenu()
 			}
 		}
 
-		// Vis musepekeren og sett inputmodus til UI-modus
+
 		PlayerController->bShowMouseCursor = true;
-		FInputModeUIOnly InputMode;
+		FInputModeGameAndUI InputMode;
 		InputMode.SetWidgetToFocus(PauseMenuWidget->TakeWidget());
 		InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
 		PlayerController->SetInputMode(InputMode);
 	}
 
-	// Toggle pause-tilstanden
+	// Toggle state
 	bIsPaused = !bIsPaused;
 }
+
