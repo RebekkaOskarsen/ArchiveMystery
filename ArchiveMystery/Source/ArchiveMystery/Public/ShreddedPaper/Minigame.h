@@ -133,4 +133,11 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Game")
 	void ShowTutorial();
 
+		// Lydkomponent for snap-lyd
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
+		USoundBase* SnapSound;
+
+		// Funksjon for å spille lyd
+		void PlaySnapSound();
+
 };

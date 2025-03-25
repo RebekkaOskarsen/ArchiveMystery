@@ -5,6 +5,7 @@
 
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values
@@ -390,6 +391,7 @@ void AMinigame::Tick(float DeltaTime)
 
                     if (ShouldSnap)
                     {
+                        PlaySnapSound();
                         // Move the selected group to snap it with the target group
                         for (const TPair<FString, FString>& Pair : ParentMap)
                         {
@@ -560,4 +562,14 @@ void AMinigame::StopDragging()
     SelectedMesh = nullptr;
 }
 
-
+void AMinigame::PlaySnapSound()
+{
+    if (SnapSound)
+    {
+        UGameplayStatics::PlaySound2D(this, SnapSound);
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("SnapSound is not set!"));
+    }
+}

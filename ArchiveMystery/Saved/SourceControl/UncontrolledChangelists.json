@@ -5,9 +5,13 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
-				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/StarterContent/Blueprints/Blueprint_CeilingLight.uasset",
-				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/C/IA/KF89CC2VCGEC5928EVIMG0.uasset",
-				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/FirstPerson/Blueprints/BP_FirstPersonGameMode.uasset"
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/StarterContent/HDRI/HDRI_Epic_Courtyard_Daylight.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/Sounds/Click.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/ShreddedPaper_minigame/Blueprints/Minigame_BP.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/Sounds/mixkit-camera-shutter-click-1133.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/ShreddedPaper_minigame/Minigame/D/PK/ADTT0FJEZX7064TTHKUMR5.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/C/AH/826I5DNBJZQL9EJE5UHKEW.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/7/9G/ZS91S0YP0GYSPTLU4SRT2S.uasset"
 			]
 		}
 	]

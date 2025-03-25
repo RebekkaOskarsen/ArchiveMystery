@@ -16,55 +16,11 @@
                         {
                             "physicalLocation": {
                                 "artifactLocation": {
-                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
+                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/Archivist.cpp"
                                 },
                                 "region": {
-                                    "startLine": 149,
-                                    "startColumn": 31
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "ruleId": "C4996",
-                    "message": {
-                        "text": "'UUserWidget::RemoveFromViewport': RemoveFromViewport is deprecated. Use RemoveFromParent instead. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
-                    },
-                    "analysisTarget": {
-                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Intermediate/Build/Win64/x64/UnrealEditor/Development/ArchiveMystery/Module.ArchiveMystery.cpp"
-                    },
-                    "locations": [
-                        {
-                            "physicalLocation": {
-                                "artifactLocation": {
-                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
-                                },
-                                "region": {
-                                    "startLine": 155,
-                                    "startColumn": 31
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "ruleId": "C4996",
-                    "message": {
-                        "text": "'UUserWidget::RemoveFromViewport': RemoveFromViewport is deprecated. Use RemoveFromParent instead. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
-                    },
-                    "analysisTarget": {
-                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Intermediate/Build/Win64/x64/UnrealEditor/Development/ArchiveMystery/Module.ArchiveMystery.cpp"
-                    },
-                    "locations": [
-                        {
-                            "physicalLocation": {
-                                "artifactLocation": {
-                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
-                                },
-                                "region": {
-                                    "startLine": 181,
-                                    "startColumn": 31
+                                    "startLine": 385,
+                                    "startColumn": 41
                                 }
                             }
                         }
