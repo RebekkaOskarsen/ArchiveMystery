@@ -36,6 +36,13 @@ public:
 	// Function to check if the brush is hovering over mold
 	void CheckForMold();
 
+	// Time between brush strokes in seconds
+	UPROPERTY(EditAnywhere, Category = "Brushing")
+	float BrushCooldown = 0.03f; // You can tweak this in-editor
+
+	// Internal cooldown timer
+	float TimeSinceLastBrush = 0.0f;
+
 private:
 	EBrushSize CurrentBrushSize;
 	UPROPERTY(EditAnywhere, Category = "Brush")
@@ -48,4 +55,6 @@ private:
 	UStaticMesh* BigBrushMesh;
 
 	void UpdateCursorMesh();
+
+
 };

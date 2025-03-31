@@ -57,6 +57,14 @@ void AMoldBrush::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+    TimeSinceLastBrush += DeltaTime;
+
+    // Only allow brushing if cooldown is done
+    if (TimeSinceLastBrush >= BrushCooldown)
+    {
+        CheckForMold();
+    }
+
     FVector WorldLocation, WorldDirection;
     APlayerController* PC = GetWorld()->GetFirstPlayerController();
     if (PC)
@@ -81,7 +89,10 @@ void AMoldBrush::Tick(float DeltaTime)
         }
     }
 
-    CheckForMold();
+
+  
+
+  
 }
 
 void AMoldBrush::SetBrushSize(EBrushSize NewSize)
@@ -92,6 +103,8 @@ void AMoldBrush::SetBrushSize(EBrushSize NewSize)
 
 void AMoldBrush::CheckForMold()
 {
+ 
+
     FVector Start = GetActorLocation(); // Start from brush position
     FVector End = Start - FVector(0, 0, 50);
 
@@ -109,6 +122,7 @@ void AMoldBrush::CheckForMold()
         {
             UE_LOG(LogTemp, Warning, TEXT("Brush hovering over mold!"));
             HitMold->OnBrushed(CurrentBrushSize);
+            TimeSinceLastBrush = 0.0f; // Reset cooldown timer
         }
     }
 
