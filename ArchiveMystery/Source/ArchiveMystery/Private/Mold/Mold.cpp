@@ -54,6 +54,12 @@ void AMold::Tick(float DeltaTime)
 
 void AMold::OnBrushed(EBrushSize BrushSize)
 {
+	if (bIsDestroyed)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("This mold has already been destroyed!"));
+		return;
+	}
+
 	// Get the MoldMinigame instance
 	AMoldMinigame* Minigame = Cast<AMoldMinigame>(UGameplayStatics::GetActorOfClass(GetWorld(), AMoldMinigame::StaticClass()));
 
@@ -80,6 +86,10 @@ void AMold::OnBrushed(EBrushSize BrushSize)
 		if ((BrushSize == EBrushSize::Big && MoldHealth <= MinHealth && MinHealth == 50) ||
 			(BrushSize == EBrushSize::Small && MoldHealth <= MinHealth && MinHealth == 0))
 		{
+			UE_LOG(LogTemp, Warning, TEXT("Mold completely cleaned! Destroying mold."));
+
+			bIsDestroyed = true;
+
 			MoldMinigameRef->OnMoldDestroyed();
 			Destroy();
 		}

@@ -53,10 +53,13 @@ public:
 	EMoldSize MoldSize;
 
 	// Stores which paper this mold belongs to (1 or 2)
-	UPROPERTY(EditAnywhere, Category = "Mold")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mold")
 	int32 PaperIndex;
 
 	UPROPERTY()
 	AMoldMinigame* MoldMinigameRef;
+
+	UPROPERTY()
+	bool bIsDestroyed = false;
 
 };

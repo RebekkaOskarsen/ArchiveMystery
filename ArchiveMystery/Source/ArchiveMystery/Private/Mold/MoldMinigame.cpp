@@ -86,6 +86,7 @@ void AMoldMinigame::BeginPlay()
 	}
 
 	SpawnMoldForCurrentPaper();
+	UE_LOG(LogTemp, Warning, TEXT("Spawned mold for Paper %d. Total: %d"), CurrentPaperIndex, MoldCount);
 
 	HideBrushUI();
 
@@ -102,9 +103,16 @@ void AMoldMinigame::Tick(float DeltaTime)
 
 void AMoldMinigame::OnMoldDestroyed()
 {
-	MoldCount--;
-	UE_LOG(LogTemp, Warning, TEXT("MoldMinigame: Remaining mold = %d"), MoldCount);
-	CheckWinCondition();
+	if (MoldCount > 0)
+	{
+		MoldCount--;
+		UE_LOG(LogTemp, Warning, TEXT("Mold destroyed. Current MoldCount: %d"), MoldCount);
+		CheckWinCondition();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("MoldCount already zero or negative! Ignoring extra OnMoldDestroyed()."));
+	}
 }
 
 void AMoldMinigame::SwitchToPaper2()
@@ -145,17 +153,34 @@ void AMoldMinigame::SpawnMoldForCurrentPaper()
 	for (AActor* MoldActor : MoldActors)
 	{
 		AMold* Mold = Cast<AMold>(MoldActor);
-		if (Mold && Mold->PaperIndex == CurrentPaperIndex)
+		if (Mold)
 		{
-			Mold->SetMoldMinigame(this);
+			if (Mold->PaperIndex == CurrentPaperIndex)
+			{
+				Mold->SetActorHiddenInGame(false);
+				Mold->SetActorEnableCollision(true);
+				Mold->SetMoldMinigame(this);
+				MoldCount++;
 
-			MoldCount++;
+				UE_LOG(LogTemp, Warning, TEXT("Registering mold for Paper %d: %s"), CurrentPaperIndex, *Mold->GetName());
+			}
+			else
+			{
+				// Hide and disable mold from the other paper
+				Mold->SetActorHiddenInGame(true);
+				Mold->SetActorEnableCollision(false);
+			}
 		}
 	}
+
+	UE_LOG(LogTemp, Warning, TEXT("Spawned mold for Paper %d. Total: %d"), CurrentPaperIndex, MoldCount);
+
 }
 
 void AMoldMinigame::CheckWinCondition()
 {
+	UE_LOG(LogTemp, Warning, TEXT("CheckWinCondition called. Remaining mold: %d"), MoldCount);
+
 	if (MoldCount <= 0)
 	{
 		if (CurrentPaperIndex == 1)

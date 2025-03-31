@@ -36,6 +36,9 @@ public:
 
 	bool bCanBrush; // Tracks if the player can brush mold
 
+	UFUNCTION(BlueprintCallable, Category = "Minigame")
+	void ShowTutorial();
+
 private:
 	UPROPERTY(EditAnywhere, Category = "Camera")
 	UCameraComponent* MoldCamera;
@@ -89,7 +92,7 @@ private:
 	UPROPERTY()
 	UUserWidget* MoldTutorialWidget;
 
-	void ShowTutorial();
+
 
 
 	// Brush Selection
