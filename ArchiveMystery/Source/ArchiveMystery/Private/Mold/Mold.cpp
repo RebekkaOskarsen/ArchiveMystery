@@ -86,6 +86,16 @@ void AMold::OnBrushed(EBrushSize BrushSize)
 		if ((BrushSize == EBrushSize::Big && MoldHealth <= MinHealth && MinHealth == 50) ||
 			(BrushSize == EBrushSize::Small && MoldHealth <= MinHealth && MinHealth == 0))
 		{
+			if (SparkleEffect)
+			{
+				UNiagaraFunctionLibrary::SpawnSystemAtLocation(
+					GetWorld(),
+					SparkleEffect,
+					GetActorLocation(),
+					GetActorRotation()
+				);
+			}
+
 			UE_LOG(LogTemp, Warning, TEXT("Mold completely cleaned! Destroying mold."));
 
 			bIsDestroyed = true;

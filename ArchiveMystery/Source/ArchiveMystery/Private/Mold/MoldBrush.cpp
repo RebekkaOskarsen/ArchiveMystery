@@ -5,6 +5,7 @@
 #include "Mold/Mold.h"
 #include "Engine/World.h"
 #include "DrawDebugHelpers.h"
+#include <Kismet/GameplayStatics.h>
 
 // Sets default values
 AMoldBrush::AMoldBrush()
@@ -88,11 +89,6 @@ void AMoldBrush::Tick(float DeltaTime)
             SetActorLocation(Hit.Location + FVector(0.f, 0.f, 5.f)); // Slight offset above surface
         }
     }
-
-
-  
-
-  
 }
 
 void AMoldBrush::SetBrushSize(EBrushSize NewSize)
@@ -103,7 +99,6 @@ void AMoldBrush::SetBrushSize(EBrushSize NewSize)
 
 void AMoldBrush::CheckForMold()
 {
- 
 
     FVector Start = GetActorLocation(); // Start from brush position
     FVector End = Start - FVector(0, 0, 50);
@@ -121,6 +116,12 @@ void AMoldBrush::CheckForMold()
         if (HitMold)
         {
             UE_LOG(LogTemp, Warning, TEXT("Brush hovering over mold!"));
+
+            if (BrushSound)
+            {
+                UGameplayStatics::PlaySoundAtLocation(GetWorld(), BrushSound, GetActorLocation());
+            }
+
             HitMold->OnBrushed(CurrentBrushSize);
             TimeSinceLastBrush = 0.0f; // Reset cooldown timer
         }

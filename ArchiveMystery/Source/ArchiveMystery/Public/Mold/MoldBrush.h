@@ -54,6 +54,9 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Brush")
 	UStaticMesh* BigBrushMesh;
 
+	UPROPERTY(EditAnywhere, Category = "Audio")
+	USoundBase* BrushSound;
+
 	void UpdateCursorMesh();
 
 

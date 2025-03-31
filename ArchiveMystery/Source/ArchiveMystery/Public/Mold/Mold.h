@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "MoldBrush.h"
 #include "GameFramework/Actor.h"
+#include "NiagaraComponent.h"
+#include "NiagaraFunctionLibrary.h"
 #include "Mold.generated.h"
 
 class AMoldMinigame;
@@ -61,5 +63,8 @@ public:
 
 	UPROPERTY()
 	bool bIsDestroyed = false;
+
+	UPROPERTY(EditAnywhere, Category = "Effects")
+	UNiagaraSystem* SparkleEffect;
 
 };
