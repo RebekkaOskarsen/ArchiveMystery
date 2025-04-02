@@ -1,0 +1,28 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/StarterContent/Architecture/Floor_400x400.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/MainMenuLevel.umap",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Niagara_FX/NS_Dust_Particles.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Books/M_Wrapped_Booksinrope.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Books/M_Booksinrope.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Papers/M_Paperpile.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Office/M_Pen.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Papers/M_Paper.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Books/M_Long_Book_2.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/2DAssets/logo_text_3.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/2DAssets/logo_text_4.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/MainMenu/WPB_MainMenu.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/2DAssets/logo__1_.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Sequences/Main_Menu_Camera_Movement.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Sounds/Offthesky_Icing_Nicely.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Archive-Mystery.umap",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Sounds/Main_Hakren_Jazzy_Ambient_Piano_Mansion.uasset"
+			]
+		}
+	]
+}
