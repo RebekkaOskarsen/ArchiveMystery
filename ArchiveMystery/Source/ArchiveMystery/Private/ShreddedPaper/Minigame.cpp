@@ -392,6 +392,7 @@ void AMinigame::Tick(float DeltaTime)
                     if (ShouldSnap)
                     {
                         PlaySnapSound();
+                        PlaySparkEffect(SelectedMesh->GetComponentLocation());
                         // Move the selected group to snap it with the target group
                         for (const TPair<FString, FString>& Pair : ParentMap)
                         {
@@ -571,5 +572,26 @@ void AMinigame::PlaySnapSound()
     else
     {
         UE_LOG(LogTemp, Warning, TEXT("SnapSound is not set!"));
+    }
+}
+
+void AMinigame::PlaySparkEffect(FVector Location)
+{
+    if (SparkNiagaraEffect)
+    {
+        UNiagaraFunctionLibrary::SpawnSystemAtLocation(
+            this,
+            SparkNiagaraEffect,
+            Location,
+            FRotator::ZeroRotator,
+            FVector(1.0f), // Scale
+            true, // Auto destroy
+            true, // Auto activate
+            ENCPoolMethod::AutoRelease
+        );
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("SparkNiagaraEffect is not set!"));
     }
 }

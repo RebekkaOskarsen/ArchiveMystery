@@ -15,6 +15,7 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
 #include "Components/TextBlock.h"
+#include "NiagaraFunctionLibrary.h"
 #include "Minigame.generated.h"
 
 class UCameraComponent;
@@ -139,5 +140,11 @@ public:
 
 		// Funksjon for å spille lyd
 		void PlaySnapSound();
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Effects")
+		UNiagaraSystem* SparkNiagaraEffect;
+
+		// Funksjon for å spille partikkeleffekt
+		void PlaySparkEffect(FVector Location);
 
 };

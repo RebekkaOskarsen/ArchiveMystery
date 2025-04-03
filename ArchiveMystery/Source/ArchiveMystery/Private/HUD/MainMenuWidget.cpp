@@ -52,7 +52,7 @@ void UMainMenuWidget::OnStartGameClicked()
     }
 
     // Last "Archive-Mystery"-nivået
-    UGameplayStatics::OpenLevel(this, FName("Archive-Mystery"));
+    UGameplayStatics::OpenLevel(this, FName("StartGame"));
 }
 
 void UMainMenuWidget::OnExitGameClicked()

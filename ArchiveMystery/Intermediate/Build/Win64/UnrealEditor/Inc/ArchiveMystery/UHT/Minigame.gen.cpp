@@ -21,6 +21,7 @@ ENGINE_API UClass* Z_Construct_UClass_USoundBase_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 ENHANCEDINPUT_API UClass* Z_Construct_UClass_UInputAction_NoRegister();
 ENHANCEDINPUT_API UClass* Z_Construct_UClass_UInputMappingContext_NoRegister();
+NIAGARA_API UClass* Z_Construct_UClass_UNiagaraSystem_NoRegister();
 UMG_API UClass* Z_Construct_UClass_UUserWidget_NoRegister();
 UPackage* Z_Construct_UPackage__Script_ArchiveMystery();
 // End Cross Module References
@@ -207,6 +208,10 @@ struct Z_Construct_UClass_AMinigame_Statics
 		{ "ToolTip", "Lydkomponent for snap-lyd" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SparkNiagaraEffect_MetaData[] = {
+		{ "Category", "Effects" },
+		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_SnapThreshold;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PaperSheet;
@@ -226,6 +231,7 @@ struct Z_Construct_UClass_AMinigame_Statics
 	static const UECodeGen_Private::FClassPropertyParams NewProp_TutorialWidgetClass;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_GameMenuWidgetClass;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_SnapSound;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_SparkNiagaraEffect;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -262,6 +268,7 @@ const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMinigame_Stati
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_TutorialWidgetClass = { "TutorialWidgetClass", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, TutorialWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TutorialWidgetClass_MetaData), NewProp_TutorialWidgetClass_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_GameMenuWidgetClass = { "GameMenuWidgetClass", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, GameMenuWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_GameMenuWidgetClass_MetaData), NewProp_GameMenuWidgetClass_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_SnapSound = { "SnapSound", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, SnapSound), Z_Construct_UClass_USoundBase_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SnapSound_MetaData), NewProp_SnapSound_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_SparkNiagaraEffect = { "SparkNiagaraEffect", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, SparkNiagaraEffect), Z_Construct_UClass_UNiagaraSystem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SparkNiagaraEffect_MetaData), NewProp_SparkNiagaraEffect_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMinigame_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_SnapThreshold,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_PaperSheet,
@@ -279,6 +286,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMinigame
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_TutorialWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_GameMenuWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_SnapSound,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_SparkNiagaraEffect,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AMinigame_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AMinigame_Statics::DependentSingletons[])() = {
@@ -318,14 +326,14 @@ AMinigame::~AMinigame() {}
 // End Class AMinigame
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_minas_OneDrive_Dokumenter_Personal_Projects_NGA_2025_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_Statics
+struct Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMinigame, AMinigame::StaticClass, TEXT("AMinigame"), &Z_Registration_Info_UClass_AMinigame, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMinigame), 1064237191U) },
+		{ Z_Construct_UClass_AMinigame, AMinigame::StaticClass, TEXT("AMinigame"), &Z_Registration_Info_UClass_AMinigame, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMinigame), 2520984979U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_minas_OneDrive_Dokumenter_Personal_Projects_NGA_2025_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_4028363745(TEXT("/Script/ArchiveMystery"),
-	Z_CompiledInDeferFile_FID_Users_minas_OneDrive_Dokumenter_Personal_Projects_NGA_2025_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_minas_OneDrive_Dokumenter_Personal_Projects_NGA_2025_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_4050483221(TEXT("/Script/ArchiveMystery"),
+	Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration
