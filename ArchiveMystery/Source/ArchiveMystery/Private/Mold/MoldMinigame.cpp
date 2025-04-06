@@ -37,6 +37,7 @@ void AMoldMinigame::BeginPlay()
 	if (PC)
 	{
 		PC->SetViewTarget(this);
+		//PC->bShowMouseCursor = false;
 	}
 
 	// Count all mold instances at the start

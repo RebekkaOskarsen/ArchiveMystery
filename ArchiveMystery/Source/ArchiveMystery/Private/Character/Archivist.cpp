@@ -5,6 +5,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Camera/CameraComponent.h"
+#include "Components/SphereComponent.h"
 
 #include "Components/InputComponent.h"
 #include "EnhancedInputComponent.h"
@@ -174,10 +175,28 @@ void AArchivist::StopRunning()
 
 void AArchivist::PickUp(const FInputActionValue& Value)
 {
+	// Unequip if already holding something
+	if (EquippedBox)
+	{
+		// Detach first
+		EquippedBox->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+
+		// Enable physics with a slight downward impulse
+		EquippedBox->EnablePhysics(true);
+		EquippedBox->GetItemMesh()->AddImpulse(FVector(0, 0, -100), NAME_None, true);
+
+		EquippedBox = nullptr;
+		CharacterState = ECharacterState::ECS_Unequipped;
+		return;
+	}
+
+	// Pick up logic
 	AOpenBox* OverlappingBox = Cast<AOpenBox>(OverlappingItems);
 	if (OverlappingBox)
 	{
 		OverlappingBox->Equip(GetMesh(), FName("LeftHandSocket"));
+		EquippedBox = OverlappingBox;
+		CharacterState = ECharacterState::ECS_EquippedOneHandedBox;
 	}
 }
 

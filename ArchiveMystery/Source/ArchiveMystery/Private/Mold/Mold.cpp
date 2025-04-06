@@ -76,7 +76,7 @@ void AMold::OnBrushed(EBrushSize BrushSize)
 
 	if (bCorrectBrush)
 	{
-		MoldHealth -= 5.0f;
+		MoldHealth -= 25.0f;
 
 		if (MoldHealth <= MinHealth && MoldSize == EMoldSize::Big)
 		{

@@ -55,3 +55,13 @@ void AItems::Tick(float DeltaTime)
 
 }
 
+void AItems::OnEquipped()
+{
+	Sphere->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+}
+
+void AItems::OnUnequipped()
+{
+	Sphere->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+}
+

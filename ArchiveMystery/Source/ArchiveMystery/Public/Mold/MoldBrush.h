@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/AudioComponent.h"
 #include "MoldBrush.generated.h"
 
 UENUM(BlueprintType)
@@ -36,12 +37,13 @@ public:
 	// Function to check if the brush is hovering over mold
 	void CheckForMold();
 
-	// Time between brush strokes in seconds
-	UPROPERTY(EditAnywhere, Category = "Brushing")
-	float BrushCooldown = 0.03f; // You can tweak this in-editor
+	UPROPERTY()
+	UAudioComponent* BrushAudioComponent;
 
-	// Internal cooldown timer
-	float TimeSinceLastBrush = 0.0f;
+
+	UPROPERTY(EditAnywhere, Category = "Audio")
+	USoundBase* BrushSound;
+
 
 private:
 	EBrushSize CurrentBrushSize;
@@ -54,10 +56,12 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Brush")
 	UStaticMesh* BigBrushMesh;
 
-	UPROPERTY(EditAnywhere, Category = "Audio")
-	USoundBase* BrushSound;
+	UFUNCTION()
+	void OnBrushSoundFinished();
 
 	void UpdateCursorMesh();
 
+	bool bCanBrush = true;
 
+	bool bHasBrushedThisStroke = false;
 };

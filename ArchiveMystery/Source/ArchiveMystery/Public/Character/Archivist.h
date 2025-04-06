@@ -17,6 +17,7 @@ class UInputMappingContext;
 class UInputAction;
 
 class AItems;
+class AOpenBox;
 
 UENUM(BlueprintType)
 enum class ECharacterState : uint8
@@ -95,6 +96,9 @@ private:
 	AItems* OverlappingItems;
 
 	ECharacterState CharacterState = ECharacterState::ECS_Unequipped;
+
+	AItems* EquippedItem = nullptr;
+	AOpenBox* EquippedBox = nullptr;
 
 	public:
 		FORCEINLINE void SetOverlappingItems(AItems* Items) { OverlappingItems = Items; }

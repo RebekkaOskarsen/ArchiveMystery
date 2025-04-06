@@ -15,6 +15,7 @@ class ARCHIVEMYSTERY_API AOpenBox : public AItems
 public:
 	void Equip(USceneComponent* InParent, FName InSocketName);
 
+	void EnablePhysics(bool bEnable);
 protected:
 	virtual void OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) override;
 

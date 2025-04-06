@@ -50,21 +50,35 @@ AMoldBrush::AMoldBrush()
 void AMoldBrush::BeginPlay()
 {
 	Super::BeginPlay();
+
 	UpdateCursorMesh();
+
+    if (BrushSound)
+    {
+        BrushAudioComponent = UGameplayStatics::SpawnSoundAttached(
+            BrushSound,
+            RootComponent,
+            NAME_None,
+            FVector::ZeroVector,
+            EAttachLocation::KeepRelativeOffset,
+            false, // not auto destroy
+            1.0f,
+            1.0f,
+            0.0f
+        );
+
+        if (BrushAudioComponent)
+        {
+            BrushAudioComponent->Stop();
+            BrushAudioComponent->OnAudioFinished.AddDynamic(this, &AMoldBrush::OnBrushSoundFinished);
+        }
+    }
 }
 
 // Called every frame
 void AMoldBrush::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-    TimeSinceLastBrush += DeltaTime;
-
-    // Only allow brushing if cooldown is done
-    if (TimeSinceLastBrush >= BrushCooldown)
-    {
-        CheckForMold();
-    }
 
     FVector WorldLocation, WorldDirection;
     APlayerController* PC = GetWorld()->GetFirstPlayerController();
@@ -89,6 +103,9 @@ void AMoldBrush::Tick(float DeltaTime)
             SetActorLocation(Hit.Location + FVector(0.f, 0.f, 5.f)); // Slight offset above surface
         }
     }
+
+    CheckForMold();
+
 }
 
 void AMoldBrush::SetBrushSize(EBrushSize NewSize)
@@ -100,35 +117,42 @@ void AMoldBrush::SetBrushSize(EBrushSize NewSize)
 void AMoldBrush::CheckForMold()
 {
 
-    FVector Start = GetActorLocation(); // Start from brush position
+    if (!bCanBrush || !BrushSound) return;
+
+    FVector Start = GetActorLocation();
     FVector End = Start - FVector(0, 0, 50);
-
     FHitResult Hit;
-    FCollisionQueryParams TraceParams;
-    TraceParams.AddIgnoredActor(this); // Ignore self
+    FCollisionQueryParams Params;
+    Params.AddIgnoredActor(this);
 
-    // Perform the trace
-    bool bHit = GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_Visibility, TraceParams);
-
-    if (bHit)
+    if (GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_Visibility, Params))
     {
         AMold* HitMold = Cast<AMold>(Hit.GetActor());
         if (HitMold)
         {
             UE_LOG(LogTemp, Warning, TEXT("Brush hovering over mold!"));
 
-            if (BrushSound)
+            if (BrushAudioComponent)
+            {
+                BrushAudioComponent->Play();
+            }
+            else
             {
                 UGameplayStatics::PlaySoundAtLocation(GetWorld(), BrushSound, GetActorLocation());
             }
 
+            bCanBrush = false;
             HitMold->OnBrushed(CurrentBrushSize);
-            TimeSinceLastBrush = 0.0f; // Reset cooldown timer
         }
     }
 
-    // Debug line to visualize trace
-    DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 0.1f, 0, 1);
+   // DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 0.1f, 0, 1);
+}
+
+void AMoldBrush::OnBrushSoundFinished()
+{
+    bCanBrush = true;
+   // bHasBrushedThisStroke = false;
 }
 
 void AMoldBrush::UpdateCursorMesh()
