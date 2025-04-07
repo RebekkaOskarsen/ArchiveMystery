@@ -9,12 +9,17 @@ void AOpenBox::Equip(USceneComponent* InParent, FName InSocketName)
 {
     if (!InParent) return;
 
-    // Disable physics before attaching
+    // Disable physics
     EnablePhysics(false);
 
-    // Attach to the new parent
+    // Attach to character's hand
     FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, true);
+    DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
     AttachToComponent(InParent, AttachmentRules, InSocketName);
+
+    // FORCE a full render refresh
+    ItemMesh->UnregisterComponent();
+    ItemMesh->RegisterComponent();
 }
 
 void AOpenBox::EnablePhysics(bool bEnable)
@@ -22,21 +27,30 @@ void AOpenBox::EnablePhysics(bool bEnable)
     if (!ItemMesh) return;
 
     ItemMesh->SetSimulatePhysics(bEnable);
+    ItemMesh->SetEnableGravity(bEnable); // <-- Add this line
     ItemMesh->SetCollisionEnabled(bEnable ? ECollisionEnabled::QueryAndPhysics : ECollisionEnabled::NoCollision);
     Sphere->SetCollisionEnabled(bEnable ? ECollisionEnabled::QueryOnly : ECollisionEnabled::NoCollision);
 
     if (bEnable)
     {
-        // When enabling physics, wake the rigid body
         ItemMesh->WakeAllRigidBodies();
     }
     else
     {
-        // When disabling, put to sleep and clear forces
         ItemMesh->PutAllRigidBodiesToSleep();
         ItemMesh->SetPhysicsLinearVelocity(FVector::ZeroVector);
         ItemMesh->SetPhysicsAngularVelocityInDegrees(FVector::ZeroVector);
     }
+}
+
+void AOpenBox::BeginPlay()
+{
+    Super::BeginPlay();
+
+    ItemMesh->bCastInsetShadow = false;
+    ItemMesh->bCastDynamicShadow = false;
+    ItemMesh->CastShadow = false;
+
 }
 
 void AOpenBox::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)

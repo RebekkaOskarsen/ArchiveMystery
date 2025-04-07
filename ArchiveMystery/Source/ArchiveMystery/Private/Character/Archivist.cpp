@@ -121,6 +121,12 @@ void AArchivist::BeginPlay()
 			Subsystem->AddMappingContext(CharacterMappingContext, 0);
 		}
 	}
+
+	if (DropZone)
+	{
+		DropZone->OnActorBeginOverlap.AddDynamic(this, &AArchivist::OnDropZoneBeginOverlap);
+		DropZone->OnActorEndOverlap.AddDynamic(this, &AArchivist::OnDropZoneEndOverlap);
+	}
 }
 
 void AArchivist::Move(const FInputActionValue& Value)
@@ -175,28 +181,52 @@ void AArchivist::StopRunning()
 
 void AArchivist::PickUp(const FInputActionValue& Value)
 {
-	// Unequip if already holding something
-	if (EquippedBox)
+	if (bIsInputLocked)
 	{
-		// Detach first
-		EquippedBox->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
-
-		// Enable physics with a slight downward impulse
-		EquippedBox->EnablePhysics(true);
-		EquippedBox->GetItemMesh()->AddImpulse(FVector(0, 0, -100), NAME_None, true);
-
-		EquippedBox = nullptr;
-		CharacterState = ECharacterState::ECS_Unequipped;
 		return;
 	}
 
-	// Pick up logic
-	AOpenBox* OverlappingBox = Cast<AOpenBox>(OverlappingItems);
-	if (OverlappingBox)
+	bIsInputLocked = true;
+	CurrentInputTime = 0.0f;
+
+	if (EquippedBox)
 	{
-		OverlappingBox->Equip(GetMesh(), FName("LeftHandSocket"));
-		EquippedBox = OverlappingBox;
-		CharacterState = ECharacterState::ECS_EquippedOneHandedBox;
+		// Must be inside the drop zone to unequip
+		if (!DropZone || !DropZone->IsOverlappingActor(this))
+		{
+			return;
+		}
+
+		// Mark the box as placed forever
+		EquippedBox->bHasBeenPlaced = true;
+
+		// Detach and drop it
+		EquippedBox->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+		EquippedBox->EnablePhysics(true);
+		EquippedBox->OnUnequipped();
+
+		SetOverlappingItems(nullptr);
+		EquippedBox = nullptr;
+		CharacterState = ECharacterState::ECS_Unequipped;
+
+		return;
+	}
+
+	if (OverlappingItems)
+	{
+
+		AOpenBox* OverlappingBox = Cast<AOpenBox>(OverlappingItems);
+		if (OverlappingBox && !OverlappingBox->bHasBeenPlaced)
+		{
+			OverlappingBox->EnablePhysics(false);
+			OverlappingBox->Equip(GetMesh(), FName("LeftHandSocket"));
+			OverlappingBox->OnEquipped();
+
+			EquippedBox = OverlappingBox;
+			CharacterState = ECharacterState::ECS_EquippedOneHandedBox;
+
+			SetOverlappingItems(nullptr); // Prevent auto-retriggering overlap
+		}
 	}
 }
 
@@ -410,6 +440,22 @@ void AArchivist::LookAtPainting(const FInputActionValue& Value)
 
 	// Sett cooldown-tiden før neste input kan brukes
 	CurrentInputTime = 0.0f;
+}
+
+void AArchivist::OnDropZoneBeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
+{
+	if (OtherActor == this)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Archivist ENTERED the drop zone"));
+	}
+}
+
+void AArchivist::OnDropZoneEndOverlap(AActor* OverlappedActor, AActor* OtherActor)
+{
+	if (OtherActor == this)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Archivist LEFT the drop zone"));
+	}
 }
 
 void AArchivist::TogglePauseMenu()

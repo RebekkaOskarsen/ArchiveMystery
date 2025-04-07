@@ -5,6 +5,8 @@
 #include "Components/SphereComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Character/Archivist.h"
+#include "Items/Box/OpenBox.h"
+
 
 // Sets default values
 AItems::AItems()
@@ -35,7 +37,17 @@ void AItems::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* O
 	AArchivist* Archivist = Cast<AArchivist>(OtherActor);
 	if (Archivist)
 	{
-		Archivist->SetOverlappingItems(this);
+		if (Archivist->GetEquippedBox() == Cast<AOpenBox>(this))
+		{
+			return;
+		}
+
+		// Only update if this isn't already the active overlapping item
+		if (Archivist->GetOverlappingItems() != this)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Overlapping with item: %s"), *GetName());
+			Archivist->SetOverlappingItems(this);
+		}
 	}
 }
 
@@ -57,11 +69,26 @@ void AItems::Tick(float DeltaTime)
 
 void AItems::OnEquipped()
 {
-	Sphere->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	if (Sphere)
+	{
+		Sphere->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		Sphere->SetGenerateOverlapEvents(false); // <-- Important
+	}
+
+	if (ItemMesh)
+	{
+		ItemMesh->SetSimulatePhysics(false);
+		ItemMesh->SetEnableGravity(false);
+	}
+
 }
 
 void AItems::OnUnequipped()
 {
-	Sphere->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	if (Sphere)
+	{
+		Sphere->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+		Sphere->SetGenerateOverlapEvents(true); // <-- Also important
+	}
 }
 

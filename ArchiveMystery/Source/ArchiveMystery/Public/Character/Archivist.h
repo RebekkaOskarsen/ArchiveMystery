@@ -41,6 +41,14 @@ public:
 	//Camera
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UCameraComponent* ViewCamera;
+
+	AItems* EquippedItem = nullptr;
+	AOpenBox* EquippedBox = nullptr;
+
+	AOpenBox* GetEquippedBox() const { return EquippedBox; }
+
+	AItems* GetOverlappingItems() const { return OverlappingItems; }
+
 protected:
 	virtual void BeginPlay() override;
 
@@ -97,8 +105,7 @@ private:
 
 	ECharacterState CharacterState = ECharacterState::ECS_Unequipped;
 
-	AItems* EquippedItem = nullptr;
-	AOpenBox* EquippedBox = nullptr;
+
 
 	public:
 		FORCEINLINE void SetOverlappingItems(AItems* Items) { OverlappingItems = Items; }
@@ -163,6 +170,15 @@ private:
 		// Legg til en ny InputAction
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
 		UInputAction* PauseAction;
+
+		UPROPERTY(EditAnywhere, Category = "Drop Zone")
+		ATriggerBox* DropZone;
+
+		UFUNCTION()
+		void OnDropZoneBeginOverlap(AActor* OverlappedActor, AActor* OtherActor);
+
+		UFUNCTION()
+		void OnDropZoneEndOverlap(AActor* OverlappedActor, AActor* OtherActor);
 
 	private:
 		// Referanse til pause-menyen
