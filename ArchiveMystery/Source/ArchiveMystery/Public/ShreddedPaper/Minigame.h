@@ -38,7 +38,7 @@ protected:
 	TSet<FString> SnappedPieces;
 
 	UPROPERTY(EditAnywhere, Category = "Snapping")
-	float SnapThreshold = 1.0f;
+	float SnapThreshold = 5.0f;
 
 	UPROPERTY(EditAnywhere, Category = "Snapping")
 	AActor* PaperSheet;

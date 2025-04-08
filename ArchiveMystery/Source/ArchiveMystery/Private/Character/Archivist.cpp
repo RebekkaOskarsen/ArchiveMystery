@@ -47,6 +47,7 @@ AArchivist::AArchivist()
 	PauseMenuWidget = nullptr;
 	PauseMenuWidgetClass = nullptr;
 
+
 	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
 }
 
@@ -186,35 +187,26 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 		return;
 	}
 
-	bIsInputLocked = true;
-	CurrentInputTime = 0.0f;
+	bool bDidInteract = false;
 
 	if (EquippedBox)
 	{
-		// Must be inside the drop zone to unequip
-		if (!DropZone || !DropZone->IsOverlappingActor(this))
+		if (DropZone && DropZone->IsOverlappingActor(this))
 		{
-			return;
+			EquippedBox->bHasBeenPlaced = true;
+			EquippedBox->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+			EquippedBox->EnablePhysics(true);
+			EquippedBox->OnUnequipped();
+
+			SetOverlappingItems(nullptr);
+			EquippedBox = nullptr;
+			CharacterState = ECharacterState::ECS_Unequipped;
+
+			bDidInteract = true;
 		}
-
-		// Mark the box as placed forever
-		EquippedBox->bHasBeenPlaced = true;
-
-		// Detach and drop it
-		EquippedBox->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
-		EquippedBox->EnablePhysics(true);
-		EquippedBox->OnUnequipped();
-
-		SetOverlappingItems(nullptr);
-		EquippedBox = nullptr;
-		CharacterState = ECharacterState::ECS_Unequipped;
-
-		return;
 	}
-
-	if (OverlappingItems)
+	else if (OverlappingItems)
 	{
-
 		AOpenBox* OverlappingBox = Cast<AOpenBox>(OverlappingItems);
 		if (OverlappingBox && !OverlappingBox->bHasBeenPlaced)
 		{
@@ -225,11 +217,18 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 			EquippedBox = OverlappingBox;
 			CharacterState = ECharacterState::ECS_EquippedOneHandedBox;
 
-			SetOverlappingItems(nullptr); // Prevent auto-retriggering overlap
+			SetOverlappingItems(nullptr);
+
+			bDidInteract = true;
 		}
 	}
-}
 
+	if (bDidInteract)
+	{
+		bIsInputLocked = true;
+		CurrentInputTime = 0.0f;
+	}
+}
 
 void AArchivist::Tick(float DeltaTime)
 {
@@ -395,12 +394,10 @@ void AArchivist::LookAtPainting(const FInputActionValue& Value)
 {
 	if (bIsInputLocked)
 	{
-		// Hvis inputen er låst, ikke gjør noe
 		return;
 	}
 
-	// Lås input for en stund etter at det er trykket på E
-	bIsInputLocked = true;
+	bool bDidLookAtPainting = false;
 
 	for (FPaintingInfo& PaintingInfo : Paintings)
 	{
@@ -408,11 +405,9 @@ void AArchivist::LookAtPainting(const FInputActionValue& Value)
 		{
 			if (!PaintingInfo.bIsLookingAtPainting)
 			{
-				// Spilleren er i triggerområdet og trykker på E, vis widgeten med malerbildet
 				PaintingInfo.bIsLookingAtPainting = true;
-				bIsMovementLocked = true;  // Lås bevegelsen
+				bIsMovementLocked = true;
 
-				// Vis widgetet med malerbildet
 				if (PaintingInfo.PaintingWidgetClass && !PaintingInfo.PaintingWidgetInstance)
 				{
 					PaintingInfo.PaintingWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), PaintingInfo.PaintingWidgetClass);
@@ -424,22 +419,26 @@ void AArchivist::LookAtPainting(const FInputActionValue& Value)
 			}
 			else
 			{
-				// Hvis spilleren allerede ser på malerbildet, skjul widgetet og gå tilbake til normal tilstand
 				PaintingInfo.bIsLookingAtPainting = false;
-				bIsMovementLocked = false;  // Frigjør bevegelsen
+				bIsMovementLocked = false;
 
-				// Fjern widgetet
 				if (PaintingInfo.PaintingWidgetInstance)
 				{
 					PaintingInfo.PaintingWidgetInstance->RemoveFromViewport();
 					PaintingInfo.PaintingWidgetInstance = nullptr;
 				}
 			}
+
+			bDidLookAtPainting = true;
+			break; // Vi trenger bare ett bilde om gangen
 		}
 	}
 
-	// Sett cooldown-tiden før neste input kan brukes
-	CurrentInputTime = 0.0f;
+	if (bDidLookAtPainting)
+	{
+		bIsInputLocked = true;
+		CurrentInputTime = 0.0f;
+	}
 }
 
 void AArchivist::OnDropZoneBeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
