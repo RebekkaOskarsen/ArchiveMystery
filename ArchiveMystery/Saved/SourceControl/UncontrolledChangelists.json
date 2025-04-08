@@ -5,7 +5,10 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
-				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/StarterContent/Architecture/Floor_400x400.uasset"
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/StarterContent/Architecture/Floor_400x400.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/Blueprint/Save_and_Load_System/My_Game_Instance.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/Archive-Mystery.umap",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/StarterContent/Materials/M_Metal_Gold.uasset"
 			]
 		}
 	]
