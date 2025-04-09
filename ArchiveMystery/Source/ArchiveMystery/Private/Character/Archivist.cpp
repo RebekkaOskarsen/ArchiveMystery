@@ -21,6 +21,8 @@
 #include "HUD/MainMenuWidget.h"
 #include "HUD/PauseMenuWidget.h"
 
+#include "Character/ArchivistAnimInstance.h"
+
 
 AArchivist::AArchivist()
 {
@@ -194,11 +196,24 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 		if (DropZone && DropZone->IsOverlappingActor(this))
 		{
 			EquippedBox->bHasBeenPlaced = true;
-			EquippedBox->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
-			EquippedBox->EnablePhysics(true);
+
+			if (BoxSnapTarget)
+			{
+				EquippedBox->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+				EquippedBox->SetActorLocation(BoxSnapTarget->GetActorLocation());
+				EquippedBox->SetActorRotation(BoxSnapTarget->GetActorRotation());
+			}
+			else
+			{
+				// Fallback to regular drop if no snap target
+				EquippedBox->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+				EquippedBox->EnablePhysics(true);
+			}
+
 			EquippedBox->OnUnequipped();
 
 			SetOverlappingItems(nullptr);
+			EquippedBox->bHasBeenPlaced = true;
 			EquippedBox = nullptr;
 			CharacterState = ECharacterState::ECS_Unequipped;
 
@@ -244,6 +259,13 @@ void AArchivist::Tick(float DeltaTime)
 		}
 	}
 
+	if (USkeletalMeshComponent* SkeletalMesh = GetMesh())
+	{
+		if (UArchivistAnimInstance* AnimInstance = Cast<UArchivistAnimInstance>(SkeletalMesh->GetAnimInstance()))
+		{
+			AnimInstance->bIsHoldingBox = (EquippedBox != nullptr);
+		}
+	}
 }
 
 void AArchivist::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

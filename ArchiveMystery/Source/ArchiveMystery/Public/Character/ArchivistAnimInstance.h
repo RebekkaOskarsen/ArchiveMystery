@@ -17,4 +17,8 @@ class ARCHIVEMYSTERY_API UArchivistAnimInstance : public UAnimInstance
 
 public:
 	ECharacterState CharacterState;
+
+	// Animation from idle to holding
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsHoldingBox;
 };

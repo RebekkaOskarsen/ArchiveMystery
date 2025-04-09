@@ -8,6 +8,8 @@
 #include "PaintingInfo.h"
 #include "Engine/TriggerBox.h"
 #include "Blueprint/UserWidget.h"
+#include "Animation/AnimInstance.h"
+
 #include "Archivist.generated.h"
 
 class USpringArmComponent;
@@ -48,6 +50,9 @@ public:
 	AOpenBox* GetEquippedBox() const { return EquippedBox; }
 
 	AItems* GetOverlappingItems() const { return OverlappingItems; }
+
+	UPROPERTY(EditAnywhere, Category = "Drop Zone")
+	AActor* BoxSnapTarget;
 
 protected:
 	virtual void BeginPlay() override;
