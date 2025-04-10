@@ -6,6 +6,10 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
 #include "Kismet/GameplayStatics.h"
+#include "Character/Archivist.h"
+
+//#include "Character/ArchivistAnimInstance.h"
+#include <Character/ArchiveGameInstance.h>
 
 
 // Sets default values
@@ -488,6 +492,18 @@ void AMinigame::OnAllPiecesSnapped()
 
     }
 
+    AArchivist* Archivist = Cast<AArchivist>(UGameplayStatics::GetPlayerCharacter(this, 0));
+    if (Archivist)
+    {
+        Archivist->bHasFinishedShreddedPaperMinigame = true;
+        UE_LOG(LogTemp, Warning, TEXT("Shredded paper minigame completed! Archivist flag set."));
+    }
+
+    if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
+    {
+        GI->bShreddedGameComplete = true;
+    }
+
     // Display the Exit Button
    // Create and display the exit button
     if (ExitWidgetClass)
@@ -497,6 +513,12 @@ void AMinigame::OnAllPiecesSnapped()
         {
             ExitWidget->AddToViewport();
         }
+    }
+
+    if (UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
+    {
+        GameInstance->bShreddedGameComplete = true;
+        UE_LOG(LogTemp, Warning, TEXT("Shredded minigame completed!"));
     }
 }
 

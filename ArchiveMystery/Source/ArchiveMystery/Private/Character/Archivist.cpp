@@ -57,17 +57,14 @@ void AArchivist::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// Sjekk om dette er spilleren eller en duplikat
 	if (GetWorld())
 	{
 		TArray<AActor*> FoundArchivists;
 		UGameplayStatics::GetAllActorsOfClass(GetWorld(), AArchivist::StaticClass(), FoundArchivists);
-
-		// Hvis det finnes mer enn én, og denne IKKE er spilleren, ødelegg den
 		if (FoundArchivists.Num() > 1)
 		{
 			APlayerController* PC = GetWorld()->GetFirstPlayerController();
-			if (PC && PC->GetPawn() != this) // Hvis dette ikke er spilleren
+			if (PC && PC->GetPawn() != this)
 			{
 				Destroy();
 				return;
@@ -75,13 +72,10 @@ void AArchivist::BeginPlay()
 		}
 	}
 
-	// Sjekk om vi er i riktig nivå (startmenyen)
 	if (GetWorld()->GetMapName().Contains("MainMenuLevel"))
 	{
-		// Sjekk om MainMenuWidgetClass er satt
 		if (MainMenuWidgetClass)
 		{
-			// Opprett og vis startmenyen
 			MainMenuWidget = CreateWidget<UMainMenuWidget>(GetWorld(), MainMenuWidgetClass);
 			if (MainMenuWidget)
 			{
@@ -95,6 +89,44 @@ void AArchivist::BeginPlay()
 	}
 
 	UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(GetGameInstance());
+	if (GameInstance)
+	{
+		bHasPlacedBox = GameInstance->bBoxPlacedBeforeMoldGame;
+		bHasFinishedShreddedPaperMinigame = GameInstance->bShreddedGameComplete;
+
+		UE_LOG(LogTemp, Warning, TEXT("Loaded from GameInstance - bHasPlacedBox: %s, bHasFinishedShreddedPaperMinigame: %s"),
+			bHasPlacedBox ? TEXT("true") : TEXT("false"),
+			bHasFinishedShreddedPaperMinigame ? TEXT("true") : TEXT("false"));
+
+		if (GameInstance->bBoxPlacedBeforeMoldGame && GameInstance->PlacedBoxTransform.IsValid())
+		{
+			TArray<AActor*> FoundBoxes;
+			UGameplayStatics::GetAllActorsOfClass(GetWorld(), AOpenBox::StaticClass(), FoundBoxes);
+
+			bool bBoxFound = false;
+
+			for (AActor* BoxActor : FoundBoxes)
+			{
+				AOpenBox* OpenBox = Cast<AOpenBox>(BoxActor);
+				if (OpenBox)
+				{
+					// This is the placed one from last session — restore it
+					if (OpenBox->Tags.Contains("PlacedBox") && !bBoxFound)
+					{
+						OpenBox->SetActorTransform(GameInstance->PlacedBoxTransform);
+						OpenBox->EnablePhysics(false);
+						bBoxFound = true;
+					}
+					// This is the extra one — destroy it
+					else
+					{
+						OpenBox->Destroy();
+					}
+				}
+			}
+		}
+	}
+
 	if (GameInstance && !GameInstance->SavedPlayerLocation.IsZero())
 	{
 		SetActorLocation(GameInstance->SavedPlayerLocation);
@@ -111,12 +143,11 @@ void AArchivist::BeginPlay()
 	{
 		if (PaintingInfo.PaintingTriggerBox)
 		{
-			// Bind overlap-hendelsene til triggerboksene
 			PaintingInfo.PaintingTriggerBox->OnActorBeginOverlap.AddDynamic(this, &AArchivist::OnPaintingTriggerBeginOverlap);
 			PaintingInfo.PaintingTriggerBox->OnActorEndOverlap.AddDynamic(this, &AArchivist::OnPaintingTriggerEndOverlap);
 		}
 	}
-	
+
 	if (APlayerController* PlayerController = Cast<APlayerController>(GetController()))
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
@@ -202,6 +233,9 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 				EquippedBox->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
 				EquippedBox->SetActorLocation(BoxSnapTarget->GetActorLocation());
 				EquippedBox->SetActorRotation(BoxSnapTarget->GetActorRotation());
+
+				//  Add a unique tag so we can identify it later
+				EquippedBox->Tags.AddUnique("PlacedBox");
 			}
 			else
 			{
@@ -210,10 +244,25 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 				EquippedBox->EnablePhysics(true);
 			}
 
+			EquippedBox->bHasBeenPlaced = true;
+
+			if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
+			{
+				GI->bBoxPlacedBeforeMoldGame = true;
+				GI->PlacedBoxTransform = EquippedBox->GetActorTransform();
+				GI->bBoxWasPlaced = true;
+				GI->BoxPlacedLocation = EquippedBox->GetActorLocation();
+				GI->BoxPlacedRotation = EquippedBox->GetActorRotation();
+
+				UE_LOG(LogTemp, Warning, TEXT("Saved box transform to GameInstance: %s / %s"),
+					*GI->BoxPlacedLocation.ToString(), *GI->BoxPlacedRotation.ToString());
+			}
+
+			bHasPlacedBox = true;
+
 			EquippedBox->OnUnequipped();
 
 			SetOverlappingItems(nullptr);
-			EquippedBox->bHasBeenPlaced = true;
 			EquippedBox = nullptr;
 			CharacterState = ECharacterState::ECS_Unequipped;
 
@@ -331,9 +380,16 @@ void AArchivist::OnOverlapEnd(AActor* OverlappedActor, AActor* OtherActor)
 void AArchivist::TryEnterMinigame()
 {
 
+	// Block if box hasn't been placed yet
+	if (BoxToPlaceBeforeMinigame && !BoxToPlaceBeforeMinigame->bHasBeenPlaced)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("You must place the box before starting the minigame!"));
+		return;
+	}
+
+	// Now check if you're in the trigger
 	if (MinigameTriggerBox && MinigameTriggerBox->IsOverlappingActor(this))
 	{
-		// Hent GameInstance og lagre posisjonen
 		UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(GetGameInstance());
 		if (GameInstance)
 		{

@@ -54,6 +54,11 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Drop Zone")
 	AActor* BoxSnapTarget;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Progress")
+	bool bHasPlacedBox = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Progress")
+	bool bHasFinishedShreddedPaperMinigame = false;
 protected:
 	virtual void BeginPlay() override;
 
@@ -98,6 +103,9 @@ protected:
 	UPROPERTY()
 	class UMainMenuWidget* MainMenuWidget;
 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
+	AOpenBox* BoxToPlaceBeforeMinigame;
 private:
 
 	// Camera properties

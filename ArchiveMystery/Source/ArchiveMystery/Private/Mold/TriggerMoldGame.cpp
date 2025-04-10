@@ -71,11 +71,23 @@ void ATriggerMoldGame::CheckForInteraction()
 	if (bPlayerIsInside)
 	{
 		APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-		if (PlayerController && PlayerController->WasInputKeyJustPressed(EKeys::E))
+		AArchivist* Archivist = Cast<AArchivist>(UGameplayStatics::GetPlayerCharacter(this, 0));
+
+		if (PlayerController && Archivist && PlayerController->WasInputKeyJustPressed(EKeys::E))
 		{
-			UE_LOG(LogTemp, Warning, TEXT("E key pressed! Loading MoldRoom..."));
-			HidePrompt();
-			UGameplayStatics::OpenLevel(this, FName("MoldRoom"));
+			if (Archivist->bHasPlacedBox && Archivist->bHasFinishedShreddedPaperMinigame)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("E key pressed! Loading MoldRoom..."));
+				HidePrompt();
+				UGameplayStatics::OpenLevel(this, FName("MoldRoom"));
+			}
+			else
+			{
+				UE_LOG(LogTemp, Warning, TEXT("You must place the box and finish the shredded paper minigame first!"));
+				// Optional: Show a UI message instead of just logging
+			}
+			UE_LOG(LogTemp, Warning, TEXT("bHasPlacedBox: %s"), Archivist->bHasPlacedBox ? TEXT("true") : TEXT("false"));
+			UE_LOG(LogTemp, Warning, TEXT("bHasFinishedShreddedPaperMinigame: %s"), Archivist->bHasFinishedShreddedPaperMinigame ? TEXT("true") : TEXT("false"));
 		}
 	}
 }
