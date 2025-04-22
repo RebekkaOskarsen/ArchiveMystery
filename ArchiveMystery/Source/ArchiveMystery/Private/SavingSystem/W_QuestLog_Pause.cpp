@@ -12,11 +12,11 @@ void UW_QuestLog_Pause::SaveCheckBoxState()
         // Hvis checkbox 1 er huket av, lagre tilstanden
         GameInstance->bIsCheckBox1Checked = CheckBox_1->IsChecked();
         GameInstance->bIsCheckBox2Checked = CheckBox_2->IsChecked();
-        GameInstance->bIsCheckBox2Checked = CheckBox_3->IsChecked();
-        GameInstance->bIsCheckBox2Checked = CheckBox_4->IsChecked();
-        GameInstance->bIsCheckBox2Checked = CheckBox_5->IsChecked();
-        GameInstance->bIsCheckBox2Checked = CheckBox_6->IsChecked();
-        GameInstance->bIsCheckBox2Checked = CheckBox_7->IsChecked();
+        GameInstance->bIsCheckBox3Checked = CheckBox_3->IsChecked();
+        GameInstance->bIsCheckBox4Checked = CheckBox_4->IsChecked();
+        GameInstance->bIsCheckBox5Checked = CheckBox_5->IsChecked();
+        GameInstance->bIsCheckBox6Checked = CheckBox_6->IsChecked();
+        GameInstance->bIsCheckBox7Checked = CheckBox_7->IsChecked();
     }
 }
 

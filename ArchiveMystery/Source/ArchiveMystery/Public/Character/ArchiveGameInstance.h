@@ -37,6 +37,9 @@ public:
 	bool bShreddedGameComplete = false;
 
 	UPROPERTY(BlueprintReadWrite)
+	bool bMoldGameComplete = false;
+
+	UPROPERTY(BlueprintReadWrite)
 	bool bBoxWasPlaced = false;
 
 	UPROPERTY(BlueprintReadWrite)

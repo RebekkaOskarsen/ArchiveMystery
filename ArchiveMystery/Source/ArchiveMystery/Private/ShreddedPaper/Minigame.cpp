@@ -29,24 +29,24 @@ AMinigame::AMinigame()
     bIsDragging = false;
     SelectedMesh = nullptr;
 
-    // Initialize Input Actions and IMC (assuming these are set in the Editor or via code elsewhere)
-    static ConstructorHelpers::FObjectFinder<UInputMappingContext> IMC_DragAndDropObject(TEXT("/Game/PathToYourAsset/IMC_DragAndDrop"));
-    if (IMC_DragAndDropObject.Succeeded())
-    {
-        IMC_DragAndDrop = IMC_DragAndDropObject.Object;
-    }
+    //// Initialize Input Actions and IMC (assuming these are set in the Editor or via code elsewhere)
+    //static ConstructorHelpers::FObjectFinder<UInputMappingContext> IMC_DragAndDropObject(TEXT("/Game/PathToYourAsset/IMC_DragAndDrop"));
+    //if (IMC_DragAndDropObject.Succeeded())
+    //{
+    //    IMC_DragAndDrop = IMC_DragAndDropObject.Object;
+    //}
 
-    static ConstructorHelpers::FObjectFinder<UInputAction> IA_DragObject(TEXT("/Game/PathToYourAsset/IA_Drag"));
-    if (IA_DragObject.Succeeded())
-    {
-        IA_Drag = IA_DragObject.Object;
-    }
+    //static ConstructorHelpers::FObjectFinder<UInputAction> IA_DragObject(TEXT("/Game/PathToYourAsset/IA_Drag"));
+    //if (IA_DragObject.Succeeded())
+    //{
+    //    IA_Drag = IA_DragObject.Object;
+    //}
 
-    static ConstructorHelpers::FObjectFinder<UInputAction> IA_ReleaseObject(TEXT("/Game/PathToYourAsset/IA_Release"));
-    if (IA_ReleaseObject.Succeeded())
-    {
-        IA_Release = IA_ReleaseObject.Object;
-    }
+    //static ConstructorHelpers::FObjectFinder<UInputAction> IA_ReleaseObject(TEXT("/Game/PathToYourAsset/IA_Release"));
+    //if (IA_ReleaseObject.Succeeded())
+    //{
+    //    IA_Release = IA_ReleaseObject.Object;
+    //}
 
     // Dette setter GameMenuWidgetClass til widget blueprints som er tilordnet i editoren
     GameMenuWidgetClass = LoadObject<UClass>(nullptr, TEXT("/Game/ShreddedPaper_minigame/Blueprints/GameMenuWidget.GameMenuWidget_C"));

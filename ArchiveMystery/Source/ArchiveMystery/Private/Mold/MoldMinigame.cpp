@@ -9,6 +9,7 @@
 #include "Mold/BrushSelectionWidget.h"
 
 #include "Blueprint/UserWidget.h"
+#include "Character/ArchiveGameInstance.h"
 
 // Sets default values
 AMoldMinigame::AMoldMinigame()
@@ -206,6 +207,8 @@ void AMoldMinigame::ShowExitUI()
 			ExitWidget->AddToViewport();
 		}
 	}
+
+
 }
 
 void AMoldMinigame::ShowArrowUI()
