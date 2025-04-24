@@ -7,6 +7,7 @@
 #include "GameFramework/PlayerController.h"
 
 #include "Character/Archivist.h"
+#include "Character/ArchiveGameInstance.h"
 
 #include "Blueprint/UserWidget.h"
 
@@ -77,6 +78,13 @@ void ATriggerMoldGame::CheckForInteraction()
 		{
 			if (Archivist->bHasPlacedBox && Archivist->bHasFinishedShreddedPaperMinigame)
 			{
+				UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(GetGameInstance());
+				if (GameInstance && Archivist)
+				{
+					GameInstance->SavedPlayerLocation = Archivist->GetActorLocation();
+					UE_LOG(LogTemp, Warning, TEXT("Saved player location: %s"), *GameInstance->SavedPlayerLocation.ToString());
+				}
+
 				UE_LOG(LogTemp, Warning, TEXT("E key pressed! Loading MoldRoom..."));
 				HidePrompt();
 				UGameplayStatics::OpenLevel(this, FName("MoldRoom"));
