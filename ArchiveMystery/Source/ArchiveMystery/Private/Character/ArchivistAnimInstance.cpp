@@ -3,3 +3,9 @@
 
 #include "Character/ArchivistAnimInstance.h"
 
+void UArchivistAnimInstance::ResetIdleBreak()
+{
+	bPlayIdleBreak = false;
+
+	UE_LOG(LogTemp, Warning, TEXT("Idle break reset via Notify"));
+}

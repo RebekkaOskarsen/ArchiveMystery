@@ -315,6 +315,35 @@ void AArchivist::Tick(float DeltaTime)
 			AnimInstance->bIsHoldingBox = (EquippedBox != nullptr);
 		}
 	}
+
+	//Idle break
+	static float IdleTime = 0.0f;
+
+	if (EquippedBox == nullptr && GetVelocity().Size() < 5.0f)
+	{
+		IdleTime += DeltaTime;
+
+		if (IdleTime >= 5.0f)
+		{
+			if (UArchivistAnimInstance* AnimInstance = Cast<UArchivistAnimInstance>(GetMesh()->GetAnimInstance()))
+			{
+				if (!AnimInstance->bPlayIdleBreak) // only trigger once
+				{
+					UE_LOG(LogTemp, Warning, TEXT("Idle Break Triggered!"));
+					AnimInstance->bPlayIdleBreak = true;
+				}
+			}
+		}
+	}
+	else
+	{
+		IdleTime = 0.0f;
+
+		if (UArchivistAnimInstance* AnimInstance = Cast<UArchivistAnimInstance>(GetMesh()->GetAnimInstance()))
+		{
+			AnimInstance->bPlayIdleBreak = false;
+		}
+	}
 }
 
 void AArchivist::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

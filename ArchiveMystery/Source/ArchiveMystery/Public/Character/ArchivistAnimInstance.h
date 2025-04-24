@@ -21,4 +21,12 @@ public:
 	// Animation from idle to holding
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool bIsHoldingBox;
+
+	// Animation from idle to see watch
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Idle")
+	bool bPlayIdleBreak = false;
+
+	UFUNCTION(BlueprintCallable, Category = "Idle")
+	void ResetIdleBreak();
+
 };
