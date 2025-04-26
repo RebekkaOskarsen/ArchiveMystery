@@ -1,0 +1,25 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/githubarchive/ArchiveMystery/ArchiveMystery/Content/StarterContent/Architecture/Floor_400x400.uasset",
+				"C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/githubarchive/ArchiveMystery/ArchiveMystery/Content/Blueprint/CustomizationPage/WP_Customization_Page.uasset",
+				"C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/githubarchive/ArchiveMystery/ArchiveMystery/Content/2DAssets/customization_background.uasset",
+				"C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/githubarchive/ArchiveMystery/ArchiveMystery/Content/2DAssets/Icons/customization_hands_icon.uasset",
+				"C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/githubarchive/ArchiveMystery/ArchiveMystery/Content/2DAssets/Icons/customization_tshirt_icon.uasset",
+				"C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/githubarchive/ArchiveMystery/ArchiveMystery/Content/2DAssets/Icons/customization_watch_icon.uasset",
+				"C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/githubarchive/ArchiveMystery/ArchiveMystery/Content/2DAssets/palette_background.uasset",
+				"C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/githubarchive/ArchiveMystery/ArchiveMystery/Content/2DAssets/Buttons/return_icon.uasset",
+				"C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/githubarchive/ArchiveMystery/ArchiveMystery/Content/Blueprint/CustomizationPage/WP_SkinColor_SubMenu.uasset",
+				"C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/githubarchive/ArchiveMystery/ArchiveMystery/Content/2DAssets/Icons/circle.uasset",
+				"C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/githubarchive/ArchiveMystery/ArchiveMystery/Content/StarterContent/Materials/M_Metal_Gold.uasset",
+				"C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/githubarchive/ArchiveMystery/ArchiveMystery/Content/Blueprint/CustomizationPage/WP_WatchColor_SubMenu.uasset",
+				"C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/githubarchive/ArchiveMystery/ArchiveMystery/Content/Blueprint/CustomizationPage/Hands_CustomizationDisplay.uasset",
+				"C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/githubarchive/ArchiveMystery/ArchiveMystery/Content/Blueprint/CustomizationPage/WP_TshirtColor_SubMenu.uasset"
+			]
+		}
+	]
+}
