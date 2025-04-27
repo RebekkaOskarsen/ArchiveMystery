@@ -237,6 +237,7 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 			if (ID == "DocumentItem_1")
 			{
 				bHasFoundDocument1 = true;
+				PickedUpDocument1 = OverlappingDocument;
 
 				if (DocumentPopupWidgetClass && !DocumentPopupWidgetInstance)
 				{
@@ -257,6 +258,7 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 			else if (ID == "DocumentItem_2")
 			{
 				bHasFoundDocument2 = true;
+				PickedUpDocument2 = OverlappingDocument;
 
 				if (SecondDocumentPopupWidgetClass && !SecondDocumentPopupWidgetInstance)
 				{
@@ -637,6 +639,23 @@ void AArchivist::RestoreGameplayInput()
 		PC->SetInputMode(FInputModeGameOnly());
 		PC->bShowMouseCursor = false;
 	}
+}
+
+void AArchivist::DeliverDocuments()
+{
+	if (PickedUpDocument1)
+	{
+		PickedUpDocument1->Destroy();
+		PickedUpDocument1 = nullptr;
+	}
+
+	if (PickedUpDocument2)
+	{
+		PickedUpDocument2->Destroy();
+		PickedUpDocument2 = nullptr;
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("Documents delivered and destroyed!"));
 }
 
 void AArchivist::TogglePauseMenu()

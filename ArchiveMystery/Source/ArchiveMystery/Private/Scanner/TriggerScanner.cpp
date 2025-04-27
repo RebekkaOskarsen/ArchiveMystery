@@ -11,7 +11,7 @@
 // Sets default values
 ATriggerScanner::ATriggerScanner()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	TriggerBox = CreateDefaultSubobject<UBoxComponent>(TEXT("TriggerBox"));
@@ -27,7 +27,7 @@ ATriggerScanner::ATriggerScanner()
 void ATriggerScanner::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	if (PlayerController)
 	{

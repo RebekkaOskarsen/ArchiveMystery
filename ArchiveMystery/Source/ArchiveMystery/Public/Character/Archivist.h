@@ -20,6 +20,7 @@ class UInputAction;
 
 class AItems;
 class AOpenBox;
+class ADocumentItem;
 
 UENUM(BlueprintType)
 enum class ECharacterState : uint8
@@ -63,6 +64,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Progress")
 	bool bHasFinishedMoldMinigame = false;
 
+	bool bHasFoundDocument1 = false;
+	bool bHasFoundDocument2 = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Progress")
+	bool bHasScannedDocuments = false;
 
 protected:
 	virtual void BeginPlay() override;
@@ -214,8 +220,16 @@ private:
 		UFUNCTION(BlueprintCallable)
 		void RestoreGameplayInput();
 
-		bool bHasFoundDocument1 = false;
-		bool bHasFoundDocument2 = false;
+
+		// Document references
+		UPROPERTY()
+		ADocumentItem* PickedUpDocument1 = nullptr;
+
+		UPROPERTY()
+		ADocumentItem* PickedUpDocument2 = nullptr;
+
+		UFUNCTION(BlueprintCallable)
+		void DeliverDocuments();
 
 	private:
 		// Referanse til pause-menyen
