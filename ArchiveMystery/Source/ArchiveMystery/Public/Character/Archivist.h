@@ -193,6 +193,25 @@ private:
 		UFUNCTION()
 		void OnDropZoneEndOverlap(AActor* OverlappedActor, AActor* OtherActor);
 
+
+		// Widget to show document info
+		UPROPERTY(EditAnywhere, Category = "UI")
+		TSubclassOf<UUserWidget> DocumentPopupWidgetClass;
+
+		UUserWidget* DocumentPopupWidgetInstance;
+
+		// Widget to show second document info
+		UPROPERTY(EditAnywhere, Category = "UI")
+		TSubclassOf<UUserWidget> SecondDocumentPopupWidgetClass;
+
+		UUserWidget* SecondDocumentPopupWidgetInstance;
+
+		UFUNCTION(BlueprintCallable)
+		void RestoreGameplayInput();
+
+		bool bHasFoundDocument1 = false;
+		bool bHasFoundDocument2 = false;
+
 	private:
 		// Referanse til pause-menyen
 		UPROPERTY()

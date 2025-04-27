@@ -13,6 +13,7 @@
 
 #include "Items/Items.h"
 #include "Items/Box/OpenBox.h"
+#include "Items/Document/DocumentItem.h"
 
 #include <Kismet/GameplayStatics.h>
 #include "Blueprint/UserWidget.h"
@@ -222,6 +223,59 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 
 	bool bDidInteract = false;
 
+	ADocumentItem* OverlappingDocument = Cast<ADocumentItem>(OverlappingItems);
+	if (OverlappingDocument)
+	{
+		FName ID = OverlappingDocument->DocumentID;
+
+		if (ID == "DocumentItem_1")
+		{
+			bHasFoundDocument1 = true;
+
+			if (DocumentPopupWidgetClass && !DocumentPopupWidgetInstance)
+			{
+				DocumentPopupWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), DocumentPopupWidgetClass);
+				if (DocumentPopupWidgetInstance)
+				{
+					DocumentPopupWidgetInstance->AddToViewport();
+
+					// Pause input and show cursor
+					APlayerController* PC = GetWorld()->GetFirstPlayerController();
+					if (PC)
+					{
+						PC->SetInputMode(FInputModeUIOnly());
+						PC->bShowMouseCursor = true;
+					}
+				}
+			}
+		}
+		else if (ID == "DocumentItem_2")
+		{
+			bHasFoundDocument2 = true;
+
+			if (SecondDocumentPopupWidgetClass && !SecondDocumentPopupWidgetInstance)
+			{
+				SecondDocumentPopupWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), SecondDocumentPopupWidgetClass);
+				if (SecondDocumentPopupWidgetInstance)
+				{
+					SecondDocumentPopupWidgetInstance->AddToViewport();
+
+					// Pause input and show cursor
+					APlayerController* PC = GetWorld()->GetFirstPlayerController();
+					if (PC)
+					{
+						PC->SetInputMode(FInputModeUIOnly());
+						PC->bShowMouseCursor = true;
+					}
+				}
+			}
+		}
+
+		OverlappingDocument->EquipDocument(GetMesh(), FName("RightHandSocket"));
+		SetOverlappingItems(nullptr);  // Clear after picking up
+		bDidInteract = true;
+	}
+
 	if (EquippedBox)
 	{
 		if (DropZone && DropZone->IsOverlappingActor(this))
@@ -271,19 +325,21 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 	}
 	else if (OverlappingItems)
 	{
-		AOpenBox* OverlappingBox = Cast<AOpenBox>(OverlappingItems);
-		if (OverlappingBox && !OverlappingBox->bHasBeenPlaced)
+		// Try to pick up box first
+		if (AOpenBox* OverlappingBox = Cast<AOpenBox>(OverlappingItems))
 		{
-			OverlappingBox->EnablePhysics(false);
-			OverlappingBox->Equip(GetMesh(), FName("LeftHandSocket"));
-			OverlappingBox->OnEquipped();
+			if (!OverlappingBox->bHasBeenPlaced)
+			{
+				OverlappingBox->EnablePhysics(false);
+				OverlappingBox->Equip(GetMesh(), FName("LeftHandSocket"));
+				OverlappingBox->OnEquipped();
 
-			EquippedBox = OverlappingBox;
-			CharacterState = ECharacterState::ECS_EquippedOneHandedBox;
+				EquippedBox = OverlappingBox;
+				CharacterState = ECharacterState::ECS_EquippedOneHandedBox;
 
-			SetOverlappingItems(nullptr);
-
-			bDidInteract = true;
+				SetOverlappingItems(nullptr);
+				bDidInteract = true;
+			}
 		}
 	}
 
@@ -561,6 +617,16 @@ void AArchivist::OnDropZoneEndOverlap(AActor* OverlappedActor, AActor* OtherActo
 	if (OtherActor == this)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Archivist LEFT the drop zone"));
+	}
+}
+
+void AArchivist::RestoreGameplayInput()
+{
+	APlayerController* PC = GetWorld()->GetFirstPlayerController();
+	if (PC)
+	{
+		PC->SetInputMode(FInputModeGameOnly());
+		PC->bShowMouseCursor = false;
 	}
 }
 
