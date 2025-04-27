@@ -35,6 +35,26 @@ void ATriggerScanner::BeginPlay()
 	}
 }
 
+void ATriggerScanner::ShowScannerWidget()
+{
+	if (!ScannerWidgetInstance && ScannerWidgetClass)
+	{
+		ScannerWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), ScannerWidgetClass);
+		if (ScannerWidgetInstance)
+		{
+			ScannerWidgetInstance->AddToViewport();
+			UE_LOG(LogTemp, Warning, TEXT("Scanner Widget displayed!"));
+
+			APlayerController* PC = GetWorld()->GetFirstPlayerController();
+			if (PC)
+			{
+				PC->SetInputMode(FInputModeUIOnly());
+				PC->bShowMouseCursor = true;
+			}
+		}
+	}
+}
+
 // Called every frame
 void ATriggerScanner::Tick(float DeltaTime)
 {
@@ -48,21 +68,23 @@ void ATriggerScanner::CheckForInteraction()
 	if (bPlayerIsInside)
 	{
 		APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-		if (PlayerController && PlayerController->WasInputKeyJustPressed(EKeys::E))
+		AArchivist* Archivist = Cast<AArchivist>(UGameplayStatics::GetPlayerCharacter(this, 0));
+
+		if (PlayerController && Archivist && PlayerController->WasInputKeyJustPressed(EKeys::E))
 		{
-			if (ScannerWidgetClass && !ScannerWidgetInstance)
+			// Only allow interaction if ALL 5 conditions are met
+			if (Archivist->bHasPlacedBox &&
+				Archivist->bHasFinishedShreddedPaperMinigame &&
+				Archivist->bHasFinishedMoldMinigame &&
+				Archivist->bHasFoundDocument1 &&
+				Archivist->bHasFoundDocument2)
 			{
-				ScannerWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), ScannerWidgetClass);
-				if (ScannerWidgetInstance)
-				{
-					ScannerWidgetInstance->AddToViewport();
-
-					// Pause input and show cursor
-					PlayerController->SetInputMode(FInputModeUIOnly());
-					PlayerController->bShowMouseCursor = true;
-
-					UE_LOG(LogTemp, Warning, TEXT("Scanner Widget Displayed!"));
-				}
+				ShowScannerWidget(); // Your function to show scanner UI
+			}
+			else
+			{
+				UE_LOG(LogTemp, Warning, TEXT("You must complete all objectives before using the scanner!"));
+				// (Optional) Show a 'You can't scan yet' widget/message
 			}
 		}
 	}

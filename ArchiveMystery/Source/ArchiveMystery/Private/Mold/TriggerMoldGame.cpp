@@ -15,7 +15,7 @@
 // Sets default values
 ATriggerMoldGame::ATriggerMoldGame()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	TriggerBox = CreateDefaultSubobject<UBoxComponent>(TEXT("TriggerBox"));
@@ -32,7 +32,7 @@ ATriggerMoldGame::ATriggerMoldGame()
 void ATriggerMoldGame::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	// Enable input for this actor
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	if (PlayerController)
@@ -82,8 +82,11 @@ void ATriggerMoldGame::CheckForInteraction()
 				if (GameInstance && Archivist)
 				{
 					GameInstance->SavedPlayerLocation = Archivist->GetActorLocation();
+					GameInstance->bMoldGameComplete = true;
 					UE_LOG(LogTemp, Warning, TEXT("Saved player location: %s"), *GameInstance->SavedPlayerLocation.ToString());
 				}
+
+				Archivist->bHasFinishedMoldMinigame = true;
 
 				UE_LOG(LogTemp, Warning, TEXT("E key pressed! Loading MoldRoom..."));
 				HidePrompt();

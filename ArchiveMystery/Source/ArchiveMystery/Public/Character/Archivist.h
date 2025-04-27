@@ -59,6 +59,11 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Progress")
 	bool bHasFinishedShreddedPaperMinigame = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Progress")
+	bool bHasFinishedMoldMinigame = false;
+
+
 protected:
 	virtual void BeginPlay() override;
 

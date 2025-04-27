@@ -89,15 +89,18 @@ void AArchivist::BeginPlay()
 		}
 	}
 
+
 	UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(GetGameInstance());
 	if (GameInstance)
 	{
 		bHasPlacedBox = GameInstance->bBoxPlacedBeforeMoldGame;
 		bHasFinishedShreddedPaperMinigame = GameInstance->bShreddedGameComplete;
+		bHasFinishedMoldMinigame = GameInstance->bMoldGameComplete;
 
-		UE_LOG(LogTemp, Warning, TEXT("Loaded from GameInstance - bHasPlacedBox: %s, bHasFinishedShreddedPaperMinigame: %s"),
+		UE_LOG(LogTemp, Warning, TEXT("Loaded from GameInstance - bHasPlacedBox: %s, bHasFinishedShreddedPaperMinigame: %s, bHasFinishedMoldMinigame: % s"),
 			bHasPlacedBox ? TEXT("true") : TEXT("false"),
-			bHasFinishedShreddedPaperMinigame ? TEXT("true") : TEXT("false"));
+			bHasFinishedShreddedPaperMinigame ? TEXT("true") : TEXT("false"),
+			bHasFinishedMoldMinigame ? TEXT("true") : TEXT("false"));
 
 		if (GameInstance->bBoxPlacedBeforeMoldGame && GameInstance->PlacedBoxTransform.IsValid())
 		{
@@ -226,54 +229,60 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 	ADocumentItem* OverlappingDocument = Cast<ADocumentItem>(OverlappingItems);
 	if (OverlappingDocument)
 	{
-		FName ID = OverlappingDocument->DocumentID;
-
-		if (ID == "DocumentItem_1")
+		// Only allow picking up document if ALL 3 conditions are true
+		if (bHasPlacedBox && bHasFinishedShreddedPaperMinigame && bHasFinishedMoldMinigame)
 		{
-			bHasFoundDocument1 = true;
+			FName ID = OverlappingDocument->DocumentID;
 
-			if (DocumentPopupWidgetClass && !DocumentPopupWidgetInstance)
+			if (ID == "DocumentItem_1")
 			{
-				DocumentPopupWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), DocumentPopupWidgetClass);
-				if (DocumentPopupWidgetInstance)
-				{
-					DocumentPopupWidgetInstance->AddToViewport();
+				bHasFoundDocument1 = true;
 
-					// Pause input and show cursor
-					APlayerController* PC = GetWorld()->GetFirstPlayerController();
-					if (PC)
+				if (DocumentPopupWidgetClass && !DocumentPopupWidgetInstance)
+				{
+					DocumentPopupWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), DocumentPopupWidgetClass);
+					if (DocumentPopupWidgetInstance)
 					{
-						PC->SetInputMode(FInputModeUIOnly());
-						PC->bShowMouseCursor = true;
+						DocumentPopupWidgetInstance->AddToViewport();
+
+						APlayerController* PC = GetWorld()->GetFirstPlayerController();
+						if (PC)
+						{
+							PC->SetInputMode(FInputModeUIOnly());
+							PC->bShowMouseCursor = true;
+						}
 					}
 				}
 			}
-		}
-		else if (ID == "DocumentItem_2")
-		{
-			bHasFoundDocument2 = true;
-
-			if (SecondDocumentPopupWidgetClass && !SecondDocumentPopupWidgetInstance)
+			else if (ID == "DocumentItem_2")
 			{
-				SecondDocumentPopupWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), SecondDocumentPopupWidgetClass);
-				if (SecondDocumentPopupWidgetInstance)
-				{
-					SecondDocumentPopupWidgetInstance->AddToViewport();
+				bHasFoundDocument2 = true;
 
-					// Pause input and show cursor
-					APlayerController* PC = GetWorld()->GetFirstPlayerController();
-					if (PC)
+				if (SecondDocumentPopupWidgetClass && !SecondDocumentPopupWidgetInstance)
+				{
+					SecondDocumentPopupWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), SecondDocumentPopupWidgetClass);
+					if (SecondDocumentPopupWidgetInstance)
 					{
-						PC->SetInputMode(FInputModeUIOnly());
-						PC->bShowMouseCursor = true;
+						SecondDocumentPopupWidgetInstance->AddToViewport();
+
+						APlayerController* PC = GetWorld()->GetFirstPlayerController();
+						if (PC)
+						{
+							PC->SetInputMode(FInputModeUIOnly());
+							PC->bShowMouseCursor = true;
+						}
 					}
 				}
 			}
-		}
 
-		OverlappingDocument->EquipDocument(GetMesh(), FName("RightHandSocket"));
-		SetOverlappingItems(nullptr);  // Clear after picking up
-		bDidInteract = true;
+			OverlappingDocument->EquipDocument(GetMesh(), FName("RightHandSocket"));
+			SetOverlappingItems(nullptr);
+			bDidInteract = true;
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("You can't pick up documents yet! Complete the requirements first."));
+		}
 	}
 
 	if (EquippedBox)
