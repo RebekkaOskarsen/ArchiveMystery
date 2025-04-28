@@ -76,6 +76,10 @@ void UMainMenuWidget::NativeConstruct()
     {
         ExitGameButton->OnClicked.AddDynamic(this, &UMainMenuWidget::OnExitGameClicked);
     }
+    if (Credits_Button) // <- Ny binding her
+    {
+        Credits_Button->OnClicked.AddDynamic(this, &UMainMenuWidget::OnCreditsClicked);
+    }
 }
 
 void UMainMenuWidget::OnStartGameClicked()
@@ -88,4 +92,19 @@ void UMainMenuWidget::OnExitGameClicked()
 {
     // Avslutt spillet
     UKismetSystemLibrary::QuitGame(this, nullptr, EQuitPreference::Quit, true);
+}
+
+void UMainMenuWidget::OnCreditsClicked()
+{
+    if (CreditsWidgetClass)
+    {
+        UUserWidget* CreditsWidget = CreateWidget<UUserWidget>(GetWorld(), CreditsWidgetClass);
+        if (CreditsWidget)
+        {
+            CreditsWidget->AddToViewport();
+
+            // (Valgfritt) Hvis du vil skjule hovedmenyen når Credits vises:
+            RemoveFromParent();
+        }
+    }
 }

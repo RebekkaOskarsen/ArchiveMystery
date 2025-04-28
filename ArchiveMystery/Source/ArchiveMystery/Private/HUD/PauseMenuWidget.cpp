@@ -5,6 +5,8 @@
 #include "Components/Button.h"
 #include "Kismet/GameplayStatics.h"
 
+
+
 void UPauseMenuWidget::NativeConstruct()
 {
     Super::NativeConstruct();
@@ -20,6 +22,12 @@ void UPauseMenuWidget::NativeConstruct()
     {
         BackToMainMenuButton->OnClicked.AddDynamic(this, &UPauseMenuWidget::OnBackToMainMenuClicked);
     }
+
+    if (ContinueGameButton_2) // <- Ny binding her
+    {
+        ContinueGameButton_2->OnClicked.AddDynamic(this, &UPauseMenuWidget::OnCreditsPauseClicked);
+    }
+  
 }
 
 void UPauseMenuWidget::OnContinueGameClicked()
@@ -41,9 +49,32 @@ void UPauseMenuWidget::OnContinueGameClicked()
 
 void UPauseMenuWidget::OnBackToMainMenuClicked()
 {
-    // Fortsett spillet før vi laster hovedmenyen
-    UGameplayStatics::SetGamePaused(this, false);
+    if (ExitMainMenuWidgetClass)
+    {
+        UUserWidget* ExitWidget = CreateWidget<UUserWidget>(GetWorld(), ExitMainMenuWidgetClass);
+        if (ExitWidget)
+        {
+            ExitWidget->AddToViewport();
 
-    // Last inn hovedmenyen
-    UGameplayStatics::OpenLevel(this, FName("MainMenuLevel"));
+            // Om du ønsker å skjule pausemenyen samtidig:
+            RemoveFromParent();
+        }
+    }
 }
+
+void UPauseMenuWidget::OnCreditsPauseClicked()
+{
+    if (CreditsPauseWidgetClass)
+    {
+        UUserWidget* CreditsWidget = CreateWidget<UUserWidget>(GetWorld(), CreditsPauseWidgetClass);
+        if (CreditsWidget)
+        {
+            CreditsWidget->AddToViewport();
+
+            // (Valgfritt) Hvis du vil skjule hovedmenyen når Credits vises:
+            RemoveFromParent();
+        }
+    }
+}
+
+

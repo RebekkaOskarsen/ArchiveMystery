@@ -23,6 +23,14 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Menu")
     void OnExitGameClicked();
 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+    TSubclassOf<UUserWidget> CreditsWidgetClass;
+
+    UFUNCTION()
+    void OnCreditsClicked();
+
+
+
 protected:
     // Kalles når widgeten er opprettet
     virtual void NativeConstruct() override;
@@ -36,4 +44,7 @@ private:
     // Referanse til "Exit Game"-knappen (sett i Blueprint)
     UPROPERTY(meta = (BindWidget))
     class UButton* ExitGameButton;
+
+    UPROPERTY(meta = (BindWidget))
+    class UButton* Credits_Button;
 };

@@ -22,6 +22,17 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Menu")
     void OnBackToMainMenuClicked();
 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+    TSubclassOf<UUserWidget> ExitMainMenuWidgetClass;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+    TSubclassOf<UUserWidget> CreditsPauseWidgetClass;
+
+    UFUNCTION()
+    void OnCreditsPauseClicked();
+  
+
+
 protected:
     // Kalles når widgeten er opprettet
     virtual void NativeConstruct() override;
@@ -32,6 +43,9 @@ private:
     class UButton* ContinueGameButton;
 
     UPROPERTY(meta = (BindWidget))
-    class UButton* BackToMainMenuButton; 
+    class UButton* BackToMainMenuButton;
+
+    UPROPERTY(meta = (BindWidget))
+    class UButton* ContinueGameButton_2;
 	
 };
