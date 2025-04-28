@@ -639,6 +639,14 @@ void AArchivist::RestoreGameplayInput()
 		PC->SetInputMode(FInputModeGameOnly());
 		PC->bShowMouseCursor = false;
 	}
+
+
+	bIsMovementLocked = false;
+	bIsInputLocked = false;
+
+	// Also re-enable movement if disabled
+	GetCharacterMovement()->DisableMovement(); // Just in case (clean reset)
+	GetCharacterMovement()->SetMovementMode(MOVE_Walking);
 }
 
 void AArchivist::DeliverDocuments()

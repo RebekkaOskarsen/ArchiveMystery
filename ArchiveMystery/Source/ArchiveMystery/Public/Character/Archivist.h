@@ -69,7 +69,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Progress")
 	bool bHasScannedDocuments = false;
-
 protected:
 	virtual void BeginPlay() override;
 

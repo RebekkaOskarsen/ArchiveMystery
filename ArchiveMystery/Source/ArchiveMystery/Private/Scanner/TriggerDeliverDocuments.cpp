@@ -106,5 +106,3 @@ void ATriggerDeliverDocuments::OnOverlapEnd(UPrimitiveComponent* OverlappedCompo
 		bPlayerIsInside = false;
 	}
 }
-
-
