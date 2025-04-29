@@ -1,0 +1,19 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\archivemystery\\archivemystery\\archivemystery\\intermediate\\build\\win64\\unrealeditor\\inc\\archivemystery\\uht\\triggermoldgame.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\archivemystery\\archivemystery\\archivemystery\\intermediate\\build\\win64\\x64\\archivemysteryeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderunreal5_3.h.pch",
+        "Includes": [
+            "c:\\archivemystery\\archivemystery\\archivemystery\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\archivemystery\\definitions.archivemystery.h",
+            "c:\\archivemystery\\archivemystery\\archivemystery\\source\\archivemystery\\public\\mold\\triggermoldgame.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\engine\\classes\\components\\boxcomponent.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\engine\\classes\\components\\shapecomponent.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\shapecomponent.generated.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\boxcomponent.generated.h",
+            "c:\\archivemystery\\archivemystery\\archivemystery\\intermediate\\build\\win64\\unrealeditor\\inc\\archivemystery\\uht\\triggermoldgame.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

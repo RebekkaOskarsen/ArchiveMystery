@@ -36,12 +36,12 @@ void UPauseMenuWidget::OnContinueGameClicked()
     UGameplayStatics::SetGamePaused(this, false);
 
     // Skjul musepekeren og sett input tilbake til spillmodus
-    APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-    if (PlayerController)
-    {
-        PlayerController->bShowMouseCursor = false;
-        PlayerController->SetInputMode(FInputModeGameOnly());
-    }
+    //APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+    //if (PlayerController)
+    //{
+    //    PlayerController->bShowMouseCursor = false;
+    //    PlayerController->SetInputMode(FInputModeGameOnly());
+    //}
 
     // Fjern pause-menyen fra skjermen
     RemoveFromParent();
