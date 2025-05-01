@@ -5,7 +5,10 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/AudioComponent.h"
+#include "NiagaraComponent.h"
+#include "NiagaraFunctionLibrary.h"
 #include "MoldBrush.generated.h"
+
 
 UENUM(BlueprintType)
 enum class EBrushSize : uint8
@@ -36,6 +39,16 @@ public:
 
 	// Function to check if the brush is hovering over mold
 	void CheckForMold();
+
+	FTimerHandle FallbackBrushTimerHandle;
+	void ResetBrushCooldown();
+
+	UPROPERTY(EditAnywhere, Category = "Effects")
+	UNiagaraSystem* BrushingEffect;
+
+	UPROPERTY(EditAnywhere, Category = "Effects")
+	FVector EffectOffset = FVector(0.f, 0.f, 0.f);
+
 
 	UPROPERTY()
 	UAudioComponent* BrushAudioComponent;
