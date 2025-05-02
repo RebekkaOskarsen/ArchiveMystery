@@ -23,6 +23,8 @@ UArchiveGameInstance::UArchiveGameInstance()
     bIsCheckBox5Checked = false;
     bIsCheckBox6Checked = false;
     bIsCheckBox7Checked = false;
+
+    bIsCustomized = false;
 }
 
 void UArchiveGameInstance::SaveQuestLogData()
@@ -59,6 +61,7 @@ void UArchiveGameInstance::SaveQuestLogData()
     JsonObject->SetBoolField("IsCheckBox6Checked", bIsCheckBox6Checked);
     JsonObject->SetBoolField("IsCheckBox7Checked", bIsCheckBox7Checked);
 
+    JsonObject->SetBoolField("bIsCustomized", bIsCustomized);
 
     // Serialiser jsonen til en streng
     FString OutputString;
@@ -114,7 +117,7 @@ void UArchiveGameInstance::LoadQuestLogData()
                 bIsCheckBox5Checked = JsonObject->GetBoolField("IsCheckBox6Checked");
                 bIsCheckBox7Checked = JsonObject->GetBoolField("IsCheckBox7Checked");
 
-
+                bIsCheckBox7Checked = JsonObject->GetBoolField("bIsCustomized");
             }
         }
     }

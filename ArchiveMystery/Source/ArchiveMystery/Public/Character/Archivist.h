@@ -230,6 +230,9 @@ private:
 		UFUNCTION(BlueprintCallable)
 		void DeliverDocuments();
 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AActor* CustomActor;
+
 	private:
 		// Referanse til pause-menyen
 		UPROPERTY()

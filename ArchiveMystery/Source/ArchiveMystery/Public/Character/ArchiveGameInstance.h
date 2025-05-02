@@ -72,4 +72,6 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest Log")
 	bool bIsCheckBox7Checked; // For checkbox 7
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomized;
 };

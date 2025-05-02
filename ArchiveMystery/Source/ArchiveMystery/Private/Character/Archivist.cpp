@@ -137,6 +137,37 @@ void AArchivist::BeginPlay()
 		UE_LOG(LogTemp, Warning, TEXT("Restored player location: %s"), *GameInstance->SavedPlayerLocation.ToString());
 	}
 
+	if (GameInstance)
+	{
+		// Hvis keycardet er tatt, ikke vis det på bordet
+		if (GameInstance->bIsCustomized)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Costum has already been done, hiding the costum."));
+
+			// Skjul keycardet hvis det er tatt
+			if (CustomActor)
+			{
+				CustomActor->Destroy(); // Skjul keycardet
+
+				UPrimitiveComponent* PrimitiveComponent = Cast<UPrimitiveComponent>(CustomActor->GetRootComponent());
+				if (PrimitiveComponent)
+				{
+					PrimitiveComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+				}
+			}
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Costum is available, showing it."));
+
+			// Vis keycardet hvis det ikke er tatt
+			if (CustomActor)
+			{
+				CustomActor->SetActorHiddenInGame(false); // Vis keycardet
+			}
+		}
+	}
+
 	if (MinigameTriggerBox)
 	{
 		MinigameTriggerBox->OnActorBeginOverlap.AddDynamic(this, &AArchivist::OnOverlapBegin);
