@@ -46,27 +46,6 @@ void UPauseMenuWidget::OnContinueGameClicked()
 
     //// Fjern pause-menyen fra skjermen
     //RemoveFromParent();
-
-
-     // Unpause the game
-    UGameplayStatics::SetGamePaused(this, false);
-
-    // Restore input and mouse cursor
-    APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-    if (PlayerController)
-    {
-        PlayerController->bShowMouseCursor = false;
-        PlayerController->SetInputMode(FInputModeGameOnly());
-    }
-
-    // Remove pause menu from screen
-    RemoveFromParent();
-
-    // Update bIsPaused on the player
-    if (AArchivist* Archivist = Cast<AArchivist>(UGameplayStatics::GetPlayerPawn(this, 0)))
-    {
-        Archivist->bIsPaused = false;
-    }
 }
 
 void UPauseMenuWidget::OnBackToMainMenuClicked()
