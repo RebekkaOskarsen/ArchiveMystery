@@ -233,6 +233,9 @@ private:
 		UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		AActor* CustomActor;
 
+
+		// Sjekk om spillet er pauset
+		bool bIsPaused;
 	private:
 		// Referanse til pause-menyen
 		UPROPERTY()
@@ -245,6 +248,5 @@ private:
 		// Funksjon for å håndtere pause-tasten
 		void TogglePauseMenu();
 
-		// Sjekk om spillet er pauset
-		bool bIsPaused;
+
 };

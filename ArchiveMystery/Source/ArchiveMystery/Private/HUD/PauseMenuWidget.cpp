@@ -4,6 +4,7 @@
 #include "HUD/PauseMenuWidget.h"
 #include "Components/Button.h"
 #include "Kismet/GameplayStatics.h"
+#include "Character/Archivist.h"
 
 
 
@@ -32,19 +33,40 @@ void UPauseMenuWidget::NativeConstruct()
 
 void UPauseMenuWidget::OnContinueGameClicked()
 {
-    // Fortsett spillet
+    //// Fortsett spillet
+    //UGameplayStatics::SetGamePaused(this, false);
+
+    //// Skjul musepekeren og sett input tilbake til spillmodus
+    ////APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+    ////if (PlayerController)
+    ////{
+    ////    PlayerController->bShowMouseCursor = false;
+    ////    PlayerController->SetInputMode(FInputModeGameOnly());
+    ////}
+
+    //// Fjern pause-menyen fra skjermen
+    //RemoveFromParent();
+
+
+     // Unpause the game
     UGameplayStatics::SetGamePaused(this, false);
 
-    // Skjul musepekeren og sett input tilbake til spillmodus
-    //APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-    //if (PlayerController)
-    //{
-    //    PlayerController->bShowMouseCursor = false;
-    //    PlayerController->SetInputMode(FInputModeGameOnly());
-    //}
+    // Restore input and mouse cursor
+    APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+    if (PlayerController)
+    {
+        PlayerController->bShowMouseCursor = false;
+        PlayerController->SetInputMode(FInputModeGameOnly());
+    }
 
-    // Fjern pause-menyen fra skjermen
+    // Remove pause menu from screen
     RemoveFromParent();
+
+    // Update bIsPaused on the player
+    if (AArchivist* Archivist = Cast<AArchivist>(UGameplayStatics::GetPlayerPawn(this, 0)))
+    {
+        Archivist->bIsPaused = false;
+    }
 }
 
 void UPauseMenuWidget::OnBackToMainMenuClicked()

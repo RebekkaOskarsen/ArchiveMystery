@@ -699,6 +699,48 @@ void AArchivist::DeliverDocuments()
 
 void AArchivist::TogglePauseMenu()
 {
+	//APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+	//if (!PlayerController)
+	//{
+	//	return;
+	//}
+
+	//if (bIsPaused)
+	//{
+	//	if (PauseMenuWidget)
+	//	{
+	//		PauseMenuWidget->RemoveFromParent();
+	//		PauseMenuWidget = nullptr;
+	//	}
+
+	//	//PlayerController->bShowMouseCursor = false;
+	//	//PlayerController->SetInputMode(FInputModeGameOnly());
+	//}
+	//else
+	//{
+	//
+	//	if (PauseMenuWidgetClass)
+	//	{
+	//		PauseMenuWidget = CreateWidget<UPauseMenuWidget>(GetWorld(), PauseMenuWidgetClass);
+	//		if (PauseMenuWidget)
+	//		{
+	//			PauseMenuWidget->AddToViewport();
+	//		}
+	//	}
+
+
+	///*	PlayerController->bShowMouseCursor = true;
+	//	FInputModeGameAndUI InputMode;
+	//	InputMode.SetWidgetToFocus(PauseMenuWidget->TakeWidget());
+	//	InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+	//	PlayerController->SetInputMode(InputMode);*/
+	//}
+
+	//// Toggle state
+	//bIsPaused = !bIsPaused;
+
+
+
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	if (!PlayerController)
 	{
@@ -713,12 +755,11 @@ void AArchivist::TogglePauseMenu()
 			PauseMenuWidget = nullptr;
 		}
 
-		//PlayerController->bShowMouseCursor = false;
-		//PlayerController->SetInputMode(FInputModeGameOnly());
+		PlayerController->bShowMouseCursor = false;
+		PlayerController->SetInputMode(FInputModeGameOnly());
 	}
 	else
 	{
-	
 		if (PauseMenuWidgetClass)
 		{
 			PauseMenuWidget = CreateWidget<UPauseMenuWidget>(GetWorld(), PauseMenuWidgetClass);
@@ -728,15 +769,13 @@ void AArchivist::TogglePauseMenu()
 			}
 		}
 
-
-	/*	PlayerController->bShowMouseCursor = true;
+		PlayerController->bShowMouseCursor = true;
 		FInputModeGameAndUI InputMode;
 		InputMode.SetWidgetToFocus(PauseMenuWidget->TakeWidget());
 		InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
-		PlayerController->SetInputMode(InputMode);*/
+		PlayerController->SetInputMode(InputMode);
 	}
 
-	// Toggle state
 	bIsPaused = !bIsPaused;
 }
 
