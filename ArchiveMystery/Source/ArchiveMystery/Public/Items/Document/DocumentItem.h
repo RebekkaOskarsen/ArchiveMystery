@@ -20,6 +20,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Document")
 	FName DocumentID;
 
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> PromptWidgetClass;
+
+	UUserWidget* PromptWidgetInstance;
+
+
 protected:
 
 	virtual void OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) override;

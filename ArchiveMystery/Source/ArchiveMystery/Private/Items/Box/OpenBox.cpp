@@ -56,9 +56,36 @@ void AOpenBox::BeginPlay()
 void AOpenBox::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	Super::OnSphereOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
+
+    AArchivist* Archivist = Cast<AArchivist>(OtherActor);
+    if (Archivist)
+    {
+        Archivist->SetOverlappingItems(this);
+
+        if (PressEWidgetClass && !PressEWidgetInstance)
+        {
+            PressEWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), PressEWidgetClass);
+            if (PressEWidgetInstance)
+            {
+                PressEWidgetInstance->AddToViewport();
+            }
+        }
+    }
 }
 
 void AOpenBox::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
 	Super::OnSphereEndOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
+
+    AArchivist* Archivist = Cast<AArchivist>(OtherActor);
+    if (Archivist && Archivist->GetOverlappingItems() == this)
+    {
+        Archivist->SetOverlappingItems(nullptr);
+    }
+
+    if (PressEWidgetInstance)
+    {
+        PressEWidgetInstance->RemoveFromParent();
+        PressEWidgetInstance = nullptr;
+    }
 }

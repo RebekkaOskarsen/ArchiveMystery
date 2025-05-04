@@ -20,6 +20,11 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Pickup")
 	bool bHasBeenPlaced = false;
 
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> PressEWidgetClass;
+
+	UUserWidget* PressEWidgetInstance;
+
 protected:
 	virtual void BeginPlay() override;
 

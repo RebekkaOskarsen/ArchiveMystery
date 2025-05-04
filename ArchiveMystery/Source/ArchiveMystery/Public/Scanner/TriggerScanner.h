@@ -56,4 +56,9 @@ public:
 	// Called when the player presses the Scan button
 	UFUNCTION(BlueprintCallable)
 	void ScanDocuments();
+
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> PromptWidgetClass;
+
+	UUserWidget* PromptWidgetInstance;
 };

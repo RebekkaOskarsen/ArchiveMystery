@@ -95,6 +95,16 @@ void ATriggerScanner::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, A
 	if (OtherActor && OtherActor->IsA(AArchivist::StaticClass()))
 	{
 		bPlayerIsInside = true;
+
+		// Show "Press E" Widget
+		if (PromptWidgetClass && !PromptWidgetInstance)
+		{
+			PromptWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), PromptWidgetClass);
+			if (PromptWidgetInstance)
+			{
+				PromptWidgetInstance->AddToViewport();
+			}
+		}
 	}
 }
 
@@ -103,6 +113,13 @@ void ATriggerScanner::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AAc
 	if (OtherActor && OtherActor->IsA(AArchivist::StaticClass()))
 	{
 		bPlayerIsInside = false;
+
+		// Hide "Press E" Widget
+		if (PromptWidgetInstance)
+		{
+			PromptWidgetInstance->RemoveFromParent();
+			PromptWidgetInstance = nullptr;
+		}
 	}
 }
 

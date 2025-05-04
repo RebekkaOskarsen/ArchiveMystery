@@ -20,21 +20,38 @@ void ADocumentItem::EquipDocument(USceneComponent* InParent, FName InSocketName)
 void ADocumentItem::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	Super::OnSphereOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
+
 	AArchivist* Archivist = Cast<AArchivist>(OtherActor);
 	if (Archivist)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Overlapping with document: %s"), *GetName());
 		Archivist->SetOverlappingItems(this);
+
+		if (PromptWidgetClass && !PromptWidgetInstance)
+		{
+			PromptWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), PromptWidgetClass);
+			if (PromptWidgetInstance)
+			{
+				PromptWidgetInstance->AddToViewport();
+			}
+		}
 	}
 }
 
 void ADocumentItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
 	Super::OnSphereEndOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
+
 	AArchivist* Archivist = Cast<AArchivist>(OtherActor);
 	if (Archivist && Archivist->GetOverlappingItems() == this)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Stopped overlapping with document: %s"), *GetName());
 		Archivist->SetOverlappingItems(nullptr);
+	}
+
+	if (PromptWidgetInstance)
+	{
+		PromptWidgetInstance->RemoveFromParent();
+		PromptWidgetInstance = nullptr;
 	}
 }

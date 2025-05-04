@@ -96,6 +96,16 @@ void ATriggerDeliverDocuments::OnOverlapBegin(UPrimitiveComponent* OverlappedCom
 	if (OtherActor && OtherActor->IsA(AArchivist::StaticClass()))
 	{
 		bPlayerIsInside = true;
+
+		// Show "Press E" widget
+		if (PressEWidgetClass && !PressEWidgetInstance)
+		{
+			PressEWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), PressEWidgetClass);
+			if (PressEWidgetInstance)
+			{
+				PressEWidgetInstance->AddToViewport();
+			}
+		}
 	}
 }
 
@@ -104,5 +114,12 @@ void ATriggerDeliverDocuments::OnOverlapEnd(UPrimitiveComponent* OverlappedCompo
 	if (OtherActor && OtherActor->IsA(AArchivist::StaticClass()))
 	{
 		bPlayerIsInside = false;
+
+		// Hide "Press E" widget
+		if (PressEWidgetInstance)
+		{
+			PressEWidgetInstance->RemoveFromParent();
+			PressEWidgetInstance = nullptr;
+		}
 	}
 }
