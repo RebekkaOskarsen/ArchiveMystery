@@ -98,7 +98,7 @@ protected:
 	virtual void Jump() override;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Movement")
-	float WalkSpeed = 600.0f;
+	float WalkSpeed = 500.0f;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Movement")
 	float RunSpeed = 900.0f;

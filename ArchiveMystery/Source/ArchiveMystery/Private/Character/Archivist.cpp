@@ -406,6 +406,7 @@ void AArchivist::Tick(float DeltaTime)
 		}
 	}
 
+	// Update animation state for box holding
 	if (USkeletalMeshComponent* SkeletalMesh = GetMesh())
 	{
 		if (UArchivistAnimInstance* AnimInstance = Cast<UArchivistAnimInstance>(SkeletalMesh->GetAnimInstance()))
@@ -414,28 +415,32 @@ void AArchivist::Tick(float DeltaTime)
 		}
 	}
 
-	//Idle break
-	static float IdleTime = 0.0f;
+	// ----- Alternating Idle Break / Watch animation -----
+	static float IdleCycleTime = 0.0f;
+	static bool bPlayWatch = false;
 
-	if (EquippedBox == nullptr && GetVelocity().Size() < 5.0f)
+	bool bIsStandingStill = (EquippedBox == nullptr && GetVelocity().Size() < 5.0f);
+
+	if (bIsStandingStill)
 	{
-		IdleTime += DeltaTime;
+		IdleCycleTime += DeltaTime;
 
-		if (IdleTime >= 5.0f)
+		if (IdleCycleTime >= 5.0f)
 		{
 			if (UArchivistAnimInstance* AnimInstance = Cast<UArchivistAnimInstance>(GetMesh()->GetAnimInstance()))
 			{
-				if (!AnimInstance->bPlayIdleBreak) // only trigger once
-				{
-					UE_LOG(LogTemp, Warning, TEXT("Idle Break Triggered!"));
-					AnimInstance->bPlayIdleBreak = true;
-				}
+				bPlayWatch = !bPlayWatch;
+				AnimInstance->bPlayIdleBreak = bPlayWatch;
 			}
+
+			IdleCycleTime = 0.0f;
 		}
 	}
 	else
 	{
-		IdleTime = 0.0f;
+		// Reset when moving or holding a box
+		IdleCycleTime = 0.0f;
+		bPlayWatch = false;
 
 		if (UArchivistAnimInstance* AnimInstance = Cast<UArchivistAnimInstance>(GetMesh()->GetAnimInstance()))
 		{
