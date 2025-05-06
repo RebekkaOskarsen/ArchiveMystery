@@ -12,11 +12,6 @@ void UPauseMenuWidget::NativeConstruct()
 {
     Super::NativeConstruct();
 
-    // Bind "OnContinueGameClicked" til "Continue Game"-knappen
-    if (ContinueGameButton)
-    {
-        ContinueGameButton->OnClicked.AddDynamic(this, &UPauseMenuWidget::OnContinueGameClicked);
-    }
 
     // Bind "OnBackToMainMenuClicked" til "Back to Main Menu"-knappen
     if (BackToMainMenuButton)
@@ -31,22 +26,6 @@ void UPauseMenuWidget::NativeConstruct()
   
 }
 
-void UPauseMenuWidget::OnContinueGameClicked()
-{
-    //// Fortsett spillet
-    //UGameplayStatics::SetGamePaused(this, false);
-
-    //// Skjul musepekeren og sett input tilbake til spillmodus
-    ////APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-    ////if (PlayerController)
-    ////{
-    ////    PlayerController->bShowMouseCursor = false;
-    ////    PlayerController->SetInputMode(FInputModeGameOnly());
-    ////}
-
-    //// Fjern pause-menyen fra skjermen
-    //RemoveFromParent();
-}
 
 void UPauseMenuWidget::OnBackToMainMenuClicked()
 {

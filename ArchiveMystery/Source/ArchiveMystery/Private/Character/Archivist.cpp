@@ -45,7 +45,6 @@ AArchivist::AArchivist()
 
 	MainMenuWidgetClass = nullptr;
 
-	// Initialiser variabler
 	bIsPaused = false;
 	PauseMenuWidget = nullptr;
 	PauseMenuWidgetClass = nullptr;
@@ -139,31 +138,141 @@ void AArchivist::BeginPlay()
 
 	if (GameInstance)
 	{
-		// Hvis keycardet er tatt, ikke vis det på bordet
 		if (GameInstance->bIsCustomized)
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Costum has already been done, hiding the costum."));
 
-			// Skjul keycardet hvis det er tatt
 			if (CustomActor)
 			{
-				CustomActor->Destroy(); // Skjul keycardet
-
-				UPrimitiveComponent* PrimitiveComponent = Cast<UPrimitiveComponent>(CustomActor->GetRootComponent());
-				if (PrimitiveComponent)
-				{
-					PrimitiveComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-				}
+				CustomActor->Destroy(); 
 			}
 		}
 		else
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Costum is available, showing it."));
-
-			// Vis keycardet hvis det ikke er tatt
 			if (CustomActor)
 			{
-				CustomActor->SetActorHiddenInGame(false); // Vis keycardet
+				CustomActor->SetActorHiddenInGame(false); 
+			}
+		}
+	}
+
+	if (GameInstance)
+	{
+		if (GameInstance->bIsMarker1)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Marker1 has been shown."));
+			if (Marker1Actor)
+			{
+				Marker1Actor->Destroy();
+			}
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Showing marker1."));
+			if (Marker1Actor)
+			{
+				Marker1Actor->SetActorHiddenInGame(false); 
+			}
+		}
+	}
+
+	if (GameInstance)
+	{
+		if (GameInstance->bIsMarker2)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Marker2 has been shown."));
+			if (Marker2Actor)
+			{
+				Marker2Actor->Destroy(); 
+			}
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Showing marker2."));
+			if (Marker2Actor)
+			{
+				Marker2Actor->SetActorHiddenInGame(false); 
+			}
+		}
+	}
+
+	if (GameInstance)
+	{
+		if (GameInstance->bIsMarker3)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Marker3 has been shown."));
+			if (Marker3Actor)
+			{
+				Marker3Actor->Destroy(); 
+			}
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Showing marker3."));
+			if (Marker3Actor)
+			{
+				Marker3Actor->SetActorHiddenInGame(false); 
+			}
+		}
+	}
+
+	if (GameInstance)
+	{
+		if (GameInstance->bIsMarker4)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Marker4 has been shown."));
+			if (Marker4Actor)
+			{
+				Marker4Actor->Destroy(); 
+			}
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Showing marker4."));
+			if (Marker4Actor)
+			{
+				Marker4Actor->SetActorHiddenInGame(false); 
+			}
+		}
+	}
+
+	if (GameInstance)
+	{
+		if (GameInstance->bIsMarker5)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Marker5 has been shown."));
+			if (Marker5Actor)
+			{
+				Marker5Actor->Destroy(); 
+			}
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Showing marker5."));
+			if (Marker5Actor)
+			{
+				Marker5Actor->SetActorHiddenInGame(false); 
+			}
+		}
+	}
+
+	if (GameInstance)
+	{
+		if (GameInstance->bIsMarker6)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Marker6 has been shown."));
+			if (Marker6Actor)
+			{
+				Marker6Actor->Destroy(); 
+			}
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Showing marker6."));
+			if (Marker6Actor)
+			{
+				Marker6Actor->SetActorHiddenInGame(false); 
 			}
 		}
 	}
@@ -471,16 +580,16 @@ void AArchivist::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 		// PickUp
 		EnhancedInputComponent->BindAction(PickUpAction, ETriggerEvent::Triggered, this, &AArchivist::PickUp);
 
-		//
+		//Looking at paintings and enter pause menu 
 		EnhancedInputComponent->BindAction(EnterMinigameAction, ETriggerEvent::Triggered, this, &AArchivist::TryEnterMinigame);
 		EnhancedInputComponent->BindAction(LookAtPaintingAction, ETriggerEvent::Triggered, this, &AArchivist::LookAtPainting);
-		EnhancedInputComponent->BindAction(PauseAction, ETriggerEvent::Started, this, &AArchivist::TogglePauseMenu);
+		EnhancedInputComponent->BindAction(PauseAction, ETriggerEvent::Triggered, this, &AArchivist::TogglePauseMenu);
 	}
 }
 
 void AArchivist::OnOverlapBegin(AActor* OverlappedActor, AActor* OtherActor)
 {
-	if (OtherActor == this) // Sjekk om det er spilleren som går inn i triggeren
+	if (OtherActor == this) 
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Player entered minigame trigger area!"));
 
@@ -497,7 +606,7 @@ void AArchivist::OnOverlapBegin(AActor* OverlappedActor, AActor* OtherActor)
 
 void AArchivist::OnOverlapEnd(AActor* OverlappedActor, AActor* OtherActor)
 {
-	if (OtherActor == this) // Sjekk om det er spilleren som går ut av triggeren
+	if (OtherActor == this) 
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Player left minigame trigger area!"));
 
@@ -512,14 +621,12 @@ void AArchivist::OnOverlapEnd(AActor* OverlappedActor, AActor* OtherActor)
 void AArchivist::TryEnterMinigame()
 {
 
-	// Block if box hasn't been placed yet
 	if (BoxToPlaceBeforeMinigame && !BoxToPlaceBeforeMinigame->bHasBeenPlaced)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("You must place the box before starting the minigame!"));
 		return;
 	}
 
-	// Now check if you're in the trigger
 	if (MinigameTriggerBox && MinigameTriggerBox->IsOverlappingActor(this))
 	{
 		UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(GetGameInstance());
@@ -535,16 +642,14 @@ void AArchivist::TryEnterMinigame()
 
 void AArchivist::OnPaintingTriggerBeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
 {
-	if (OtherActor == this) // Sjekk om det er spilleren som går inn i triggeren
+	if (OtherActor == this) 
 	{
 		for (FPaintingInfo& PaintingInfo : Paintings)
 		{
 			if (PaintingInfo.PaintingTriggerBox && PaintingInfo.PaintingTriggerBox->IsOverlappingActor(OtherActor))
 			{
-				// Spilleren har gått inn i triggerområdet for denne maleren
 				UE_LOG(LogTemp, Warning, TEXT("Player entered the painting trigger area!"));
 
-				// Vis instruksjons-widgeten
 				if (PaintingInfo.PaintingInstructionWidgetClass && !PaintingInfo.PaintingInstructionWidgetInstance)
 				{
 					PaintingInfo.PaintingInstructionWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), PaintingInfo.PaintingInstructionWidgetClass);
@@ -570,7 +675,7 @@ void AArchivist::OnPaintingTriggerEndOverlap(AActor* OverlappedActor, AActor* Ot
 	APawn* PlayerPawn = GetWorld()->GetFirstPlayerController()->GetPawn();
 	if (OtherActor != PlayerPawn)
 	{
-		return; // Ignorer hvis det ikke er spilleren
+		return; 
 	}
 
 	UE_LOG(LogTemp, Warning, TEXT("OnPaintingTriggerEndOverlap triggered!"));
@@ -580,17 +685,14 @@ void AArchivist::OnPaintingTriggerEndOverlap(AActor* OverlappedActor, AActor* Ot
 	{
 		if (!PaintingInfo.PaintingTriggerBox)
 		{
-			//UE_LOG(LogTemp, Error, TEXT("PaintingTriggerBox is null for painting: %s"), *PaintingInfo.PaintingName.ToString());
 			continue;
 		}
 
 		if (!PaintingInfo.PaintingTriggerBox->IsOverlappingActor(OtherActor))
 		{
-			//UE_LOG(LogTemp, Warning, TEXT("Checking if widget exists for removal for painting: %s"), *PaintingInfo.PaintingName.ToString());
 
 			if (PaintingInfo.PaintingInstructionWidgetInstance && PaintingInfo.PaintingInstructionWidgetInstance->IsInViewport())
 			{
-				//UE_LOG(LogTemp, Warning, TEXT("Removing widget from parent for painting: %s"), *PaintingInfo.PaintingName.ToString());
 				PaintingInfo.PaintingInstructionWidgetInstance->RemoveFromParent();
 				PaintingInfo.PaintingInstructionWidgetInstance = nullptr;
 			}
@@ -640,7 +742,7 @@ void AArchivist::LookAtPainting(const FInputActionValue& Value)
 			}
 
 			bDidLookAtPainting = true;
-			break; // Vi trenger bare ett bilde om gangen
+			break; 
 		}
 	}
 
@@ -717,9 +819,6 @@ void AArchivist::TogglePauseMenu()
 			PauseMenuWidget->RemoveFromParent();
 			PauseMenuWidget = nullptr;
 		}
-
-		//PlayerController->bShowMouseCursor = false;
-		//PlayerController->SetInputMode(FInputModeGameOnly());
 	}
 	else
 	{
@@ -732,16 +831,8 @@ void AArchivist::TogglePauseMenu()
 				PauseMenuWidget->AddToViewport();
 			}
 		}
-
-
-	/*	PlayerController->bShowMouseCursor = true;
-		FInputModeGameAndUI InputMode;
-		InputMode.SetWidgetToFocus(PauseMenuWidget->TakeWidget());
-		InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
-		PlayerController->SetInputMode(InputMode);*/
 	}
 
-	// Toggle state
 	bIsPaused = !bIsPaused;
 
 }

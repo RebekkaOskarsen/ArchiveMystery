@@ -20,7 +20,6 @@ public:
 
 	UArchiveGameInstance();
 
-	// Quest logg data
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest Log")
 	UQuestLogData* QuestLogData;
 
@@ -52,26 +51,44 @@ public:
 	FTransform PlacedBoxTransform;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest Log")
-	bool bIsCheckBox1Checked; // For checkbox 1
+	bool bIsCheckBox1Checked;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest Log")
-	bool bIsCheckBox2Checked; // For checkbox 2
+	bool bIsCheckBox2Checked;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest Log")
-	bool bIsCheckBox3Checked; // For checkbox 3
+	bool bIsCheckBox3Checked; 
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest Log")
-	bool bIsCheckBox4Checked; // For checkbox4
+	bool bIsCheckBox4Checked;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest Log")
-	bool bIsCheckBox5Checked; // For checkbox 5
+	bool bIsCheckBox5Checked;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest Log")
-	bool bIsCheckBox6Checked; // For checkbox 6
+	bool bIsCheckBox6Checked;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest Log")
-	bool bIsCheckBox7Checked; // For checkbox 7
+	bool bIsCheckBox7Checked;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool bIsCustomized;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsMarker1;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsMarker2;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsMarker3;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsMarker4;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsMarker5;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsMarker6;
 };

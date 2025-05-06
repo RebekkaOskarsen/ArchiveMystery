@@ -15,9 +15,6 @@ class ARCHIVEMYSTERY_API UPauseMenuWidget : public UUserWidget
 	GENERATED_BODY()
 
 public:
-    // Bind denne funksjonen til "Continue Game"-knappen
-    UFUNCTION(BlueprintCallable, Category = "Menu")
-    void OnContinueGameClicked();
 
     UFUNCTION(BlueprintCallable, Category = "Menu")
     void OnBackToMainMenuClicked();
@@ -30,17 +27,11 @@ public:
 
     UFUNCTION()
     void OnCreditsPauseClicked();
-  
-
 
 protected:
-    // Kalles når widgeten er opprettet
     virtual void NativeConstruct() override;
 
 private:
-    // Referanse til "Continue Game"-knappen (sett i Blueprint)
-    UPROPERTY(meta = (BindWidget))
-    class UButton* ContinueGameButton;
 
     UPROPERTY(meta = (BindWidget))
     class UButton* BackToMainMenuButton;

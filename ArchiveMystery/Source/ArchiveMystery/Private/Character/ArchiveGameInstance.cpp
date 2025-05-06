@@ -25,6 +25,13 @@ UArchiveGameInstance::UArchiveGameInstance()
     bIsCheckBox7Checked = false;
 
     bIsCustomized = false;
+
+    bIsMarker1 = false;
+    bIsMarker2 = false;
+    bIsMarker3 = false;
+    bIsMarker4 = false;
+    bIsMarker5 = false;
+    bIsMarker6 = false;
 }
 
 void UArchiveGameInstance::SaveQuestLogData()
@@ -35,10 +42,8 @@ void UArchiveGameInstance::SaveQuestLogData()
         return;
     }
 
-    // Lag et JsonObject
     TSharedPtr<FJsonObject> JsonObject = MakeShareable(new FJsonObject());
 
-    // Lag en array for alle questene
     TArray<TSharedPtr<FJsonValue>> QuestArray;
 
     for (const FQuestData& Quest : QuestLogData->QuestEntries)
@@ -50,7 +55,6 @@ void UArchiveGameInstance::SaveQuestLogData()
         QuestArray.Add(MakeShareable(new FJsonValueObject(QuestJson)));
     }
 
-    // Legg til arrayet med questene i hoved-jsonen
     JsonObject->SetArrayField("Quests", QuestArray);
 
     JsonObject->SetBoolField("IsCheckBox1Checked", bIsCheckBox1Checked);
@@ -63,13 +67,18 @@ void UArchiveGameInstance::SaveQuestLogData()
 
     JsonObject->SetBoolField("bIsCustomized", bIsCustomized);
 
-    // Serialiser jsonen til en streng
+    JsonObject->SetBoolField("bIsMarker1", bIsMarker1);
+    JsonObject->SetBoolField("bIsMarker2", bIsMarker2);
+    JsonObject->SetBoolField("bIsMarker3", bIsMarker3);
+    JsonObject->SetBoolField("bIsMarker4", bIsMarker4);
+    JsonObject->SetBoolField("bIsMarker5", bIsMarker5);
+    JsonObject->SetBoolField("bIsMarker6", bIsMarker6);
+
     FString OutputString;
     TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutputString);
     FJsonSerializer::Serialize(JsonObject.ToSharedRef(), Writer);
 
-    // Lagre den som en fil på disk
-    FString SavePath = FPaths::ProjectSavedDir() + "QuestLog.json"; // Eller en annen ønsket plassering
+    FString SavePath = FPaths::ProjectSavedDir() + "QuestLog.json"; 
     UE_LOG(LogTemp, Warning, TEXT("Saving QuestLog to: %s"), *SavePath);
     FFileHelper::SaveStringToFile(OutputString, *SavePath);
 }
@@ -79,21 +88,18 @@ void UArchiveGameInstance::LoadQuestLogData()
 {
     if (QuestLogData)
     {
-        FString LoadPath = FPaths::ProjectSavedDir() + "QuestLog.json"; // Samme som lagringsstedet
+        FString LoadPath = FPaths::ProjectSavedDir() + "QuestLog.json"; 
 
         FString LoadedData;
         if (FFileHelper::LoadFileToString(LoadedData, *LoadPath))
         {
-            // Parser JSON-strengen
             TSharedPtr<FJsonObject> JsonObject;
             TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(LoadedData);
 
             if (FJsonSerializer::Deserialize(Reader, JsonObject) && JsonObject.IsValid())
             {
-                // Tøm nåværende quests før vi laster de nye
                 QuestLogData->QuestEntries.Empty();
 
-                // Hent arrayet med quests fra jsonen
                 const TArray<TSharedPtr<FJsonValue>> QuestArray = JsonObject->GetArrayField("Quests");
 
                 for (const TSharedPtr<FJsonValue>& QuestValue : QuestArray)
@@ -104,7 +110,6 @@ void UArchiveGameInstance::LoadQuestLogData()
                     LoadedQuest.bIsCompleted = QuestJson->GetBoolField("bIsCompleted");
                     LoadedQuest.QuestDescription = QuestJson->GetStringField("QuestDescription");
 
-                    // Legg til den lastede questen
                     QuestLogData->QuestEntries.Add(LoadedQuest);
                 }
 
@@ -117,7 +122,14 @@ void UArchiveGameInstance::LoadQuestLogData()
                 bIsCheckBox5Checked = JsonObject->GetBoolField("IsCheckBox6Checked");
                 bIsCheckBox7Checked = JsonObject->GetBoolField("IsCheckBox7Checked");
 
-                bIsCheckBox7Checked = JsonObject->GetBoolField("bIsCustomized");
+                bIsCustomized = JsonObject->GetBoolField("bIsCustomized");
+
+                bIsMarker1 = JsonObject->GetBoolField("bIsMarker1");
+                bIsMarker2 = JsonObject->GetBoolField("bIsMarker2");
+                bIsMarker3 = JsonObject->GetBoolField("bIsMarker3");
+                bIsMarker4 = JsonObject->GetBoolField("bIsMarker4");
+                bIsMarker5 = JsonObject->GetBoolField("bIsMarker5");
+                bIsMarker6 = JsonObject->GetBoolField("bIsMarker6");
             }
         }
     }

@@ -235,19 +235,33 @@ private:
 		UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		AActor* CustomActor;
 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AActor* Marker1Actor;
 
-		// Sjekk om spillet er pauset
+		UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AActor* Marker2Actor;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AActor* Marker3Actor;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AActor* Marker4Actor;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AActor* Marker5Actor;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AActor* Marker6Actor;
+
 		bool bIsPaused;
 	private:
-		// Referanse til pause-menyen
+
 		UPROPERTY()
 		class UPauseMenuWidget* PauseMenuWidget;
 
-		// Referanse til Widget Blueprint-klassen for pause-menyen
 		UPROPERTY(EditDefaultsOnly, Category = "UI")
 		TSubclassOf<class UPauseMenuWidget> PauseMenuWidgetClass;
 
-		// Funksjon for å håndtere pause-tasten
 		void TogglePauseMenu();
 
 

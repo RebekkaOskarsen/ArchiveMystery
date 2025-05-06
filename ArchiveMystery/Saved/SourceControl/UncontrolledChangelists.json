@@ -1,0 +1,27 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/StarterContent/Architecture/Floor_400x400.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/3/MX/27XR5JTIEZIDBY0ZCYWYJY.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/2/I5/Z6CNL36P8KY1716TWP697S.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/D/53/VRGB31GD2VQ8T2E5MEN6ZS.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/Archive-Mystery.umap",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/0/CH/O6KILSNULPZ6H631DXQZIZ.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/A/BN/R2NMEVYZPOEXM3ZE9KPR33.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/F/1J/L61SE15SVLFM9HI8Q712LM.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/D/O2/1UQDNHFNRCG18V0K62JOKI.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/B/NL/WEH8OXSH3LP0SQYVMF03LV.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/0/09/0XMA35U19ICBI539F9FNMF.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/B/CT/0XLI5HX1ZPA3Q6KTQWFQGB.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/3/E8/MJENHZEZ1GXV5KHJ5XCM6T.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/2/AK/3F7XDVVENE589VAD3SA209.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/Blueprint/PauseMenu/WBP_PauseMenu.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/Blueprint/W_Exit_MainMenu.uasset"
+			]
+		}
+	]
+}
