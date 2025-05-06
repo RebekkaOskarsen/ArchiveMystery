@@ -15,6 +15,9 @@
 #include "Items/Box/OpenBox.h"
 #include "Items/Document/DocumentItem.h"
 
+#include "Door/DoubleDoor.h"
+#include "Door/KeycardItem.h"
+
 #include <Kismet/GameplayStatics.h>
 #include "Blueprint/UserWidget.h"
 #include "Character/ArchiveGameInstance.h"
@@ -100,6 +103,37 @@ void AArchivist::BeginPlay()
 			bHasPlacedBox ? TEXT("true") : TEXT("false"),
 			bHasFinishedShreddedPaperMinigame ? TEXT("true") : TEXT("false"),
 			bHasFinishedMoldMinigame ? TEXT("true") : TEXT("false"));
+
+		if (GameInstance->bHasGarageKeycard)
+		{
+			TArray<AActor*> FoundGarageCards;
+			UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("GarageKeycard"), FoundGarageCards);
+			for (AActor* Actor : FoundGarageCards)
+			{
+				Actor->Destroy();
+			}
+		}
+
+		if (GameInstance->bHasArchiveKeycard)
+		{
+			TArray<AActor*> FoundArchiveCards;
+			UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("ArchiveKeycard"), FoundArchiveCards);
+			for (AActor* Actor : FoundArchiveCards)
+			{
+				Actor->Destroy();
+			}
+		}
+
+		if (GameInstance->bHasEquipmentKeycard)
+		{
+			TArray<AActor*> FoundEquipmentCards;
+			UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("EquipmentKeycard"), FoundEquipmentCards);
+			for (AActor* Actor : FoundEquipmentCards)
+			{
+				Actor->Destroy();
+			}
+		}
+
 
 		if (GameInstance->bBoxPlacedBeforeMoldGame && GameInstance->PlacedBoxTransform.IsValid())
 		{
@@ -476,6 +510,32 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 	}
 	else if (OverlappingItems)
 	{
+		// Try to pick up keycard first
+		if (AKeycardItem* Keycard = Cast<AKeycardItem>(OverlappingItems))
+		{
+			if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
+			{
+				switch (Keycard->KeycardType)
+				{
+				case EKeycardType::Garage:
+					GI->bHasGarageKeycard = true;
+					break;
+				case EKeycardType::Archive:
+					GI->bHasArchiveKeycard = true;
+					break;
+				case EKeycardType::Equipment:
+					GI->bHasEquipmentKeycard = true;
+					break;
+				}
+
+				UE_LOG(LogTemp, Warning, TEXT("Picked up keycard: %d"), static_cast<uint8>(Keycard->KeycardType));
+
+				Keycard->Destroy();
+				SetOverlappingItems(nullptr);
+				bDidInteract = true;
+			}
+		}
+
 		// Try to pick up box first
 		if (AOpenBox* OverlappingBox = Cast<AOpenBox>(OverlappingItems))
 		{
@@ -498,6 +558,25 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 	{
 		bIsInputLocked = true;
 		CurrentInputTime = 0.0f;
+	}
+}
+
+void AArchivist::TryOpenDoor(const FInputActionValue& Value)
+{
+	UE_LOG(LogTemp, Warning, TEXT("TryOpenDoor called"));
+
+	TArray<AActor*> OverlappingActors;
+	GetOverlappingActors(OverlappingActors, ADoubleDoor::StaticClass());
+
+	for (AActor* Actor : OverlappingActors)
+	{
+		ADoubleDoor* Door = Cast<ADoubleDoor>(Actor);
+		if (Door)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Found overlapping door, trying to open..."));
+			Door->Interact(this);
+			break;
+		}
 	}
 }
 
@@ -584,6 +663,9 @@ void AArchivist::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 		EnhancedInputComponent->BindAction(EnterMinigameAction, ETriggerEvent::Triggered, this, &AArchivist::TryEnterMinigame);
 		EnhancedInputComponent->BindAction(LookAtPaintingAction, ETriggerEvent::Triggered, this, &AArchivist::LookAtPainting);
 		EnhancedInputComponent->BindAction(PauseAction, ETriggerEvent::Triggered, this, &AArchivist::TogglePauseMenu);
+
+		//Door
+		EnhancedInputComponent->BindAction(OpenDoorAction, ETriggerEvent::Triggered, this, &AArchivist::TryOpenDoor);
 	}
 }
 

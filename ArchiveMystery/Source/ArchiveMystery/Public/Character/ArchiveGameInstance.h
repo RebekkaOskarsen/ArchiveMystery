@@ -91,4 +91,14 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool bIsMarker6;
+
+	//Door
+	UPROPERTY(BlueprintReadWrite, Category = "Keycards")
+	bool bHasGarageKeycard;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Keycards")
+	bool bHasArchiveKeycard;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Keycards")
+	bool bHasEquipmentKeycard;
 };

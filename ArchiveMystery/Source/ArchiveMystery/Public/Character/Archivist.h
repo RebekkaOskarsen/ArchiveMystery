@@ -92,6 +92,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
 	UInputAction* PickUpAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
+	UInputAction* OpenDoorAction;
+
 
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
@@ -107,6 +110,8 @@ protected:
 	void StopRunning();
 
 	void PickUp(const FInputActionValue& Value);
+
+	void TryOpenDoor(const FInputActionValue& Value);
 
 	// Referanse til Widget Blueprint-klassen for startmenyen
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
