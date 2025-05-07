@@ -25,7 +25,6 @@
 			"W_QuestLog_Pause.cpp.obj",
 			"TriggerDeliverDocuments.cpp.obj",
 			"TriggerScanner.cpp.obj",
-			"Minigame.cpp.obj",
 			"ArchiveGameInstance.gen.cpp.obj",
 			"ArchiveMystery.init.gen.cpp.obj",
 			"Archivist.gen.cpp.obj",
@@ -54,7 +53,8 @@
 			"W_QuestLog_Pause.gen.cpp.obj",
 			"PerModuleInline.gen.cpp.obj",
 			"ArchiveGameInstance.cpp.obj",
-			"Archivist.cpp.obj"
+			"Archivist.cpp.obj",
+			"Minigame.cpp.obj"
 		]
 	}
 }

@@ -22,4 +22,3 @@
 #include "C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/SavingSystem/W_QuestLog_Pause.cpp"
 #include "C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Scanner/TriggerDeliverDocuments.cpp"
 #include "C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Scanner/TriggerScanner.cpp"
-#include "C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
