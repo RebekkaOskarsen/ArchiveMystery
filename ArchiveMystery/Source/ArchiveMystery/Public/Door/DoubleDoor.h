@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/TextRenderComponent.h"
 #include "DoubleDoor.generated.h"
 
 UENUM(BlueprintType)
@@ -72,6 +73,19 @@ public:
 
 	void Interact(AActor* PlayerActor);
 
+	//Text
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Door")
+	UTextRenderComponent* LockedText;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Door")
+	float TextVisibleDuration = 2.5f;
+
+	//Press E Widget
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> PressEWidgetClass;
+
+	UUserWidget* PressEWidgetInstance;
+
 private:
 	FRotator TargetLeftRotation;
 	FRotator TargetRightRotation;
@@ -80,4 +94,7 @@ private:
 
 	float OpenTimer = 0.0f;
 
+	//Text
+	float LockedTextTimer = 0.f;
+	bool bShouldShowLockedText = false;
 };

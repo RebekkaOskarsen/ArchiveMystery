@@ -4,6 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Items/Items.h"
+#include "Components/TextRenderComponent.h"
+#include "NiagaraComponent.h"
+#include "NiagaraFunctionLibrary.h"
 #include "KeycardItem.generated.h"
 
 UENUM(BlueprintType)
@@ -28,4 +31,21 @@ public:
 	void NotifyActorBeginOverlap(AActor* OtherActor);
 
 	void NotifyActorEndOverlap(AActor* OtherActor);
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UTextRenderComponent* KeycardText;
+
+	//Press E Widget
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> PressEWidgetClass;
+
+	UUserWidget* PressEWidgetInstance;
+
+	//Particle
+	UPROPERTY(VisibleAnywhere)
+	UNiagaraComponent* Sparkle;
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 };

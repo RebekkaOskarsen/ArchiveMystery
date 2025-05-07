@@ -4,6 +4,7 @@
 #include "Items/Box/OpenBox.h"
 #include "Character/Archivist.h"
 #include "Components/SphereComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 void AOpenBox::Equip(USceneComponent* InParent, FName InSocketName)
 {
@@ -20,6 +21,11 @@ void AOpenBox::Equip(USceneComponent* InParent, FName InSocketName)
     // FORCE a full render refresh
     ItemMesh->UnregisterComponent();
     ItemMesh->RegisterComponent();
+
+    if (PickupSound)
+    {
+        UGameplayStatics::PlaySoundAtLocation(this, PickupSound, GetActorLocation());
+    }
 }
 
 void AOpenBox::EnablePhysics(bool bEnable)

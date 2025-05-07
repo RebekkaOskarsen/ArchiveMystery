@@ -25,6 +25,9 @@ public:
 
 	UUserWidget* PressEWidgetInstance;
 
+	UPROPERTY(EditAnywhere, Category = "Sound")
+	USoundBase* PickupSound;
+
 protected:
 	virtual void BeginPlay() override;
 

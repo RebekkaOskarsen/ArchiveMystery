@@ -31,6 +31,17 @@ ADoubleDoor::ADoubleDoor()
 
 	InteractionBox->OnComponentBeginOverlap.AddDynamic(this, &ADoubleDoor::OnBoxBeginOverlap);
 	InteractionBox->OnComponentEndOverlap.AddDynamic(this, &ADoubleDoor::OnBoxEndOverlap);
+
+	//Text
+	LockedText = CreateDefaultSubobject<UTextRenderComponent>(TEXT("LockedText"));
+	LockedText->SetupAttachment(RootComponent);
+	LockedText->SetHorizontalAlignment(EHTA_Center);
+	LockedText->SetVerticalAlignment(EVRTA_TextCenter);
+	LockedText->SetTextRenderColor(FColor::Black);
+	LockedText->SetText(FText::FromString("Access Denied"));
+	LockedText->SetWorldSize(20.0f);
+	LockedText->SetRelativeLocation(FVector(0.f, 0.f, 150.f)); // Adjust above the door
+	LockedText->SetHiddenInGame(true);
 }
 
 // Called when the game starts or when spawned
@@ -41,6 +52,7 @@ void ADoubleDoor::BeginPlay()
 	InitialLeftRotation = LeftDoor->GetRelativeRotation();
 	InitialRightRotation = RightDoor->GetRelativeRotation();
 	
+
 }
 
 // Called every frame
@@ -74,6 +86,17 @@ void ADoubleDoor::Tick(float DeltaTime)
 			}
 		}
 	}
+
+	if (bShouldShowLockedText)
+	{
+		LockedTextTimer += DeltaTime;
+
+		if (LockedTextTimer >= TextVisibleDuration)
+		{
+			LockedText->SetHiddenInGame(true);
+			bShouldShowLockedText = false;
+		}
+	}
 }
 
 void ADoubleDoor::OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -81,6 +104,15 @@ void ADoubleDoor::OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor*
 	if (AArchivist* Player = Cast<AArchivist>(OtherActor))
 	{
 		InteractingPlayer = Player;
+
+		if (PressEWidgetClass && !PressEWidgetInstance)
+		{
+			PressEWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), PressEWidgetClass);
+			if (PressEWidgetInstance)
+			{
+				PressEWidgetInstance->AddToViewport();
+			}
+		}
 	}
 }
 
@@ -88,6 +120,12 @@ void ADoubleDoor::OnBoxEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* O
 {
 	if (OtherActor == InteractingPlayer)
 	{
+		if (PressEWidgetInstance)
+		{
+			PressEWidgetInstance->RemoveFromParent();
+			PressEWidgetInstance = nullptr;
+		}
+
 		InteractingPlayer = nullptr;
 	}
 }
@@ -117,6 +155,33 @@ void ADoubleDoor::Interact(AActor* PlayerActor)
 	if (!bCanOpen)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Missing keycard for %d"), (int32)DoorType);
+
+		if (LockedText)
+		{
+			FString Message;
+
+			switch (DoorType)
+			{
+			case EDoorType::Garage:
+				Message = "Garage Keycard Required";
+				break;
+			case EDoorType::Archive:
+				Message = "Archive Keycard Required";
+				break;
+			case EDoorType::Equipment:
+				Message = "Equipment Keycard Required";
+				break;
+			default:
+				Message = "Access Denied";
+				break;
+			}
+
+			LockedText->SetText(FText::FromString(Message));
+			LockedText->SetHiddenInGame(false);
+			bShouldShowLockedText = true;
+			LockedTextTimer = 0.0f;
+		}
+
 		return;
 	}
 
