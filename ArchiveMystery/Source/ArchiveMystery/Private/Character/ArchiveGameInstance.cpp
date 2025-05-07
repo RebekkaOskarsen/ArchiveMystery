@@ -32,6 +32,10 @@ UArchiveGameInstance::UArchiveGameInstance()
     bIsMarker4 = false;
     bIsMarker5 = false;
     bIsMarker6 = false;
+
+    bHasGarageKeycard = false;
+    bHasArchiveKeycard = false;
+    bHasEquipmentKeycard = false; 
 }
 
 void UArchiveGameInstance::SaveQuestLogData()
@@ -73,6 +77,10 @@ void UArchiveGameInstance::SaveQuestLogData()
     JsonObject->SetBoolField("bIsMarker4", bIsMarker4);
     JsonObject->SetBoolField("bIsMarker5", bIsMarker5);
     JsonObject->SetBoolField("bIsMarker6", bIsMarker6);
+
+    JsonObject->SetBoolField("bHasGarageKeycard", bHasGarageKeycard);
+    JsonObject->SetBoolField("bHasArchiveKeycard", bHasArchiveKeycard);
+    JsonObject->SetBoolField("bHasEquipmentKeycard", bHasEquipmentKeycard);
 
     FString OutputString;
     TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutputString);
@@ -130,6 +138,10 @@ void UArchiveGameInstance::LoadQuestLogData()
                 bIsMarker4 = JsonObject->GetBoolField("bIsMarker4");
                 bIsMarker5 = JsonObject->GetBoolField("bIsMarker5");
                 bIsMarker6 = JsonObject->GetBoolField("bIsMarker6");
+
+                bHasGarageKeycard = JsonObject->GetBoolField("bHasGarageKeycard");
+                bHasArchiveKeycard = JsonObject->GetBoolField("bHasArchiveKeycard");
+                bHasEquipmentKeycard = JsonObject->GetBoolField("bHasEquipmentKeycard");
             }
         }
     }

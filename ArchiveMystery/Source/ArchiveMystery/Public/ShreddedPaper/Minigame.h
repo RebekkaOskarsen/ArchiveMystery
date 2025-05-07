@@ -26,11 +26,9 @@ class ARCHIVEMYSTERY_API AMinigame : public APawn
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this pawn's properties
 	AMinigame();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 	TMap<FString, TArray<FString>> SnappingRules;
@@ -43,16 +41,12 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Snapping")
 	AActor* PaperSheet;
 
+	TMap<FString, FString> ParentMap; 
 
-	TMap<FString, FString> ParentMap; // Tracks the parent of each paperstrip for Union-Find
-
-	TSet<FString> LockedPaperstrips; // Stores the tags of locked paperstrips
-
-	// Map from group root to the components in that group
+	TSet<FString> LockedPaperstrips; 
+	
 	TMap<FString, TArray<UStaticMeshComponent*>> GroupMap;
 
-
-	// Helper functions for Union-Find
 	FString FindParent(const FString& Node);
 	void MergeGroups(const FString& NodeA, const FString& NodeB);
 	void ValidateGroups();
@@ -61,10 +55,8 @@ protected:
 
 
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	void OnAllPiecesSnapped();
@@ -94,23 +86,20 @@ public:
 	void StopDragging();
 
 	UPROPERTY(EditAnywhere, Category = "Fade")
-	float FadeDuration = 2.0f; // Duration of the fade effect in seconds
+	float FadeDuration = 2.0f; 
 
 	UPROPERTY(VisibleAnywhere, Category = "Fade")
-	float CurrentFadeTime = 0.0f; // Tracks the elapsed time during the fade
-
+	float CurrentFadeTime = 0.0f; 
 	UPROPERTY(VisibleAnywhere, Category = "Fade")
-	bool bIsFadingIn = false; // Whether the fade-in is in progress
+	bool bIsFadingIn = false;
 
 	//--------------------------------------UI---------------------------------------------------------------//
 
-	//Exit button interaction
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 	TSubclassOf<UUserWidget> ExitWidgetClass;
 
 	UUserWidget* ExitWidgetInstance;
 
-	//Shows tutorial and start game interaction 
 
 	UFUNCTION(BlueprintCallable, Category = "Game")
 	void StartGame();
@@ -122,8 +111,6 @@ public:
 
 	UButton* StartButton;
 
-	//Shows '?' button and interaction
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 	TSubclassOf<UUserWidget> GameMenuWidgetClass;
 
@@ -133,18 +120,15 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Game")
 	void ShowTutorial();
+		
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
+	USoundBase* SnapSound;
 
-		// Lydkomponent for snap-lyd
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
-		USoundBase* SnapSound;
+	void PlaySnapSound();
 
-		// Funksjon for å spille lyd
-		void PlaySnapSound();
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Effects")
+	UNiagaraSystem* SparkNiagaraEffect;
 
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Effects")
-		UNiagaraSystem* SparkNiagaraEffect;
-
-		// Funksjon for å spille partikkeleffekt
-		void PlaySparkEffect(FVector Location);
+	void PlaySparkEffect(FVector Location);
 
 };

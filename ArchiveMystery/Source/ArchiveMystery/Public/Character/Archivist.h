@@ -258,6 +258,15 @@ private:
 		UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		AActor* Marker6Actor;
 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AActor* GarageKeycardActor;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AActor* ArchiveKeycardActor;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AActor* EquipmentKeycardActor;
+
 		bool bIsPaused;
 	private:
 
