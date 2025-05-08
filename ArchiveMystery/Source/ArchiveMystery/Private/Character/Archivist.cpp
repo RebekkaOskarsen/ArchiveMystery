@@ -60,6 +60,11 @@ void AArchivist::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// Determine current level name
+	FString CurrentMapName = GetWorld()->GetMapName();
+	CurrentMapName.RemoveFromStart(GetWorld()->StreamingLevelsPrefix); // removes "UEDPIE_0_" in editor
+
+	// Prevent duplicate players
 	if (GetWorld())
 	{
 		TArray<AActor*> FoundArchivists;
@@ -75,7 +80,8 @@ void AArchivist::BeginPlay()
 		}
 	}
 
-	if (GetWorld()->GetMapName().Contains("MainMenuLevel"))
+	// Show main menu widget if in main menu level
+	if (CurrentMapName.Contains("MainMenuLevel"))
 	{
 		if (MainMenuWidgetClass)
 		{
@@ -99,7 +105,7 @@ void AArchivist::BeginPlay()
 		bHasFinishedShreddedPaperMinigame = GameInstance->bShreddedGameComplete;
 		bHasFinishedMoldMinigame = GameInstance->bMoldGameComplete;
 
-		UE_LOG(LogTemp, Warning, TEXT("Loaded from GameInstance - bHasPlacedBox: %s, bHasFinishedShreddedPaperMinigame: %s, bHasFinishedMoldMinigame: % s"),
+		UE_LOG(LogTemp, Warning, TEXT("Loaded from GameInstance - bHasPlacedBox: %s, bHasFinishedShreddedPaperMinigame: %s, bHasFinishedMoldMinigame: %s"),
 			bHasPlacedBox ? TEXT("true") : TEXT("false"),
 			bHasFinishedShreddedPaperMinigame ? TEXT("true") : TEXT("false"),
 			bHasFinishedMoldMinigame ? TEXT("true") : TEXT("false"));
@@ -114,27 +120,6 @@ void AArchivist::BeginPlay()
 			}
 		}
 
-		if (GameInstance)
-		{
-			if (GameInstance->bHasGarageKeycard)
-			{
-				UE_LOG(LogTemp, Warning, TEXT("Garage Keycard has already been picked up"));
-
-				if (GarageKeycardActor)
-				{
-					GarageKeycardActor->Destroy();
-				}
-			}
-			else
-			{
-				UE_LOG(LogTemp, Warning, TEXT("Garage Keycard, showing it."));
-				if (GarageKeycardActor)
-				{
-					GarageKeycardActor->SetActorHiddenInGame(false);
-				}
-			}
-		}
-
 		if (GameInstance->bHasArchiveKeycard)
 		{
 			TArray<AActor*> FoundArchiveCards;
@@ -145,27 +130,6 @@ void AArchivist::BeginPlay()
 			}
 		}
 
-		if (GameInstance)
-		{
-			if (GameInstance->bHasArchiveKeycard)
-			{
-				UE_LOG(LogTemp, Warning, TEXT("Archive Keycard has already been picked up"));
-
-				if (ArchiveKeycardActor)
-				{
-					ArchiveKeycardActor->Destroy();
-				}
-			}
-			else
-			{
-				UE_LOG(LogTemp, Warning, TEXT("Archive Keycard, showing it."));
-				if (ArchiveKeycardActor)
-				{
-					ArchiveKeycardActor->SetActorHiddenInGame(false);
-				}
-			}
-		}
-
 		if (GameInstance->bHasEquipmentKeycard)
 		{
 			TArray<AActor*> FoundEquipmentCards;
@@ -173,27 +137,6 @@ void AArchivist::BeginPlay()
 			for (AActor* Actor : FoundEquipmentCards)
 			{
 				Actor->Destroy();
-			}
-		}
-
-		if (GameInstance)
-		{
-			if (GameInstance->bHasEquipmentKeycard)
-			{
-				UE_LOG(LogTemp, Warning, TEXT("Equipment Keycard has already been picked up"));
-
-				if (EquipmentKeycardActor)
-				{
-					EquipmentKeycardActor->Destroy();
-				}
-			}
-			else
-			{
-				UE_LOG(LogTemp, Warning, TEXT("Equipment Keycard, showing it."));
-				if (EquipmentKeycardActor)
-				{
-					EquipmentKeycardActor->SetActorHiddenInGame(false);
-				}
 			}
 		}
 
