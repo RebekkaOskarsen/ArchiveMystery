@@ -70,9 +70,142 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Progress")
 	bool bHasScannedDocuments = false;
 
+	FORCEINLINE void SetOverlappingItems(AItems* Items) { OverlappingItems = Items; }
+
+	FORCEINLINE ECharacterState GetCharacterState() const { return CharacterState; }
+
+	//----------------Shredded paper minigame---------------------------//
+
+	void TryEnterMinigame();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
+	UInputAction* EnterMinigameAction;
+
+	UFUNCTION()
+	void OnOverlapBegin(AActor* OverlappedActor, AActor* OtherActor);
+
+	UFUNCTION()
+	void OnOverlapEnd(AActor* OverlappedActor, AActor* OtherActor);
+
+	UPROPERTY(EditAnywhere, Category = "Minigame")
+	ATriggerBox* MinigameTriggerBox;
+
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> MinigamePromptWidgetClass;
+
+	UUserWidget* MinigamePromptWidget;
+
+	//-----------------Saving location of the player----------------------------//
+
+	UPROPERTY()
+	FVector LastSavedLocation;
+
+	//---------------------Interaction with paintings--------------------------//
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
+	UInputAction* LookAtPaintingAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Painting")
+	TArray<FPaintingInfo> Paintings; 
+
+	ATriggerBox* PaintingTriggerBox;
+
+	bool bIsLookingAtPainting = false;
+
+	UFUNCTION()
+	void OnPaintingTriggerBeginOverlap(AActor* OverlappedActor, AActor* OtherActor);
+	UFUNCTION()
+	void OnPaintingTriggerEndOverlap(AActor* OverlappedActor, AActor* OtherActor);
+
+	void LookAtPainting(const FInputActionValue& Value);
+
+	bool bIsMovementLocked = false;
+
+	UUserWidget* PaintingWidgetInstance; 
+
+	bool bIsInputLocked = false;  
+	float InputLockTime = 0.3f;  
+	float CurrentInputTime = 0.0f;
+
+	//----------------Input Pause menu---------------------------//
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
+	UInputAction* PauseAction;
+
+	//-------------------------------------------------------------
+
+	UPROPERTY(EditAnywhere, Category = "Drop Zone")
+	ATriggerBox* DropZone;
+
+	UFUNCTION()
+	void OnDropZoneBeginOverlap(AActor* OverlappedActor, AActor* OtherActor);
+
+	UFUNCTION()
+	void OnDropZoneEndOverlap(AActor* OverlappedActor, AActor* OtherActor);
+
+	// Widget to show document info
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> DocumentPopupWidgetClass;
+
+	UUserWidget* DocumentPopupWidgetInstance;
+
+	// Widget to show second document info
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> SecondDocumentPopupWidgetClass;
+
+	UUserWidget* SecondDocumentPopupWidgetInstance;
+
+	UFUNCTION(BlueprintCallable)
+	void RestoreGameplayInput();
+
+	// Document references
+	UPROPERTY()
+	ADocumentItem* PickedUpDocument1 = nullptr;
+
+	UPROPERTY()
+	ADocumentItem* PickedUpDocument2 = nullptr;
+
+	UFUNCTION(BlueprintCallable)
+	void DeliverDocuments();
+
+	//-----References for keycards, marker and customization------------//
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActor* CustomActor;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActor* Marker1Actor;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActor* Marker2Actor;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActor* Marker3Actor;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActor* Marker4Actor;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActor* Marker5Actor;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActor* Marker6Actor;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActor* GarageKeycardActor;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActor* ArchiveKeycardActor;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActor* EquipmentKeycardActor;
+
+	bool bIsPaused;
 
 protected:
 	virtual void BeginPlay() override;
+
+	//---------------------Input actions-------------------------//
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
 	UInputMappingContext* CharacterMappingContext;
@@ -95,6 +228,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
 	UInputAction* OpenDoorAction;
 
+	//-----------Character movement-----------------------------//
 
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
@@ -109,174 +243,47 @@ protected:
 	void StartRunning();
 	void StopRunning();
 
+	//---------Character interaction----------------------------------------//
+
 	void PickUp(const FInputActionValue& Value);
 
 	void TryOpenDoor(const FInputActionValue& Value);
 
-	// Referanse til Widget Blueprint-klassen for startmenyen
+	// ------------Main menu-----------------------------------------------------//
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
 	TSubclassOf<class UMainMenuWidget> MainMenuWidgetClass;
 
 	UPROPERTY()
 	class UMainMenuWidget* MainMenuWidget;
 
+	//-----------Box placement-----------------------------------------------//
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
 	AOpenBox* BoxToPlaceBeforeMinigame;
+
 private:
 
-	// Camera properties
+	//------- Camera properties-------------------------------------------------//
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* SpringArm;
 
+	//--------Overlapping Items -------------------------------------------------//
 
 	UPROPERTY(VisibleInstanceOnly)
 	AItems* OverlappingItems;
 
+	//--------Character state-------------------------------------------------//
+
 	ECharacterState CharacterState = ECharacterState::ECS_Unequipped;
 
+	//----------Menues--------------------------------------------------------//
 
+	UPROPERTY()
+	class UPauseMenuWidget* PauseMenuWidget;
 
-	public:
-		FORCEINLINE void SetOverlappingItems(AItems* Items) { OverlappingItems = Items; }
+	UPROPERTY(EditDefaultsOnly, Category = "UI")
+	TSubclassOf<class UPauseMenuWidget> PauseMenuWidgetClass;
 
-		FORCEINLINE ECharacterState GetCharacterState() const { return CharacterState; }
-
-		void TryEnterMinigame();
-
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
-		UInputAction* EnterMinigameAction;
-
-		UFUNCTION()
-		void OnOverlapBegin(AActor* OverlappedActor, AActor* OtherActor);
-
-		UFUNCTION()
-		void OnOverlapEnd(AActor* OverlappedActor, AActor* OtherActor);
-
-		UPROPERTY(EditAnywhere, Category = "Minigame")
-		ATriggerBox* MinigameTriggerBox;
-
-		UPROPERTY(EditAnywhere, Category = "UI")
-		TSubclassOf<UUserWidget> MinigamePromptWidgetClass;
-
-		UUserWidget* MinigamePromptWidget;
-
-		UPROPERTY()
-		FVector LastSavedLocation;
-
-		//--------------------------------------------------------------------------------------
-
-		// Legg til en ny InputAction
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
-		UInputAction* LookAtPaintingAction;
-
-		 // Variabel som holder en liste over malere
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Painting")
-		TArray<FPaintingInfo> Paintings; // Liste med flere maler
-
-		ATriggerBox* PaintingTriggerBox;
-
-		// Variabel som holder styr på om karakteren ser på maleriet
-		bool bIsLookingAtPainting = false;
-
-		UFUNCTION()
-		void OnPaintingTriggerBeginOverlap(AActor* OverlappedActor, AActor* OtherActor);
-		UFUNCTION()
-		void OnPaintingTriggerEndOverlap(AActor* OverlappedActor, AActor* OtherActor);
-
-		void LookAtPainting(const FInputActionValue& Value);
-
-
-		// Variabel som holder styr på om spilleren er låst i visningen av malerbildet
-		bool bIsMovementLocked = false;
-
-
-		UUserWidget* PaintingWidgetInstance;  // Instans av widgeten som vil bli lagt til på skjermen
-
-		bool bIsInputLocked = false;  // For å hindre gjentatte inputtriggere
-		float InputLockTime = 0.3f;   // Tid i sekunder før input kan brukes igjen (juster etter behov)
-		float CurrentInputTime = 0.0f;
-
-		// Legg til en ny InputAction
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
-		UInputAction* PauseAction;
-
-		UPROPERTY(EditAnywhere, Category = "Drop Zone")
-		ATriggerBox* DropZone;
-
-		UFUNCTION()
-		void OnDropZoneBeginOverlap(AActor* OverlappedActor, AActor* OtherActor);
-
-		UFUNCTION()
-		void OnDropZoneEndOverlap(AActor* OverlappedActor, AActor* OtherActor);
-
-
-		// Widget to show document info
-		UPROPERTY(EditAnywhere, Category = "UI")
-		TSubclassOf<UUserWidget> DocumentPopupWidgetClass;
-
-		UUserWidget* DocumentPopupWidgetInstance;
-
-		// Widget to show second document info
-		UPROPERTY(EditAnywhere, Category = "UI")
-		TSubclassOf<UUserWidget> SecondDocumentPopupWidgetClass;
-
-		UUserWidget* SecondDocumentPopupWidgetInstance;
-
-		UFUNCTION(BlueprintCallable)
-		void RestoreGameplayInput();
-
-
-		// Document references
-		UPROPERTY()
-		ADocumentItem* PickedUpDocument1 = nullptr;
-
-		UPROPERTY()
-		ADocumentItem* PickedUpDocument2 = nullptr;
-
-		UFUNCTION(BlueprintCallable)
-		void DeliverDocuments();
-
-		UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		AActor* CustomActor;
-
-		UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		AActor* Marker1Actor;
-
-		UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		AActor* Marker2Actor;
-
-		UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		AActor* Marker3Actor;
-
-		UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		AActor* Marker4Actor;
-
-		UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		AActor* Marker5Actor;
-
-		UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		AActor* Marker6Actor;
-
-		UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		AActor* GarageKeycardActor;
-
-		UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		AActor* ArchiveKeycardActor;
-
-		UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		AActor* EquipmentKeycardActor;
-
-		bool bIsPaused;
-	private:
-
-		UPROPERTY()
-		class UPauseMenuWidget* PauseMenuWidget;
-
-		UPROPERTY(EditDefaultsOnly, Category = "UI")
-		TSubclassOf<class UPauseMenuWidget> PauseMenuWidgetClass;
-
-		void TogglePauseMenu();
-
+	void TogglePauseMenu();
 
 };

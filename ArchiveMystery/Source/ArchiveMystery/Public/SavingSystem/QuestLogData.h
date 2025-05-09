@@ -6,7 +6,6 @@
 #include "UObject/NoExportTypes.h"
 #include "QuestLogData.generated.h"
 
-// Struktur som representerer hver quest
 USTRUCT(BlueprintType)
 struct FQuestData
 {
@@ -21,9 +20,8 @@ struct FQuestData
     UPROPERTY(BlueprintReadWrite, EditAnywhere)
     FString QuestDescription;
 
-    // Legg til en unik ID for hver quest
     UPROPERTY(BlueprintReadWrite, EditAnywhere)
-    FString QuestID;  // Bruk en unik streng som "Quest1", "Quest2" etc.
+    FString QuestID;  
 };
 
 UCLASS(BlueprintType)
@@ -32,17 +30,14 @@ class YOURGAME_API UQuestLogData : public UObject
     GENERATED_BODY()
 
 public:
-    // Liste over alle quests i loggen
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest Log")
     TArray<FQuestData> QuestEntries;
 
     UFUNCTION(BlueprintCallable, Category = "Quest Log")
     const TArray<FQuestData>& GetQuestEntries() const { return QuestEntries; }
 
-    // Konstruktør
     UQuestLogData();
 
-    // Funksjon for å legge til en quest
     void AddQuest(const FString& QuestName, const FString& QuestDescription);
 
     UFUNCTION(BlueprintCallable, Category = "Quest Log")

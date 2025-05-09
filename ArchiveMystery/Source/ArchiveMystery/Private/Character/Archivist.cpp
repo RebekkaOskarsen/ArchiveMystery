@@ -6,25 +6,19 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/SphereComponent.h"
-
 #include "Components/InputComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
-
 #include "Items/Items.h"
 #include "Items/Box/OpenBox.h"
 #include "Items/Document/DocumentItem.h"
-
 #include "Door/DoubleDoor.h"
 #include "Door/KeycardItem.h"
-
 #include <Kismet/GameplayStatics.h>
 #include "Blueprint/UserWidget.h"
 #include "Character/ArchiveGameInstance.h"
-
 #include "HUD/MainMenuWidget.h"
 #include "HUD/PauseMenuWidget.h"
-
 #include "Character/ArchivistAnimInstance.h"
 
 
@@ -90,10 +84,6 @@ void AArchivist::BeginPlay()
 			{
 				MainMenuWidget->AddToViewport();
 			}
-		}
-		else
-		{
-			UE_LOG(LogTemp, Error, TEXT("MainMenuWidgetClass is not set in AArchivist!"));
 		}
 	}
 
@@ -170,17 +160,16 @@ void AArchivist::BeginPlay()
 		}
 	}
 
+	//Saved the player location after finishing the shredded paper minigame 
 	if (GameInstance && !GameInstance->SavedPlayerLocation.IsZero())
 	{
 		SetActorLocation(GameInstance->SavedPlayerLocation);
-		UE_LOG(LogTemp, Warning, TEXT("Restored player location: %s"), *GameInstance->SavedPlayerLocation.ToString());
 	}
 
 	if (GameInstance)
 	{
 		if (GameInstance->bIsCustomized)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Costum has already been done, hiding the costum."));
 
 			if (CustomActor)
 			{
@@ -189,7 +178,6 @@ void AArchivist::BeginPlay()
 		}
 		else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Costum is available, showing it."));
 			if (CustomActor)
 			{
 				CustomActor->SetActorHiddenInGame(false); 
@@ -201,7 +189,6 @@ void AArchivist::BeginPlay()
 	{
 		if (GameInstance->bIsMarker1)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Marker1 has been shown."));
 			if (Marker1Actor)
 			{
 				Marker1Actor->Destroy();
@@ -209,7 +196,6 @@ void AArchivist::BeginPlay()
 		}
 		else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Showing marker1."));
 			if (Marker1Actor)
 			{
 				Marker1Actor->SetActorHiddenInGame(false); 
@@ -221,7 +207,6 @@ void AArchivist::BeginPlay()
 	{
 		if (GameInstance->bIsMarker2)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Marker2 has been shown."));
 			if (Marker2Actor)
 			{
 				Marker2Actor->Destroy(); 
@@ -229,7 +214,6 @@ void AArchivist::BeginPlay()
 		}
 		else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Showing marker2."));
 			if (Marker2Actor)
 			{
 				Marker2Actor->SetActorHiddenInGame(false); 
@@ -241,7 +225,6 @@ void AArchivist::BeginPlay()
 	{
 		if (GameInstance->bIsMarker3)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Marker3 has been shown."));
 			if (Marker3Actor)
 			{
 				Marker3Actor->Destroy(); 
@@ -249,7 +232,6 @@ void AArchivist::BeginPlay()
 		}
 		else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Showing marker3."));
 			if (Marker3Actor)
 			{
 				Marker3Actor->SetActorHiddenInGame(false); 
@@ -261,7 +243,6 @@ void AArchivist::BeginPlay()
 	{
 		if (GameInstance->bIsMarker4)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Marker4 has been shown."));
 			if (Marker4Actor)
 			{
 				Marker4Actor->Destroy(); 
@@ -269,7 +250,6 @@ void AArchivist::BeginPlay()
 		}
 		else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Showing marker4."));
 			if (Marker4Actor)
 			{
 				Marker4Actor->SetActorHiddenInGame(false); 
@@ -281,7 +261,6 @@ void AArchivist::BeginPlay()
 	{
 		if (GameInstance->bIsMarker5)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Marker5 has been shown."));
 			if (Marker5Actor)
 			{
 				Marker5Actor->Destroy(); 
@@ -289,7 +268,6 @@ void AArchivist::BeginPlay()
 		}
 		else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Showing marker5."));
 			if (Marker5Actor)
 			{
 				Marker5Actor->SetActorHiddenInGame(false); 
@@ -301,7 +279,6 @@ void AArchivist::BeginPlay()
 	{
 		if (GameInstance->bIsMarker6)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Marker6 has been shown."));
 			if (Marker6Actor)
 			{
 				Marker6Actor->Destroy(); 
@@ -309,7 +286,6 @@ void AArchivist::BeginPlay()
 		}
 		else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Showing marker6."));
 			if (Marker6Actor)
 			{
 				Marker6Actor->SetActorHiddenInGame(false); 
@@ -675,11 +651,11 @@ void AArchivist::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 	}
 }
 
+//Entering the shredded papaer minigame 
 void AArchivist::OnOverlapBegin(AActor* OverlappedActor, AActor* OtherActor)
 {
 	if (OtherActor == this) 
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Player entered minigame trigger area!"));
 
 		if (MinigamePromptWidgetClass && !MinigamePromptWidget)
 		{
@@ -692,11 +668,11 @@ void AArchivist::OnOverlapBegin(AActor* OverlappedActor, AActor* OtherActor)
 	}
 }
 
+//Leaving the shredded paper minigame 
 void AArchivist::OnOverlapEnd(AActor* OverlappedActor, AActor* OtherActor)
 {
 	if (OtherActor == this) 
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Player left minigame trigger area!"));
 
 		if (MinigamePromptWidget)
 		{
@@ -728,6 +704,7 @@ void AArchivist::TryEnterMinigame()
 	}
 }
 
+//Is near enough to look at paintings 
 void AArchivist::OnPaintingTriggerBeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
 {
 	if (OtherActor == this) 
@@ -736,7 +713,6 @@ void AArchivist::OnPaintingTriggerBeginOverlap(AActor* OverlappedActor, AActor* 
 		{
 			if (PaintingInfo.PaintingTriggerBox && PaintingInfo.PaintingTriggerBox->IsOverlappingActor(OtherActor))
 			{
-				UE_LOG(LogTemp, Warning, TEXT("Player entered the painting trigger area!"));
 
 				if (PaintingInfo.PaintingInstructionWidgetClass && !PaintingInfo.PaintingInstructionWidgetInstance)
 				{
@@ -751,12 +727,11 @@ void AArchivist::OnPaintingTriggerBeginOverlap(AActor* OverlappedActor, AActor* 
 	}
 }
 
-
+//Ending looking paintings 
 void AArchivist::OnPaintingTriggerEndOverlap(AActor* OverlappedActor, AActor* OtherActor)
 {
 	if (!GetWorld() || !GetWorld()->GetFirstPlayerController())
 	{
-		UE_LOG(LogTemp, Error, TEXT("World or PlayerController is null!"));
 		return;
 	}
 
@@ -765,9 +740,6 @@ void AArchivist::OnPaintingTriggerEndOverlap(AActor* OverlappedActor, AActor* Ot
 	{
 		return; 
 	}
-
-	UE_LOG(LogTemp, Warning, TEXT("OnPaintingTriggerEndOverlap triggered!"));
-	UE_LOG(LogTemp, Warning, TEXT("Player left the painting trigger area!"));
 
 	for (FPaintingInfo& PaintingInfo : Paintings)
 	{
@@ -788,8 +760,7 @@ void AArchivist::OnPaintingTriggerEndOverlap(AActor* OverlappedActor, AActor* Ot
 	}
 }
 
-
-
+//The player can look at several paintings widgets 
 void AArchivist::LookAtPainting(const FInputActionValue& Value)
 {
 	if (bIsInputLocked)
@@ -866,7 +837,6 @@ void AArchivist::RestoreGameplayInput()
 		PC->bShowMouseCursor = false;
 	}
 
-
 	bIsMovementLocked = false;
 	bIsInputLocked = false;
 
@@ -892,6 +862,7 @@ void AArchivist::DeliverDocuments()
 	UE_LOG(LogTemp, Warning, TEXT("Documents delivered and destroyed!"));
 }
 
+//Can interact with the pause menu widget 
 void AArchivist::TogglePauseMenu()
 {
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
@@ -899,7 +870,6 @@ void AArchivist::TogglePauseMenu()
 	{
 		return;
 	}
-
 	if (bIsPaused)
 	{
 		if (PauseMenuWidget)
@@ -910,7 +880,6 @@ void AArchivist::TogglePauseMenu()
 	}
 	else
 	{
-	
 		if (PauseMenuWidgetClass)
 		{
 			PauseMenuWidget = CreateWidget<UPauseMenuWidget>(GetWorld(), PauseMenuWidgetClass);
@@ -920,8 +889,6 @@ void AArchivist::TogglePauseMenu()
 			}
 		}
 	}
-
 	bIsPaused = !bIsPaused;
-
 }
 

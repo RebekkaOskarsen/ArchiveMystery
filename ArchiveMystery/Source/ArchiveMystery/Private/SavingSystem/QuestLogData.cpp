@@ -5,9 +5,10 @@
 
 UQuestLogData::UQuestLogData()
 {
-    // Initialiser med standardverdier om nødvendig
+    
 }
 
+//Adds a new quest with a name and description to the quest log
 void UQuestLogData::AddQuest(const FString& QuestName, const FString& QuestDescription)
 {
     FQuestData NewQuest;
@@ -16,6 +17,7 @@ void UQuestLogData::AddQuest(const FString& QuestName, const FString& QuestDescr
     QuestEntries.Add(NewQuest);
 }
 
+//Updates if the quest is completed or not 
 void UQuestLogData::UpdateQuestStatus(const FString& QuestName, bool bIsCompleted)
 {
     for (FQuestData& Quest : QuestEntries)

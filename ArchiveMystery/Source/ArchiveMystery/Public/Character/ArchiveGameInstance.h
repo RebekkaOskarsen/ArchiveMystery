@@ -29,6 +29,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Quest Log")
 	void LoadQuestLogData();
 
+	//Saving the order of the tasks in the game
+
 	UPROPERTY(BlueprintReadWrite)
 	bool bBoxPlacedBeforeMoldGame = false;
 
@@ -49,6 +51,8 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 	FTransform PlacedBoxTransform;
+
+	//Checkboxes in the quest system 
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest Log")
 	bool bIsCheckBox1Checked;
@@ -74,6 +78,8 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool bIsCustomized;
 
+	//Markers 
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool bIsMarker1;
 
@@ -92,7 +98,7 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool bIsMarker6;
 
-	//Door
+	//Doors & keycards 
 	UPROPERTY(BlueprintReadWrite, Category = "Keycards")
 	bool bHasGarageKeycard;
 

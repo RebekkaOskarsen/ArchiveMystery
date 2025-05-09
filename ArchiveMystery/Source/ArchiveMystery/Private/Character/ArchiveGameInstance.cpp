@@ -3,12 +3,10 @@
 
 #include "Character/ArchiveGameInstance.h"
 #include "SavingSystem/W_QuestLog_Pause.h"
-
 #include "Kismet/GameplayStatics.h"
 #include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
 #include "Dom/JsonObject.h"
-
 #include "Serialization/JsonSerializer.h"
 
 
@@ -38,11 +36,11 @@ UArchiveGameInstance::UArchiveGameInstance()
     bHasEquipmentKeycard = false; 
 }
 
+//Saves the data to a JSON file 
 void UArchiveGameInstance::SaveQuestLogData()
 {
     if (QuestLogData == nullptr)
     {
-        UE_LOG(LogTemp, Warning, TEXT("QuestLogData is nullptr!"));
         return;
     }
 
@@ -91,7 +89,7 @@ void UArchiveGameInstance::SaveQuestLogData()
     FFileHelper::SaveStringToFile(OutputString, *SavePath);
 }
 
-
+//Loads the data from a JSON file 
 void UArchiveGameInstance::LoadQuestLogData()
 {
     if (QuestLogData)

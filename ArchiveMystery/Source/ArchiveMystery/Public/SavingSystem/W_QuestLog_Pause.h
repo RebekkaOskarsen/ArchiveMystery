@@ -17,37 +17,31 @@ class ARCHIVEMYSTERY_API UW_QuestLog_Pause : public UUserWidget
 
 public:
 
+	//Binds the checkboxes in the UI 
 	UPROPERTY(meta = (BindWidget))
-	UCheckBox* CheckBox_1;  // Referanse til checkbox 1
-
-	//UPROPERTY()
-	UPROPERTY(meta = (BindWidget))
-	UCheckBox* CheckBox_2;  // Referanse til checkbox 2
+	UCheckBox* CheckBox_1; 
 
 	UPROPERTY(meta = (BindWidget))
-	UCheckBox* CheckBox_3;  // Referanse til checkbox 1
-
-	//UPROPERTY()
-	UPROPERTY(meta = (BindWidget))
-	UCheckBox* CheckBox_4;  // Referanse til checkbox 2
+	UCheckBox* CheckBox_2;
 
 	UPROPERTY(meta = (BindWidget))
-	UCheckBox* CheckBox_5;  // Referanse til checkbox 1
+	UCheckBox* CheckBox_3; 
 
-	//UPROPERTY()
 	UPROPERTY(meta = (BindWidget))
-	UCheckBox* CheckBox_6;  // Referanse til checkbox 2
+	UCheckBox* CheckBox_4;  
 
-	//UPROPERTY()
 	UPROPERTY(meta = (BindWidget))
-	UCheckBox* CheckBox_7;  // Referanse til checkbox 2
+	UCheckBox* CheckBox_5;
 
+	UPROPERTY(meta = (BindWidget))
+	UCheckBox* CheckBox_6; 
+
+	UPROPERTY(meta = (BindWidget))
+	UCheckBox* CheckBox_7; 
 
 	UFUNCTION(BlueprintCallable, Category = "Quest Log")
-	// Funksjon for å lagre tilstand til checkbox
 	void SaveCheckBoxState();
 
 	UFUNCTION(BlueprintCallable, Category = "Quest Log")
-	// Funksjon for å lagre tilstand til checkbox
 	void LoadCheckBoxState();
 };

@@ -9,8 +9,8 @@
 #include "InputMappingContext.h"
 #include "InputAction.h"
 #include "EngineUtils.h"
-#include "Containers/Map.h"  // For TMap
-#include "Containers/Array.h" // For TArray
+#include "Containers/Map.h"  
+#include "Containers/Array.h" 
 #include "Engine/StaticMeshActor.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
@@ -28,41 +28,18 @@ class ARCHIVEMYSTERY_API AMinigame : public APawn
 public:
 	AMinigame();
 
-protected:
-	virtual void BeginPlay() override;
-
-	TMap<FString, TArray<FString>> SnappingRules;
-
-	TSet<FString> SnappedPieces;
-
-	UPROPERTY(EditAnywhere, Category = "Snapping")
-	float SnapThreshold = 5.0f;
-
-	UPROPERTY(EditAnywhere, Category = "Snapping")
-	AActor* PaperSheet;
-
-	TMap<FString, FString> ParentMap; 
-
-	TSet<FString> LockedPaperstrips; 
-	
-	TMap<FString, TArray<UStaticMeshComponent*>> GroupMap;
-
-	FString FindParent(const FString& Node);
-	void MergeGroups(const FString& NodeA, const FString& NodeB);
-	void ValidateGroups();
-	void LogParentMap();
-
-
-
-public:	
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	void OnAllPiecesSnapped();
 
+	//------------------------CAMERA---------------------------------------------------//
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
 	UCameraComponent* TopDownCamera;
+
+	//---------------------------INPUT-----------------------------------------------//
 
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UInputMappingContext* IMC_DragAndDrop;
@@ -72,6 +49,8 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UInputAction* IA_Release;
+
+	//-----------------------DRAGGING THE PAPER STRIPS----------------------------//
 
 	UPROPERTY()
 	bool bIsDragging;
@@ -85,15 +64,18 @@ public:
 	void StartDragging();
 	void StopDragging();
 
+	//--------------------------FADE IN OF THE PAPER SHEET---------------------------------------------------//
+
 	UPROPERTY(EditAnywhere, Category = "Fade")
-	float FadeDuration = 2.0f; 
+	float FadeDuration = 2.0f;
 
 	UPROPERTY(VisibleAnywhere, Category = "Fade")
-	float CurrentFadeTime = 0.0f; 
+	float CurrentFadeTime = 0.0f;
+
 	UPROPERTY(VisibleAnywhere, Category = "Fade")
 	bool bIsFadingIn = false;
 
-	//--------------------------------------UI---------------------------------------------------------------//
+	//--------------------------------------UI & EFFECTS---------------------------------------------------------------//
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 	TSubclassOf<UUserWidget> ExitWidgetClass;
@@ -120,7 +102,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Game")
 	void ShowTutorial();
-		
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
 	USoundBase* SnapSound;
 
@@ -130,5 +112,33 @@ public:
 	UNiagaraSystem* SparkNiagaraEffect;
 
 	void PlaySparkEffect(FVector Location);
+
+protected:
+
+	virtual void BeginPlay() override;
+
+	//-----------------------SNAPPING------------------------------------------------------//
+
+	TMap<FString, TArray<FString>> SnappingRules;
+
+	TSet<FString> SnappedPieces;
+
+	UPROPERTY(EditAnywhere, Category = "Snapping")
+	float SnapThreshold = 5.0f;
+
+	UPROPERTY(EditAnywhere, Category = "Snapping")
+	AActor* PaperSheet;
+
+	TMap<FString, FString> ParentMap; 
+
+	TSet<FString> LockedPaperstrips; 
+	
+	TMap<FString, TArray<UStaticMeshComponent*>> GroupMap;
+
+	FString FindParent(const FString& Node);
+
+	void MergeGroups(const FString& NodeA, const FString& NodeB);
+
+	void ValidateGroups();
 
 };

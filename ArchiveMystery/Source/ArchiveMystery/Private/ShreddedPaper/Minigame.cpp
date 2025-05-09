@@ -2,7 +2,6 @@
 
 #include "ShreddedPaper/Minigame.h"
 #include "Camera/CameraComponent.h"
-
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
 #include "Kismet/GameplayStatics.h"
@@ -24,14 +23,11 @@ AMinigame::AMinigame()
     SelectedMesh = nullptr;
 
     GameMenuWidgetClass = LoadObject<UClass>(nullptr, TEXT("/Game/ShreddedPaper_minigame/Blueprints/GameMenuWidget.GameMenuWidget_C"));
-
-
 }
 
 void AMinigame::BeginPlay()
 {
 	Super::BeginPlay();
-
 
     APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
     if (PlayerController)
@@ -80,6 +76,7 @@ void AMinigame::BeginPlay()
         PC->bEnableClickEvents = true;
         PC->bEnableMouseOverEvents = true;
     }
+    // Sets up the snapping rules 
     SnappingRules.Add("paperstrip01", { "paperstrip02" });
     SnappingRules.Add("paperstrip02", { "paperstrip01", "paperstrip03" });
     SnappingRules.Add("paperstrip03", { "paperstrip02", "paperstrip04" });
@@ -110,6 +107,7 @@ void AMinigame::BeginPlay()
 
 }
 
+//Starts the game by removing the tutorial 
 void AMinigame::StartGame()
 {
     if (TutorialWidgetInstance)
@@ -138,6 +136,7 @@ void AMinigame::StartGame()
     }
 }
 
+// Shows the tutorial when the button is clicked 
 void AMinigame::ShowTutorial()
 {
  
@@ -162,12 +161,12 @@ void AMinigame::ShowTutorial()
     }
 }
 
+// Recursively finds and returns the root parent of a paperstrip
 FString AMinigame::FindParent(const FString& Node)
 {
     if (!ParentMap.Contains(Node))
     {
         ParentMap.Add(Node, Node); 
-        UE_LOG(LogTemp, Warning, TEXT("FindParent: Node %s initialized as its own root"), *Node);
     }
 
     if (ParentMap[Node] != Node)
@@ -178,7 +177,7 @@ FString AMinigame::FindParent(const FString& Node)
     return ParentMap[Node];
 }
 
-
+//Merges two paperstrip groups by updateing the parent map 
 void AMinigame::MergeGroups(const FString& NodeA, const FString& NodeB)
 {
     FString RootA = FindParent(NodeA);
@@ -186,14 +185,13 @@ void AMinigame::MergeGroups(const FString& NodeA, const FString& NodeB)
 
     if (RootA == RootB)
     {
-        UE_LOG(LogTemp, Warning, TEXT("Already in the same group: %s and %s (Root: %s)"), *NodeA, *NodeB, *RootA);
         return; 
     }
 
     ParentMap[RootB] = RootA;
-    UE_LOG(LogTemp, Warning, TEXT("Groups merged successfully: %s with %s"), *RootA, *RootB);
 }
 
+//Checks if two paperstrips are correctly snapped together 
 void AMinigame::ValidateGroups()
 {
     TMap<FString, int32> GroupCounts;
@@ -209,28 +207,14 @@ void AMinigame::ValidateGroups()
         GroupCounts.FindOrAdd(Root)++;
     }
 
-    for (const TPair<FString, int32>& Group : GroupCounts)
-    {
-        UE_LOG(LogTemp, Warning, TEXT("Group Root: %s, Size: %d"), *Group.Key, Group.Value);
-    }
-
     if (GroupCounts.Num() == 1 && GroupCounts.begin()->Value == 16)
     {
         FString Root = GroupCounts.begin()->Key;
-        UE_LOG(LogTemp, Warning, TEXT("Win condition met: Group Root: %s, Size: 16"), *Root);
         OnAllPiecesSnapped();
     }
 }
 
-void AMinigame::LogParentMap()
-{
-    UE_LOG(LogTemp, Warning, TEXT("Current ParentMap:"));
-    for (const TPair<FString, FString>& Pair : ParentMap)
-    {
-        UE_LOG(LogTemp, Warning, TEXT("Node: %s, Parent: %s"), *Pair.Key, *Pair.Value);
-    }
-}
-
+//Is handling the dragging of the paperstrips and the snapping logic during eacg frame 
 void AMinigame::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -363,16 +347,11 @@ void AMinigame::Tick(float DeltaTime)
 
                         ValidateGroups();
 
-                        UE_LOG(LogTemp, Warning, TEXT("Groups merged successfully: %s with %s"), *SelectedGroupRoot, *TargetGroupRoot);
-
                         return; 
                     }
                 }
             }
         }
-
-
-
     }
 
     if (bIsFadingIn && PaperSheet)
@@ -395,12 +374,12 @@ void AMinigame::Tick(float DeltaTime)
 
         if (CurrentFadeTime >= FadeDuration)
         {
-            bIsFadingIn = false; // Fade-in complete
-            UE_LOG(LogTemp, Warning, TEXT("Fade-in complete for PaperSheet."));
+            bIsFadingIn = false;
         }
     }
 }
 
+//When all the paperstrips are snapped together, the paperstrips actors are destroyed and the paper sheet is shown 
 void AMinigame::OnAllPiecesSnapped()
 {
     for (TActorIterator<AActor> ActorItr(GetWorld()); ActorItr; ++ActorItr)
@@ -432,7 +411,6 @@ void AMinigame::OnAllPiecesSnapped()
     if (Archivist)
     {
         Archivist->bHasFinishedShreddedPaperMinigame = true;
-        UE_LOG(LogTemp, Warning, TEXT("Shredded paper minigame completed! Archivist flag set."));
     }
 
     if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
@@ -452,10 +430,10 @@ void AMinigame::OnAllPiecesSnapped()
     if (UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
     {
         GameInstance->bShreddedGameComplete = true;
-        UE_LOG(LogTemp, Warning, TEXT("Shredded minigame completed!"));
     }
 }
 
+//Binds the input for dragging and releasing the paperstrips 
 void AMinigame::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -474,6 +452,7 @@ void AMinigame::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
     }
 }
 
+//The paperstrips can be dragged with left mouse click 
 void AMinigame::StartDragging()
 {
     FHitResult HitResult;
@@ -497,36 +476,29 @@ void AMinigame::StartDragging()
 
                     FVector MeshPosition = SelectedMesh->GetComponentLocation();
                     DragOffset = MeshPosition - HitResult.ImpactPoint;
-
-                    UE_LOG(LogTemp, Warning, TEXT("Dragging group with root: %s"), *FindParent(ParentActor->Tags[0].ToString()));
-                }
-                else
-                {
-                    UE_LOG(LogTemp, Warning, TEXT("Hit object is not draggable."));
                 }
             }
         }
     }
 }
 
+//Stops dragging the paperstrips ans resets the selected paperstrip so another one can be dragged 
 void AMinigame::StopDragging()
 {
     bIsDragging = false;
     SelectedMesh = nullptr;
 }
 
+//Plays a clicking sound when two paperstrips are snapped together 
 void AMinigame::PlaySnapSound()
 {
     if (SnapSound)
     {
         UGameplayStatics::PlaySound2D(this, SnapSound);
     }
-    else
-    {
-        UE_LOG(LogTemp, Warning, TEXT("SnapSound is not set!"));
-    }
 }
 
+//Spawns a glitter spark when two paperstrips are snapped together 
 void AMinigame::PlaySparkEffect(FVector Location)
 {
     if (SparkNiagaraEffect)
@@ -541,9 +513,5 @@ void AMinigame::PlaySparkEffect(FVector Location)
             true, 
             ENCPoolMethod::AutoRelease
         );
-    }
-    else
-    {
-        UE_LOG(LogTemp, Warning, TEXT("SparkNiagaraEffect is not set!"));
     }
 }

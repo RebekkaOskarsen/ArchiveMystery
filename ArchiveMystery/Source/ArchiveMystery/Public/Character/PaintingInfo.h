@@ -10,7 +10,6 @@
 #include "UObject/ObjectMacros.h"
 #include "PaintingInfo.generated.h"
 
-// Struktur som representerer en maler (TriggerBox og Widget)
 USTRUCT(BlueprintType)
 struct FPaintingInfo
 {
@@ -26,7 +25,7 @@ struct FPaintingInfo
     TSubclassOf<UUserWidget> PaintingInstructionWidgetClass;
 
     UPROPERTY()
-    UUserWidget* PaintingInstructionWidgetInstance;  // Individual widget per painting
+    UUserWidget* PaintingInstructionWidgetInstance; 
 
     UPROPERTY()
     UUserWidget* PaintingWidgetInstance;

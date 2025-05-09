@@ -12,18 +12,15 @@ void UPauseMenuWidget::NativeConstruct()
 {
     Super::NativeConstruct();
 
-
-    // Bind "OnBackToMainMenuClicked" til "Back to Main Menu"-knappen
     if (BackToMainMenuButton)
     {
         BackToMainMenuButton->OnClicked.AddDynamic(this, &UPauseMenuWidget::OnBackToMainMenuClicked);
     }
 
-    if (ContinueGameButton_2) // <- Ny binding her
+    if (ContinueGameButton_2) 
     {
         ContinueGameButton_2->OnClicked.AddDynamic(this, &UPauseMenuWidget::OnCreditsPauseClicked);
     }
-  
 }
 
 
@@ -36,7 +33,6 @@ void UPauseMenuWidget::OnBackToMainMenuClicked()
         {
             ExitWidget->AddToViewport();
 
-            // Om du ønsker å skjule pausemenyen samtidig:
             RemoveFromParent();
         }
     }
@@ -51,7 +47,6 @@ void UPauseMenuWidget::OnCreditsPauseClicked()
         {
             CreditsWidget->AddToViewport();
 
-            // (Valgfritt) Hvis du vil skjule hovedmenyen når Credits vises:
             RemoveFromParent();
         }
     }
