@@ -325,6 +325,10 @@ void AArchivist::BeginPlay()
 
 void AArchivist::Move(const FInputActionValue& Value)
 {
+	if (bIsMovementLocked)
+	{
+		return;
+	}
 
 	const FVector2D DirectionValue = Value.Get<FVector2D>();
 
@@ -343,6 +347,11 @@ void AArchivist::Move(const FInputActionValue& Value)
 
 void AArchivist::Look(const FInputActionValue& Value)
 {
+	if (bIsMovementLocked)
+	{
+		return;
+	}
+
 	const FVector2D LookAxisValue = Value.Get<FVector2D>();
 
 	if (GetController())
@@ -768,8 +777,6 @@ void AArchivist::LookAtPainting(const FInputActionValue& Value)
 		return;
 	}
 
-	bool bDidLookAtPainting = false;
-
 	for (FPaintingInfo& PaintingInfo : Paintings)
 	{
 		if (PaintingInfo.PaintingTriggerBox && PaintingInfo.PaintingTriggerBox->IsOverlappingActor(this))
@@ -791,24 +798,21 @@ void AArchivist::LookAtPainting(const FInputActionValue& Value)
 			else
 			{
 				PaintingInfo.bIsLookingAtPainting = false;
-				bIsMovementLocked = false;
 
 				if (PaintingInfo.PaintingWidgetInstance)
 				{
 					PaintingInfo.PaintingWidgetInstance->RemoveFromViewport();
 					PaintingInfo.PaintingWidgetInstance = nullptr;
 				}
+
+				bIsMovementLocked = false;
 			}
 
-			bDidLookAtPainting = true;
+			bIsInputLocked = true;
+			CurrentInputTime = 0.0f;
+
 			break; 
 		}
-	}
-
-	if (bDidLookAtPainting)
-	{
-		bIsInputLocked = true;
-		CurrentInputTime = 0.0f;
 	}
 }
 
