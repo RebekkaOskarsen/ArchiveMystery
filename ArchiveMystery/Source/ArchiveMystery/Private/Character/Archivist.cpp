@@ -56,7 +56,7 @@ void AArchivist::BeginPlay()
 
 	// Determine current level name
 	FString CurrentMapName = GetWorld()->GetMapName();
-	CurrentMapName.RemoveFromStart(GetWorld()->StreamingLevelsPrefix); // removes "UEDPIE_0_" in editor
+	CurrentMapName.RemoveFromStart(GetWorld()->StreamingLevelsPrefix); 
 
 	// Prevent duplicate players
 	if (GetWorld())
@@ -554,7 +554,6 @@ void AArchivist::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	// Hvis inputen er låst, oppdater tiden og frigjør input når cooldown er over
 	if (bIsInputLocked)
 	{
 		CurrentInputTime += DeltaTime;

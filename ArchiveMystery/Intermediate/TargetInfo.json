@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "ArchiveMystery",
+			"Path": "..\\Source\\ArchiveMystery.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "ArchiveMysteryEditor",
+			"Path": "..\\Source\\ArchiveMysteryEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

@@ -12,71 +12,21 @@
 
 
 
-//void UMainMenuWidget::NativeConstruct()
-//{
-//    Super::NativeConstruct();
-//
-//    // Sett input-modus
-//    if (GetWorld())
-//    {
-//        if (APlayerController* PC = GetWorld()->GetFirstPlayerController())
-//        {
-//            PC->SetInputMode(FInputModeUIOnly());
-//            PC->bShowMouseCursor = true;
-//        }
-//    }
-//
-//    // Bind "OnStartGameClicked" til "Start Game"-knappen
-//    if (StartGameButton)
-//    {
-//        StartGameButton->OnClicked.AddDynamic(this, &UMainMenuWidget::OnStartGameClicked);
-//    }
-//
-//    // Bind "OnExitGameClicked" til "Exit Game"-knappen
-//    if (ExitGameButton)
-//    {
-//        ExitGameButton->OnClicked.AddDynamic(this, &UMainMenuWidget::OnExitGameClicked);
-//    }
-//}
-//
-//void UMainMenuWidget::OnStartGameClicked()
-//{
-//    // Gjør musepekeren usynlig når spillet starter
-//    if (GetWorld())
-//    {
-//        if (APlayerController* PC = GetWorld()->GetFirstPlayerController())
-//        {
-//            PC->SetInputMode(FInputModeGameOnly());
-//            PC->bShowMouseCursor = false;
-//        }
-//    }
-//
-//    // Last "Archive-Mystery"-nivået
-//    UGameplayStatics::OpenLevel(this, FName("StartGame"));
-//}
-//
-//void UMainMenuWidget::OnExitGameClicked()
-//{
-//    // Avslutt spillet
-//    UKismetSystemLibrary::QuitGame(this, nullptr, EQuitPreference::Quit, true);
-//}
 
 void UMainMenuWidget::NativeConstruct()
 {
     Super::NativeConstruct();
 
-    // Bind "OnStartGameClicked" til "Start Game"-knappen
     if (StartGameButton)
     {
         StartGameButton->OnClicked.AddDynamic(this, &UMainMenuWidget::OnStartGameClicked);
     }
 
-    // Bind "OnExitGameClicked" til "Exit Game"-knappen
     if (ExitGameButton)
     {
         ExitGameButton->OnClicked.AddDynamic(this, &UMainMenuWidget::OnExitGameClicked);
     }
-    if (Credits_Button) // <- Ny binding her
+    if (Credits_Button) 
     {
         Credits_Button->OnClicked.AddDynamic(this, &UMainMenuWidget::OnCreditsClicked);
     }
@@ -84,13 +34,11 @@ void UMainMenuWidget::NativeConstruct()
 
 void UMainMenuWidget::OnStartGameClicked()
 {
-    // Last "Archive-Mystery"-nivået
     UGameplayStatics::OpenLevel(this, FName("StartGame"));
 }
 
 void UMainMenuWidget::OnExitGameClicked()
 {
-    // Avslutt spillet
     UKismetSystemLibrary::QuitGame(this, nullptr, EQuitPreference::Quit, true);
 }
 
@@ -103,7 +51,6 @@ void UMainMenuWidget::OnCreditsClicked()
         {
             CreditsWidget->AddToViewport();
 
-            // (Valgfritt) Hvis du vil skjule hovedmenyen når Credits vises:
             RemoveFromParent();
         }
     }
