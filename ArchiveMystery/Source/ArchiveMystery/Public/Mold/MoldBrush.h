@@ -23,21 +23,19 @@ class ARCHIVEMYSTERY_API AMoldBrush : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
 	AMoldBrush();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	//Brush size: Small or Big
 	void SetBrushSize(EBrushSize NewSize);
 	EBrushSize GetBrushSize() const { return CurrentBrushSize; }
 
-	// Function to check if the brush is hovering over mold
+	//Check if the brush is hovering over mold
 	void CheckForMold();
 
 	FTimerHandle FallbackBrushTimerHandle;
@@ -49,10 +47,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Effects")
 	FVector EffectOffset = FVector(0.f, 0.f, 0.f);
 
-
+	//Sound
 	UPROPERTY()
 	UAudioComponent* BrushAudioComponent;
-
 
 	UPROPERTY(EditAnywhere, Category = "Audio")
 	USoundBase* BrushSound;
@@ -69,8 +66,11 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Brush")
 	UStaticMesh* BigBrushMesh;
 
+	//Brush sound finished
 	UFUNCTION()
 	void OnBrushSoundFinished();
+
+	//------------------------------------//
 
 	void UpdateCursorMesh();
 

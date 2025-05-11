@@ -15,22 +15,20 @@ class ARCHIVEMYSTERY_API ATriggerDeliverDocuments : public AActor
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this actor's properties
 	ATriggerDeliverDocuments();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 	void ShowDeliverDocumentsWidget();
 public:
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 private:
 	UPROPERTY(VisibleAnywhere)
 	UBoxComponent* TriggerBox;
 
+	//Widget
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> DeliverDocumentsWidgetClass;
 
@@ -42,7 +40,6 @@ private:
 	void CheckForInteraction();
 
 public:
-	// Functions for overlap
 	UFUNCTION()
 	void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
@@ -52,6 +49,7 @@ public:
 	void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
+	//Widget
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> PressEWidgetClass;
 

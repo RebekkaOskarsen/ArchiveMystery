@@ -14,9 +14,10 @@ AKeycardItem::AKeycardItem()
 	KeycardText->SetVerticalAlignment(EVRTA_TextCenter);
 	KeycardText->SetTextRenderColor(FColor::Black);
 	KeycardText->SetWorldSize(12.f);
-	KeycardText->SetRelativeRotation(FRotator(90.f, 0.f, 180.f)); // face up
-	KeycardText->SetRelativeLocation(FVector(0.f, 0.f, 1.2f)); // float just above surface
+	KeycardText->SetRelativeRotation(FRotator(90.f, 0.f, 180.f));
+	KeycardText->SetRelativeLocation(FVector(0.f, 0.f, 1.2f));
 
+	//Particle
 	Sparkle = CreateDefaultSubobject<UNiagaraComponent>(TEXT("Sparkle"));
 	Sparkle->SetupAttachment(RootComponent);
 	Sparkle->SetRelativeLocation(FVector(0.f, 0.f, 20.f));

@@ -15,15 +15,12 @@ class ARCHIVEMYSTERY_API AMoldMinigame : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
 	AMoldMinigame();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	void OnMoldDestroyed();
@@ -32,9 +29,9 @@ public:
 	void SwitchToPaper2();
 
 	UFUNCTION(BlueprintCallable, Category = "Minigame")
-	void EnableBrushing(); // Function to allow brushing after the tutorial
+	void EnableBrushing(); //Allow brushing after the tutorial
 
-	bool bCanBrush; // Tracks if the player can brush mold
+	bool bCanBrush;
 
 	UFUNCTION(BlueprintCallable, Category = "Minigame")
 	void ShowTutorial();
@@ -43,26 +40,25 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Camera")
 	UCameraComponent* MoldCamera;
 
-	// Track which paper is active
 	int32 CurrentPaperIndex;
 
-	// References to the papers
+//----------------References to the Paper 1 and Paper 2---------------------//
 	UPROPERTY(EditAnywhere, Category = "Papers")
 	AActor* Paper1;
 
 	UPROPERTY(EditAnywhere, Category = "Papers")
 	AActor* Paper2;
 
-	// Track number of mold pieces
+
+	//Mold pieces
 	int32 MoldCount;
 
-	// Spawn mold for the current paper
+	//Spawn mold for the current paper
 	void SpawnMoldForCurrentPaper();
 
-	// Check if the minigame is won
 	void CheckWinCondition();
 
-	//// Widget
+	//-----------------Widgets-----------------//
 	//Exit
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> ExitWidgetClass;
@@ -73,8 +69,7 @@ private:
 	void ShowExitUI();
 
 
-	// Next paper
-
+	//Next paper
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> ArrowWidgetClass;
 
@@ -84,15 +79,12 @@ private:
 	void ShowArrowUI();
 
 
-	// Tutorial
-
+	//Tutorial
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> MoldTutorialWidgetClass;
 
 	UPROPERTY()
 	UUserWidget* MoldTutorialWidget;
-
-
 
 
 	// Brush Selection

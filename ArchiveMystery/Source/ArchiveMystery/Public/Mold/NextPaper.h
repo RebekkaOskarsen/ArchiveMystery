@@ -17,7 +17,7 @@ class ARCHIVEMYSTERY_API UNextPaper : public UUserWidget
 	
 public:
 	UFUNCTION(BlueprintCallable)
-	void OnArrowClicked();  // Function to handle the arrow click
+	void OnArrowClicked(); //Button click
 
 protected:
 	virtual void NativeConstruct() override;

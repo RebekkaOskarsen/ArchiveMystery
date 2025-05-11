@@ -9,7 +9,7 @@
 
 AMoldPlayerController::AMoldPlayerController()
 {
-    bShowMouseCursor = true; // Show mouse cursor
+    bShowMouseCursor = true;
     bEnableClickEvents = true;
     bEnableMouseOverEvents = true;
 }
@@ -48,11 +48,6 @@ void AMoldPlayerController::ShowBrushUI()
 
         WidgetInstance->AddToViewport();
         BrushSelectionUI = Cast<UBrushSelectionWidget>(WidgetInstance);
-
-        if (BrushSelectionUI)
-        {
-            UpdateBrushUI(true); // Start with small brush selected
-        }
     }
 }
 
@@ -73,7 +68,6 @@ void AMoldPlayerController::SpawnBrush(EBrushSize BrushSize)
         MoldBrush = nullptr;
     }
 
-    // Load the brush blueprint
     UClass* BrushBlueprint = LoadClass<AActor>(nullptr, TEXT("/Game/Minigame-Mold/Blueprint/BP_MoldBrush.BP_MoldBrush_C"));
     if (BrushBlueprint)
     {
@@ -82,14 +76,6 @@ void AMoldPlayerController::SpawnBrush(EBrushSize BrushSize)
         {
             MoldBrush->SetBrushSize(BrushSize);
         }
-    }
-}
-
-void AMoldPlayerController::UpdateBrushUI(bool bIsSmallBrush)
-{
-    if (BrushSelectionUI)
-    {
-        BrushSelectionUI->UpdateBrushSelection(bIsSmallBrush);
     }
 }
 

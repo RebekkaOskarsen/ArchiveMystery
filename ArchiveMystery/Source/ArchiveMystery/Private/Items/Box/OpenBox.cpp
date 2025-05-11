@@ -10,15 +10,13 @@ void AOpenBox::Equip(USceneComponent* InParent, FName InSocketName)
 {
     if (!InParent) return;
 
-    // Disable physics
     EnablePhysics(false);
 
-    // Attach to character's hand
+    //Attach to characters hand
     FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, true);
     DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
     AttachToComponent(InParent, AttachmentRules, InSocketName);
 
-    // FORCE a full render refresh
     ItemMesh->UnregisterComponent();
     ItemMesh->RegisterComponent();
 
@@ -33,7 +31,7 @@ void AOpenBox::EnablePhysics(bool bEnable)
     if (!ItemMesh) return;
 
     ItemMesh->SetSimulatePhysics(bEnable);
-    ItemMesh->SetEnableGravity(bEnable); // <-- Add this line
+    ItemMesh->SetEnableGravity(bEnable);
     ItemMesh->SetCollisionEnabled(bEnable ? ECollisionEnabled::QueryAndPhysics : ECollisionEnabled::NoCollision);
     Sphere->SetCollisionEnabled(bEnable ? ECollisionEnabled::QueryOnly : ECollisionEnabled::NoCollision);
 

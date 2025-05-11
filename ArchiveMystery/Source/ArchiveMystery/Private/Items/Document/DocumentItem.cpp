@@ -9,11 +9,9 @@ void ADocumentItem::EquipDocument(USceneComponent* InParent, FName InSocketName)
 	FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, true);
 	ItemMesh->AttachToComponent(InParent, AttachmentRules, InSocketName);
 
-	// Disable physics and collisions
 	ItemMesh->SetSimulatePhysics(false);
 	ItemMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
-	// Optional: disable overlap events too
 	ItemMesh->SetGenerateOverlapEvents(false);
 }
 
@@ -24,7 +22,6 @@ void ADocumentItem::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AA
 	AArchivist* Archivist = Cast<AArchivist>(OtherActor);
 	if (Archivist)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Overlapping with document: %s"), *GetName());
 		Archivist->SetOverlappingItems(this);
 
 		if (PromptWidgetClass && !PromptWidgetInstance)
@@ -45,7 +42,6 @@ void ADocumentItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent,
 	AArchivist* Archivist = Cast<AArchivist>(OtherActor);
 	if (Archivist && Archivist->GetOverlappingItems() == this)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Stopped overlapping with document: %s"), *GetName());
 		Archivist->SetOverlappingItems(nullptr);
 	}
 

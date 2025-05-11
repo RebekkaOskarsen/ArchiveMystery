@@ -21,9 +21,9 @@ public:
 	FORCEINLINE UStaticMeshComponent* GetItemMesh() const { return ItemMesh; }
 	FORCEINLINE USphereComponent* GetSphere() const { return Sphere; }
 
-
 	virtual void OnEquipped();
 	virtual void OnUnequipped();
+
 protected:
 	virtual void BeginPlay() override;
 
@@ -38,7 +38,4 @@ protected:
 
 	UPROPERTY(VisibleAnywhere)
 	USphereComponent* Sphere;
-
-
-
 };

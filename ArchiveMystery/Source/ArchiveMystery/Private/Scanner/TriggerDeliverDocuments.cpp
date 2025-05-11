@@ -8,7 +8,7 @@
 #include "GameFramework/PlayerController.h"
 #include "Character/Archivist.h"
 
-// Sets default values
+
 ATriggerDeliverDocuments::ATriggerDeliverDocuments()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -23,7 +23,6 @@ ATriggerDeliverDocuments::ATriggerDeliverDocuments()
 	DeliverDocumentsWidgetInstance = nullptr;
 }
 
-// Called when the game starts or when spawned
 void ATriggerDeliverDocuments::BeginPlay()
 {
 	Super::BeginPlay();
@@ -43,7 +42,6 @@ void ATriggerDeliverDocuments::ShowDeliverDocumentsWidget()
 		if (DeliverDocumentsWidgetInstance)
 		{
 			DeliverDocumentsWidgetInstance->AddToViewport();
-			UE_LOG(LogTemp, Warning, TEXT("Deliver Documents Widget displayed!"));
 
 			APlayerController* PC = GetWorld()->GetFirstPlayerController();
 			if (PC)
@@ -55,7 +53,6 @@ void ATriggerDeliverDocuments::ShowDeliverDocumentsWidget()
 	}
 }
 
-// Called every frame
 void ATriggerDeliverDocuments::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -72,7 +69,6 @@ void ATriggerDeliverDocuments::CheckForInteraction()
 
 		if (PlayerController && Archivist && PlayerController->WasInputKeyJustPressed(EKeys::E))
 		{
-			// Check ALL conditions
 			if (Archivist->bHasPlacedBox &&
 				Archivist->bHasFinishedShreddedPaperMinigame &&
 				Archivist->bHasFinishedMoldMinigame &&
@@ -80,12 +76,7 @@ void ATriggerDeliverDocuments::CheckForInteraction()
 				Archivist->bHasFoundDocument2 &&
 				Archivist->bHasScannedDocuments)
 			{
-				// All requirements met: show the widget
 				ShowDeliverDocumentsWidget();
-			}
-			else
-			{
-				UE_LOG(LogTemp, Warning, TEXT("You must complete all tasks (box, minigames, documents, scan) before delivering documents!"));
 			}
 		}
 	}
@@ -97,7 +88,6 @@ void ATriggerDeliverDocuments::OnOverlapBegin(UPrimitiveComponent* OverlappedCom
 	{
 		bPlayerIsInside = true;
 
-		// Show "Press E" widget
 		if (PressEWidgetClass && !PressEWidgetInstance)
 		{
 			PressEWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), PressEWidgetClass);
@@ -115,7 +105,6 @@ void ATriggerDeliverDocuments::OnOverlapEnd(UPrimitiveComponent* OverlappedCompo
 	{
 		bPlayerIsInside = false;
 
-		// Hide "Press E" widget
 		if (PressEWidgetInstance)
 		{
 			PressEWidgetInstance->RemoveFromParent();

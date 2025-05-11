@@ -7,9 +7,6 @@
 #include "Character/Archivist.h"
 #include "ArchivistAnimInstance.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class ARCHIVEMYSTERY_API UArchivistAnimInstance : public UAnimInstance
 {
@@ -18,11 +15,11 @@ class ARCHIVEMYSTERY_API UArchivistAnimInstance : public UAnimInstance
 public:
 	ECharacterState CharacterState;
 
-	// Animation from idle to holding
+	//Animation from idle to holding
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool bIsHoldingBox;
 
-	// Animation from idle to see watch
+	//Animation from idle to see watch
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Idle")
 	bool bPlayIdleBreak = false;
 

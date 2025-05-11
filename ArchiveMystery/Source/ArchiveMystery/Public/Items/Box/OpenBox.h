@@ -20,11 +20,13 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Pickup")
 	bool bHasBeenPlaced = false;
 
+	//Widget
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> PressEWidgetClass;
 
 	UUserWidget* PressEWidgetInstance;
 
+	//Sound
 	UPROPERTY(EditAnywhere, Category = "Sound")
 	USoundBase* PickupSound;
 

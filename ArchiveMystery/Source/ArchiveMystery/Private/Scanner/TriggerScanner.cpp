@@ -8,7 +8,6 @@
 #include "GameFramework/PlayerController.h"
 #include "Character/Archivist.h"
 
-// Sets default values
 ATriggerScanner::ATriggerScanner()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -43,7 +42,6 @@ void ATriggerScanner::ShowScannerWidget()
 		if (ScannerWidgetInstance)
 		{
 			ScannerWidgetInstance->AddToViewport();
-			UE_LOG(LogTemp, Warning, TEXT("Scanner Widget displayed!"));
 
 			APlayerController* PC = GetWorld()->GetFirstPlayerController();
 			if (PC)
@@ -55,7 +53,6 @@ void ATriggerScanner::ShowScannerWidget()
 	}
 }
 
-// Called every frame
 void ATriggerScanner::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -72,19 +69,13 @@ void ATriggerScanner::CheckForInteraction()
 
 		if (PlayerController && Archivist && PlayerController->WasInputKeyJustPressed(EKeys::E))
 		{
-			// Only allow interaction if ALL 5 conditions are met
 			if (Archivist->bHasPlacedBox &&
 				Archivist->bHasFinishedShreddedPaperMinigame &&
 				Archivist->bHasFinishedMoldMinigame &&
 				Archivist->bHasFoundDocument1 &&
 				Archivist->bHasFoundDocument2)
 			{
-				ShowScannerWidget(); // Your function to show scanner UI
-			}
-			else
-			{
-				UE_LOG(LogTemp, Warning, TEXT("You must complete all objectives before using the scanner!"));
-				// (Optional) Show a 'You can't scan yet' widget/message
+				ShowScannerWidget();
 			}
 		}
 	}
@@ -96,7 +87,6 @@ void ATriggerScanner::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, A
 	{
 		bPlayerIsInside = true;
 
-		// Show "Press E" Widget
 		if (PromptWidgetClass && !PromptWidgetInstance)
 		{
 			PromptWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), PromptWidgetClass);
@@ -114,7 +104,6 @@ void ATriggerScanner::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AAc
 	{
 		bPlayerIsInside = false;
 
-		// Hide "Press E" Widget
 		if (PromptWidgetInstance)
 		{
 			PromptWidgetInstance->RemoveFromParent();
@@ -136,8 +125,6 @@ void ATriggerScanner::ScanDocuments()
 			PC->SetInputMode(FInputModeGameOnly());
 			PC->bShowMouseCursor = false;
 		}
-
-		UE_LOG(LogTemp, Warning, TEXT("Documents Scanned! Scanner widget closed."));
 	}
 }
 

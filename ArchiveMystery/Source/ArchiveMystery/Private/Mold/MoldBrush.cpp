@@ -7,7 +7,6 @@
 #include "DrawDebugHelpers.h"
 #include <Kismet/GameplayStatics.h>
 
-// Sets default values
 AMoldBrush::AMoldBrush()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -25,28 +24,19 @@ AMoldBrush::AMoldBrush()
     {
         SmallBrushMesh = SmallBrush.Object;
     }
-    else
-    {
-        UE_LOG(LogTemp, Error, TEXT("Failed to load Small Brush mesh! Check the path."));
-    }
 
     if (BigBrush.Succeeded())
     {
         BigBrushMesh = BigBrush.Object;
     }
-    else
-    {
-        UE_LOG(LogTemp, Error, TEXT("Failed to load Big Brush mesh! Check the path."));
-    }
 
-    // Set the default brush
+    //Default brush
     if (SmallBrushMesh)
     {
         BrushMesh->SetStaticMesh(SmallBrushMesh);
     }
 }
 
-// Called when the game starts or when spawned
 void AMoldBrush::BeginPlay()
 {
 	Super::BeginPlay();
@@ -61,7 +51,7 @@ void AMoldBrush::BeginPlay()
             NAME_None,
             FVector::ZeroVector,
             EAttachLocation::KeepRelativeOffset,
-            false, // auto destroy
+            false,
             1.0f, 1.0f, 0.0f
         );
 
@@ -73,24 +63,21 @@ void AMoldBrush::BeginPlay()
     }
 }
 
-// Called every frame
 void AMoldBrush::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-    // FVector WorldLocation, WorldDirection;
     APlayerController* PC = GetWorld()->GetFirstPlayerController();
     if (PC)
     {
         FHitResult HitResult;
         if (PC->GetHitResultUnderCursorByChannel(UEngineTypes::ConvertToTraceType(ECC_Visibility), false, HitResult))
         {
-            SetActorLocation(HitResult.Location + FVector(0.f, 0.f, 5.f)); // Offset if needed
+            SetActorLocation(HitResult.Location + FVector(0.f, 0.f, 5.f));
         }
     }
 
     CheckForMold();
-
 }
 
 void AMoldBrush::SetBrushSize(EBrushSize NewSize)
@@ -116,9 +103,7 @@ void AMoldBrush::CheckForMold()
         AMold* HitMold = Cast<AMold>(Hit.GetActor());
         if (HitMold)
         {
-            UE_LOG(LogTemp, Warning, TEXT("Brush hovering over mold!"));
-
-            // Spawn brushing particle
+           //Particle
             if (BrushingEffect)
             {
                 UNiagaraFunctionLibrary::SpawnSystemAtLocation(
@@ -139,7 +124,6 @@ void AMoldBrush::CheckForMold()
                 UGameplayStatics::PlaySoundAtLocation(GetWorld(), BrushSound, GetActorLocation());
             }
 
-            // Reset timer fallback
             if (BrushSound)
             {
                 GetWorld()->GetTimerManager().SetTimer(
@@ -152,7 +136,6 @@ void AMoldBrush::CheckForMold()
             }
             else
             {
-                // default fallback in case sound is missing
                 GetWorld()->GetTimerManager().SetTimer(
                     FallbackBrushTimerHandle,
                     this,
@@ -167,7 +150,7 @@ void AMoldBrush::CheckForMold()
         }
     }
 
-   // DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 0.1f, 0, 1);
+   // DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 0.1f, 0, 1); //To see raycast
 }
 
 void AMoldBrush::ResetBrushCooldown()
@@ -178,7 +161,6 @@ void AMoldBrush::ResetBrushCooldown()
 void AMoldBrush::OnBrushSoundFinished()
 {
     bCanBrush = true;
-   // bHasBrushedThisStroke = false;
 }
 
 void AMoldBrush::UpdateCursorMesh()
@@ -187,19 +169,17 @@ void AMoldBrush::UpdateCursorMesh()
     {
         if (CurrentBrushSize == EBrushSize::Small && SmallBrushMesh)
         {
-            UE_LOG(LogTemp, Warning, TEXT("Switching to Small Brush"));
             BrushMesh->SetStaticMesh(SmallBrushMesh);
             BrushMesh->SetWorldScale3D(FVector(1.0f, 1.0f, 1.0f));
         }
         else if (CurrentBrushSize == EBrushSize::Big && BigBrushMesh)
         {
-            UE_LOG(LogTemp, Warning, TEXT("Switching to Big Brush"));
             BrushMesh->SetStaticMesh(BigBrushMesh);
             BrushMesh->SetWorldScale3D(FVector(1.0f, 1.0f, 1.0f));
         }
 
-        // Apply rotation so bristles point downward
-       FRotator NewRotation = FRotator(315.0f, 0.0f, 0.0f); // Adjust if needed
-        BrushMesh->SetRelativeRotation(NewRotation);
+       //Rotation on the brush
+       FRotator NewRotation = FRotator(315.0f, 0.0f, 0.0f);
+       BrushMesh->SetRelativeRotation(NewRotation);
     }
 }

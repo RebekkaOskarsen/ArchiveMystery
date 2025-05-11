@@ -95,11 +95,7 @@ void AArchivist::BeginPlay()
 		bHasFinishedShreddedPaperMinigame = GameInstance->bShreddedGameComplete;
 		bHasFinishedMoldMinigame = GameInstance->bMoldGameComplete;
 
-		UE_LOG(LogTemp, Warning, TEXT("Loaded from GameInstance - bHasPlacedBox: %s, bHasFinishedShreddedPaperMinigame: %s, bHasFinishedMoldMinigame: %s"),
-			bHasPlacedBox ? TEXT("true") : TEXT("false"),
-			bHasFinishedShreddedPaperMinigame ? TEXT("true") : TEXT("false"),
-			bHasFinishedMoldMinigame ? TEXT("true") : TEXT("false"));
-
+		//Keycards
 		if (GameInstance->bHasGarageKeycard)
 		{
 			TArray<AActor*> FoundGarageCards;
@@ -130,7 +126,7 @@ void AArchivist::BeginPlay()
 			}
 		}
 
-
+		//Box
 		if (GameInstance->bBoxPlacedBeforeMoldGame && GameInstance->PlacedBoxTransform.IsValid())
 		{
 			TArray<AActor*> FoundBoxes;
@@ -143,14 +139,14 @@ void AArchivist::BeginPlay()
 				AOpenBox* OpenBox = Cast<AOpenBox>(BoxActor);
 				if (OpenBox)
 				{
-					// This is the placed one from last session — restore it
+					//Tagging the box to still exist
 					if (OpenBox->Tags.Contains("PlacedBox") && !bBoxFound)
 					{
 						OpenBox->SetActorTransform(GameInstance->PlacedBoxTransform);
 						OpenBox->EnablePhysics(false);
 						bBoxFound = true;
 					}
-					// This is the extra one — destroy it
+					//Destroying the extra box
 					else
 					{
 						OpenBox->Destroy();
@@ -316,6 +312,7 @@ void AArchivist::BeginPlay()
 		}
 	}
 
+	//To place box
 	if (DropZone)
 	{
 		DropZone->OnActorBeginOverlap.AddDynamic(this, &AArchivist::OnDropZoneBeginOverlap);
@@ -358,7 +355,6 @@ void AArchivist::Look(const FInputActionValue& Value)
 	{
 		FRotator ControlRotation = Controller->GetControlRotation();
 
-		// Clamped pitch stays between -45 and 80 degrees.
 		float NewPitch = FMath::Clamp(ControlRotation.Pitch - LookAxisValue.Y * 0.04f, -45.0f, 80.0f);
 		float NewYaw = ControlRotation.Yaw + LookAxisValue.X;
 
@@ -394,7 +390,6 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 	ADocumentItem* OverlappingDocument = Cast<ADocumentItem>(OverlappingItems);
 	if (OverlappingDocument)
 	{
-		// Only allow picking up document if ALL 3 conditions are true
 		if (bHasPlacedBox && bHasFinishedShreddedPaperMinigame && bHasFinishedMoldMinigame)
 		{
 			FName ID = OverlappingDocument->DocumentID;
@@ -446,10 +441,6 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 			SetOverlappingItems(nullptr);
 			bDidInteract = true;
 		}
-		else
-		{
-			UE_LOG(LogTemp, Warning, TEXT("You can't pick up documents yet! Complete the requirements first."));
-		}
 	}
 
 	if (EquippedBox)
@@ -464,12 +455,10 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 				EquippedBox->SetActorLocation(BoxSnapTarget->GetActorLocation());
 				EquippedBox->SetActorRotation(BoxSnapTarget->GetActorRotation());
 
-				//  Add a unique tag so we can identify it later
 				EquippedBox->Tags.AddUnique("PlacedBox");
 			}
 			else
 			{
-				// Fallback to regular drop if no snap target
 				EquippedBox->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
 				EquippedBox->EnablePhysics(true);
 			}
@@ -483,9 +472,6 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 				GI->bBoxWasPlaced = true;
 				GI->BoxPlacedLocation = EquippedBox->GetActorLocation();
 				GI->BoxPlacedRotation = EquippedBox->GetActorRotation();
-
-				UE_LOG(LogTemp, Warning, TEXT("Saved box transform to GameInstance: %s / %s"),
-					*GI->BoxPlacedLocation.ToString(), *GI->BoxPlacedRotation.ToString());
 			}
 
 			bHasPlacedBox = true;
@@ -501,7 +487,6 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 	}
 	else if (OverlappingItems)
 	{
-		// Try to pick up keycard first
 		if (AKeycardItem* Keycard = Cast<AKeycardItem>(OverlappingItems))
 		{
 			if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
@@ -519,15 +504,12 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 					break;
 				}
 
-				UE_LOG(LogTemp, Warning, TEXT("Picked up keycard: %d"), static_cast<uint8>(Keycard->KeycardType));
-
 				Keycard->Destroy();
 				SetOverlappingItems(nullptr);
 				bDidInteract = true;
 			}
 		}
 
-		// Try to pick up box first
 		if (AOpenBox* OverlappingBox = Cast<AOpenBox>(OverlappingItems))
 		{
 			if (!OverlappingBox->bHasBeenPlaced)
@@ -554,8 +536,6 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 
 void AArchivist::TryOpenDoor(const FInputActionValue& Value)
 {
-	UE_LOG(LogTemp, Warning, TEXT("TryOpenDoor called"));
-
 	TArray<AActor*> OverlappingActors;
 	GetOverlappingActors(OverlappingActors, ADoubleDoor::StaticClass());
 
@@ -564,7 +544,6 @@ void AArchivist::TryOpenDoor(const FInputActionValue& Value)
 		ADoubleDoor* Door = Cast<ADoubleDoor>(Actor);
 		if (Door)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Found overlapping door, trying to open..."));
 			Door->Interact(this);
 			break;
 		}
@@ -594,7 +573,7 @@ void AArchivist::Tick(float DeltaTime)
 		}
 	}
 
-	// ----- Alternating Idle Break / Watch animation -----
+	//Idle break: alternating from idle anim to watch anim
 	static float IdleCycleTime = 0.0f;
 	static bool bPlayWatch = false;
 
@@ -617,7 +596,6 @@ void AArchivist::Tick(float DeltaTime)
 	}
 	else
 	{
-		// Reset when moving or holding a box
 		IdleCycleTime = 0.0f;
 		bPlayWatch = false;
 
@@ -696,7 +674,6 @@ void AArchivist::TryEnterMinigame()
 
 	if (BoxToPlaceBeforeMinigame && !BoxToPlaceBeforeMinigame->bHasBeenPlaced)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("You must place the box before starting the minigame!"));
 		return;
 	}
 
@@ -706,7 +683,6 @@ void AArchivist::TryEnterMinigame()
 		if (GameInstance)
 		{
 			GameInstance->SavedPlayerLocation = GetActorLocation();
-			UE_LOG(LogTemp, Warning, TEXT("Saved player location: %s"), *GameInstance->SavedPlayerLocation.ToString());
 		}
 
 		UGameplayStatics::OpenLevel(this, "Minigame");
@@ -818,18 +794,12 @@ void AArchivist::LookAtPainting(const FInputActionValue& Value)
 
 void AArchivist::OnDropZoneBeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
 {
-	if (OtherActor == this)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Archivist ENTERED the drop zone"));
-	}
+
 }
 
 void AArchivist::OnDropZoneEndOverlap(AActor* OverlappedActor, AActor* OtherActor)
 {
-	if (OtherActor == this)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Archivist LEFT the drop zone"));
-	}
+
 }
 
 void AArchivist::RestoreGameplayInput()
@@ -844,8 +814,7 @@ void AArchivist::RestoreGameplayInput()
 	bIsMovementLocked = false;
 	bIsInputLocked = false;
 
-	// Also re-enable movement if disabled
-	GetCharacterMovement()->DisableMovement(); // Just in case (clean reset)
+	GetCharacterMovement()->DisableMovement();
 	GetCharacterMovement()->SetMovementMode(MOVE_Walking);
 }
 
@@ -862,8 +831,6 @@ void AArchivist::DeliverDocuments()
 		PickedUpDocument2->Destroy();
 		PickedUpDocument2 = nullptr;
 	}
-
-	UE_LOG(LogTemp, Warning, TEXT("Documents delivered and destroyed!"));
 }
 
 //Can interact with the pause menu widget 

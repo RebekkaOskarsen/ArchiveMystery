@@ -21,15 +21,12 @@ class ARCHIVEMYSTERY_API ADoubleDoor : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
 	ADoubleDoor();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
+public:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(EditAnywhere)
@@ -44,6 +41,7 @@ public:
 	UPROPERTY(EditAnywhere)
 	EDoorType DoorType;
 
+	//Door opening
 	UPROPERTY(EditAnywhere)
 	float OpenAngle = 90.0f;
 
@@ -52,6 +50,8 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Door")
 	float TimeBeforeClose = 7.0f;
+
+	//------------------------------------//
 
 	UPROPERTY(EditAnywhere)
 	class UBoxComponent* InteractionBox;

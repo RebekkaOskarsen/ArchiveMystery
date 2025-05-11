@@ -7,8 +7,6 @@
 #include "Character/Archivist.h"
 #include "Character/ArchiveGameInstance.h"
 
-
-// Sets default values
 ADoubleDoor::ADoubleDoor()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -40,19 +38,16 @@ ADoubleDoor::ADoubleDoor()
 	LockedText->SetTextRenderColor(FColor::Black);
 	LockedText->SetText(FText::FromString("Access Denied"));
 	LockedText->SetWorldSize(20.0f);
-	LockedText->SetRelativeLocation(FVector(0.f, 0.f, 150.f)); // Adjust above the door
+	LockedText->SetRelativeLocation(FVector(0.f, 0.f, 150.f));
 	LockedText->SetHiddenInGame(true);
 }
 
-// Called when the game starts or when spawned
 void ADoubleDoor::BeginPlay()
 {
 	Super::BeginPlay();
 
 	InitialLeftRotation = LeftDoor->GetRelativeRotation();
 	InitialRightRotation = RightDoor->GetRelativeRotation();
-	
-
 }
 
 // Called every frame
@@ -154,8 +149,6 @@ void ADoubleDoor::Interact(AActor* PlayerActor)
 
 	if (!bCanOpen)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Missing keycard for %d"), (int32)DoorType);
-
 		FText Message;
 
 		switch (DoorType)
@@ -175,10 +168,9 @@ void ADoubleDoor::Interact(AActor* PlayerActor)
 		}
 
 		LockedText->SetText(Message);
-			LockedText->SetHiddenInGame(false);
-			bShouldShowLockedText = true;
-			LockedTextTimer = 0.0f;
-		
+		LockedText->SetHiddenInGame(false);
+		bShouldShowLockedText = true;
+		LockedTextTimer = 0.0f;
 
 		return;
 	}
@@ -186,7 +178,6 @@ void ADoubleDoor::Interact(AActor* PlayerActor)
 	FVector DoorToPlayer = Player->GetActorLocation() - GetActorLocation();
 	FVector LocalOffset = GetActorTransform().InverseTransformVector(DoorToPlayer);
 
-	// If the player is on the right side of the door's Y axis, we rotate away in one direction; if left, the other
 	int32 DirectionMultiplier = (LocalOffset.Y >= 0) ? 1 : -1;
 
 	TargetLeftRotation = FRotator(0.f, DirectionMultiplier * OpenAngle, 0.f);
@@ -196,4 +187,3 @@ void ADoubleDoor::Interact(AActor* PlayerActor)
 	bIsOpen = false;
 	OpenTimer = 0.0f;
 }
-

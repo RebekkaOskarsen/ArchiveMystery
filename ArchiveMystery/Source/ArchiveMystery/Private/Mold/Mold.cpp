@@ -9,7 +9,6 @@
 
 AMoldMinigame* MoldMinigameRef = nullptr;
 
-// Sets default values
 AMold::AMold()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -22,12 +21,10 @@ AMold::AMold()
 	MaxHealth = 100.0f;
 	MinHealth = 50.0f;
 	MoldSize = EMoldSize::Big;
-
-	// Enable collision and allow raycast detection
+	
 	MoldMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	MoldMesh->SetCollisionObjectType(ECC_WorldDynamic);
 
-	//FIX: Change response to allow raycasting!
 	MoldMesh->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
 	MoldMesh->SetCollisionResponseToAllChannels(ECR_Overlap);
 	MoldMesh->SetGenerateOverlapEvents(true);
@@ -35,14 +32,12 @@ AMold::AMold()
 
 }
 
-// Called when the game starts or when spawned
 void AMold::BeginPlay()
 {
 	Super::BeginPlay();
 
 }
 
-// Called every frame
 void AMold::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -51,21 +46,17 @@ void AMold::Tick(float DeltaTime)
 	MoldMesh->GetOverlappingActors(OverlappingActors);
 }
 
-
 void AMold::OnBrushed(EBrushSize BrushSize)
 {
 	if (bIsDestroyed)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("This mold has already been destroyed!"));
 		return;
 	}
 
-	// Get the MoldMinigame instance
 	AMoldMinigame* Minigame = Cast<AMoldMinigame>(UGameplayStatics::GetActorOfClass(GetWorld(), AMoldMinigame::StaticClass()));
 
 	if (Minigame && !Minigame->bCanBrush)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Cannot brush yet! Complete the tutorial first."));
 		return;
 	}
 
@@ -96,10 +87,6 @@ void AMold::OnBrushed(EBrushSize BrushSize)
 		if ((BrushSize == EBrushSize::Big && MoldHealth <= MinHealth && MinHealth == 50) ||
 			(BrushSize == EBrushSize::Small && MoldHealth <= MinHealth && MinHealth == 0))
 		{
-			
-
-			UE_LOG(LogTemp, Warning, TEXT("Mold completely cleaned! Destroying mold."));
-
 			bIsDestroyed = true;
 
 			MoldMinigameRef->OnMoldDestroyed();

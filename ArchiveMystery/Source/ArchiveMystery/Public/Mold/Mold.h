@@ -24,15 +24,12 @@ class ARCHIVEMYSTERY_API AMold : public AActor
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this actor's properties
 	AMold();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	void OnBrushed(EBrushSize BrushSize);
@@ -42,19 +39,21 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Mold")
 	UStaticMeshComponent* MoldMesh;
 
-	// Health values exposed to the editor
+	//Health
 	UPROPERTY(EditAnywhere, Category = "Mold")
 	float MoldHealth;
 
 	UPROPERTY(EditAnywhere, Category = "Mold")
-	float MaxHealth;  // Maximum health value
+	float MaxHealth; 
 
 	UPROPERTY(EditAnywhere, Category = "Mold")
-	float MinHealth;  // Minimum health value
+	float MinHealth;
+
+	//-------------------------------------------//
 
 	EMoldSize MoldSize;
 
-	// Stores which paper this mold belongs to (1 or 2)
+	//Stores which paper this mold belongs to
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mold")
 	int32 PaperIndex;
 
@@ -64,6 +63,7 @@ public:
 	UPROPERTY()
 	bool bIsDestroyed = false;
 
+	//Particle: Isnt sparkle anymore, but more like dust
 	UPROPERTY(EditAnywhere, Category = "Effects")
 	UNiagaraSystem* SparkleEffect;
 

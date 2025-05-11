@@ -45,6 +45,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UCameraComponent* ViewCamera;
 
+	//---------------------Items Pick up--------------------------//
 	AItems* EquippedItem = nullptr;
 	AOpenBox* EquippedBox = nullptr;
 
@@ -55,6 +56,7 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Drop Zone")
 	AActor* BoxSnapTarget;
 
+	//---------------------Conditions to play--------------------------//
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Progress")
 	bool bHasPlacedBox = false;
 
@@ -64,7 +66,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Progress")
 	bool bHasFinishedMoldMinigame = false;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Progress")
 	bool bHasFoundDocument1 = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Progress")
 	bool bHasFoundDocument2 = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Progress")
@@ -132,7 +137,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
 	UInputAction* PauseAction;
 
-	//-------------------------------------------------------------
+	//---------------------Drop Zone for Box--------------------------//
 
 	UPROPERTY(EditAnywhere, Category = "Drop Zone")
 	ATriggerBox* DropZone;
@@ -143,6 +148,7 @@ public:
 	UFUNCTION()
 	void OnDropZoneEndOverlap(AActor* OverlappedActor, AActor* OtherActor);
 
+	//---------------------Documents Information widget--------------------------//
 	// Widget to show document info
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> DocumentPopupWidgetClass;
@@ -155,10 +161,11 @@ public:
 
 	UUserWidget* SecondDocumentPopupWidgetInstance;
 
+	//---------------------------------------------------------//
 	UFUNCTION(BlueprintCallable)
 	void RestoreGameplayInput();
 
-	// Document references
+	//---------------------Document references--------------------------//
 	UPROPERTY()
 	ADocumentItem* PickedUpDocument1 = nullptr;
 

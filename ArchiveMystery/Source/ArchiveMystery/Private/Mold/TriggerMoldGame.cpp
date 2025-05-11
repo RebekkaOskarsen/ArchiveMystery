@@ -11,8 +11,6 @@
 
 #include "Blueprint/UserWidget.h"
 
-
-// Sets default values
 ATriggerMoldGame::ATriggerMoldGame()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -24,16 +22,14 @@ ATriggerMoldGame::ATriggerMoldGame()
 
 	TriggerBox->OnComponentEndOverlap.AddDynamic(this, &ATriggerMoldGame::OnOverlapEnd);
 
-	bPlayerIsInside = false; // Player starts outside the trigger
-	MiniGamePrompt = nullptr; // No UI at the start
+	bPlayerIsInside = false;
+	MiniGamePrompt = nullptr;
 }
 
-// Called when the game starts or when spawned
 void ATriggerMoldGame::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// Enable input for this actor
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	if (PlayerController)
 	{
@@ -41,7 +37,6 @@ void ATriggerMoldGame::BeginPlay()
 	}
 }
 
-// Called every frame
 void ATriggerMoldGame::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -83,22 +78,12 @@ void ATriggerMoldGame::CheckForInteraction()
 				{
 					GameInstance->SavedPlayerLocation = Archivist->GetActorLocation();
 					GameInstance->bMoldGameComplete = true;
-					UE_LOG(LogTemp, Warning, TEXT("Saved player location: %s"), *GameInstance->SavedPlayerLocation.ToString());
 				}
 
 				Archivist->bHasFinishedMoldMinigame = true;
-
-				UE_LOG(LogTemp, Warning, TEXT("E key pressed! Loading MoldRoom..."));
 				HidePrompt();
 				UGameplayStatics::OpenLevel(this, FName("MoldRoom"));
 			}
-			else
-			{
-				UE_LOG(LogTemp, Warning, TEXT("You must place the box and finish the shredded paper minigame first!"));
-				// Optional: Show a UI message instead of just logging
-			}
-			UE_LOG(LogTemp, Warning, TEXT("bHasPlacedBox: %s"), Archivist->bHasPlacedBox ? TEXT("true") : TEXT("false"));
-			UE_LOG(LogTemp, Warning, TEXT("bHasFinishedShreddedPaperMinigame: %s"), Archivist->bHasFinishedShreddedPaperMinigame ? TEXT("true") : TEXT("false"));
 		}
 	}
 }
@@ -111,7 +96,6 @@ void ATriggerMoldGame::ShowPrompt()
 		if (MiniGamePrompt)
 		{
 			MiniGamePrompt->AddToViewport();
-			UE_LOG(LogTemp, Warning, TEXT("MiniGame Prompt Displayed!"));
 		}
 	}
 }
@@ -122,7 +106,6 @@ void ATriggerMoldGame::HidePrompt()
 	{
 		MiniGamePrompt->RemoveFromParent();
 		MiniGamePrompt = nullptr;
-		UE_LOG(LogTemp, Warning, TEXT("MiniGame Prompt Removed!"));
 	}
 }
 

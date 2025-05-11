@@ -8,9 +8,7 @@
 #include "MoldPlayerController.generated.h"
 
 class UBrushSelectionWidget;
-/**
- * 
- */
+
 UCLASS()
 class ARCHIVEMYSTERY_API AMoldPlayerController : public APlayerController
 {
@@ -19,15 +17,12 @@ class ARCHIVEMYSTERY_API AMoldPlayerController : public APlayerController
 public:
     AMoldPlayerController();
 
-
     void ShowBrushUI();
     void HideBrushUI();
-
 
 protected:
     virtual void BeginPlay() override;
     virtual void SetupInputComponent() override;
-
 
 private:
     void SpawnBrush(EBrushSize BrushSize);
@@ -35,17 +30,9 @@ private:
     void UseBigBrush();
     void BrushMold();
 
-  
-
     UPROPERTY()
     AMoldBrush* MoldBrush;
 
-    // UI Reference
     UPROPERTY()
     UBrushSelectionWidget* BrushSelectionUI;
-
-    // Update UI when switching brushes
-    void UpdateBrushUI(bool bIsSmallBrush);
-
-
 };

@@ -7,8 +7,6 @@
 #include "Character/Archivist.h"
 #include "Items/Box/OpenBox.h"
 
-
-// Sets default values
 AItems::AItems()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -23,7 +21,6 @@ AItems::AItems()
 	Sphere->SetupAttachment(GetRootComponent());
 }
 
-// Called when the game starts or when spawned
 void AItems::BeginPlay()
 {
 	Super::BeginPlay();
@@ -42,10 +39,8 @@ void AItems::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* O
 			return;
 		}
 
-		// Only update if this isn't already the active overlapping item
 		if (Archivist->GetOverlappingItems() != this)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Overlapping with item: %s"), *GetName());
 			Archivist->SetOverlappingItems(this);
 		}
 	}
@@ -60,7 +55,6 @@ void AItems::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor
 	}
 }
 
-// Called every frame
 void AItems::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -72,7 +66,7 @@ void AItems::OnEquipped()
 	if (Sphere)
 	{
 		Sphere->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-		Sphere->SetGenerateOverlapEvents(false); // <-- Important
+		Sphere->SetGenerateOverlapEvents(false);
 	}
 
 	if (ItemMesh)
@@ -88,7 +82,7 @@ void AItems::OnUnequipped()
 	if (Sphere)
 	{
 		Sphere->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
-		Sphere->SetGenerateOverlapEvents(true); // <-- Also important
+		Sphere->SetGenerateOverlapEvents(true);
 	}
 }
 

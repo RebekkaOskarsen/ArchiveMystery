@@ -32,6 +32,7 @@ public:
 
 	void NotifyActorEndOverlap(AActor* OtherActor);
 
+	//Text
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UTextRenderComponent* KeycardText;
 
@@ -46,6 +47,5 @@ public:
 	UNiagaraComponent* Sparkle;
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 };
