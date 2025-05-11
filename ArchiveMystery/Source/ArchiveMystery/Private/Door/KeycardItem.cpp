@@ -65,23 +65,23 @@ void AKeycardItem::BeginPlay()
 {
 	Super::BeginPlay();
 
-	FString Label;
+	FText Label;
 
 	switch (KeycardType)
 	{
 	case EKeycardType::Garage:
-		Label = "Garage \n Keycard";
+		Label = NSLOCTEXT("Keycard", "GarageKeycardLabel", "Garage\nKeycard");
 		break;
 	case EKeycardType::Archive:
-		Label = "Archives \n Keycard";
+		Label = NSLOCTEXT("Keycard", "ArchiveKeycardLabel", "Archives\nKeycard");
 		break;
 	case EKeycardType::Equipment:
-		Label = "Equipment \n Keycard";
+		Label = NSLOCTEXT("Keycard", "EquipmentKeycardLabel", "Equipment\nKeycard");
 		break;
 	}
 
 	if (KeycardText)
 	{
-		KeycardText->SetText(FText::FromString(Label));
+		KeycardText->SetText(Label);
 	}
 }

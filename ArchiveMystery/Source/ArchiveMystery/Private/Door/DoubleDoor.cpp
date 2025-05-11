@@ -156,31 +156,29 @@ void ADoubleDoor::Interact(AActor* PlayerActor)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Missing keycard for %d"), (int32)DoorType);
 
-		if (LockedText)
+		FText Message;
+
+		switch (DoorType)
 		{
-			FString Message;
+		case EDoorType::Garage:
+			Message = GarageLockedText;
+			break;
+		case EDoorType::Archive:
+			Message = ArchiveLockedText;
+			break;
+		case EDoorType::Equipment:
+			Message = EquipmentLockedText;
+			break;
+		default:
+			Message = GenericLockedText;
+			break;
+		}
 
-			switch (DoorType)
-			{
-			case EDoorType::Garage:
-				Message = "Garage Keycard Required";
-				break;
-			case EDoorType::Archive:
-				Message = "Archive Keycard Required";
-				break;
-			case EDoorType::Equipment:
-				Message = "Equipment Keycard Required";
-				break;
-			default:
-				Message = "Access Denied";
-				break;
-			}
-
-			LockedText->SetText(FText::FromString(Message));
+		LockedText->SetText(Message);
 			LockedText->SetHiddenInGame(false);
 			bShouldShowLockedText = true;
 			LockedTextTimer = 0.0f;
-		}
+		
 
 		return;
 	}
