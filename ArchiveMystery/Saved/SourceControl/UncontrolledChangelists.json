@@ -1,0 +1,14 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/ShreddedPaper_minigame/Minigame/D/PK/ADTT0FJEZX7064TTHKUMR5.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/ShreddedPaper_minigame/Blueprints/TutorialWidget.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/ShreddedPaper_minigame/Minigame.umap"
+			]
+		}
+	]
+}
