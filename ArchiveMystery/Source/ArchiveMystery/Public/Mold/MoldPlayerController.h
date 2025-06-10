@@ -26,8 +26,13 @@ protected:
 
 private:
     void SpawnBrush(EBrushSize BrushSize);
+
+    UFUNCTION(BlueprintCallable)
     void UseSmallBrush();
+
+    UFUNCTION(BlueprintCallable)
     void UseBigBrush();
+
     void BrushMold();
 
     UPROPERTY()
