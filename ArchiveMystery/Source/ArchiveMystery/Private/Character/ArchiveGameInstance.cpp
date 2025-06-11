@@ -23,6 +23,31 @@ UArchiveGameInstance::UArchiveGameInstance()
     bIsCheckBox7Checked = false;
 
     bIsCustomized = false;
+    bIsCustomizedSkinColor1 = false; 
+    bIsCustomizedSkinColor2 = false; 
+    bIsCustomizedSkinColor3 = false; 
+    bIsCustomizedSkinColor4 = false; 
+    bIsCustomizedSkinColor5 = false; 
+    bIsCustomizedSkinColor6 = false; 
+    bIsCustomizedSkinColor7 = false; 
+    bIsCustomizedSkinColor8 = false; 
+    bIsCustomizedSkinColor9 = false; 
+    bIsCustomizedSkinColor10 = false; 
+    bIsCustomizedSkinColor11 = false; 
+    bIsCustomizedSkinColor12 = false;
+    bIsCustomizedSkinColor13 = false;
+    bIsCustomizedSkinColor14 = false;
+
+    bIsCustomizedWatchColor1 = false;
+    bIsCustomizedWatchColor2 = false;
+    bIsCustomizedWatchColor3 = false;
+    bIsCustomizedWatchColor4 = false;
+    bIsCustomizedWatchColor5 = false;
+    bIsCustomizedWatchColor6 = false;
+    bIsCustomizedWatchColor7 = false;
+    bIsCustomizedWatchColor8 = false;
+    bIsCustomizedWatchColor9 = false;
+    bIsCustomizedWatchColor10 = false;
 
     bIsMarker1 = false;
     bIsMarker2 = false;
@@ -68,6 +93,32 @@ void UArchiveGameInstance::SaveQuestLogData()
     JsonObject->SetBoolField("IsCheckBox7Checked", bIsCheckBox7Checked);
 
     JsonObject->SetBoolField("bIsCustomized", bIsCustomized);
+
+    JsonObject->SetBoolField("bIsCustomizedSkinColor1", bIsCustomizedSkinColor1);
+    JsonObject->SetBoolField("bIsCustomizedSkinColor2", bIsCustomizedSkinColor2);
+    JsonObject->SetBoolField("bIsCustomizedSkinColor3", bIsCustomizedSkinColor3);
+    JsonObject->SetBoolField("bIsCustomizedSkinColor4", bIsCustomizedSkinColor4);
+    JsonObject->SetBoolField("bIsCustomizedSkinColor5", bIsCustomizedSkinColor5);
+    JsonObject->SetBoolField("bIsCustomizedSkinColor6", bIsCustomizedSkinColor6);
+    JsonObject->SetBoolField("bIsCustomizedSkinColor7", bIsCustomizedSkinColor7);
+    JsonObject->SetBoolField("bIsCustomizedSkinColor8", bIsCustomizedSkinColor8);
+    JsonObject->SetBoolField("bIsCustomizedSkinColor9", bIsCustomizedSkinColor9);
+    JsonObject->SetBoolField("bIsCustomizedSkinColor10", bIsCustomizedSkinColor10);
+    JsonObject->SetBoolField("bIsCustomizedSkinColor11", bIsCustomizedSkinColor11);
+    JsonObject->SetBoolField("bIsCustomizedSkinColor12", bIsCustomizedSkinColor12);
+    JsonObject->SetBoolField("bIsCustomizedSkinColor13", bIsCustomizedSkinColor13);
+    JsonObject->SetBoolField("bIsCustomizedSkinColor14", bIsCustomizedSkinColor14);
+
+    JsonObject->SetBoolField("bIsCustomizedWatchColor1", bIsCustomizedWatchColor1);
+    JsonObject->SetBoolField("bIsCustomizedWatchColor2", bIsCustomizedWatchColor2);
+    JsonObject->SetBoolField("bIsCustomizedWatchColor3", bIsCustomizedWatchColor3);
+    JsonObject->SetBoolField("bIsCustomizedWatchColor4", bIsCustomizedWatchColor4);
+    JsonObject->SetBoolField("bIsCustomizedWatchColor5", bIsCustomizedWatchColor5);
+    JsonObject->SetBoolField("bIsCustomizedWatchColor6", bIsCustomizedWatchColor6);
+    JsonObject->SetBoolField("bIsCustomizedWatchColor7", bIsCustomizedWatchColor7);
+    JsonObject->SetBoolField("bIsCustomizedWatchColor8", bIsCustomizedWatchColor8);
+    JsonObject->SetBoolField("bIsCustomizedWatchColor9", bIsCustomizedWatchColor9);
+    JsonObject->SetBoolField("bIsCustomizedWatchColor10", bIsCustomizedWatchColor10);
 
     JsonObject->SetBoolField("bIsMarker1", bIsMarker1);
     JsonObject->SetBoolField("bIsMarker2", bIsMarker2);
@@ -129,6 +180,32 @@ void UArchiveGameInstance::LoadQuestLogData()
                 bIsCheckBox7Checked = JsonObject->GetBoolField("IsCheckBox7Checked");
 
                 bIsCustomized = JsonObject->GetBoolField("bIsCustomized");
+
+                bIsCustomizedSkinColor1 = JsonObject->GetBoolField("bIsCustomizedSkinColor1");
+                bIsCustomizedSkinColor2 = JsonObject->GetBoolField("bIsCustomizedSkinColor2");
+                bIsCustomizedSkinColor3 = JsonObject->GetBoolField("bIsCustomizedSkinColor3");
+                bIsCustomizedSkinColor4 = JsonObject->GetBoolField("bIsCustomizedSkinColor4");
+                bIsCustomizedSkinColor5 = JsonObject->GetBoolField("bIsCustomizedSkinColor5");
+                bIsCustomizedSkinColor6 = JsonObject->GetBoolField("bIsCustomizedSkinColor6");
+                bIsCustomizedSkinColor7 = JsonObject->GetBoolField("bIsCustomizedSkinColor7");
+                bIsCustomizedSkinColor8 = JsonObject->GetBoolField("bIsCustomizedSkinColor8");
+                bIsCustomizedSkinColor9 = JsonObject->GetBoolField("bIsCustomizedSkinColor9");
+                bIsCustomizedSkinColor10 = JsonObject->GetBoolField("bIsCustomizedSkinColor10");
+                bIsCustomizedSkinColor11 = JsonObject->GetBoolField("bIsCustomizedSkinColor11");
+                bIsCustomizedSkinColor12 = JsonObject->GetBoolField("bIsCustomizedSkinColor12");
+                bIsCustomizedSkinColor13 = JsonObject->GetBoolField("bIsCustomizedSkinColor13");
+                bIsCustomizedSkinColor14 = JsonObject->GetBoolField("bIsCustomizedSkinColor14");
+
+                bIsCustomizedWatchColor1 = JsonObject->GetBoolField("bIsCustomizedWatchColor1");
+                bIsCustomizedWatchColor2 = JsonObject->GetBoolField("bIsCustomizedWatchColor2");
+                bIsCustomizedWatchColor3 = JsonObject->GetBoolField("bIsCustomizedWatchColor3");
+                bIsCustomizedWatchColor4 = JsonObject->GetBoolField("bIsCustomizedWatchColor4");
+                bIsCustomizedWatchColor5 = JsonObject->GetBoolField("bIsCustomizedWatchColor5");
+                bIsCustomizedWatchColor6 = JsonObject->GetBoolField("bIsCustomizedWatchColor6");
+                bIsCustomizedWatchColor7 = JsonObject->GetBoolField("bIsCustomizedWatchColor7");
+                bIsCustomizedWatchColor8 = JsonObject->GetBoolField("bIsCustomizedWatchColor8");
+                bIsCustomizedWatchColor9 = JsonObject->GetBoolField("bIsCustomizedWatchColor9");
+                bIsCustomizedWatchColor10 = JsonObject->GetBoolField("bIsCustomizedWatchColor10");
 
                 bIsMarker1 = JsonObject->GetBoolField("bIsMarker1");
                 bIsMarker2 = JsonObject->GetBoolField("bIsMarker2");

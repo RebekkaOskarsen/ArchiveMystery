@@ -78,6 +78,82 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool bIsCustomized;
 
+	//Saving of skin color
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedSkinColor1;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedSkinColor2;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedSkinColor3;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedSkinColor4;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedSkinColor5;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedSkinColor6;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedSkinColor7;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedSkinColor8;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedSkinColor9;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedSkinColor10;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedSkinColor11;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedSkinColor12;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedSkinColor13;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedSkinColor14;
+
+	//Watch
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedWatchColor1;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedWatchColor2;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedWatchColor3;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedWatchColor4;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedWatchColor5;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedWatchColor6;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedWatchColor7;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedWatchColor8;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedWatchColor9;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsCustomizedWatchColor10;
+
 	//Markers 
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)

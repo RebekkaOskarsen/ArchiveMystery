@@ -208,6 +208,85 @@ public:
 	AActor* EquipmentKeycardActor;
 
 	bool bIsPaused;
+	//----Saving skin color-------------------------------------------------//
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* SkinColor1;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* SkinColor2;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* SkinColor3;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* SkinColor4;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* SkinColor5;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* SkinColor6;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* SkinColor7;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* SkinColor8;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* SkinColor9;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* SkinColor10;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* SkinColor11;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* SkinColor12;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* SkinColor13;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* SkinColor14;
+
+	void ApplySkinColor(UMaterialInterface* NewMaterial);
+
+	//----------Saving watch color----------------------------------//
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* WatchColor1;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* WatchColor2;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* WatchColor3;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* WatchColor4;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* WatchColor5;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* WatchColor6;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* WatchColor7;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* WatchColor8;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* WatchColor9;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
+	UMaterialInterface* WatchColor10;
+
+	void ApplyWatchColor(UMaterialInterface* NewMaterial);
 
 protected:
 	virtual void BeginPlay() override;

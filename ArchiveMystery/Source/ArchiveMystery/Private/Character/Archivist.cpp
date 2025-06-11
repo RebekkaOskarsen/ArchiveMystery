@@ -181,6 +181,104 @@ void AArchivist::BeginPlay()
 		}
 	}
 
+	if (GameInstance->bIsCustomizedSkinColor1)
+	{
+		ApplySkinColor(SkinColor1);
+	}
+	else if (GameInstance->bIsCustomizedSkinColor2)
+	{
+		ApplySkinColor(SkinColor2);
+	}
+	else if (GameInstance->bIsCustomizedSkinColor3)
+	{
+		ApplySkinColor(SkinColor3);
+	}
+	else if (GameInstance->bIsCustomizedSkinColor4)
+	{
+		ApplySkinColor(SkinColor4);
+	}
+	else if (GameInstance->bIsCustomizedSkinColor5)
+	{
+		ApplySkinColor(SkinColor5);
+	}
+	else if (GameInstance->bIsCustomizedSkinColor6)
+	{
+		ApplySkinColor(SkinColor6);
+	}
+	else if (GameInstance->bIsCustomizedSkinColor7)
+	{
+		ApplySkinColor(SkinColor7);
+	}
+	else if (GameInstance->bIsCustomizedSkinColor8)
+	{
+		ApplySkinColor(SkinColor8);
+	}
+	else if (GameInstance->bIsCustomizedSkinColor9)
+	{
+		ApplySkinColor(SkinColor9);
+	}
+	else if (GameInstance->bIsCustomizedSkinColor10)
+	{
+		ApplySkinColor(SkinColor10);
+	}
+	else if (GameInstance->bIsCustomizedSkinColor11)
+	{
+		ApplySkinColor(SkinColor11);
+	}
+	else if (GameInstance->bIsCustomizedSkinColor12)
+	{
+		ApplySkinColor(SkinColor12);
+	}
+	else if (GameInstance->bIsCustomizedSkinColor13)
+	{
+		ApplySkinColor(SkinColor13);
+	}
+	else if (GameInstance->bIsCustomizedSkinColor14)
+	{
+		ApplySkinColor(SkinColor14);
+	}
+
+	if (GameInstance->bIsCustomizedWatchColor1)
+	{
+		ApplyWatchColor(WatchColor1);
+	}
+	else if (GameInstance->bIsCustomizedWatchColor2)
+	{
+		ApplyWatchColor(WatchColor2);
+	}
+	else if (GameInstance->bIsCustomizedWatchColor3)
+	{
+		ApplyWatchColor(WatchColor3);
+	}
+	else if (GameInstance->bIsCustomizedWatchColor4)
+	{
+		ApplyWatchColor(WatchColor4);
+	}
+	else if (GameInstance->bIsCustomizedWatchColor5)
+	{
+		ApplyWatchColor(WatchColor5);
+	}
+	else if (GameInstance->bIsCustomizedWatchColor6)
+	{
+		ApplyWatchColor(WatchColor6);
+	}
+	else if (GameInstance->bIsCustomizedWatchColor7)
+	{
+		ApplyWatchColor(WatchColor7);
+	}
+	else if (GameInstance->bIsCustomizedWatchColor8)
+	{
+		ApplyWatchColor(WatchColor8);
+	}
+	else if (GameInstance->bIsCustomizedWatchColor9)
+	{
+		ApplyWatchColor(WatchColor9);
+	}
+	else if (GameInstance->bIsCustomizedWatchColor10)
+	{
+		ApplyWatchColor(WatchColor10);
+	}
+
 	if (GameInstance)
 	{
 		if (GameInstance->bIsMarker1)
@@ -860,5 +958,21 @@ void AArchivist::TogglePauseMenu()
 		}
 	}
 	bIsPaused = !bIsPaused;
+}
+
+void AArchivist::ApplySkinColor(UMaterialInterface* NewMaterial)
+{
+	if (GetMesh() && NewMaterial)
+	{
+		GetMesh()->SetMaterial(0, NewMaterial);
+	}
+}
+
+void AArchivist::ApplyWatchColor(UMaterialInterface* NewMaterial)
+{
+	if (GetMesh() && NewMaterial)
+	{
+		GetMesh()->SetMaterial(0, NewMaterial);
+	}
 }
 
