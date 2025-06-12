@@ -2,7 +2,10 @@
 	"RemapUnityFiles": 
 	{
 		"Module.ArchiveMystery.cpp.obj": [
+			"PerModuleInline.gen.cpp.obj",
 			"ArchiveMystery.cpp.obj",
+			"ArchiveGameInstance.cpp.obj",
+			"Archivist.cpp.obj",
 			"ArchivistAnimInstance.cpp.obj",
 			"PaintingInfo.cpp.obj",
 			"DoubleDoor.cpp.obj",
@@ -51,10 +54,7 @@
 			"TriggerDeliverDocuments.gen.cpp.obj",
 			"TriggerMoldGame.gen.cpp.obj",
 			"TriggerScanner.gen.cpp.obj",
-			"W_QuestLog_Pause.gen.cpp.obj",
-			"PerModuleInline.gen.cpp.obj",
-			"ArchiveGameInstance.cpp.obj",
-			"Archivist.cpp.obj"
+			"W_QuestLog_Pause.gen.cpp.obj"
 		]
 	}
 }

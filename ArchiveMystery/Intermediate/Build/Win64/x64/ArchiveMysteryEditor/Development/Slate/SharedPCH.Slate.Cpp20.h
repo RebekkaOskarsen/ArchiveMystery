@@ -1,3 +1,3 @@
 // PCH for Runtime/Slate/Public/SlateSharedPCH.h
-#include "C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/archive quest unfolding stories/ArchiveMystery/Intermediate/Build/Win64/x64/ArchiveMysteryEditor/Development/Slate/SharedDefinitions.Slate.Cpp20.h"
+#include "C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Intermediate/Build/Win64/x64/ArchiveMysteryEditor/Development/Slate/SharedDefinitions.Slate.Cpp20.h"
 #include "Runtime/Slate/Public/SlateSharedPCH.h"

@@ -183,100 +183,100 @@ void AArchivist::BeginPlay()
 
 	if (GameInstance->bIsCustomizedSkinColor1)
 	{
-		ApplySkinColor(SkinColor1);
+		ApplyMaterialToSlot(0, SkinColor1);
 	}
 	else if (GameInstance->bIsCustomizedSkinColor2)
 	{
-		ApplySkinColor(SkinColor2);
+		ApplyMaterialToSlot(0, SkinColor2);
 	}
 	else if (GameInstance->bIsCustomizedSkinColor3)
 	{
-		ApplySkinColor(SkinColor3);
+		ApplyMaterialToSlot(0, SkinColor3);
 	}
 	else if (GameInstance->bIsCustomizedSkinColor4)
 	{
-		ApplySkinColor(SkinColor4);
+		ApplyMaterialToSlot(0, SkinColor4);
 	}
 	else if (GameInstance->bIsCustomizedSkinColor5)
 	{
-		ApplySkinColor(SkinColor5);
+		ApplyMaterialToSlot(0, SkinColor5);
 	}
 	else if (GameInstance->bIsCustomizedSkinColor6)
 	{
-		ApplySkinColor(SkinColor6);
+		ApplyMaterialToSlot(0, SkinColor6);
 	}
 	else if (GameInstance->bIsCustomizedSkinColor7)
 	{
-		ApplySkinColor(SkinColor7);
+		ApplyMaterialToSlot(0, SkinColor7);
 	}
 	else if (GameInstance->bIsCustomizedSkinColor8)
 	{
-		ApplySkinColor(SkinColor8);
+		ApplyMaterialToSlot(0, SkinColor8);
 	}
 	else if (GameInstance->bIsCustomizedSkinColor9)
 	{
-		ApplySkinColor(SkinColor9);
+		ApplyMaterialToSlot(0, SkinColor9);
 	}
 	else if (GameInstance->bIsCustomizedSkinColor10)
 	{
-		ApplySkinColor(SkinColor10);
+		ApplyMaterialToSlot(0, SkinColor10);
 	}
 	else if (GameInstance->bIsCustomizedSkinColor11)
 	{
-		ApplySkinColor(SkinColor11);
+		ApplyMaterialToSlot(0, SkinColor11);
 	}
 	else if (GameInstance->bIsCustomizedSkinColor12)
 	{
-		ApplySkinColor(SkinColor12);
+		ApplyMaterialToSlot(0, SkinColor12);
 	}
 	else if (GameInstance->bIsCustomizedSkinColor13)
 	{
-		ApplySkinColor(SkinColor13);
+		ApplyMaterialToSlot(0, SkinColor13);
 	}
 	else if (GameInstance->bIsCustomizedSkinColor14)
 	{
-		ApplySkinColor(SkinColor14);
+		ApplyMaterialToSlot(0, SkinColor14);
 	}
 
 	if (GameInstance->bIsCustomizedWatchColor1)
 	{
-		ApplyWatchColor(WatchColor1);
+		ApplyMaterialToSlot(3, WatchColor1);
 	}
 	else if (GameInstance->bIsCustomizedWatchColor2)
 	{
-		ApplyWatchColor(WatchColor2);
+		ApplyMaterialToSlot(3, WatchColor2);
 	}
 	else if (GameInstance->bIsCustomizedWatchColor3)
 	{
-		ApplyWatchColor(WatchColor3);
+		ApplyMaterialToSlot(3, WatchColor3);
 	}
 	else if (GameInstance->bIsCustomizedWatchColor4)
 	{
-		ApplyWatchColor(WatchColor4);
+		ApplyMaterialToSlot(3, WatchColor4);
 	}
 	else if (GameInstance->bIsCustomizedWatchColor5)
 	{
-		ApplyWatchColor(WatchColor5);
+		ApplyMaterialToSlot(3, WatchColor5);
 	}
 	else if (GameInstance->bIsCustomizedWatchColor6)
 	{
-		ApplyWatchColor(WatchColor6);
+		ApplyMaterialToSlot(3, WatchColor6);
 	}
 	else if (GameInstance->bIsCustomizedWatchColor7)
 	{
-		ApplyWatchColor(WatchColor7);
+		ApplyMaterialToSlot(3, WatchColor7);
 	}
 	else if (GameInstance->bIsCustomizedWatchColor8)
 	{
-		ApplyWatchColor(WatchColor8);
+		ApplyMaterialToSlot(3, WatchColor8);
 	}
 	else if (GameInstance->bIsCustomizedWatchColor9)
 	{
-		ApplyWatchColor(WatchColor9);
+		ApplyMaterialToSlot(3, WatchColor9);
 	}
 	else if (GameInstance->bIsCustomizedWatchColor10)
 	{
-		ApplyWatchColor(WatchColor10);
+		ApplyMaterialToSlot(3, WatchColor10);
 	}
 
 	if (GameInstance)
@@ -960,19 +960,13 @@ void AArchivist::TogglePauseMenu()
 	bIsPaused = !bIsPaused;
 }
 
-void AArchivist::ApplySkinColor(UMaterialInterface* NewMaterial)
+void AArchivist::ApplyMaterialToSlot(int32 MaterialSlotIndex, UMaterialInterface* NewMaterial)
 {
 	if (GetMesh() && NewMaterial)
 	{
-		GetMesh()->SetMaterial(0, NewMaterial);
+		GetMesh()->SetMaterial(MaterialSlotIndex, NewMaterial);
 	}
 }
 
-void AArchivist::ApplyWatchColor(UMaterialInterface* NewMaterial)
-{
-	if (GetMesh() && NewMaterial)
-	{
-		GetMesh()->SetMaterial(0, NewMaterial);
-	}
-}
+
 

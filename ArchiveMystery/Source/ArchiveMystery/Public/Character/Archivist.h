@@ -286,7 +286,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
 	UMaterialInterface* WatchColor10;
 
-	void ApplyWatchColor(UMaterialInterface* NewMaterial);
+	void ApplyMaterialToSlot(int32 MaterialSlotIndex, UMaterialInterface* NewMaterial);
 
 protected:
 	virtual void BeginPlay() override;
