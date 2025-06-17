@@ -928,6 +928,7 @@ void AArchivist::DeliverDocuments()
 		PickedUpDocument2->Destroy();
 		PickedUpDocument2 = nullptr;
 	}
+	bHasDeliveredDocuments = true;
 }
 
 //Can interact with the pause menu widget 

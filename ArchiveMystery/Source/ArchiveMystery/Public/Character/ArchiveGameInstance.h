@@ -183,4 +183,20 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, Category = "Keycards")
 	bool bHasEquipmentKeycard;
+
+	// Lagrede SQL-inputverdier
+	UPROPERTY(BlueprintReadWrite)
+	FString SavedSelect;
+
+	UPROPERTY(BlueprintReadWrite)
+	FString SavedFrom;
+
+	UPROPERTY(BlueprintReadWrite)
+	FString SavedWhere;
+
+	UPROPERTY(BlueprintReadWrite)
+	FString SavedLike;
+
+	UPROPERTY(BlueprintReadWrite)
+	FString SavedAnd;
 };

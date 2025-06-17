@@ -1,0 +1,17 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/Database-Minigame/Blueprints/WBP_Database.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/Database-Minigame/Blueprints/MyDatabaseWidget.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/Database-Minigame/Blueprints/BP_DatabaseMinigameGameMode.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/Database-Minigame/Database-minigame.umap",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/Blueprint/WBP_DeliverDocuments.uasset",
+				"C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Content/Blueprint/Tutorials/W_Finished.uasset"
+			]
+		}
+	]
+}

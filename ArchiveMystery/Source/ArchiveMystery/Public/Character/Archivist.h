@@ -75,6 +75,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Progress")
 	bool bHasScannedDocuments = false;
 
+	UPROPERTY(BlueprintReadWrite, Category = "Progress")
+	bool bHasDeliveredDocuments = false;
+
 	FORCEINLINE void SetOverlappingItems(AItems* Items) { OverlappingItems = Items; }
 
 	FORCEINLINE ECharacterState GetCharacterState() const { return CharacterState; }
