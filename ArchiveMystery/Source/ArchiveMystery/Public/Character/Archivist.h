@@ -183,23 +183,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AActor* CustomActor;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	AActor* Marker1Actor;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	AActor* Marker2Actor;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	AActor* Marker3Actor;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	AActor* Marker4Actor;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	AActor* Marker5Actor;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	AActor* Marker6Actor;
+	void ReinitialiseQuestMarkers();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AActor* GarageKeycardActor;

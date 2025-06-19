@@ -174,6 +174,24 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool bIsMarker6;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsMarker7;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsMarker8;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsMarker9;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsMarker10;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsMarker11;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsMarker12;
+
 	//Keycards 
 	UPROPERTY(BlueprintReadWrite, Category = "Keycards")
 	bool bHasGarageKeycard;

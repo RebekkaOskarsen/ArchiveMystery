@@ -55,6 +55,12 @@ UArchiveGameInstance::UArchiveGameInstance()
     bIsMarker4 = false;
     bIsMarker5 = false;
     bIsMarker6 = false;
+    bIsMarker7 = false;
+    bIsMarker8 = false;
+    bIsMarker9 = false;
+    bIsMarker10 = false;
+    bIsMarker11 = false;
+    bIsMarker12 = false;
 
     bHasGarageKeycard = false;
     bHasArchiveKeycard = false;
@@ -126,6 +132,12 @@ void UArchiveGameInstance::SaveQuestLogData()
     JsonObject->SetBoolField("bIsMarker4", bIsMarker4);
     JsonObject->SetBoolField("bIsMarker5", bIsMarker5);
     JsonObject->SetBoolField("bIsMarker6", bIsMarker6);
+    JsonObject->SetBoolField("bIsMarker7", bIsMarker7);
+    JsonObject->SetBoolField("bIsMarker8", bIsMarker8);
+    JsonObject->SetBoolField("bIsMarker9", bIsMarker9);
+    JsonObject->SetBoolField("bIsMarker10", bIsMarker10);
+    JsonObject->SetBoolField("bIsMarker11", bIsMarker11);
+    JsonObject->SetBoolField("bIsMarker12", bIsMarker12);
 
     JsonObject->SetBoolField("bHasGarageKeycard", bHasGarageKeycard);
     JsonObject->SetBoolField("bHasArchiveKeycard", bHasArchiveKeycard);
@@ -213,6 +225,12 @@ void UArchiveGameInstance::LoadQuestLogData()
                 bIsMarker4 = JsonObject->GetBoolField("bIsMarker4");
                 bIsMarker5 = JsonObject->GetBoolField("bIsMarker5");
                 bIsMarker6 = JsonObject->GetBoolField("bIsMarker6");
+                bIsMarker7 = JsonObject->GetBoolField("bIsMarker7");
+                bIsMarker8 = JsonObject->GetBoolField("bIsMarker8");
+                bIsMarker9 = JsonObject->GetBoolField("bIsMarker9");
+                bIsMarker10 = JsonObject->GetBoolField("bIsMarker10");
+                bIsMarker11 = JsonObject->GetBoolField("bIsMarker11");
+                bIsMarker12 = JsonObject->GetBoolField("bIsMarker12");
 
                 bHasGarageKeycard = JsonObject->GetBoolField("bHasGarageKeycard");
                 bHasArchiveKeycard = JsonObject->GetBoolField("bHasArchiveKeycard");

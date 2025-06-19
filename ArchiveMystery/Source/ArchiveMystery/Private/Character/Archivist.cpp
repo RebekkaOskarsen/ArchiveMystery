@@ -20,6 +20,8 @@
 #include "HUD/MainMenuWidget.h"
 #include "HUD/PauseMenuWidget.h"
 #include "Character/ArchivistAnimInstance.h"
+#include "Components/BoxComponent.h"
+#include "QuestMarker/QuestMarker.h"
 
 
 AArchivist::AArchivist()
@@ -54,6 +56,12 @@ void AArchivist::BeginPlay()
 {
 	Super::BeginPlay();
 
+	GetWorld()->GetTimerManager().SetTimerForNextTick(
+		this, &AArchivist::ReinitialiseQuestMarkers);
+
+	UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this));
+	if (!GameInstance) return;
+
 	// Determine current level name
 	FString CurrentMapName = GetWorld()->GetMapName();
 	CurrentMapName.RemoveFromStart(GetWorld()->StreamingLevelsPrefix); 
@@ -87,8 +95,7 @@ void AArchivist::BeginPlay()
 		}
 	}
 
-
-	UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(GetGameInstance());
+	//UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(GetGameInstance());
 	if (GameInstance)
 	{
 		bHasPlacedBox = GameInstance->bBoxPlacedBeforeMoldGame;
@@ -180,6 +187,7 @@ void AArchivist::BeginPlay()
 			}
 		}
 	}
+
 
 	if (GameInstance->bIsCustomizedSkinColor1)
 	{
@@ -279,113 +287,6 @@ void AArchivist::BeginPlay()
 		ApplyMaterialToSlot(3, WatchColor10);
 	}
 
-	if (GameInstance)
-	{
-		if (GameInstance->bIsMarker1)
-		{
-			if (Marker1Actor)
-			{
-				Marker1Actor->Destroy();
-			}
-		}
-		else
-		{
-			if (Marker1Actor)
-			{
-				Marker1Actor->SetActorHiddenInGame(false); 
-			}
-		}
-	}
-
-	if (GameInstance)
-	{
-		if (GameInstance->bIsMarker2)
-		{
-			if (Marker2Actor)
-			{
-				Marker2Actor->Destroy(); 
-			}
-		}
-		else
-		{
-			if (Marker2Actor)
-			{
-				Marker2Actor->SetActorHiddenInGame(false); 
-			}
-		}
-	}
-
-	if (GameInstance)
-	{
-		if (GameInstance->bIsMarker3)
-		{
-			if (Marker3Actor)
-			{
-				Marker3Actor->Destroy(); 
-			}
-		}
-		else
-		{
-			if (Marker3Actor)
-			{
-				Marker3Actor->SetActorHiddenInGame(false); 
-			}
-		}
-	}
-
-	if (GameInstance)
-	{
-		if (GameInstance->bIsMarker4)
-		{
-			if (Marker4Actor)
-			{
-				Marker4Actor->Destroy(); 
-			}
-		}
-		else
-		{
-			if (Marker4Actor)
-			{
-				Marker4Actor->SetActorHiddenInGame(false); 
-			}
-		}
-	}
-
-	if (GameInstance)
-	{
-		if (GameInstance->bIsMarker5)
-		{
-			if (Marker5Actor)
-			{
-				Marker5Actor->Destroy(); 
-			}
-		}
-		else
-		{
-			if (Marker5Actor)
-			{
-				Marker5Actor->SetActorHiddenInGame(false); 
-			}
-		}
-	}
-
-	if (GameInstance)
-	{
-		if (GameInstance->bIsMarker6)
-		{
-			if (Marker6Actor)
-			{
-				Marker6Actor->Destroy(); 
-			}
-		}
-		else
-		{
-			if (Marker6Actor)
-			{
-				Marker6Actor->SetActorHiddenInGame(false); 
-			}
-		}
-	}
 
 	if (MinigameTriggerBox)
 	{
@@ -969,5 +870,45 @@ void AArchivist::ApplyMaterialToSlot(int32 MaterialSlotIndex, UMaterialInterface
 	}
 }
 
+void AArchivist::ReinitialiseQuestMarkers()
+{
+	UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(
+		UGameplayStatics::GetGameInstance(this));
+	if (!GI) return;
+
+	TArray<AActor*> Found;
+	UGameplayStatics::GetAllActorsOfClass(
+		GetWorld(), AQuestMarker::StaticClass(), Found);
+
+	Found.Sort([](const AActor& A, const AActor& B)
+		{
+			const auto* MA = Cast<AQuestMarker>(&A);
+			const auto* MB = Cast<AQuestMarker>(&B);
+			return MA && MB ? MA->MarkerID < MB->MarkerID : false;
+		});
+
+	bool bNextActivated = false;
+
+	for (AActor* Actor : Found)
+	{
+		AQuestMarker* Marker = Cast<AQuestMarker>(Actor);
+		if (!Marker) continue;
+
+		if (Marker->IsCompleted(GI))
+		{
+			Marker->Destroy();               
+		}
+		else if (!bNextActivated)
+		{
+			Marker->ActivateMarker();       
+			bNextActivated = true;
+		}
+		else
+		{
+			Marker->SetActorHiddenInGame(true);
+			Marker->Trigger->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		}
+	}
+}
 
 
