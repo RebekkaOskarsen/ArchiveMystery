@@ -22,6 +22,8 @@
 #include "Character/ArchivistAnimInstance.h"
 #include "Components/BoxComponent.h"
 #include "QuestMarker/QuestMarker.h"
+#include "TimerManager.h"
+#include "Engine/TriggerBox.h"
 
 
 AArchivist::AArchivist()
@@ -98,6 +100,8 @@ void AArchivist::BeginPlay()
 	//UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(GetGameInstance());
 	if (GameInstance)
 	{
+		GameInstance->LoadQuestLogData();
+
 		bHasPlacedBox = GameInstance->bBoxPlacedBeforeMoldGame;
 		bHasFinishedShreddedPaperMinigame = GameInstance->bShreddedGameComplete;
 		bHasFinishedMoldMinigame = GameInstance->bMoldGameComplete;
@@ -151,6 +155,9 @@ void AArchivist::BeginPlay()
 					{
 						OpenBox->SetActorTransform(GameInstance->PlacedBoxTransform);
 						OpenBox->EnablePhysics(false);
+
+						OpenBox->bHasBeenPlaced = true;
+
 						bBoxFound = true;
 					}
 					//Destroying the extra box
@@ -317,6 +324,13 @@ void AArchivist::BeginPlay()
 		DropZone->OnActorBeginOverlap.AddDynamic(this, &AArchivist::OnDropZoneBeginOverlap);
 		DropZone->OnActorEndOverlap.AddDynamic(this, &AArchivist::OnDropZoneEndOverlap);
 	}
+
+	if (!GameInstance->SavedPlayerLocation.IsZero())
+	{
+		SetActorLocation(GameInstance->SavedPlayerLocation);
+	}
+
+	PlayIntroSequenceIfNeeded();
 }
 
 void AArchivist::Move(const FInputActionValue& Value)
@@ -835,31 +849,40 @@ void AArchivist::DeliverDocuments()
 //Can interact with the pause menu widget 
 void AArchivist::TogglePauseMenu()
 {
-	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-	if (!PlayerController)
-	{
-		return;
-	}
+	APlayerController* PC = GetWorld()->GetFirstPlayerController();
+	if (!PC) return;
+
+	bIsPaused = !bIsPaused;
+	PC->SetPause(bIsPaused);
+
 	if (bIsPaused)
 	{
+		// Show pause UI
+		if (PauseMenuWidgetClass && !PauseMenuWidget)
+		{
+			PauseMenuWidget = CreateWidget<UPauseMenuWidget>(GetWorld(), PauseMenuWidgetClass);
+			PauseMenuWidget->AddToViewport();
+		}
+
+		// Show cursor & allow both game + UI input
+		PC->bShowMouseCursor = true;
+		FInputModeGameAndUI InputMode;
+		InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+		PC->SetInputMode(InputMode);
+	}
+	else
+	{
+		// Hide pause UI
 		if (PauseMenuWidget)
 		{
 			PauseMenuWidget->RemoveFromParent();
 			PauseMenuWidget = nullptr;
 		}
+
+		// Hide cursor & return to game?only input
+		PC->bShowMouseCursor = false;
+		PC->SetInputMode(FInputModeGameOnly());
 	}
-	else
-	{
-		if (PauseMenuWidgetClass)
-		{
-			PauseMenuWidget = CreateWidget<UPauseMenuWidget>(GetWorld(), PauseMenuWidgetClass);
-			if (PauseMenuWidget)
-			{
-				PauseMenuWidget->AddToViewport();
-			}
-		}
-	}
-	bIsPaused = !bIsPaused;
 }
 
 void AArchivist::ApplyMaterialToSlot(int32 MaterialSlotIndex, UMaterialInterface* NewMaterial)
@@ -867,6 +890,74 @@ void AArchivist::ApplyMaterialToSlot(int32 MaterialSlotIndex, UMaterialInterface
 	if (GetMesh() && NewMaterial)
 	{
 		GetMesh()->SetMaterial(MaterialSlotIndex, NewMaterial);
+	}
+}
+
+void AArchivist::SaveProgressBeforeMainMenu()
+{
+	UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance());
+	if (GI)
+	{
+		GI->SavedPlayerLocation = GetActorLocation();
+		GI->LastLevelName = UGameplayStatics::GetCurrentLevelName(this, true);
+		UE_LOG(LogTemp, Warning, TEXT("Saved progress: Level = %s, Location = %s"),
+			*GI->LastLevelName,
+			*GI->SavedPlayerLocation.ToString());
+
+		GI->SaveQuestLogData();
+	}
+}
+
+void AArchivist::PlayIntroSequenceIfNeeded()
+{
+	UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance());
+	if (!GI)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No GameInstance found"));
+		return;
+	}
+
+	if (!GI->bIntroCutscenePlayed)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Trying to find cutscene actor..."));
+
+		for (TActorIterator<ALevelSequenceActor> It(GetWorld()); It; ++It)
+		{
+			ALevelSequenceActor* SequenceActor = *It;
+			UE_LOG(LogTemp, Warning, TEXT("Found actor: %s"), *SequenceActor->GetName());
+
+			if (SequenceActor && SequenceActor->Tags.Contains("StartCutscene"))
+			{
+				ULevelSequencePlayer* SequencePlayer = SequenceActor->GetSequencePlayer();
+				if (SequencePlayer)
+				{
+					SequencePlayer->Play();
+					GI->bIntroCutscenePlayed = true;
+
+					float SeqLength = 6.0f;
+
+					// schedule our ShowTutorial() to fire when the sequence finishes
+					GetWorld()->GetTimerManager().SetTimer(
+						TutorialTimerHandle,
+						this,
+						&AArchivist::ShowTutorial,
+						SeqLength,
+						false
+					);
+				}
+				else
+				{
+					UE_LOG(LogTemp, Warning, TEXT("SequencePlayer was null"));
+				}
+				return;
+			}
+		}
+
+		UE_LOG(LogTemp, Warning, TEXT("Start_cutscene actor not found"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Intro cutscene already played"));
 	}
 }
 
@@ -911,4 +1002,48 @@ void AArchivist::ReinitialiseQuestMarkers()
 	}
 }
 
+void AArchivist::OnTutorialTriggerOverlap(AActor* OverlappedActor, AActor* OtherActor)
+{
+	if (OtherActor != this)
+		return;
+
+	// remove the widget
+	if (TutorialWidgetInstance)
+	{
+		TutorialWidgetInstance->RemoveFromParent();
+		TutorialWidgetInstance = nullptr;
+	}
+
+	// unbind so it only ever fires once
+	if (auto* Box = Cast<ATriggerBox>(OverlappedActor))
+	{
+		Box->OnActorBeginOverlap.RemoveDynamic(this, &AArchivist::OnTutorialTriggerOverlap);
+	}
+}
+
+void AArchivist::ShowTutorial()
+{
+	auto* GI = Cast<UArchiveGameInstance>(GetGameInstance());
+	if (!GI || GI->bTutorialPlayed || !TutorialWidgetClass) return;
+
+	// 1) Create & show the widget
+	TutorialWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), TutorialWidgetClass);
+	if (TutorialWidgetInstance)
+	{
+		TutorialWidgetInstance->AddToViewport();
+	}
+
+	GI->bTutorialPlayed = true;
+
+	// 2) Find the TriggerBox in the level (tagged "FinishTutorial") and bind its overlap
+	for (TActorIterator<ATriggerBox> It(GetWorld()); It; ++It)
+	{
+		ATriggerBox* Box = *It;
+		if (Box->ActorHasTag("FinishTutorial"))
+		{
+			Box->OnActorBeginOverlap.AddDynamic(this, &AArchivist::OnTutorialTriggerOverlap);
+			break;  // only bind the first one we find
+		}
+	}
+}
 

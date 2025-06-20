@@ -10,6 +10,99 @@
 #include "Serialization/JsonSerializer.h"
 
 
+void UArchiveGameInstance::SetSavedPlayerLocation(FVector Location)
+{
+    SavedPlayerLocation = Location;
+}
+
+void UArchiveGameInstance::SetLastLevelName(FString LevelName)
+{
+    LastLevelName = LevelName;
+}
+
+void UArchiveGameInstance::ResetAllProgress()
+{
+    LastLevelName = "";
+    SavedPlayerLocation = FVector::ZeroVector;
+
+
+    // Reset quest checkboxes
+    bIsCheckBox1Checked = false;
+    bIsCheckBox2Checked = false;
+    bIsCheckBox3Checked = false;
+    bIsCheckBox4Checked = false;
+    bIsCheckBox5Checked = false;
+    bIsCheckBox6Checked = false;
+    bIsCheckBox7Checked = false;
+
+    // Reset other relevant flags
+    bBoxPlacedBeforeMoldGame = false;
+    bShreddedGameComplete = false;
+    bMoldGameComplete = false;
+    bBoxWasPlaced = false;
+
+    bHasGarageKeycard = false;
+    bHasArchiveKeycard = false;
+    bHasEquipmentKeycard = false;
+
+    bIsCustomized = false;
+
+    //Skin color
+    bIsCustomizedSkinColor1 = false;
+    bIsCustomizedSkinColor2 = false;
+    bIsCustomizedSkinColor3 = false;
+    bIsCustomizedSkinColor4 = false;
+    bIsCustomizedSkinColor5 = false;
+    bIsCustomizedSkinColor6 = false;
+    bIsCustomizedSkinColor7 = false;
+    bIsCustomizedSkinColor8 = false;
+    bIsCustomizedSkinColor9 = false;
+    bIsCustomizedSkinColor10 = false;
+    bIsCustomizedSkinColor11 = false;
+    bIsCustomizedSkinColor12 = false;
+    bIsCustomizedSkinColor13 = false;
+    bIsCustomizedSkinColor14 = false;
+
+    //Clock color
+    bIsCustomizedWatchColor1 = false;
+    bIsCustomizedWatchColor2 = false;
+    bIsCustomizedWatchColor3 = false;
+    bIsCustomizedWatchColor4 = false;
+    bIsCustomizedWatchColor5 = false;
+    bIsCustomizedWatchColor6 = false;
+    bIsCustomizedWatchColor7 = false;
+    bIsCustomizedWatchColor8 = false;
+    bIsCustomizedWatchColor9 = false;
+    bIsCustomizedWatchColor10 = false;
+
+    //Markers
+    bIsMarker1 = false;
+    bIsMarker2 = false;
+    bIsMarker3 = false;
+    bIsMarker4 = false;
+    bIsMarker5 = false;
+    bIsMarker6 = false;
+
+    //Sequence
+    bIntroCutscenePlayed = false;
+
+    //Tutorial
+    bTutorialPlayed = false;
+
+    // Clear quest entries
+    if (QuestLogData)
+    {
+        QuestLogData->QuestEntries.Empty();
+    }
+
+    // Delete JSON save file
+    FString SavePath = FPaths::ProjectSavedDir() + "QuestLog.json";
+    if (FPaths::FileExists(SavePath))
+    {
+        IFileManager::Get().Delete(*SavePath);
+    }
+}
+
 UArchiveGameInstance::UArchiveGameInstance()
 {
     QuestLogData = CreateDefaultSubobject<UQuestLogData>(TEXT("QuestLogData"));
@@ -143,6 +236,23 @@ void UArchiveGameInstance::SaveQuestLogData()
     JsonObject->SetBoolField("bHasArchiveKeycard", bHasArchiveKeycard);
     JsonObject->SetBoolField("bHasEquipmentKeycard", bHasEquipmentKeycard);
 
+    JsonObject->SetBoolField("BoxPlacedBeforeMoldGame", bBoxPlacedBeforeMoldGame);
+    JsonObject->SetBoolField("ShreddedGameComplete", bShreddedGameComplete);
+    JsonObject->SetBoolField("MoldGameComplete", bMoldGameComplete);
+
+    // Save position
+    FVector Loc = PlacedBoxTransform.GetLocation();
+    JsonObject->SetNumberField("BoxLocX", Loc.X);
+    JsonObject->SetNumberField("BoxLocY", Loc.Y);
+    JsonObject->SetNumberField("BoxLocZ", Loc.Z);
+
+    // Save full quaternion (exact orientation)
+    FQuat Quat = PlacedBoxTransform.GetRotation();
+    JsonObject->SetNumberField("BoxQuatX", Quat.X);
+    JsonObject->SetNumberField("BoxQuatY", Quat.Y);
+    JsonObject->SetNumberField("BoxQuatZ", Quat.Z);
+    JsonObject->SetNumberField("BoxQuatW", Quat.W);
+
     FString OutputString;
     TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutputString);
     FJsonSerializer::Serialize(JsonObject.ToSharedRef(), Writer);
@@ -155,9 +265,12 @@ void UArchiveGameInstance::SaveQuestLogData()
 //Loads the data from a JSON file 
 void UArchiveGameInstance::LoadQuestLogData()
 {
+    FString LoadPath = FPaths::ProjectSavedDir() + "QuestLog.json";
+    if (!FPaths::FileExists(LoadPath)) return;
+
     if (QuestLogData)
     {
-        FString LoadPath = FPaths::ProjectSavedDir() + "QuestLog.json"; 
+       // FString LoadPath = FPaths::ProjectSavedDir() + "QuestLog.json"; 
 
         FString LoadedData;
         if (FFileHelper::LoadFileToString(LoadedData, *LoadPath))
@@ -235,6 +348,27 @@ void UArchiveGameInstance::LoadQuestLogData()
                 bHasGarageKeycard = JsonObject->GetBoolField("bHasGarageKeycard");
                 bHasArchiveKeycard = JsonObject->GetBoolField("bHasArchiveKeycard");
                 bHasEquipmentKeycard = JsonObject->GetBoolField("bHasEquipmentKeycard");
+
+                bBoxPlacedBeforeMoldGame = JsonObject->GetBoolField("BoxPlacedBeforeMoldGame");
+                bShreddedGameComplete = JsonObject->GetBoolField("ShreddedGameComplete");
+                bMoldGameComplete = JsonObject->GetBoolField("MoldGameComplete");
+
+                FVector Loc(
+                    JsonObject->GetNumberField("BoxLocX"),
+                    JsonObject->GetNumberField("BoxLocY"),
+                    JsonObject->GetNumberField("BoxLocZ")
+                );
+
+                // Reconstruct orientation *exactly* from quaternion
+                FQuat Quat(
+                    JsonObject->GetNumberField("BoxQuatX"),
+                    JsonObject->GetNumberField("BoxQuatY"),
+                    JsonObject->GetNumberField("BoxQuatZ"),
+                    JsonObject->GetNumberField("BoxQuatW")
+                );
+
+                // Build the transform
+                PlacedBoxTransform = FTransform(Quat, Loc);
             }
         }
     }

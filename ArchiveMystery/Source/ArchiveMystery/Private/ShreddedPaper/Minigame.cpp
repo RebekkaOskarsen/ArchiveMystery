@@ -120,19 +120,15 @@ void AMinigame::StartGame()
         GameMenuWidgetInstance->RemoveFromViewport();
     }
 
-    if (GameMenuWidgetClass)
+    if (APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0))
     {
-        GameMenuWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), GameMenuWidgetClass);
-        if (GameMenuWidgetInstance)
-        {
-            GameMenuWidgetInstance->AddToViewport();
-        }
-
-        BackToTutorialButton = Cast<UButton>(GameMenuWidgetInstance->GetWidgetFromName(TEXT("BackToTutorialButton")));
-        if (BackToTutorialButton)
-        {
-            BackToTutorialButton->OnClicked.AddDynamic(this, &AMinigame::ShowTutorial);
-        }
+        // Show the cursor again
+        PC->bShowMouseCursor = true;
+        // Give mouse focus back to the world (so line-traces and drag work)
+        FInputModeGameAndUI InputMode;
+        InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+        InputMode.SetHideCursorDuringCapture(false);
+        PC->SetInputMode(InputMode);
     }
 }
 

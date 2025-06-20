@@ -19,6 +19,9 @@ public:
     void OnStartGameClicked();
 
     UFUNCTION(BlueprintCallable, Category = "Menu")
+    void OnContinueClicked();
+
+    UFUNCTION(BlueprintCallable, Category = "Menu")
     void OnExitGameClicked();
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
@@ -36,6 +39,9 @@ private:
 
     UPROPERTY(meta = (BindWidget))
     class UButton* StartGameButton;
+
+    UPROPERTY(meta = (BindWidget))
+    class UButton* ContinueButton;
 
     UPROPERTY(meta = (BindWidget))
     class UButton* ExitGameButton;

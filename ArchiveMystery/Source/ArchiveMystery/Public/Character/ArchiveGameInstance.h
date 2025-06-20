@@ -18,6 +18,18 @@ class ARCHIVEMYSTERY_API UArchiveGameInstance : public UGameInstance
 public:
 	FVector SavedPlayerLocation;
 
+	UPROPERTY(BlueprintReadWrite, Category = "Save System")
+	FString LastLevelName;
+
+	UFUNCTION(BlueprintCallable, Category = "Save System")
+	void SetSavedPlayerLocation(FVector Location);
+
+	UFUNCTION(BlueprintCallable, Category = "Save System")
+	void SetLastLevelName(FString LevelName);
+
+	UFUNCTION(BlueprintCallable, Category = "Save System")
+	void ResetAllProgress();
+
 	UArchiveGameInstance();
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest Log")
@@ -217,4 +229,11 @@ public:
 
 	UPROPERTY(BlueprintReadWrite)
 	FString SavedAnd;
+
+	//Intro sequence
+	UPROPERTY(BlueprintReadWrite, Category = "Save")
+	bool bIntroCutscenePlayed = false;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Save")
+	bool bTutorialPlayed = false;
 };

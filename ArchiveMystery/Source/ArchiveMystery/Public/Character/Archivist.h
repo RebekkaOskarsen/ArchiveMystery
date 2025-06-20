@@ -10,6 +10,13 @@
 #include "Blueprint/UserWidget.h"
 #include "Animation/AnimInstance.h"
 
+#include "LevelSequenceActor.h"
+#include "LevelSequencePlayer.h"
+#include "Kismet/GameplayStatics.h"
+#include "EngineUtils.h"
+
+#include "TimerManager.h"
+
 #include "Archivist.generated.h"
 
 class USpringArmComponent;
@@ -274,6 +281,26 @@ public:
 	UMaterialInterface* WatchColor10;
 
 	void ApplyMaterialToSlot(int32 MaterialSlotIndex, UMaterialInterface* NewMaterial);
+
+	// Saving
+	UFUNCTION(BlueprintCallable)
+	void SaveProgressBeforeMainMenu();
+
+	UFUNCTION(BlueprintCallable)
+	void PlayIntroSequenceIfNeeded();
+
+	//Tutorial
+	UPROPERTY(EditAnywhere, Category = "Tutorial")
+	TSubclassOf<UUserWidget> TutorialWidgetClass;
+
+	UUserWidget* TutorialWidgetInstance = nullptr;
+
+	UFUNCTION()
+	void OnTutorialTriggerOverlap(AActor* OverlappedActor, AActor* OtherActor);
+
+	FTimerHandle TutorialTimerHandle;
+
+	void ShowTutorial();
 
 protected:
 	virtual void BeginPlay() override;
