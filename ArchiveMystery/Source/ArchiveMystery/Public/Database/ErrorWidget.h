@@ -38,4 +38,8 @@ protected:
 
 	UFUNCTION()
 	void ShowSpeechBubble();
+
+public:
+	UPROPERTY(meta = (BindWidget))
+	UTextBlock* Text_PlayerName_Error;
 };

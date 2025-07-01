@@ -4,6 +4,7 @@
 #include "Database/ErrorWidget.h"
 #include "Components/Button.h"
 #include "Blueprint/UserWidget.h"
+#include "Character/ArchiveGameInstance.h"
 #include "Components/Border.h"
 #include "Components/Image.h"
 #include "Components/TextBlock.h"
@@ -36,6 +37,15 @@ void UErrorWidget::NativeConstruct()
 		// Vis etter kort tid
 		FTimerHandle TimerHandle;
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UErrorWidget::ShowSpeechBubble, 0.8f, false);
+	}
+
+	if (Text_PlayerName_Error)
+	{
+		if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
+		{
+			FString Message = FString::Printf(TEXT("You are logged in as: %s"), *GI->PlayerName);
+			Text_PlayerName_Error->SetText(FText::FromString(Message));
+		}
 	}
 }
 

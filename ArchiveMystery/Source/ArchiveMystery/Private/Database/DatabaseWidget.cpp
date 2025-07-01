@@ -59,6 +59,20 @@ void UDatabaseWidget::NativeConstruct()
 		SubmitButton->OnClicked.AddDynamic(this, &UDatabaseWidget::OnSubmitClicked);
 	}
 
+	if (SelectInputBox)
+	{
+		SelectInputBox->SetUserFocus(GetOwningPlayer());
+	}
+
+	if (Text_PlayerName_Database)
+	{
+		if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
+		{
+			FString Message = FString::Printf(TEXT("You are logged in as: %s"), *GI->PlayerName);
+			Text_PlayerName_Database->SetText(FText::FromString(Message));
+		}
+	}
+
 	UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(GetGameInstance());
 	if (GameInstance)
 	{

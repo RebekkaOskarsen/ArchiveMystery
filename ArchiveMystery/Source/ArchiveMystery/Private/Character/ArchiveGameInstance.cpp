@@ -82,6 +82,12 @@ void UArchiveGameInstance::ResetAllProgress()
     bIsMarker4 = false;
     bIsMarker5 = false;
     bIsMarker6 = false;
+    bIsMarker7 = false;
+    bIsMarker8 = false;
+    bIsMarker9 = false;
+    bIsMarker10 = false;
+    bIsMarker11 = false;
+    bIsMarker12 = false;
 
     //Sequence
     bIntroCutscenePlayed = false;
@@ -154,6 +160,12 @@ UArchiveGameInstance::UArchiveGameInstance()
     bIsMarker10 = false;
     bIsMarker11 = false;
     bIsMarker12 = false;
+
+    // Reset other relevant flags
+    bBoxPlacedBeforeMoldGame = false;
+    bShreddedGameComplete = false;
+    bMoldGameComplete = false;
+    bBoxWasPlaced = false;
 
     bHasGarageKeycard = false;
     bHasArchiveKeycard = false;
@@ -236,9 +248,9 @@ void UArchiveGameInstance::SaveQuestLogData()
     JsonObject->SetBoolField("bHasArchiveKeycard", bHasArchiveKeycard);
     JsonObject->SetBoolField("bHasEquipmentKeycard", bHasEquipmentKeycard);
 
-    JsonObject->SetBoolField("BoxPlacedBeforeMoldGame", bBoxPlacedBeforeMoldGame);
-    JsonObject->SetBoolField("ShreddedGameComplete", bShreddedGameComplete);
-    JsonObject->SetBoolField("MoldGameComplete", bMoldGameComplete);
+    JsonObject->SetBoolField("bBoxPlacedBeforeMoldGame", bBoxPlacedBeforeMoldGame);
+    JsonObject->SetBoolField("bShreddedGameComplete", bShreddedGameComplete);
+    JsonObject->SetBoolField("bMoldGameComplete", bMoldGameComplete);
 
     // Save position
     FVector Loc = PlacedBoxTransform.GetLocation();
@@ -349,9 +361,9 @@ void UArchiveGameInstance::LoadQuestLogData()
                 bHasArchiveKeycard = JsonObject->GetBoolField("bHasArchiveKeycard");
                 bHasEquipmentKeycard = JsonObject->GetBoolField("bHasEquipmentKeycard");
 
-                bBoxPlacedBeforeMoldGame = JsonObject->GetBoolField("BoxPlacedBeforeMoldGame");
-                bShreddedGameComplete = JsonObject->GetBoolField("ShreddedGameComplete");
-                bMoldGameComplete = JsonObject->GetBoolField("MoldGameComplete");
+                bBoxPlacedBeforeMoldGame = JsonObject->GetBoolField("bBoxPlacedBeforeMoldGame");
+                bShreddedGameComplete = JsonObject->GetBoolField("bShreddedGameComplete");
+                bMoldGameComplete = JsonObject->GetBoolField("bMoldGameComplete");
 
                 FVector Loc(
                     JsonObject->GetNumberField("BoxLocX"),

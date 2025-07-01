@@ -34,4 +34,8 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Login")
 	TSubclassOf<UUserWidget> NextWidgetClass;
+
+	UFUNCTION()
+	void OnNameCommitted(const FText& Text, ETextCommit::Type CommitMethod);
+
 };

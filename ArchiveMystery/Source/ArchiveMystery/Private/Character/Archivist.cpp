@@ -393,6 +393,7 @@ void AArchivist::StopRunning()
 
 void AArchivist::PickUp(const FInputActionValue& Value)
 {
+
 	if (bIsInputLocked)
 	{
 		return;

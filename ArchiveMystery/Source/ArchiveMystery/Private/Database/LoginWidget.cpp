@@ -16,16 +16,32 @@ void ULoginWidget::NativeConstruct()
 	{
 		Button_Login->OnClicked.AddDynamic(this, &ULoginWidget::OnLoginClicked);
 	}
+
+	if (EditableTextBox_PlayerName)
+	{
+		EditableTextBox_PlayerName->OnTextCommitted.AddDynamic(this, &ULoginWidget::OnNameCommitted);
+	}
+
+	if (EditableTextBox_PlayerName)
+	{
+		EditableTextBox_PlayerName->SetUserFocus(GetOwningPlayer());
+	}
 }
 
 void ULoginWidget::OnLoginClicked()
 {
+	FString PlayerName = EditableTextBox_PlayerName->GetText().ToString().TrimStartAndEnd();
+	UE_LOG(LogTemp, Warning, TEXT("PlayerName: '%s'"), *PlayerName);
+
+	if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
+	{
+		GI->PlayerName = PlayerName;
+	}
+
 	UE_LOG(LogTemp, Warning, TEXT("Login button clicked!"));
 
 	if (!EditableTextBox_PlayerName || !Text_ErrorMessage) return;
 
-	FString PlayerName = EditableTextBox_PlayerName->GetText().ToString().TrimStartAndEnd();
-	UE_LOG(LogTemp, Warning, TEXT("PlayerName: '%s'"), *PlayerName);
 	if (PlayerName.IsEmpty())
 	{
 		// Vis feilmelding
@@ -45,4 +61,14 @@ void ULoginWidget::OnLoginClicked()
 	}
 	RemoveFromParent();
 }
+
+void ULoginWidget::OnNameCommitted(const FText& Text, ETextCommit::Type CommitMethod)
+{
+	// Sjekk om det var Enter som trigget
+	if (CommitMethod == ETextCommit::OnEnter)
+	{
+		OnLoginClicked();
+	}
+}
+
 

@@ -44,16 +44,16 @@ public:
 	//Saving the order of the tasks in the game
 
 	UPROPERTY(BlueprintReadWrite)
-	bool bBoxPlacedBeforeMoldGame = false;
+	bool bBoxPlacedBeforeMoldGame;
 
 	UPROPERTY(BlueprintReadWrite)
-	bool bShreddedGameComplete = false;
+	bool bShreddedGameComplete;
 
 	UPROPERTY(BlueprintReadWrite)
-	bool bMoldGameComplete = false;
+	bool bMoldGameComplete;
 
 	UPROPERTY(BlueprintReadWrite)
-	bool bBoxWasPlaced = false;
+	bool bBoxWasPlaced ;
 
 	UPROPERTY(BlueprintReadWrite)
 	FVector BoxPlacedLocation;
@@ -236,4 +236,9 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, Category = "Save")
 	bool bTutorialPlayed = false;
+
+	//Saving the name of the player in the database
+	UPROPERTY(BlueprintReadWrite)
+	FString PlayerName;
+
 };

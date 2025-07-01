@@ -80,4 +80,8 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 	TSubclassOf<UUserWidget> ErrorWidgetClass;
+
+public:
+	UPROPERTY(meta = (BindWidget))
+	UTextBlock* Text_PlayerName_Database;
 };

@@ -409,9 +409,11 @@ void AMinigame::OnAllPiecesSnapped()
         Archivist->bHasFinishedShreddedPaperMinigame = true;
     }
 
-    if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
+    UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this));
+    if (GameInstance)
     {
-        GI->bShreddedGameComplete = true;
+        GameInstance->bShreddedGameComplete = true;
+        GameInstance->SaveQuestLogData();
     }
 
     if (ExitWidgetClass)
@@ -423,10 +425,7 @@ void AMinigame::OnAllPiecesSnapped()
         }
     }
 
-    if (UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
-    {
-        GameInstance->bShreddedGameComplete = true;
-    }
+
 }
 
 //Binds the input for dragging and releasing the paperstrips 

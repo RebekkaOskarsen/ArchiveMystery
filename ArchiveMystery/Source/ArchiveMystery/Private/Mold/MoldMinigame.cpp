@@ -10,6 +10,7 @@
 
 #include "Blueprint/UserWidget.h"
 #include "Character/ArchiveGameInstance.h"
+#include "Character/Archivist.h"
 
 AMoldMinigame::AMoldMinigame()
 {
@@ -161,6 +162,19 @@ void AMoldMinigame::CheckWinCondition()
 		{
 			ShowExitUI();
 		}
+	}
+
+	AArchivist* Archivist = Cast<AArchivist>(UGameplayStatics::GetPlayerCharacter(this, 0));
+	if (Archivist)
+	{
+		Archivist->bHasFinishedMoldMinigame = true;
+	}
+
+	UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this));
+	if (GameInstance)
+	{
+		GameInstance->bMoldGameComplete = true;
+		GameInstance->SaveQuestLogData();
 	}
 }
 
