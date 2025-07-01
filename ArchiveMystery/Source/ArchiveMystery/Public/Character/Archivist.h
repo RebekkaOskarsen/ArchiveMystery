@@ -193,13 +193,8 @@ public:
 	void ReinitialiseQuestMarkers();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	AActor* GarageKeycardActor;
+	AActor* KeycardActor;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	AActor* ArchiveKeycardActor;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	AActor* EquipmentKeycardActor;
 
 	bool bIsPaused;
 	//----Saving skin color-------------------------------------------------//

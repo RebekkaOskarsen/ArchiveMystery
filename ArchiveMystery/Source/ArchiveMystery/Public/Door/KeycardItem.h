@@ -12,9 +12,7 @@
 UENUM(BlueprintType)
 enum class EKeycardType : uint8
 {
-	Garage,
-	Archive,
-	Equipment
+DoubleDoor
 };
 
 UCLASS()

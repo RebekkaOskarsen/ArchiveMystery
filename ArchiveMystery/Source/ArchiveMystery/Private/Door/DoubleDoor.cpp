@@ -136,14 +136,8 @@ void ADoubleDoor::Interact(AActor* PlayerActor)
 	bool bCanOpen = false;
 	switch (DoorType)
 	{
-	case EDoorType::Garage:
-		bCanOpen = GI->bHasGarageKeycard;
-		break;
-	case EDoorType::Archive:
-		bCanOpen = GI->bHasArchiveKeycard;
-		break;
-	case EDoorType::Equipment:
-		bCanOpen = GI->bHasEquipmentKeycard;
+	case EDoorType::DoubleDoor:
+		bCanOpen = GI->bHasKeycard;
 		break;
 	}
 
@@ -153,14 +147,8 @@ void ADoubleDoor::Interact(AActor* PlayerActor)
 
 		switch (DoorType)
 		{
-		case EDoorType::Garage:
-			Message = GarageLockedText;
-			break;
-		case EDoorType::Archive:
-			Message = ArchiveLockedText;
-			break;
-		case EDoorType::Equipment:
-			Message = EquipmentLockedText;
+		case EDoorType::DoubleDoor:
+			Message = DoubleDoorLockedText;
 			break;
 		default:
 			Message = GenericLockedText;

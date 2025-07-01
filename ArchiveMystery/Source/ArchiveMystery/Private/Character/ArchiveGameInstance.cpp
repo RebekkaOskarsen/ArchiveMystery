@@ -41,9 +41,7 @@ void UArchiveGameInstance::ResetAllProgress()
     bMoldGameComplete = false;
     bBoxWasPlaced = false;
 
-    bHasGarageKeycard = false;
-    bHasArchiveKeycard = false;
-    bHasEquipmentKeycard = false;
+    bHasKeycard = false;
 
     bIsCustomized = false;
 
@@ -167,9 +165,7 @@ UArchiveGameInstance::UArchiveGameInstance()
     bMoldGameComplete = false;
     bBoxWasPlaced = false;
 
-    bHasGarageKeycard = false;
-    bHasArchiveKeycard = false;
-    bHasEquipmentKeycard = false; 
+    bHasKeycard = false;
 }
 
 //Saves the data to a JSON file 
@@ -244,9 +240,7 @@ void UArchiveGameInstance::SaveQuestLogData()
     JsonObject->SetBoolField("bIsMarker11", bIsMarker11);
     JsonObject->SetBoolField("bIsMarker12", bIsMarker12);
 
-    JsonObject->SetBoolField("bHasGarageKeycard", bHasGarageKeycard);
-    JsonObject->SetBoolField("bHasArchiveKeycard", bHasArchiveKeycard);
-    JsonObject->SetBoolField("bHasEquipmentKeycard", bHasEquipmentKeycard);
+    JsonObject->SetBoolField("bHasKeycard", bHasKeycard);
 
     JsonObject->SetBoolField("bBoxPlacedBeforeMoldGame", bBoxPlacedBeforeMoldGame);
     JsonObject->SetBoolField("bShreddedGameComplete", bShreddedGameComplete);
@@ -357,9 +351,7 @@ void UArchiveGameInstance::LoadQuestLogData()
                 bIsMarker11 = JsonObject->GetBoolField("bIsMarker11");
                 bIsMarker12 = JsonObject->GetBoolField("bIsMarker12");
 
-                bHasGarageKeycard = JsonObject->GetBoolField("bHasGarageKeycard");
-                bHasArchiveKeycard = JsonObject->GetBoolField("bHasArchiveKeycard");
-                bHasEquipmentKeycard = JsonObject->GetBoolField("bHasEquipmentKeycard");
+                bHasKeycard = JsonObject->GetBoolField("bHasKeycard");
 
                 bBoxPlacedBeforeMoldGame = JsonObject->GetBoolField("bBoxPlacedBeforeMoldGame");
                 bShreddedGameComplete = JsonObject->GetBoolField("bShreddedGameComplete");

@@ -31,14 +31,33 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Ghost Patrol")
 	float MoveSpeed = 100.0f;
 
+	UPROPERTY(EditAnywhere, Category = "Ghost Patrol")
+	float PauseDuration = 5.0f;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Ghost")
+	class UCapsuleComponent* CollisionCapsule;
+
 private:
 	int32 CurrentTargetIndex = 0;
 
 	bool bIsPaused = false;
 	float PauseTimer = 0.0f;
 
+	bool bIsManuallyStopped = false;
+
 	void MoveToTarget(float DeltaTime);
 
-	UPROPERTY(EditAnywhere, Category = "Ghost Patrol")
-	float PauseDuration = 5.0f;
+	AActor* PlayerActor = nullptr;
+
+	class UGhostAnimInstance* GhostAnimInstance = nullptr;
+
+	// Overlap functions
+	UFUNCTION()
+	void OnPlayerEnter(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
+		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
+		const FHitResult& SweepResult);
+
+	UFUNCTION()
+	void OnPlayerExit(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
+		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 };

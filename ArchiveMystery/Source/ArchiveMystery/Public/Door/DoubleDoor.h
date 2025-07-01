@@ -10,9 +10,7 @@
 UENUM(BlueprintType)
 enum class EDoorType : uint8
 {
-	Garage,
-	Archive,
-	Equipment
+DoubleDoor
 };
 
 UCLASS()
@@ -81,13 +79,7 @@ public:
 	float TextVisibleDuration = 2.5f;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Localization")
-	FText GarageLockedText = NSLOCTEXT("DoubleDoor", "GarageLockedText", "Garage Keycard Required");
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Localization")
-	FText ArchiveLockedText = NSLOCTEXT("DoubleDoor", "ArchiveLockedText", "Archive Keycard Required");
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Localization")
-	FText EquipmentLockedText = NSLOCTEXT("DoubleDoor", "EquipmentLockedText", "Equipment Keycard Required");
+	FText DoubleDoorLockedText = NSLOCTEXT("DoubleDoor", "DoorLockedText", "Keycard Required");
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Localization")
 	FText GenericLockedText = NSLOCTEXT("DoubleDoor", "GenericLockedText", "Access Denied");

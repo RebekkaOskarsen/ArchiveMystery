@@ -107,31 +107,11 @@ void AArchivist::BeginPlay()
 		bHasFinishedMoldMinigame = GameInstance->bMoldGameComplete;
 
 		//Keycards
-		if (GameInstance->bHasGarageKeycard)
+		if (GameInstance->bHasKeycard)
 		{
-			TArray<AActor*> FoundGarageCards;
-			UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("GarageKeycard"), FoundGarageCards);
-			for (AActor* Actor : FoundGarageCards)
-			{
-				Actor->Destroy();
-			}
-		}
-
-		if (GameInstance->bHasArchiveKeycard)
-		{
-			TArray<AActor*> FoundArchiveCards;
-			UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("ArchiveKeycard"), FoundArchiveCards);
-			for (AActor* Actor : FoundArchiveCards)
-			{
-				Actor->Destroy();
-			}
-		}
-
-		if (GameInstance->bHasEquipmentKeycard)
-		{
-			TArray<AActor*> FoundEquipmentCards;
-			UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("EquipmentKeycard"), FoundEquipmentCards);
-			for (AActor* Actor : FoundEquipmentCards)
+			TArray<AActor*> FoundCard;
+			UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("Keycard"), FoundCard);
+			for (AActor* Actor : FoundCard)
 			{
 				Actor->Destroy();
 			}
@@ -507,14 +487,8 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 			{
 				switch (Keycard->KeycardType)
 				{
-				case EKeycardType::Garage:
-					GI->bHasGarageKeycard = true;
-					break;
-				case EKeycardType::Archive:
-					GI->bHasArchiveKeycard = true;
-					break;
-				case EKeycardType::Equipment:
-					GI->bHasEquipmentKeycard = true;
+				case EKeycardType::DoubleDoor:
+					GI->bHasKeycard = true;
 					break;
 				}
 

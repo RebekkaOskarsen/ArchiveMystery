@@ -206,13 +206,8 @@ public:
 
 	//Keycards 
 	UPROPERTY(BlueprintReadWrite, Category = "Keycards")
-	bool bHasGarageKeycard;
+	bool bHasKeycard;
 
-	UPROPERTY(BlueprintReadWrite, Category = "Keycards")
-	bool bHasArchiveKeycard;
-
-	UPROPERTY(BlueprintReadWrite, Category = "Keycards")
-	bool bHasEquipmentKeycard;
 
 	// Lagrede SQL-inputverdier
 	UPROPERTY(BlueprintReadWrite)

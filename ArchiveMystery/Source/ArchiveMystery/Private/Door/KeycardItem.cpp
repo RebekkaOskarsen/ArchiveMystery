@@ -70,14 +70,8 @@ void AKeycardItem::BeginPlay()
 
 	switch (KeycardType)
 	{
-	case EKeycardType::Garage:
-		Label = NSLOCTEXT("Keycard", "GarageKeycardLabel", "Garage\nKeycard");
-		break;
-	case EKeycardType::Archive:
-		Label = NSLOCTEXT("Keycard", "ArchiveKeycardLabel", "Archives\nKeycard");
-		break;
-	case EKeycardType::Equipment:
-		Label = NSLOCTEXT("Keycard", "EquipmentKeycardLabel", "Equipment\nKeycard");
+	case EKeycardType::DoubleDoor:
+		Label = NSLOCTEXT("Keycard", "KeycardLabel", "Keycard");
 		break;
 	}
 
