@@ -67,8 +67,8 @@ void ATriggerMoldGame::CheckForInteraction()
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	AArchivist* Archivist = Cast<AArchivist>(UGameplayStatics::GetPlayerCharacter(this, 0));
 
-	UE_LOG(LogTemp, Warning, TEXT("Archivist->bHasPlacedBox: %s"), Archivist->bHasPlacedBox ? TEXT("true") : TEXT("false"));
-	UE_LOG(LogTemp, Warning, TEXT("Archivist->bHasFinishedShreddedPaperMinigame: %s"), Archivist->bHasFinishedShreddedPaperMinigame ? TEXT("true") : TEXT("false"));
+	//UE_LOG(LogTemp, Warning, TEXT("Archivist->bHasPlacedBox: %s"), Archivist->bHasPlacedBox ? TEXT("true") : TEXT("false"));
+	//UE_LOG(LogTemp, Warning, TEXT("Archivist->bHasFinishedShreddedPaperMinigame: %s"), Archivist->bHasFinishedShreddedPaperMinigame ? TEXT("true") : TEXT("false"));
 
 	if (bPlayerIsInside)
 	{

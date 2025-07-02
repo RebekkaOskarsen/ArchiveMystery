@@ -108,17 +108,19 @@ void UDatabaseWidget::OnSubmitClicked()
 	const FString AndText = CleanText(AndInputBox->GetText().ToString());
 
 	// Korrekte svar – også renset for mellomrom
-	const FString ExpectedSelect = TEXT("document_name,document_content");
-	const FString ExpectedFrom = TEXT("documents");
-	const FString ExpectedWhere = TEXT("documentname%buildingspecifications%");
-	const FString ExpectedAnd = TEXT("company=treplankenas");
+	const TArray<FString> ExpectedSelectOptions = { TEXT("document_name,document_content"), TEXT("dokument_navn,dokument_innhold") };
+	const TArray<FString> ExpectedFromOptions = { TEXT("documents"), TEXT("dokumenter") };
+	const TArray<FString> ExpectedWhereOptions = { TEXT("documentname"), TEXT("dokumentnavn") };
+	const TArray<FString> ExpectedLikeOptions = { TEXT("%buildingspecifications%"), TEXT("%bygningspesifikasjoner%") };
+	const TArray<FString> ExpectedAndOptions = { TEXT("company=treplankenas"), TEXT("bedrift=treplankenas"), TEXT("bedrift=treplanken as") };
+
 
 	// Sammenlign
-	const bool bSelectOK = (SelectText == ExpectedSelect);
-	const bool bFromOK = (FromText == ExpectedFrom);
-	const bool bWhereOK = (WhereText == TEXT("documentname"));
-	const bool bLikeOK = (LikeText == TEXT("%buildingspecifications%"));
-	const bool bAndOK = (AndText == ExpectedAnd);
+	const bool bSelectOK = ExpectedSelectOptions.Contains(SelectText);
+	const bool bFromOK = ExpectedFromOptions.Contains(FromText);
+	const bool bWhereOK = ExpectedWhereOptions.Contains(WhereText);
+	const bool bLikeOK = ExpectedLikeOptions.Contains(LikeText);
+	const bool bAndOK = ExpectedAndOptions.Contains(AndText);
 
 	if (bSelectOK && bFromOK && bWhereOK && bLikeOK && bAndOK)
 	{
@@ -152,7 +154,7 @@ void UDatabaseWidget::OnSubmitClicked()
 
 		if (ErrorWidgetClass)
 		{
-			
+
 			APlayerController* PC = GetWorld()->GetFirstPlayerController();
 			if (PC)
 			{
@@ -166,7 +168,6 @@ void UDatabaseWidget::OnSubmitClicked()
 		}
 	}
 }
-
 
 void UDatabaseWidget::OnSelectTextCommitted(const FText& Text, ETextCommit::Type CommitMethod)
 {
