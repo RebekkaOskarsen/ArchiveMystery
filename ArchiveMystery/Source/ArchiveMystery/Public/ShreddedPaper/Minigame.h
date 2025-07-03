@@ -86,6 +86,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Game")
 	void StartGame();
 
+	UFUNCTION(BlueprintCallable, Category = "Game")
+	void ShowGameMenu();
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 	TSubclassOf<UUserWidget> TutorialWidgetClass;
 

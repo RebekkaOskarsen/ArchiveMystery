@@ -259,6 +259,11 @@ void UArchiveGameInstance::SaveQuestLogData()
     JsonObject->SetNumberField("BoxQuatZ", Quat.Z);
     JsonObject->SetNumberField("BoxQuatW", Quat.W);
 
+    FVector Scale = PlacedBoxTransform.GetScale3D();
+    JsonObject->SetNumberField("BoxScaleX", Scale.X);
+    JsonObject->SetNumberField("BoxScaleY", Scale.Y);
+    JsonObject->SetNumberField("BoxScaleZ", Scale.Z);
+
     FString OutputString;
     TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutputString);
     FJsonSerializer::Serialize(JsonObject.ToSharedRef(), Writer);
@@ -371,8 +376,15 @@ void UArchiveGameInstance::LoadQuestLogData()
                     JsonObject->GetNumberField("BoxQuatW")
                 );
 
+
+                FVector Scale(
+                    JsonObject->GetNumberField("BoxScaleX"),
+                    JsonObject->GetNumberField("BoxScaleY"),
+                    JsonObject->GetNumberField("BoxScaleZ")
+                );
+
                 // Build the transform
-                PlacedBoxTransform = FTransform(Quat, Loc);
+                PlacedBoxTransform = FTransform(Quat, Loc, Scale);
             }
         }
     }

@@ -466,6 +466,8 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 				GI->bBoxWasPlaced = true;
 				GI->BoxPlacedLocation = EquippedBox->GetActorLocation();
 				GI->BoxPlacedRotation = EquippedBox->GetActorRotation();
+
+				GI->SaveQuestLogData();
 			}
 
 			bHasPlacedBox = true;

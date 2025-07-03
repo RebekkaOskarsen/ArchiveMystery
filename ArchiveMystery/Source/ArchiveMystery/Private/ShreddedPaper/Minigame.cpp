@@ -11,13 +11,13 @@
 
 AMinigame::AMinigame()
 {
-	PrimaryActorTick.bCanEverTick = true;
+    PrimaryActorTick.bCanEverTick = true;
 
     TopDownCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("TopDownCamera"));
     TopDownCamera->SetupAttachment(RootComponent);
 
-    TopDownCamera->SetRelativeLocation(FVector(0.0f, 0.0f, 150.0f)); 
-    TopDownCamera->SetRelativeRotation(FRotator(-90.0f, 0.0f, 0.0f));  
+    TopDownCamera->SetRelativeLocation(FVector(0.0f, 0.0f, 150.0f));
+    TopDownCamera->SetRelativeRotation(FRotator(-90.0f, 0.0f, 0.0f));
 
     bIsDragging = false;
     SelectedMesh = nullptr;
@@ -27,7 +27,7 @@ AMinigame::AMinigame()
 
 void AMinigame::BeginPlay()
 {
-	Super::BeginPlay();
+    Super::BeginPlay();
 
     APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
     if (PlayerController)
@@ -36,35 +36,35 @@ void AMinigame::BeginPlay()
         EnableInput(PlayerController);
     }
 
-    if (GameMenuWidgetClass)
-    {
-        GameMenuWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), GameMenuWidgetClass);
-        if (GameMenuWidgetInstance)
-        {
-            GameMenuWidgetInstance->AddToViewport();
+    //if (GameMenuWidgetClass)
+    //{
+    //    GameMenuWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), GameMenuWidgetClass);
+    //    if (GameMenuWidgetInstance)
+    //    {
+    //        GameMenuWidgetInstance->AddToViewport();
 
-            BackToTutorialButton = Cast<UButton>(GameMenuWidgetInstance->GetWidgetFromName(TEXT("BackToTutorialButton")));
-            if (BackToTutorialButton)
-            {
-                BackToTutorialButton->OnClicked.AddDynamic(this, &AMinigame::ShowTutorial);
-            }
-        }
-    }
+    //        BackToTutorialButton = Cast<UButton>(GameMenuWidgetInstance->GetWidgetFromName(TEXT("BackToTutorialButton")));
+    //        if (BackToTutorialButton)
+    //        {
+    //            BackToTutorialButton->OnClicked.AddDynamic(this, &AMinigame::ShowTutorial);
+    //        }
+    //    }
+    //}
 
-    if (TutorialWidgetClass)
-    {
-        TutorialWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), TutorialWidgetClass);
-        if (TutorialWidgetInstance)
-        {
-            TutorialWidgetInstance->AddToViewport();
+    //if (TutorialWidgetClass)
+    //{
+    //    TutorialWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), TutorialWidgetClass);
+    //    if (TutorialWidgetInstance)
+    //    {
+    //        TutorialWidgetInstance->AddToViewport();
 
-            StartButton = Cast<UButton>(TutorialWidgetInstance->GetWidgetFromName(TEXT("StartGameButton")));
-            if (StartButton)
-            {
-                StartButton->OnClicked.AddDynamic(this, &AMinigame::StartGame);
-            }
-        }
-    }
+    //        StartButton = Cast<UButton>(TutorialWidgetInstance->GetWidgetFromName(TEXT("StartGameButton")));
+    //        if (StartButton)
+    //        {
+    //            StartButton->OnClicked.AddDynamic(this, &AMinigame::StartGame);
+    //        }
+    //    }
+    //}
 
     SetActorLocation(FVector(0.0f, 0.0f, 150.0f));
     SetActorRotation(FRotator(-90.0f, 0.0f, 0.0f));
@@ -96,15 +96,16 @@ void AMinigame::BeginPlay()
 
     for (const TPair<FString, TArray<FString>>& Pair : SnappingRules)
     {
-        const FString& Paperstrip = Pair.Key; 
-        ParentMap.Add(Paperstrip, Paperstrip); 
+        const FString& Paperstrip = Pair.Key;
+        ParentMap.Add(Paperstrip, Paperstrip);
     }
 
     if (PaperSheet)
     {
-        PaperSheet->SetActorHiddenInGame(true); 
+        PaperSheet->SetActorHiddenInGame(true);
     }
 
+    ShowTutorial();
 }
 
 //Starts the game by removing the tutorial 
@@ -115,10 +116,23 @@ void AMinigame::StartGame()
         TutorialWidgetInstance->RemoveFromViewport();
     }
 
-    if (GameMenuWidgetInstance)
+    ShowGameMenu();
+
+    if (GameMenuWidgetClass)
     {
-        GameMenuWidgetInstance->RemoveFromViewport();
+        GameMenuWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), GameMenuWidgetClass);
+        if (GameMenuWidgetInstance)
+        {
+            GameMenuWidgetInstance->AddToViewport();
+
+            // re-bind your question-mark button
+            if (UButton* BackButton = Cast<UButton>(GameMenuWidgetInstance->GetWidgetFromName(TEXT("BackToTutorialButton"))))
+            {
+                BackButton->OnClicked.AddDynamic(this, &AMinigame::ShowTutorial);
+            }
+        }
     }
+
 
     if (APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0))
     {
@@ -132,28 +146,73 @@ void AMinigame::StartGame()
     }
 }
 
+void AMinigame::ShowGameMenu()
+{
+    // 1) If we haven’t created it yet, do so and bind the question-mark button
+    if (!GameMenuWidgetInstance && GameMenuWidgetClass)
+    {
+        GameMenuWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), GameMenuWidgetClass);
+        if (GameMenuWidgetInstance)
+        {
+            if (UButton* BackBtn = Cast<UButton>(
+                GameMenuWidgetInstance->GetWidgetFromName(TEXT("BackToTutorialButton"))))
+            {
+                BackBtn->OnClicked.AddDynamic(this, &AMinigame::ShowTutorial);
+            }
+        }
+    }
+
+    // 2) Make sure it’s on-screen
+    if (GameMenuWidgetInstance && !GameMenuWidgetInstance->IsInViewport())
+    {
+        GameMenuWidgetInstance->AddToViewport();
+    }
+
+    // 3) Give it UI focus & show cursor
+    if (APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0))
+    {
+        PC->bShowMouseCursor = true;
+        FInputModeGameAndUI InputMode;
+        InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+        InputMode.SetWidgetToFocus(GameMenuWidgetInstance->TakeWidget());
+        InputMode.SetHideCursorDuringCapture(false);
+        PC->SetInputMode(InputMode);
+    }
+}
+
 // Shows the tutorial when the button is clicked 
 void AMinigame::ShowTutorial()
 {
- 
-    if (GameMenuWidgetInstance)
+
+    if (GameMenuWidgetInstance && GameMenuWidgetInstance->IsInViewport())
     {
-        GameMenuWidgetInstance->RemoveFromViewport();
+        GameMenuWidgetInstance->RemoveFromParent();
     }
 
-    if (TutorialWidgetClass)
+    if (!TutorialWidgetInstance && TutorialWidgetClass)
     {
         TutorialWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), TutorialWidgetClass);
         if (TutorialWidgetInstance)
         {
-            TutorialWidgetInstance->AddToViewport();
-
-            StartButton = Cast<UButton>(TutorialWidgetInstance->GetWidgetFromName(TEXT("StartGameButton")));
-            if (StartButton)
+            if (UButton* StartBtn = Cast<UButton>(
+                TutorialWidgetInstance->GetWidgetFromName(TEXT("StartGameButton"))))
             {
-                StartButton->OnClicked.AddDynamic(this, &AMinigame::StartGame);
+                StartBtn->OnClicked.AddDynamic(this, &AMinigame::StartGame);
             }
         }
+    }
+
+    if (TutorialWidgetInstance && !TutorialWidgetInstance->IsInViewport())
+    {
+        TutorialWidgetInstance->AddToViewport();
+    }
+
+    if (APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0))
+    {
+        PC->bShowMouseCursor = true;
+        FInputModeUIOnly InputMode;
+        InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+        PC->SetInputMode(InputMode);
     }
 }
 
@@ -162,7 +221,7 @@ FString AMinigame::FindParent(const FString& Node)
 {
     if (!ParentMap.Contains(Node))
     {
-        ParentMap.Add(Node, Node); 
+        ParentMap.Add(Node, Node);
     }
 
     if (ParentMap[Node] != Node)
@@ -181,7 +240,7 @@ void AMinigame::MergeGroups(const FString& NodeA, const FString& NodeB)
 
     if (RootA == RootB)
     {
-        return; 
+        return;
     }
 
     ParentMap[RootB] = RootA;
@@ -194,7 +253,7 @@ void AMinigame::ValidateGroups()
 
     for (const TPair<FString, FString>& Pair : ParentMap)
     {
-        FindParent(Pair.Key); 
+        FindParent(Pair.Key);
     }
 
     for (const TPair<FString, FString>& Pair : ParentMap)
@@ -213,7 +272,7 @@ void AMinigame::ValidateGroups()
 //Is handling the dragging of the paperstrips and the snapping logic during eacg frame 
 void AMinigame::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);
+    Super::Tick(DeltaTime);
 
     if (bIsDragging && SelectedMesh)
     {
@@ -255,17 +314,17 @@ void AMinigame::Tick(float DeltaTime)
             FString SelectedTag;
             if (ParentActor->Tags.Num() > 0)
             {
-                SelectedTag = ParentActor->Tags[0].ToString(); 
+                SelectedTag = ParentActor->Tags[0].ToString();
             }
 
-            FString SelectedGroupRoot = FindParent(SelectedTag); 
+            FString SelectedGroupRoot = FindParent(SelectedTag);
 
             for (TActorIterator<AActor> TargetActorItr(GetWorld()); TargetActorItr; ++TargetActorItr)
             {
                 if (TargetActorItr->Tags.Num() > 0)
                 {
                     FString TargetTag = TargetActorItr->Tags[0].ToString();
-                    FString TargetGroupRoot = FindParent(TargetTag); 
+                    FString TargetGroupRoot = FindParent(TargetTag);
 
                     if (SelectedGroupRoot == TargetGroupRoot)
                     {
@@ -277,11 +336,11 @@ void AMinigame::Tick(float DeltaTime)
 
                     for (const TPair<FString, FString>& Pair : ParentMap)
                     {
-                        if (FindParent(Pair.Key) == SelectedGroupRoot) 
+                        if (FindParent(Pair.Key) == SelectedGroupRoot)
                         {
                             for (const TPair<FString, FString>& TargetPair : ParentMap)
                             {
-                                if (FindParent(TargetPair.Key) == TargetGroupRoot) 
+                                if (FindParent(TargetPair.Key) == TargetGroupRoot)
                                 {
                                     if (SnappingRules.Contains(Pair.Key) && SnappingRules[Pair.Key].Contains(TargetPair.Key))
                                     {
@@ -297,7 +356,7 @@ void AMinigame::Tick(float DeltaTime)
                                                         FVector TargetLocation = TargetActor->GetActorLocation();
                                                         float Distance = FVector::Dist(SelectedLocation, TargetLocation);
 
-                                                        if (Distance <= SnapThreshold) 
+                                                        if (Distance <= SnapThreshold)
                                                         {
                                                             ShouldSnap = true;
                                                             SnapOffset = TargetLocation - SelectedLocation;
@@ -343,7 +402,7 @@ void AMinigame::Tick(float DeltaTime)
 
                         ValidateGroups();
 
-                        return; 
+                        return;
                     }
                 }
             }
@@ -354,7 +413,7 @@ void AMinigame::Tick(float DeltaTime)
     {
         CurrentFadeTime += DeltaTime;
 
-        float Alpha = FMath::Clamp(CurrentFadeTime / FadeDuration, 0.0f, 1.0f); 
+        float Alpha = FMath::Clamp(CurrentFadeTime / FadeDuration, 0.0f, 1.0f);
 
         for (UActorComponent* Component : PaperSheet->GetComponents())
         {
@@ -363,7 +422,7 @@ void AMinigame::Tick(float DeltaTime)
                 UMaterialInstanceDynamic* DynamicMaterial = MeshComponent->CreateAndSetMaterialInstanceDynamic(0);
                 if (DynamicMaterial)
                 {
-                    DynamicMaterial->SetScalarParameterValue("Opacity", Alpha); 
+                    DynamicMaterial->SetScalarParameterValue("Opacity", Alpha);
                 }
             }
         }
@@ -387,19 +446,19 @@ void AMinigame::OnAllPiecesSnapped()
             ActorItr->ActorHasTag("paperstrip13") || ActorItr->ActorHasTag("paperstrip14") || ActorItr->ActorHasTag("paperstrip15") ||
             ActorItr->ActorHasTag("paperstrip16"))
         {
-            ActorItr->Destroy(); 
+            ActorItr->Destroy();
         }
     }
 
     if (PaperSheet)
     {
-        PaperSheet->SetActorHiddenInGame(false); 
-        PaperSheet->SetActorEnableCollision(true); 
+        PaperSheet->SetActorHiddenInGame(false);
+        PaperSheet->SetActorEnableCollision(true);
 
         FVector DesiredPosition(0.0f, 0.0f, 17.0f);
         PaperSheet->SetActorLocation(DesiredPosition);
-        CurrentFadeTime = 0.0f; 
-        bIsFadingIn = true; 
+        CurrentFadeTime = 0.0f;
+        bIsFadingIn = true;
 
     }
 
@@ -425,13 +484,16 @@ void AMinigame::OnAllPiecesSnapped()
         }
     }
 
-
+    //if (UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
+    //{
+    //    GameInstance->bShreddedGameComplete = true;
+    //}
 }
 
 //Binds the input for dragging and releasing the paperstrips 
 void AMinigame::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
+    Super::SetupPlayerInputComponent(PlayerInputComponent);
     if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent))
     {
         EnhancedInputComponent->BindAction(IA_Drag, ETriggerEvent::Triggered, this, &AMinigame::StartDragging);
@@ -456,7 +518,7 @@ void AMinigame::StartDragging()
     if (GetWorld()->GetFirstPlayerController()->DeprojectMousePositionToWorld(MousePosition, MouseDirection))
     {
         FVector Start = MousePosition;
-        FVector End = Start + (MouseDirection * 1000.0f); 
+        FVector End = Start + (MouseDirection * 1000.0f);
 
         if (GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility))
         {
@@ -464,7 +526,7 @@ void AMinigame::StartDragging()
             {
                 AActor* ParentActor = HitMesh->GetOwner();
 
-                if (ParentActor && ParentActor->ActorHasTag("Draggable")) 
+                if (ParentActor && ParentActor->ActorHasTag("Draggable"))
                 {
                     SelectedMesh = HitMesh;
                     bIsDragging = true;
@@ -503,9 +565,9 @@ void AMinigame::PlaySparkEffect(FVector Location)
             SparkNiagaraEffect,
             Location,
             FRotator::ZeroRotator,
-            FVector(1.0f), 
-            true, 
-            true, 
+            FVector(1.0f),
+            true,
+            true,
             ENCPoolMethod::AutoRelease
         );
     }

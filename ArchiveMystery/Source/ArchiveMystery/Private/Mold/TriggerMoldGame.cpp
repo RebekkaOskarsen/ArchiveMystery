@@ -83,9 +83,9 @@ void ATriggerMoldGame::CheckForInteraction()
 				{
 					GameInstance->SavedPlayerLocation = Archivist->GetActorLocation();
 					GameInstance->bMoldGameComplete = true;
+					GameInstance->SaveQuestLogData();
+					Archivist->bHasFinishedMoldMinigame = true;
 				}
-
-				Archivist->bHasFinishedMoldMinigame = true;
 				HidePrompt();
 				UGameplayStatics::OpenLevel(this, FName("MoldRoom"));
 			}
