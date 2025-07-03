@@ -10,17 +10,17 @@
                         "text": "'UUserWidget::RemoveFromViewport': RemoveFromViewport is deprecated. Use RemoveFromParent instead. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
                     },
                     "analysisTarget": {
-                        "uri": "file:///C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Intermediate/Build/Win64/x64/UnrealEditor/Development/ArchiveMystery/Module.ArchiveMystery.3.cpp"
+                        "uri": "file:///C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/torsdag/ArchiveMystery/Intermediate/Build/Win64/x64/UnrealEditor/Development/ArchiveMystery/Module.ArchiveMystery.3.cpp"
                     },
                     "locations": [
                         {
                             "physicalLocation": {
                                 "artifactLocation": {
-                                    "uri": "file:///C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
+                                    "uri": "file:///C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/torsdag/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
                                 },
                                 "region": {
                                     "startLine": 115,
-                                    "startColumn": 31
+                                    "startColumn": 33
                                 }
                             }
                         }
@@ -32,17 +32,17 @@
                         "text": "'UUserWidget::RemoveFromViewport': RemoveFromViewport is deprecated. Use RemoveFromParent instead. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
                     },
                     "analysisTarget": {
-                        "uri": "file:///C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Intermediate/Build/Win64/x64/UnrealEditor/Development/ArchiveMystery/Module.ArchiveMystery.3.cpp"
+                        "uri": "file:///C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/torsdag/ArchiveMystery/Intermediate/Build/Win64/x64/UnrealEditor/Development/ArchiveMystery/Module.ArchiveMystery.3.cpp"
                     },
                     "locations": [
                         {
                             "physicalLocation": {
                                 "artifactLocation": {
-                                    "uri": "file:///C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
+                                    "uri": "file:///C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/torsdag/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
                                 },
                                 "region": {
                                     "startLine": 120,
-                                    "startColumn": 31
+                                    "startColumn": 33
                                 }
                             }
                         }
@@ -54,17 +54,17 @@
                         "text": "'UUserWidget::RemoveFromViewport': RemoveFromViewport is deprecated. Use RemoveFromParent instead. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
                     },
                     "analysisTarget": {
-                        "uri": "file:///C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Intermediate/Build/Win64/x64/UnrealEditor/Development/ArchiveMystery/Module.ArchiveMystery.3.cpp"
+                        "uri": "file:///C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/torsdag/ArchiveMystery/Intermediate/Build/Win64/x64/UnrealEditor/Development/ArchiveMystery/Module.ArchiveMystery.3.cpp"
                     },
                     "locations": [
                         {
                             "physicalLocation": {
                                 "artifactLocation": {
-                                    "uri": "file:///C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
+                                    "uri": "file:///C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/torsdag/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
                                 },
                                 "region": {
                                     "startLine": 141,
-                                    "startColumn": 31
+                                    "startColumn": 33
                                 }
                             }
                         }
