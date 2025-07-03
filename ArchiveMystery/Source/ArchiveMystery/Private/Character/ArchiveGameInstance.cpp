@@ -43,6 +43,9 @@ void UArchiveGameInstance::ResetAllProgress()
 
     bHasKeycard = false;
 
+    bHasFoundDocument1 = false;
+    bHasFoundDocument2 = false;
+
     bIsCustomized = false;
 
     //Skin color
@@ -166,6 +169,9 @@ UArchiveGameInstance::UArchiveGameInstance()
     bBoxWasPlaced = false;
 
     bHasKeycard = false;
+
+    bHasFoundDocument1 = false;
+    bHasFoundDocument2 = false;
 }
 
 //Saves the data to a JSON file 
@@ -245,6 +251,10 @@ void UArchiveGameInstance::SaveQuestLogData()
     JsonObject->SetBoolField("bBoxPlacedBeforeMoldGame", bBoxPlacedBeforeMoldGame);
     JsonObject->SetBoolField("bShreddedGameComplete", bShreddedGameComplete);
     JsonObject->SetBoolField("bMoldGameComplete", bMoldGameComplete);
+
+    JsonObject->SetBoolField("bHasFoundDocument1", bHasFoundDocument1);
+    JsonObject->SetBoolField("bHasFoundDocument2", bHasFoundDocument2);
+
 
     // Save position
     FVector Loc = PlacedBoxTransform.GetLocation();
@@ -361,6 +371,10 @@ void UArchiveGameInstance::LoadQuestLogData()
                 bBoxPlacedBeforeMoldGame = JsonObject->GetBoolField("bBoxPlacedBeforeMoldGame");
                 bShreddedGameComplete = JsonObject->GetBoolField("bShreddedGameComplete");
                 bMoldGameComplete = JsonObject->GetBoolField("bMoldGameComplete");
+
+                bHasFoundDocument1 = JsonObject->GetBoolField("bHasFoundDocument1");
+                bHasFoundDocument2 = JsonObject->GetBoolField("bHasFoundDocument2");
+
 
                 FVector Loc(
                     JsonObject->GetNumberField("BoxLocX"),

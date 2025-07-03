@@ -64,6 +64,13 @@ public:
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 	FTransform PlacedBoxTransform;
 
+	// Documents
+	UPROPERTY(BlueprintReadWrite)
+	bool bHasFoundDocument1 = false;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool bHasFoundDocument2 = false;
+
 	//Checkboxes in the quest system 
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest Log")

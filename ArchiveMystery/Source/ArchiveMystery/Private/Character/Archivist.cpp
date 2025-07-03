@@ -105,6 +105,21 @@ void AArchivist::BeginPlay()
 		bHasPlacedBox = GameInstance->bBoxPlacedBeforeMoldGame;
 		bHasFinishedShreddedPaperMinigame = GameInstance->bShreddedGameComplete;
 		bHasFinishedMoldMinigame = GameInstance->bMoldGameComplete;
+		bHasFoundDocument1 = GameInstance->bHasFoundDocument1;
+		bHasFoundDocument2 = GameInstance->bHasFoundDocument2;
+
+		if (bHasFoundDocument1)
+		{
+			TArray<AActor*> FoundDocs;
+			UGameplayStatics::GetAllActorsWithTag(this, TEXT("DocumentItem_1"), FoundDocs);
+			for (AActor* D : FoundDocs) D->Destroy();
+		}
+		if (bHasFoundDocument2)
+		{
+			TArray<AActor*> FoundDocs;
+			UGameplayStatics::GetAllActorsWithTag(this, TEXT("DocumentItem_2"), FoundDocs);
+			for (AActor* D : FoundDocs) D->Destroy();
+		}
 
 		//Keycards
 		if (GameInstance->bHasKeycard)
@@ -384,6 +399,7 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 	ADocumentItem* OverlappingDocument = Cast<ADocumentItem>(OverlappingItems);
 	if (OverlappingDocument)
 	{
+		// only allow picking up once all minigames & box placement are done
 		if (bHasPlacedBox && bHasFinishedShreddedPaperMinigame && bHasFinishedMoldMinigame)
 		{
 			FName ID = OverlappingDocument->DocumentID;
@@ -393,15 +409,20 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 				bHasFoundDocument1 = true;
 				PickedUpDocument1 = OverlappingDocument;
 
+				// **persist immediately**
+				if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
+				{
+					GI->bHasFoundDocument1 = true;
+					GI->SaveQuestLogData();
+				}
+
 				if (DocumentPopupWidgetClass && !DocumentPopupWidgetInstance)
 				{
 					DocumentPopupWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), DocumentPopupWidgetClass);
 					if (DocumentPopupWidgetInstance)
 					{
 						DocumentPopupWidgetInstance->AddToViewport();
-
-						APlayerController* PC = GetWorld()->GetFirstPlayerController();
-						if (PC)
+						if (APlayerController* PC = GetWorld()->GetFirstPlayerController())
 						{
 							PC->SetInputMode(FInputModeUIOnly());
 							PC->bShowMouseCursor = true;
@@ -414,15 +435,20 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 				bHasFoundDocument2 = true;
 				PickedUpDocument2 = OverlappingDocument;
 
+				// **persist immediately**
+				if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
+				{
+					GI->bHasFoundDocument2 = true;
+					GI->SaveQuestLogData();
+				}
+
 				if (SecondDocumentPopupWidgetClass && !SecondDocumentPopupWidgetInstance)
 				{
 					SecondDocumentPopupWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), SecondDocumentPopupWidgetClass);
 					if (SecondDocumentPopupWidgetInstance)
 					{
 						SecondDocumentPopupWidgetInstance->AddToViewport();
-
-						APlayerController* PC = GetWorld()->GetFirstPlayerController();
-						if (PC)
+						if (APlayerController* PC = GetWorld()->GetFirstPlayerController())
 						{
 							PC->SetInputMode(FInputModeUIOnly());
 							PC->bShowMouseCursor = true;
@@ -436,6 +462,7 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 			bDidInteract = true;
 		}
 	}
+
 
 	if (EquippedBox)
 	{
