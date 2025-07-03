@@ -4,11 +4,14 @@
 #include "Mold/MoldMinigame.h"
 #include "Camera/CameraComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "GameFramework/PlayerController.h"
 
 #include "Mold/Mold.h"
 #include "Mold/BrushSelectionWidget.h"
 
 #include "Blueprint/UserWidget.h"
+#include "Components/Button.h"
+
 #include "Character/ArchiveGameInstance.h"
 #include "Character/Archivist.h"
 
@@ -35,6 +38,9 @@ void AMoldMinigame::BeginPlay()
 	if (PC)
 	{
 		PC->SetViewTarget(this);
+
+		EnableInput(PC);
+		InputComponent->BindKey(EKeys::P, IE_Pressed, this, &AMoldMinigame::TogglePause);
 	}
 
 	//To count all the mold at the start
@@ -237,5 +243,75 @@ void AMoldMinigame::HideBrushUI()
 		BrushSelectionWidget->RemoveFromParent();
 		BrushSelectionWidget = nullptr;
 	}
+}
+
+void AMoldMinigame::TogglePause()
+{
+	bIsPaused = !bIsPaused;
+
+	APlayerController* PC = GetWorld()->GetFirstPlayerController();
+	if (!PC) return;
+
+	if (bIsPaused)
+	{
+		PC->SetPause(true);
+
+		if (PauseMenuWidgetClass && !PauseMenuWidget)
+		{
+			PauseMenuWidget = CreateWidget<UUserWidget>(PC, PauseMenuWidgetClass);
+			if (PauseMenuWidget)
+			{
+				PauseMenuWidget->AddToViewport();
+
+				if (UButton* ResumeBtn = Cast<UButton>(
+					PauseMenuWidget->GetWidgetFromName(TEXT("ResumeButton"))))
+				{
+					ResumeBtn->OnClicked.AddDynamic(this, &AMoldMinigame::OnResumeClicked);
+				}
+				if (UButton* ExitBtn = Cast<UButton>(
+					PauseMenuWidget->GetWidgetFromName(TEXT("ExitGameButton"))))
+				{
+					ExitBtn->OnClicked.AddDynamic(this, &AMoldMinigame::OnExitClicked);
+				}
+			}
+		}
+
+		FInputModeUIOnly UI;
+		UI.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+		PC->SetInputMode(UI);
+		PC->bShowMouseCursor = true;
+	}
+	else
+	{
+		PC->SetPause(false);
+
+		if (PauseMenuWidget)
+		{
+			PauseMenuWidget->RemoveFromParent();
+			PauseMenuWidget = nullptr;
+		}
+
+		PC->bShowMouseCursor = true;
+
+		FInputModeGameAndUI InputMode;
+		InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+		PC->SetInputMode(InputMode);
+	}
+}
+
+void AMoldMinigame::OnResumeClicked()
+{
+	TogglePause();
+}
+
+void AMoldMinigame::OnExitClicked()
+{
+	if (UArchiveGameInstance* GI =
+		Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
+	{
+		GI->SaveQuestLogData();
+	}
+
+	UGameplayStatics::OpenLevel(this, FName("Archive-Mystery"));
 }
 

@@ -144,4 +144,24 @@ protected:
 
 	void ValidateGroups();
 
+	//-----------------------Pause Menu------------------------//
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> PauseMenuWidgetClass;
+
+	/** Instance of the pause menu */
+	UUserWidget* PauseMenuWidget;
+
+	/** Are we currently paused? */
+	bool bGamePaused = false;
+
+	/** toggles pause state & menu */
+	void TogglePauseMenu();
+
+	// callbacks from the pause menu
+	UFUNCTION()
+	void OnResumeClicked();
+
+	UFUNCTION()
+	void OnExitClicked();
+
 };

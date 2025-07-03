@@ -96,4 +96,21 @@ private:
 
 	void ShowBrushUI();
 	void HideBrushUI();
+
+	// Pause Menu
+	UPROPERTY(EditAnywhere, Category = "Pause")
+	TSubclassOf<UUserWidget> PauseMenuWidgetClass;
+
+	UPROPERTY()
+	UUserWidget* PauseMenuWidget = nullptr;
+
+	bool bIsPaused = false;
+
+	void TogglePause();
+
+	UFUNCTION()
+	void OnResumeClicked();
+
+	UFUNCTION()
+	void OnExitClicked();
 };
