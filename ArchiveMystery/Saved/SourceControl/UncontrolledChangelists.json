@@ -1,0 +1,44 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Ghost_of_the_Archive/Ghost_Blinking.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Ghost_of_the_Archive/Ghost_Idle_Looking.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Ghost_of_the_Archive/Ghost_Idle_Looking_Anim.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Ghost_of_the_Archive/Ghost_Blinking_Anim.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Ghost_of_the_Archive/M_GhostoftheArchive.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Ghost_of_the_Archive/Ghost_Idle_2_Looking_Anim.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Bird/Bird_Rig.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Bird/Bird_Rig_PhysicsAsset.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Bird/Bird_Rig_Skeleton.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Bird/Bird_AnimBird_Flying.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Bird/Bird_AnimBird_Hopping.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Bird/Bird_AnimBird_Idle_Look.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Bird/Bird_Anim_Flying.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Bird/Bird_Anim_Hopping.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Bird/Bird_Anim_Idle_Look.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Bird/T_Bird_Tit_Base_color.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Bird/T_Bird_Tit_Metallic.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Bird/T_Bird_Tit_Normal.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Bird/T_Bird_Tit_Roughness.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Bird/T_Bird_Metallic.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Bird/T_Bird_Normal.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Bird/T_Bird_Roughness.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Bird/T_Bird_Base_color.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Bird/M_Bird.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/3DAssets/Master_Material.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/D/JQ/EL1L9OJC2YSGYIP49HCRR8.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/C/UL/MGSM5V7B10HNQWS2HC9IVO.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/2/1D/OG08SJYE3W1AJHPE9YKFMY.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/2DAssets/Icons/ScrollBar_bottom.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/2DAssets/Icons/ScrollBar_thumb.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/2DAssets/Icons/ScrollBar_top.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/Blueprint/Small_Quest_System/W_QuestLog.uasset",
+				"C:/Users/minas/OneDrive/Dokumenter/Personal Projects/NGA 2025/ArchiveMystery/ArchiveMystery/Content/2DAssets/Icons/ScrollBar_thumb__1_.uasset"
+			]
+		}
+	]
+}
