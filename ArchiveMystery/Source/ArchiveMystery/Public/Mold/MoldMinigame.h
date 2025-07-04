@@ -8,6 +8,12 @@
 #include "BrushSelectionWidget.h"
 #include "MoldMinigame.generated.h"
 
+UENUM(BlueprintType)
+enum class EMoldDifficulty : uint8
+{
+	Easy  UMETA(DisplayName = "Easy"),
+	Hard  UMETA(DisplayName = "Hard")
+};
 
 UCLASS()
 class ARCHIVEMYSTERY_API AMoldMinigame : public AActor
@@ -19,6 +25,17 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Game")
+	EMoldDifficulty CurrentDifficulty;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Game")
+	float HardModeTimeLimit = 30.0f; // seconds
+
+	FTimerHandle HardModeTimerHandle;
+
+	UFUNCTION()
+	void OnHardModeTimeExpired();
 
 public:	
 	virtual void Tick(float DeltaTime) override;
@@ -35,6 +52,33 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Minigame")
 	void ShowTutorial();
+
+	UFUNCTION(BlueprintCallable)
+	void StartGame(EMoldDifficulty Difficulty);
+
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> CountdownWidgetClass;
+
+	UPROPERTY()
+	UUserWidget* CountdownWidget;
+
+	UPROPERTY()
+	int32 CountdownTime;
+
+	FTimerHandle CountdownTickHandle;
+
+	void UpdateCountdownTick();
+	void OnCountdownFinished();
+
+
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> TryAgainWidgetClass;
+
+	UPROPERTY()
+	UUserWidget* TryAgainWidget;
+
+	UFUNCTION()
+	void OnTryAgainClicked();
 
 private:
 	UPROPERTY(EditAnywhere, Category = "Camera")

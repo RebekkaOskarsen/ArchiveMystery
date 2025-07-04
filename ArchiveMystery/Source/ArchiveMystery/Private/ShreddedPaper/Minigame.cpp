@@ -275,7 +275,7 @@ void AMinigame::ValidateGroups()
 
 void AMinigame::TogglePauseMenu()
 {
-    APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0);
+    auto* PC = UGameplayStatics::GetPlayerController(this, 0);
     if (!PC) return;
 
     bGamePaused = !bGamePaused;
@@ -283,40 +283,35 @@ void AMinigame::TogglePauseMenu()
 
     if (bGamePaused)
     {
-        if (PauseMenuWidgetClass && !PauseMenuWidget)
+        if (!PauseMenuWidget && PauseMenuWidgetClass)
         {
             PauseMenuWidget = CreateWidget<UUserWidget>(PC, PauseMenuWidgetClass);
             PauseMenuWidget->AddToViewport();
-
-            if (UButton* ResumeBtn = Cast<UButton>(
-                PauseMenuWidget->GetWidgetFromName(TEXT("ResumeButton"))))
-            {
-                ResumeBtn->OnClicked.AddDynamic(this, &AMinigame::OnResumeClicked);
-            }
-            if (UButton* ExitBtn = Cast<UButton>(
-                PauseMenuWidget->GetWidgetFromName(TEXT("ExitGameButton"))))
-            {
-                ExitBtn->OnClicked.AddDynamic(this, &AMinigame::OnExitClicked);
-            }
+            if (auto* Btn = Cast<UButton>(PauseMenuWidget->GetWidgetFromName(TEXT("ResumeButton"))))
+                Btn->OnClicked.AddDynamic(this, &AMinigame::OnResumeClicked);
+            if (auto* Btn = Cast<UButton>(PauseMenuWidget->GetWidgetFromName(TEXT("ExitGameButton"))))
+                Btn->OnClicked.AddDynamic(this, &AMinigame::OnExitClicked);
         }
 
         PC->bShowMouseCursor = true;
         FInputModeUIOnly UI;
-        UI.SetWidgetToFocus(PauseMenuWidget->TakeWidget());
         UI.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+        UI.SetWidgetToFocus(PauseMenuWidget->TakeWidget());
         PC->SetInputMode(UI);
     }
     else
     {
-        if (PauseMenuWidget)
-        {
-            PauseMenuWidget->RemoveFromParent();
-            PauseMenuWidget = nullptr;
-        }
+        if (PauseMenuWidget) PauseMenuWidget->RemoveFromParent(), PauseMenuWidget = nullptr;
 
         PC->bShowMouseCursor = true;
+        PC->bEnableClickEvents = true;
+        PC->bEnableMouseOverEvents = true;
+
         FInputModeGameOnly GameInput;
+        GameInput.SetConsumeCaptureMouseDown(false);
         PC->SetInputMode(GameInput);
+
+        PC->FlushPressedKeys();
     }
 }
 
@@ -561,19 +556,8 @@ void AMinigame::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
     Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-    if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent))
-    {
-        EnhancedInputComponent->BindAction(IA_Drag, ETriggerEvent::Triggered, this, &AMinigame::StartDragging);
-        EnhancedInputComponent->BindAction(IA_Release, ETriggerEvent::Triggered, this, &AMinigame::StopDragging);
-    }
-
-    if (APlayerController* PlayerController = Cast<APlayerController>(GetController()))
-    {
-        if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
-        {
-            Subsystem->AddMappingContext(IMC_DragAndDrop, 0);
-        }
-    }
+    PlayerInputComponent->BindKey(EKeys::LeftMouseButton, IE_Pressed, this, &AMinigame::StartDragging);
+    PlayerInputComponent->BindKey(EKeys::LeftMouseButton, IE_Released, this, &AMinigame::StopDragging);
 }
 
 //The paperstrips can be dragged with left mouse click 

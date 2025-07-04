@@ -11,6 +11,7 @@
 
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
+#include "Components/TextBlock.h"
 
 #include "Character/ArchiveGameInstance.h"
 #include "Character/Archivist.h"
@@ -87,6 +88,11 @@ void AMoldMinigame::BeginPlay()
 	HideBrushUI();
 
 	ShowTutorial();
+}
+
+void AMoldMinigame::OnHardModeTimeExpired()
+{
+
 }
 
 void AMoldMinigame::Tick(float DeltaTime)
@@ -222,6 +228,83 @@ void AMoldMinigame::ShowTutorial()
 	{
 		MoldTutorialWidget->AddToViewport();
 	}
+}
+
+void AMoldMinigame::StartGame(EMoldDifficulty Difficulty)
+{
+	CurrentDifficulty = Difficulty;
+
+	if (CurrentDifficulty == EMoldDifficulty::Hard)
+	{
+		CountdownTime = HardModeTimeLimit;
+
+		if (CountdownWidgetClass)
+		{
+			CountdownWidget = CreateWidget<UUserWidget>(GetWorld(), CountdownWidgetClass);
+			if (CountdownWidget)
+			{
+				CountdownWidget->AddToViewport();
+			}
+		}
+
+		GetWorldTimerManager().SetTimer(CountdownTickHandle, this, &AMoldMinigame::UpdateCountdownTick, 1.0f, true);
+	}
+
+	EnableBrushing();
+}
+
+void AMoldMinigame::UpdateCountdownTick()
+{
+	CountdownTime--;
+
+	if (CountdownWidget)
+	{
+		if (UTextBlock* CountdownText = Cast<UTextBlock>(CountdownWidget->GetWidgetFromName(TEXT("CountdownText"))))
+		{
+			CountdownText->SetText(FText::FromString(FString::FromInt(CountdownTime)));
+		}
+	}
+
+	if (CountdownTime <= 0)
+	{
+		OnCountdownFinished();
+	}
+}
+
+void AMoldMinigame::OnCountdownFinished()
+{
+	GetWorldTimerManager().ClearTimer(CountdownTickHandle);
+
+	if (CountdownWidget)
+	{
+		CountdownWidget->RemoveFromParent();
+		CountdownWidget = nullptr;
+	}
+
+	if (TryAgainWidgetClass)
+	{
+		TryAgainWidget = CreateWidget<UUserWidget>(GetWorld(), TryAgainWidgetClass);
+		if (TryAgainWidget)
+		{
+			TryAgainWidget->AddToViewport();
+
+			if (UButton* TryAgainBtn = Cast<UButton>(TryAgainWidget->GetWidgetFromName(TEXT("TryAgainButton"))))
+			{
+				TryAgainBtn->OnClicked.AddDynamic(this, &AMoldMinigame::OnTryAgainClicked);
+			}
+		}
+	}
+}
+
+void AMoldMinigame::OnTryAgainClicked()
+{
+	if (TryAgainWidget)
+	{
+		TryAgainWidget->RemoveFromParent();
+		TryAgainWidget = nullptr;
+	}
+
+	ShowTutorial();
 }
 
 void AMoldMinigame::ShowBrushUI()
