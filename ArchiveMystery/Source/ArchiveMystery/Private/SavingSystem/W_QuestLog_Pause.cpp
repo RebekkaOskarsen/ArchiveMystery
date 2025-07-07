@@ -17,6 +17,10 @@ void UW_QuestLog_Pause::SaveCheckBoxState()
         GameInstance->bIsCheckBox5Checked = CheckBox_5->IsChecked();
         GameInstance->bIsCheckBox6Checked = CheckBox_6->IsChecked();
         GameInstance->bIsCheckBox7Checked = CheckBox_7->IsChecked();
+        GameInstance->bIsCheckBox8Checked = CheckBox_8->IsChecked();
+        GameInstance->bIsCheckBox9Checked = CheckBox_9->IsChecked();
+        GameInstance->bIsCheckBox10Checked = CheckBox_10->IsChecked();
+        GameInstance->bIsCheckBox11Checked = CheckBox_11->IsChecked();
     }
 }
 
@@ -26,7 +30,8 @@ void UW_QuestLog_Pause::LoadCheckBoxState()
     UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(GetGameInstance());
     if (GameInstance)
     {
-        if (CheckBox_1 && CheckBox_2 && CheckBox_3 && CheckBox_4 && CheckBox_5 && CheckBox_6 && CheckBox_7)
+        if (CheckBox_1 && CheckBox_2 && CheckBox_3 && CheckBox_4 && CheckBox_5 && CheckBox_6
+            && CheckBox_7&& CheckBox_8 && CheckBox_9 && CheckBox_10 && CheckBox_11)
         {
             CheckBox_1->SetIsChecked(GameInstance->bIsCheckBox1Checked);  
             CheckBox_2->SetIsChecked(GameInstance->bIsCheckBox2Checked);  
@@ -35,6 +40,10 @@ void UW_QuestLog_Pause::LoadCheckBoxState()
             CheckBox_5->SetIsChecked(GameInstance->bIsCheckBox5Checked); 
             CheckBox_6->SetIsChecked(GameInstance->bIsCheckBox6Checked); 
             CheckBox_7->SetIsChecked(GameInstance->bIsCheckBox7Checked); 
+            CheckBox_8->SetIsChecked(GameInstance->bIsCheckBox8Checked); 
+            CheckBox_9->SetIsChecked(GameInstance->bIsCheckBox9Checked); 
+            CheckBox_10->SetIsChecked(GameInstance->bIsCheckBox10Checked); 
+            CheckBox_11->SetIsChecked(GameInstance->bIsCheckBox11Checked); 
         }
     }
 }

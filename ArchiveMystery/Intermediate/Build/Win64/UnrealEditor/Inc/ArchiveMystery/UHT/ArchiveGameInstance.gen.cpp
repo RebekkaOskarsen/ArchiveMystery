@@ -314,6 +314,22 @@ struct Z_Construct_UClass_UArchiveGameInstance_Statics
 		{ "Category", "Quest Log" },
 		{ "ModuleRelativePath", "Public/Character/ArchiveGameInstance.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsCheckBox8Checked_MetaData[] = {
+		{ "Category", "Quest Log" },
+		{ "ModuleRelativePath", "Public/Character/ArchiveGameInstance.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsCheckBox9Checked_MetaData[] = {
+		{ "Category", "Quest Log" },
+		{ "ModuleRelativePath", "Public/Character/ArchiveGameInstance.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsCheckBox10Checked_MetaData[] = {
+		{ "Category", "Quest Log" },
+		{ "ModuleRelativePath", "Public/Character/ArchiveGameInstance.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsCheckBox11Checked_MetaData[] = {
+		{ "Category", "Quest Log" },
+		{ "ModuleRelativePath", "Public/Character/ArchiveGameInstance.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsCustomized_MetaData[] = {
 		{ "Category", "ArchiveGameInstance" },
 		{ "ModuleRelativePath", "Public/Character/ArchiveGameInstance.h" },
@@ -572,6 +588,14 @@ struct Z_Construct_UClass_UArchiveGameInstance_Statics
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsCheckBox6Checked;
 	static void NewProp_bIsCheckBox7Checked_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsCheckBox7Checked;
+	static void NewProp_bIsCheckBox8Checked_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsCheckBox8Checked;
+	static void NewProp_bIsCheckBox9Checked_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsCheckBox9Checked;
+	static void NewProp_bIsCheckBox10Checked_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsCheckBox10Checked;
+	static void NewProp_bIsCheckBox11Checked_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsCheckBox11Checked;
 	static void NewProp_bIsCustomized_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsCustomized;
 	static void NewProp_bIsCustomizedSkinColor1_SetBit(void* Obj);
@@ -743,6 +767,26 @@ void Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox7Checke
 	((UArchiveGameInstance*)Obj)->bIsCheckBox7Checked = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox7Checked = { "bIsCheckBox7Checked", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UArchiveGameInstance), &Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox7Checked_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsCheckBox7Checked_MetaData), NewProp_bIsCheckBox7Checked_MetaData) };
+void Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox8Checked_SetBit(void* Obj)
+{
+	((UArchiveGameInstance*)Obj)->bIsCheckBox8Checked = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox8Checked = { "bIsCheckBox8Checked", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UArchiveGameInstance), &Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox8Checked_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsCheckBox8Checked_MetaData), NewProp_bIsCheckBox8Checked_MetaData) };
+void Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox9Checked_SetBit(void* Obj)
+{
+	((UArchiveGameInstance*)Obj)->bIsCheckBox9Checked = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox9Checked = { "bIsCheckBox9Checked", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UArchiveGameInstance), &Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox9Checked_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsCheckBox9Checked_MetaData), NewProp_bIsCheckBox9Checked_MetaData) };
+void Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox10Checked_SetBit(void* Obj)
+{
+	((UArchiveGameInstance*)Obj)->bIsCheckBox10Checked = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox10Checked = { "bIsCheckBox10Checked", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UArchiveGameInstance), &Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox10Checked_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsCheckBox10Checked_MetaData), NewProp_bIsCheckBox10Checked_MetaData) };
+void Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox11Checked_SetBit(void* Obj)
+{
+	((UArchiveGameInstance*)Obj)->bIsCheckBox11Checked = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox11Checked = { "bIsCheckBox11Checked", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UArchiveGameInstance), &Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox11Checked_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsCheckBox11Checked_MetaData), NewProp_bIsCheckBox11Checked_MetaData) };
 void Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCustomized_SetBit(void* Obj)
 {
 	((UArchiveGameInstance*)Obj)->bIsCustomized = 1;
@@ -968,6 +1012,10 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UArchiveG
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox5Checked,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox6Checked,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox7Checked,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox8Checked,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox9Checked,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox10Checked,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCheckBox11Checked,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCustomized,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCustomizedSkinColor1,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsCustomizedSkinColor2,
@@ -1053,14 +1101,14 @@ UArchiveGameInstance::~UArchiveGameInstance() {}
 // End Class UArchiveGameInstance
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_henri_OneDrive___Universitetet_i_Innlandet_Skrivebord_fredag_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_Statics
+struct Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UArchiveGameInstance, UArchiveGameInstance::StaticClass, TEXT("UArchiveGameInstance"), &Z_Registration_Info_UClass_UArchiveGameInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UArchiveGameInstance), 4038466899U) },
+		{ Z_Construct_UClass_UArchiveGameInstance, UArchiveGameInstance::StaticClass, TEXT("UArchiveGameInstance"), &Z_Registration_Info_UClass_UArchiveGameInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UArchiveGameInstance), 3147353504U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_henri_OneDrive___Universitetet_i_Innlandet_Skrivebord_fredag_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_783552348(TEXT("/Script/ArchiveMystery"),
-	Z_CompiledInDeferFile_FID_Users_henri_OneDrive___Universitetet_i_Innlandet_Skrivebord_fredag_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_henri_OneDrive___Universitetet_i_Innlandet_Skrivebord_fredag_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_3718768225(TEXT("/Script/ArchiveMystery"),
+	Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

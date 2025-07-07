@@ -94,6 +94,18 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest Log")
 	bool bIsCheckBox7Checked;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest Log")
+	bool bIsCheckBox8Checked;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest Log")
+	bool bIsCheckBox9Checked;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest Log")
+	bool bIsCheckBox10Checked;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest Log")
+	bool bIsCheckBox11Checked;
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool bIsCustomized;
 

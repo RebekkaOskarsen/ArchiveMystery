@@ -2,6 +2,7 @@
 	"RemapUnityFiles": 
 	{
 		"Module.ArchiveMystery.1.cpp.obj": [
+			"PerModuleInline.gen.cpp.obj",
 			"ArchiveGameInstance.gen.cpp.obj",
 			"ArchiveGhost.gen.cpp.obj",
 			"ArchiveMystery.init.gen.cpp.obj",
@@ -17,9 +18,7 @@
 			"GhostAnimInstance.gen.cpp.obj",
 			"InfoBookWidget.gen.cpp.obj",
 			"InfoWidget.gen.cpp.obj",
-			"Items.gen.cpp.obj"
-		],
-		"Module.ArchiveMystery.2.cpp.obj": [
+			"Items.gen.cpp.obj",
 			"KeycardItem.gen.cpp.obj",
 			"LoginWidget.gen.cpp.obj",
 			"MailWidget.gen.cpp.obj",
@@ -42,14 +41,12 @@
 			"TriggerMailInteraction.gen.cpp.obj",
 			"TriggerMoldGame.gen.cpp.obj",
 			"TriggerScanner.gen.cpp.obj",
-			"W_QuestLog_Pause.gen.cpp.obj",
-			"PerModuleInline.gen.cpp.obj",
-			"ArchiveMystery.cpp.obj",
-			"ArchiveGameInstance.cpp.obj",
-			"ArchiveGhost.cpp.obj",
-			"Archivist.cpp.obj"
+			"W_QuestLog_Pause.gen.cpp.obj"
 		],
-		"Module.ArchiveMystery.3.cpp.obj": [
+		"Module.ArchiveMystery.2.cpp.obj": [
+			"ArchiveMystery.cpp.obj",
+			"ArchiveGhost.cpp.obj",
+			"Archivist.cpp.obj",
 			"ArchivistAnimInstance.cpp.obj",
 			"GhostAnimInstance.cpp.obj",
 			"PaintingInfo.cpp.obj",
@@ -80,11 +77,12 @@
 			"TriggerMoldGame.cpp.obj",
 			"QuestMarker.cpp.obj",
 			"QuestLogData.cpp.obj",
-			"W_QuestLog_Pause.cpp.obj",
 			"TriggerDeliverDocuments.cpp.obj",
 			"TriggerMailInteraction.cpp.obj",
 			"TriggerScanner.cpp.obj",
-			"Minigame.cpp.obj"
+			"Minigame.cpp.obj",
+			"ArchiveGameInstance.cpp.obj",
+			"W_QuestLog_Pause.cpp.obj"
 		]
 	}
 }

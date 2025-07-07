@@ -37,7 +37,20 @@ public:
 	UCheckBox* CheckBox_6; 
 
 	UPROPERTY(meta = (BindWidget))
-	UCheckBox* CheckBox_7; 
+	UCheckBox* CheckBox_7;
+
+	UPROPERTY(meta = (BindWidget))
+	UCheckBox* CheckBox_8;
+
+
+	UPROPERTY(meta = (BindWidget))
+	UCheckBox* CheckBox_9;
+
+	UPROPERTY(meta = (BindWidget))
+	UCheckBox* CheckBox_10;
+
+	UPROPERTY(meta = (BindWidget))
+	UCheckBox* CheckBox_11;
 
 	UFUNCTION(BlueprintCallable, Category = "Quest Log")
 	void SaveCheckBoxState();

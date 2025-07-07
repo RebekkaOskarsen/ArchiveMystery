@@ -143,6 +143,26 @@ struct Z_Construct_UClass_UW_QuestLog_Pause_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/SavingSystem/W_QuestLog_Pause.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CheckBox_8_MetaData[] = {
+		{ "BindWidget", "" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/SavingSystem/W_QuestLog_Pause.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CheckBox_9_MetaData[] = {
+		{ "BindWidget", "" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/SavingSystem/W_QuestLog_Pause.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CheckBox_10_MetaData[] = {
+		{ "BindWidget", "" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/SavingSystem/W_QuestLog_Pause.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CheckBox_11_MetaData[] = {
+		{ "BindWidget", "" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/SavingSystem/W_QuestLog_Pause.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CheckBox_1;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CheckBox_2;
@@ -151,6 +171,10 @@ struct Z_Construct_UClass_UW_QuestLog_Pause_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CheckBox_5;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CheckBox_6;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CheckBox_7;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_CheckBox_8;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_CheckBox_9;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_CheckBox_10;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_CheckBox_11;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -170,6 +194,10 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UW_QuestLog_Pa
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UW_QuestLog_Pause_Statics::NewProp_CheckBox_5 = { "CheckBox_5", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UW_QuestLog_Pause, CheckBox_5), Z_Construct_UClass_UCheckBox_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CheckBox_5_MetaData), NewProp_CheckBox_5_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UW_QuestLog_Pause_Statics::NewProp_CheckBox_6 = { "CheckBox_6", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UW_QuestLog_Pause, CheckBox_6), Z_Construct_UClass_UCheckBox_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CheckBox_6_MetaData), NewProp_CheckBox_6_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UW_QuestLog_Pause_Statics::NewProp_CheckBox_7 = { "CheckBox_7", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UW_QuestLog_Pause, CheckBox_7), Z_Construct_UClass_UCheckBox_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CheckBox_7_MetaData), NewProp_CheckBox_7_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UW_QuestLog_Pause_Statics::NewProp_CheckBox_8 = { "CheckBox_8", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UW_QuestLog_Pause, CheckBox_8), Z_Construct_UClass_UCheckBox_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CheckBox_8_MetaData), NewProp_CheckBox_8_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UW_QuestLog_Pause_Statics::NewProp_CheckBox_9 = { "CheckBox_9", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UW_QuestLog_Pause, CheckBox_9), Z_Construct_UClass_UCheckBox_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CheckBox_9_MetaData), NewProp_CheckBox_9_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UW_QuestLog_Pause_Statics::NewProp_CheckBox_10 = { "CheckBox_10", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UW_QuestLog_Pause, CheckBox_10), Z_Construct_UClass_UCheckBox_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CheckBox_10_MetaData), NewProp_CheckBox_10_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UW_QuestLog_Pause_Statics::NewProp_CheckBox_11 = { "CheckBox_11", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UW_QuestLog_Pause, CheckBox_11), Z_Construct_UClass_UCheckBox_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CheckBox_11_MetaData), NewProp_CheckBox_11_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UW_QuestLog_Pause_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UW_QuestLog_Pause_Statics::NewProp_CheckBox_1,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UW_QuestLog_Pause_Statics::NewProp_CheckBox_2,
@@ -178,6 +206,10 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UW_QuestL
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UW_QuestLog_Pause_Statics::NewProp_CheckBox_5,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UW_QuestLog_Pause_Statics::NewProp_CheckBox_6,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UW_QuestLog_Pause_Statics::NewProp_CheckBox_7,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UW_QuestLog_Pause_Statics::NewProp_CheckBox_8,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UW_QuestLog_Pause_Statics::NewProp_CheckBox_9,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UW_QuestLog_Pause_Statics::NewProp_CheckBox_10,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UW_QuestLog_Pause_Statics::NewProp_CheckBox_11,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UW_QuestLog_Pause_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UW_QuestLog_Pause_Statics::DependentSingletons[])() = {
@@ -218,14 +250,14 @@ UW_QuestLog_Pause::~UW_QuestLog_Pause() {}
 // End Class UW_QuestLog_Pause
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_henri_OneDrive___Universitetet_i_Innlandet_Skrivebord_fredag_ArchiveMystery_Source_ArchiveMystery_Public_SavingSystem_W_QuestLog_Pause_h_Statics
+struct Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_SavingSystem_W_QuestLog_Pause_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UW_QuestLog_Pause, UW_QuestLog_Pause::StaticClass, TEXT("UW_QuestLog_Pause"), &Z_Registration_Info_UClass_UW_QuestLog_Pause, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UW_QuestLog_Pause), 3503640816U) },
+		{ Z_Construct_UClass_UW_QuestLog_Pause, UW_QuestLog_Pause::StaticClass, TEXT("UW_QuestLog_Pause"), &Z_Registration_Info_UClass_UW_QuestLog_Pause, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UW_QuestLog_Pause), 1268741501U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_henri_OneDrive___Universitetet_i_Innlandet_Skrivebord_fredag_ArchiveMystery_Source_ArchiveMystery_Public_SavingSystem_W_QuestLog_Pause_h_808223498(TEXT("/Script/ArchiveMystery"),
-	Z_CompiledInDeferFile_FID_Users_henri_OneDrive___Universitetet_i_Innlandet_Skrivebord_fredag_ArchiveMystery_Source_ArchiveMystery_Public_SavingSystem_W_QuestLog_Pause_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_henri_OneDrive___Universitetet_i_Innlandet_Skrivebord_fredag_ArchiveMystery_Source_ArchiveMystery_Public_SavingSystem_W_QuestLog_Pause_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_SavingSystem_W_QuestLog_Pause_h_3292750705(TEXT("/Script/ArchiveMystery"),
+	Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_SavingSystem_W_QuestLog_Pause_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_SavingSystem_W_QuestLog_Pause_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

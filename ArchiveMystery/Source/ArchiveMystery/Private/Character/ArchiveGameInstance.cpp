@@ -26,7 +26,7 @@ void UArchiveGameInstance::ResetAllProgress()
     SavedPlayerLocation = FVector::ZeroVector;
 
 
-    // Reset quest checkboxes
+    //// Reset quest checkboxes
     bIsCheckBox1Checked = false;
     bIsCheckBox2Checked = false;
     bIsCheckBox3Checked = false;
@@ -34,6 +34,10 @@ void UArchiveGameInstance::ResetAllProgress()
     bIsCheckBox5Checked = false;
     bIsCheckBox6Checked = false;
     bIsCheckBox7Checked = false;
+    bIsCheckBox8Checked = false;
+    bIsCheckBox9Checked = false;
+    bIsCheckBox10Checked = false;
+    bIsCheckBox11Checked = false;
 
     // Reset other relevant flags
     bBoxPlacedBeforeMoldGame = false;
@@ -121,6 +125,10 @@ UArchiveGameInstance::UArchiveGameInstance()
     bIsCheckBox5Checked = false;
     bIsCheckBox6Checked = false;
     bIsCheckBox7Checked = false;
+    bIsCheckBox8Checked = false;
+    bIsCheckBox9Checked = false;
+    bIsCheckBox10Checked = false;
+    bIsCheckBox11Checked = false;
 
     bIsCustomized = false;
     bIsCustomizedSkinColor1 = false; 
@@ -204,6 +212,10 @@ void UArchiveGameInstance::SaveQuestLogData()
     JsonObject->SetBoolField("IsCheckBox5Checked", bIsCheckBox5Checked);
     JsonObject->SetBoolField("IsCheckBox6Checked", bIsCheckBox6Checked);
     JsonObject->SetBoolField("IsCheckBox7Checked", bIsCheckBox7Checked);
+    JsonObject->SetBoolField("IsCheckBox8Checked", bIsCheckBox8Checked);
+    JsonObject->SetBoolField("IsCheckBox9Checked", bIsCheckBox9Checked);
+    JsonObject->SetBoolField("IsCheckBox10Checked", bIsCheckBox10Checked);
+    JsonObject->SetBoolField("IsCheckBox11Checked", bIsCheckBox11Checked);
 
     JsonObject->SetBoolField("bIsCustomized", bIsCustomized);
 
@@ -324,6 +336,10 @@ void UArchiveGameInstance::LoadQuestLogData()
                 bIsCheckBox5Checked = JsonObject->GetBoolField("IsCheckBox5Checked");
                 bIsCheckBox5Checked = JsonObject->GetBoolField("IsCheckBox6Checked");
                 bIsCheckBox7Checked = JsonObject->GetBoolField("IsCheckBox7Checked");
+                bIsCheckBox8Checked = JsonObject->GetBoolField("IsCheckBox8Checked");
+                bIsCheckBox9Checked = JsonObject->GetBoolField("IsCheckBox9Checked");
+                bIsCheckBox10Checked = JsonObject->GetBoolField("IsCheckBox10Checked");
+                bIsCheckBox11Checked = JsonObject->GetBoolField("IsCheckBox11Checked");
 
                 bIsCustomized = JsonObject->GetBoolField("bIsCustomized");
 
