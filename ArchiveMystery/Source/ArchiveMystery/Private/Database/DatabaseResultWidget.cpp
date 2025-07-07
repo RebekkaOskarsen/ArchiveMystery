@@ -18,4 +18,9 @@ void UDatabaseResultWidget::NativeConstruct()
 			Text_PlayerName_Result->SetText(FText::FromString(Message));
 		}
 	}
+
+	if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
+	{
+		GI->bDatabaseMinigameComplete = true;
+	}
 }

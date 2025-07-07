@@ -19,7 +19,7 @@
                                     "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
                                 },
                                 "region": {
-                                    "startLine": 318,
+                                    "startLine": 324,
                                     "startColumn": 77
                                 }
                             }
@@ -41,7 +41,7 @@
                                     "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
                                 },
                                 "region": {
-                                    "startLine": 324,
+                                    "startLine": 330,
                                     "startColumn": 54
                                 }
                             }
@@ -63,7 +63,7 @@
                                     "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
                                 },
                                 "region": {
-                                    "startLine": 325,
+                                    "startLine": 331,
                                     "startColumn": 57
                                 }
                             }
@@ -85,140 +85,8 @@
                                     "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
                                 },
                                 "region": {
-                                    "startLine": 326,
-                                    "startColumn": 61
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "ruleId": "C4996",
-                    "message": {
-                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
-                    },
-                    "analysisTarget": {
-                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                    },
-                    "locations": [
-                        {
-                            "physicalLocation": {
-                                "artifactLocation": {
-                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                                },
-                                "region": {
                                     "startLine": 332,
-                                    "startColumn": 49
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "ruleId": "C4996",
-                    "message": {
-                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
-                    },
-                    "analysisTarget": {
-                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                    },
-                    "locations": [
-                        {
-                            "physicalLocation": {
-                                "artifactLocation": {
-                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                                },
-                                "region": {
-                                    "startLine": 333,
-                                    "startColumn": 49
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "ruleId": "C4996",
-                    "message": {
-                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
-                    },
-                    "analysisTarget": {
-                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                    },
-                    "locations": [
-                        {
-                            "physicalLocation": {
-                                "artifactLocation": {
-                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                                },
-                                "region": {
-                                    "startLine": 334,
-                                    "startColumn": 49
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "ruleId": "C4996",
-                    "message": {
-                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
-                    },
-                    "analysisTarget": {
-                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                    },
-                    "locations": [
-                        {
-                            "physicalLocation": {
-                                "artifactLocation": {
-                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                                },
-                                "region": {
-                                    "startLine": 335,
-                                    "startColumn": 49
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "ruleId": "C4996",
-                    "message": {
-                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
-                    },
-                    "analysisTarget": {
-                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                    },
-                    "locations": [
-                        {
-                            "physicalLocation": {
-                                "artifactLocation": {
-                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                                },
-                                "region": {
-                                    "startLine": 336,
-                                    "startColumn": 49
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "ruleId": "C4996",
-                    "message": {
-                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
-                    },
-                    "analysisTarget": {
-                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                    },
-                    "locations": [
-                        {
-                            "physicalLocation": {
-                                "artifactLocation": {
-                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                                },
-                                "region": {
-                                    "startLine": 337,
-                                    "startColumn": 49
+                                    "startColumn": 61
                                 }
                             }
                         }
@@ -306,7 +174,7 @@
                                 },
                                 "region": {
                                     "startLine": 341,
-                                    "startColumn": 50
+                                    "startColumn": 49
                                 }
                             }
                         }
@@ -328,7 +196,29 @@
                                 },
                                 "region": {
                                     "startLine": 342,
-                                    "startColumn": 50
+                                    "startColumn": 49
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                                },
+                                "region": {
+                                    "startLine": 343,
+                                    "startColumn": 49
                                 }
                             }
                         }
@@ -350,7 +240,29 @@
                                 },
                                 "region": {
                                     "startLine": 344,
-                                    "startColumn": 43
+                                    "startColumn": 49
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                                },
+                                "region": {
+                                    "startLine": 345,
+                                    "startColumn": 49
                                 }
                             }
                         }
@@ -372,7 +284,7 @@
                                 },
                                 "region": {
                                     "startLine": 346,
-                                    "startColumn": 53
+                                    "startColumn": 49
                                 }
                             }
                         }
@@ -394,7 +306,7 @@
                                 },
                                 "region": {
                                     "startLine": 347,
-                                    "startColumn": 53
+                                    "startColumn": 50
                                 }
                             }
                         }
@@ -416,29 +328,7 @@
                                 },
                                 "region": {
                                     "startLine": 348,
-                                    "startColumn": 53
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "ruleId": "C4996",
-                    "message": {
-                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
-                    },
-                    "analysisTarget": {
-                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                    },
-                    "locations": [
-                        {
-                            "physicalLocation": {
-                                "artifactLocation": {
-                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                                },
-                                "region": {
-                                    "startLine": 349,
-                                    "startColumn": 53
+                                    "startColumn": 50
                                 }
                             }
                         }
@@ -460,29 +350,7 @@
                                 },
                                 "region": {
                                     "startLine": 350,
-                                    "startColumn": 53
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "ruleId": "C4996",
-                    "message": {
-                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
-                    },
-                    "analysisTarget": {
-                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                    },
-                    "locations": [
-                        {
-                            "physicalLocation": {
-                                "artifactLocation": {
-                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                                },
-                                "region": {
-                                    "startLine": 351,
-                                    "startColumn": 53
+                                    "startColumn": 43
                                 }
                             }
                         }
@@ -570,7 +438,7 @@
                                 },
                                 "region": {
                                     "startLine": 355,
-                                    "startColumn": 54
+                                    "startColumn": 53
                                 }
                             }
                         }
@@ -592,7 +460,7 @@
                                 },
                                 "region": {
                                     "startLine": 356,
-                                    "startColumn": 54
+                                    "startColumn": 53
                                 }
                             }
                         }
@@ -614,7 +482,7 @@
                                 },
                                 "region": {
                                     "startLine": 357,
-                                    "startColumn": 54
+                                    "startColumn": 53
                                 }
                             }
                         }
@@ -636,7 +504,7 @@
                                 },
                                 "region": {
                                     "startLine": 358,
-                                    "startColumn": 54
+                                    "startColumn": 53
                                 }
                             }
                         }
@@ -658,7 +526,29 @@
                                 },
                                 "region": {
                                     "startLine": 359,
-                                    "startColumn": 54
+                                    "startColumn": 53
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                                },
+                                "region": {
+                                    "startLine": 360,
+                                    "startColumn": 53
                                 }
                             }
                         }
@@ -789,28 +679,6 @@
                                     "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
                                 },
                                 "region": {
-                                    "startLine": 366,
-                                    "startColumn": 54
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "ruleId": "C4996",
-                    "message": {
-                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
-                    },
-                    "analysisTarget": {
-                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                    },
-                    "locations": [
-                        {
-                            "physicalLocation": {
-                                "artifactLocation": {
-                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                                },
-                                "region": {
                                     "startLine": 367,
                                     "startColumn": 54
                                 }
@@ -878,7 +746,29 @@
                                 },
                                 "region": {
                                     "startLine": 370,
-                                    "startColumn": 55
+                                    "startColumn": 54
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                                },
+                                "region": {
+                                    "startLine": 371,
+                                    "startColumn": 54
                                 }
                             }
                         }
@@ -900,7 +790,7 @@
                                 },
                                 "region": {
                                     "startLine": 372,
-                                    "startColumn": 40
+                                    "startColumn": 54
                                 }
                             }
                         }
@@ -922,7 +812,7 @@
                                 },
                                 "region": {
                                     "startLine": 373,
-                                    "startColumn": 40
+                                    "startColumn": 54
                                 }
                             }
                         }
@@ -944,7 +834,7 @@
                                 },
                                 "region": {
                                     "startLine": 374,
-                                    "startColumn": 40
+                                    "startColumn": 54
                                 }
                             }
                         }
@@ -966,7 +856,7 @@
                                 },
                                 "region": {
                                     "startLine": 375,
-                                    "startColumn": 40
+                                    "startColumn": 54
                                 }
                             }
                         }
@@ -988,29 +878,7 @@
                                 },
                                 "region": {
                                     "startLine": 376,
-                                    "startColumn": 40
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "ruleId": "C4996",
-                    "message": {
-                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
-                    },
-                    "analysisTarget": {
-                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                    },
-                    "locations": [
-                        {
-                            "physicalLocation": {
-                                "artifactLocation": {
-                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                                },
-                                "region": {
-                                    "startLine": 377,
-                                    "startColumn": 40
+                                    "startColumn": 55
                                 }
                             }
                         }
@@ -1098,7 +966,7 @@
                                 },
                                 "region": {
                                     "startLine": 381,
-                                    "startColumn": 41
+                                    "startColumn": 40
                                 }
                             }
                         }
@@ -1120,7 +988,7 @@
                                 },
                                 "region": {
                                     "startLine": 382,
-                                    "startColumn": 41
+                                    "startColumn": 40
                                 }
                             }
                         }
@@ -1142,7 +1010,29 @@
                                 },
                                 "region": {
                                     "startLine": 383,
-                                    "startColumn": 41
+                                    "startColumn": 40
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                                },
+                                "region": {
+                                    "startLine": 384,
+                                    "startColumn": 40
                                 }
                             }
                         }
@@ -1164,7 +1054,29 @@
                                 },
                                 "region": {
                                     "startLine": 385,
-                                    "startColumn": 41
+                                    "startColumn": 40
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                                },
+                                "region": {
+                                    "startLine": 386,
+                                    "startColumn": 40
                                 }
                             }
                         }
@@ -1186,7 +1098,7 @@
                                 },
                                 "region": {
                                     "startLine": 387,
-                                    "startColumn": 54
+                                    "startColumn": 41
                                 }
                             }
                         }
@@ -1208,7 +1120,7 @@
                                 },
                                 "region": {
                                     "startLine": 388,
-                                    "startColumn": 51
+                                    "startColumn": 41
                                 }
                             }
                         }
@@ -1230,7 +1142,29 @@
                                 },
                                 "region": {
                                     "startLine": 389,
-                                    "startColumn": 47
+                                    "startColumn": 41
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                                },
+                                "region": {
+                                    "startLine": 390,
+                                    "startColumn": 41
                                 }
                             }
                         }
@@ -1252,6 +1186,116 @@
                                 },
                                 "region": {
                                     "startLine": 391,
+                                    "startColumn": 41
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                                },
+                                "region": {
+                                    "startLine": 393,
+                                    "startColumn": 41
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                                },
+                                "region": {
+                                    "startLine": 395,
+                                    "startColumn": 54
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                                },
+                                "region": {
+                                    "startLine": 396,
+                                    "startColumn": 51
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                                },
+                                "region": {
+                                    "startLine": 397,
+                                    "startColumn": 47
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FJsonObject::GetBoolField': Passing an ANSI string to GetBoolField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                                },
+                                "region": {
+                                    "startLine": 399,
                                     "startColumn": 48
                                 }
                             }
@@ -1273,96 +1317,8 @@
                                     "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
                                 },
                                 "region": {
-                                    "startLine": 392,
+                                    "startLine": 400,
                                     "startColumn": 48
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "ruleId": "C4996",
-                    "message": {
-                        "text": "'FJsonObject::GetNumberField': Passing an ANSI string to GetNumberField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
-                    },
-                    "analysisTarget": {
-                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                    },
-                    "locations": [
-                        {
-                            "physicalLocation": {
-                                "artifactLocation": {
-                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                                },
-                                "region": {
-                                    "startLine": 396,
-                                    "startColumn": 31
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "ruleId": "C4996",
-                    "message": {
-                        "text": "'FJsonObject::GetNumberField': Passing an ANSI string to GetNumberField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
-                    },
-                    "analysisTarget": {
-                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                    },
-                    "locations": [
-                        {
-                            "physicalLocation": {
-                                "artifactLocation": {
-                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                                },
-                                "region": {
-                                    "startLine": 397,
-                                    "startColumn": 31
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "ruleId": "C4996",
-                    "message": {
-                        "text": "'FJsonObject::GetNumberField': Passing an ANSI string to GetNumberField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
-                    },
-                    "analysisTarget": {
-                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                    },
-                    "locations": [
-                        {
-                            "physicalLocation": {
-                                "artifactLocation": {
-                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                                },
-                                "region": {
-                                    "startLine": 398,
-                                    "startColumn": 31
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "ruleId": "C4996",
-                    "message": {
-                        "text": "'FJsonObject::GetNumberField': Passing an ANSI string to GetNumberField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
-                    },
-                    "analysisTarget": {
-                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                    },
-                    "locations": [
-                        {
-                            "physicalLocation": {
-                                "artifactLocation": {
-                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
-                                },
-                                "region": {
-                                    "startLine": 403,
-                                    "startColumn": 31
                                 }
                             }
                         }
@@ -1494,6 +1450,94 @@
                                 },
                                 "region": {
                                     "startLine": 413,
+                                    "startColumn": 31
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FJsonObject::GetNumberField': Passing an ANSI string to GetNumberField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                                },
+                                "region": {
+                                    "startLine": 414,
+                                    "startColumn": 31
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FJsonObject::GetNumberField': Passing an ANSI string to GetNumberField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                                },
+                                "region": {
+                                    "startLine": 419,
+                                    "startColumn": 31
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FJsonObject::GetNumberField': Passing an ANSI string to GetNumberField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                                },
+                                "region": {
+                                    "startLine": 420,
+                                    "startColumn": 31
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FJsonObject::GetNumberField': Passing an ANSI string to GetNumberField has been deprecated outside of UTF-8 mode. Please use the overload that takes a TCHAR string. Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Character/ArchiveGameInstance.cpp"
+                                },
+                                "region": {
+                                    "startLine": 421,
                                     "startColumn": 31
                                 }
                             }

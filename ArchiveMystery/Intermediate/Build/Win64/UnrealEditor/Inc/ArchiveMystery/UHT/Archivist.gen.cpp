@@ -14,6 +14,7 @@ void EmptyLinkFunctionForGeneratedCodeArchivist() {}
 ARCHIVEMYSTERY_API UClass* Z_Construct_UClass_AArchivist();
 ARCHIVEMYSTERY_API UClass* Z_Construct_UClass_AArchivist_NoRegister();
 ARCHIVEMYSTERY_API UClass* Z_Construct_UClass_ADocumentItem_NoRegister();
+ARCHIVEMYSTERY_API UClass* Z_Construct_UClass_AFolderItem_NoRegister();
 ARCHIVEMYSTERY_API UClass* Z_Construct_UClass_AItems_NoRegister();
 ARCHIVEMYSTERY_API UClass* Z_Construct_UClass_AOpenBox_NoRegister();
 ARCHIVEMYSTERY_API UClass* Z_Construct_UClass_UMainMenuWidget_NoRegister();
@@ -908,6 +909,15 @@ struct Z_Construct_UClass_AArchivist_Statics
 		{ "ToolTip", "-----------Box placement-----------------------------------------------" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_FolderDropZone_MetaData[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//----------Folder placement-------------------------------------------//\n" },
+#endif
+		{ "ModuleRelativePath", "Public/Character/Archivist.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "----------Folder placement-------------------------------------------" },
+#endif
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SpringArm_MetaData[] = {
 		{ "Category", "Archivist" },
 #if !UE_BUILD_SHIPPING
@@ -941,6 +951,9 @@ struct Z_Construct_UClass_AArchivist_Statics
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PauseMenuWidgetClass_MetaData[] = {
 		{ "Category", "UI" },
+		{ "ModuleRelativePath", "Public/Character/Archivist.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_HeldFolder_MetaData[] = {
 		{ "ModuleRelativePath", "Public/Character/Archivist.h" },
 	};
 #endif // WITH_METADATA
@@ -1012,10 +1025,12 @@ struct Z_Construct_UClass_AArchivist_Statics
 	static const UECodeGen_Private::FClassPropertyParams NewProp_MainMenuWidgetClass;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_MainMenuWidget;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_BoxToPlaceBeforeMinigame;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_FolderDropZone;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_SpringArm;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_OverlappingItems;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PauseMenuWidget;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_PauseMenuWidgetClass;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_HeldFolder;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -1126,10 +1141,12 @@ const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AArchivist_Stat
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AArchivist_Statics::NewProp_MainMenuWidgetClass = { "MainMenuWidgetClass", nullptr, (EPropertyFlags)0x0024080000010001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AArchivist, MainMenuWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UMainMenuWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MainMenuWidgetClass_MetaData), NewProp_MainMenuWidgetClass_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AArchivist_Statics::NewProp_MainMenuWidget = { "MainMenuWidget", nullptr, (EPropertyFlags)0x0020080000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AArchivist, MainMenuWidget), Z_Construct_UClass_UMainMenuWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MainMenuWidget_MetaData), NewProp_MainMenuWidget_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AArchivist_Statics::NewProp_BoxToPlaceBeforeMinigame = { "BoxToPlaceBeforeMinigame", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AArchivist, BoxToPlaceBeforeMinigame), Z_Construct_UClass_AOpenBox_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BoxToPlaceBeforeMinigame_MetaData), NewProp_BoxToPlaceBeforeMinigame_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AArchivist_Statics::NewProp_FolderDropZone = { "FolderDropZone", nullptr, (EPropertyFlags)0x0020080000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AArchivist, FolderDropZone), Z_Construct_UClass_ATriggerBox_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_FolderDropZone_MetaData), NewProp_FolderDropZone_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AArchivist_Statics::NewProp_SpringArm = { "SpringArm", nullptr, (EPropertyFlags)0x00400000000a0009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AArchivist, SpringArm), Z_Construct_UClass_USpringArmComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SpringArm_MetaData), NewProp_SpringArm_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AArchivist_Statics::NewProp_OverlappingItems = { "OverlappingItems", nullptr, (EPropertyFlags)0x0040000000020801, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AArchivist, OverlappingItems), Z_Construct_UClass_AItems_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OverlappingItems_MetaData), NewProp_OverlappingItems_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AArchivist_Statics::NewProp_PauseMenuWidget = { "PauseMenuWidget", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AArchivist, PauseMenuWidget), Z_Construct_UClass_UPauseMenuWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PauseMenuWidget_MetaData), NewProp_PauseMenuWidget_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AArchivist_Statics::NewProp_PauseMenuWidgetClass = { "PauseMenuWidgetClass", nullptr, (EPropertyFlags)0x0044000000010001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AArchivist, PauseMenuWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UPauseMenuWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PauseMenuWidgetClass_MetaData), NewProp_PauseMenuWidgetClass_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AArchivist_Statics::NewProp_HeldFolder = { "HeldFolder", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AArchivist, HeldFolder), Z_Construct_UClass_AFolderItem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HeldFolder_MetaData), NewProp_HeldFolder_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AArchivist_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AArchivist_Statics::NewProp_ViewCamera,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AArchivist_Statics::NewProp_BoxSnapTarget,
@@ -1192,10 +1209,12 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AArchivis
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AArchivist_Statics::NewProp_MainMenuWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AArchivist_Statics::NewProp_MainMenuWidget,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AArchivist_Statics::NewProp_BoxToPlaceBeforeMinigame,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AArchivist_Statics::NewProp_FolderDropZone,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AArchivist_Statics::NewProp_SpringArm,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AArchivist_Statics::NewProp_OverlappingItems,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AArchivist_Statics::NewProp_PauseMenuWidget,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AArchivist_Statics::NewProp_PauseMenuWidgetClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AArchivist_Statics::NewProp_HeldFolder,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AArchivist_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AArchivist_Statics::DependentSingletons[])() = {
@@ -1241,10 +1260,10 @@ struct Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_So
 		{ ECharacterState_StaticEnum, TEXT("ECharacterState"), &Z_Registration_Info_UEnum_ECharacterState, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 328310748U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AArchivist, AArchivist::StaticClass, TEXT("AArchivist"), &Z_Registration_Info_UClass_AArchivist, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AArchivist), 2997945774U) },
+		{ Z_Construct_UClass_AArchivist, AArchivist::StaticClass, TEXT("AArchivist"), &Z_Registration_Info_UClass_AArchivist, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AArchivist), 565150197U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_2641892026(TEXT("/Script/ArchiveMystery"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_2897679179(TEXT("/Script/ArchiveMystery"),
 	Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_Statics::ClassInfo),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_Statics::EnumInfo));

@@ -147,6 +147,9 @@
     <Filter Include="Source\ArchiveMystery\Private\Items">
       <UniqueIdentifier>{130BEC83-C651-3ABD-AF2A-29CA2EC349B8}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\ArchiveMystery\Private\Items\FolderItem.cpp">
+      <Filter>Source\ArchiveMystery\Private\Items</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\ArchiveMystery\Private\Items\Items.cpp">
       <Filter>Source\ArchiveMystery\Private\Items</Filter>
     </ClCompile>
@@ -300,6 +303,9 @@
     <Filter Include="Source\ArchiveMystery\Public\Items">
       <UniqueIdentifier>{B0F88D81-B390-38D0-823F-1D0DE54D729F}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\ArchiveMystery\Public\Items\FolderItem.h">
+      <Filter>Source\ArchiveMystery\Public\Items</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\ArchiveMystery\Public\Items\Items.h">
       <Filter>Source\ArchiveMystery\Public\Items</Filter>
     </ClCompile>

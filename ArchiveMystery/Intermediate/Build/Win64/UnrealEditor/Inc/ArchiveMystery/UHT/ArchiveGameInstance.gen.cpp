@@ -254,6 +254,10 @@ struct Z_Construct_UClass_UArchiveGameInstance_Statics
 		{ "Category", "ArchiveGameInstance" },
 		{ "ModuleRelativePath", "Public/Character/ArchiveGameInstance.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bDatabaseMinigameComplete_MetaData[] = {
+		{ "Category", "Progress" },
+		{ "ModuleRelativePath", "Public/Character/ArchiveGameInstance.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BoxPlacedLocation_MetaData[] = {
 		{ "Category", "ArchiveGameInstance" },
 		{ "ModuleRelativePath", "Public/Character/ArchiveGameInstance.h" },
@@ -496,6 +500,14 @@ struct Z_Construct_UClass_UArchiveGameInstance_Statics
 		{ "Category", "ArchiveGameInstance" },
 		{ "ModuleRelativePath", "Public/Character/ArchiveGameInstance.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsMarker13_MetaData[] = {
+		{ "Category", "ArchiveGameInstance" },
+		{ "ModuleRelativePath", "Public/Character/ArchiveGameInstance.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsMarker14_MetaData[] = {
+		{ "Category", "ArchiveGameInstance" },
+		{ "ModuleRelativePath", "Public/Character/ArchiveGameInstance.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bHasKeycard_MetaData[] = {
 		{ "Category", "Keycards" },
 #if !UE_BUILD_SHIPPING
@@ -567,6 +579,8 @@ struct Z_Construct_UClass_UArchiveGameInstance_Statics
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bMoldGameComplete;
 	static void NewProp_bBoxWasPlaced_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bBoxWasPlaced;
+	static void NewProp_bDatabaseMinigameComplete_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bDatabaseMinigameComplete;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_BoxPlacedLocation;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_BoxPlacedRotation;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_PlacedBoxTransform;
@@ -670,6 +684,10 @@ struct Z_Construct_UClass_UArchiveGameInstance_Statics
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsMarker11;
 	static void NewProp_bIsMarker12_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsMarker12;
+	static void NewProp_bIsMarker13_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsMarker13;
+	static void NewProp_bIsMarker14_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsMarker14;
 	static void NewProp_bHasKeycard_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bHasKeycard;
 	static const UECodeGen_Private::FStrPropertyParams NewProp_SavedSelect;
@@ -719,6 +737,11 @@ void Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bBoxWasPlaced_SetB
 	((UArchiveGameInstance*)Obj)->bBoxWasPlaced = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bBoxWasPlaced = { "bBoxWasPlaced", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UArchiveGameInstance), &Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bBoxWasPlaced_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bBoxWasPlaced_MetaData), NewProp_bBoxWasPlaced_MetaData) };
+void Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bDatabaseMinigameComplete_SetBit(void* Obj)
+{
+	((UArchiveGameInstance*)Obj)->bDatabaseMinigameComplete = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bDatabaseMinigameComplete = { "bDatabaseMinigameComplete", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UArchiveGameInstance), &Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bDatabaseMinigameComplete_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bDatabaseMinigameComplete_MetaData), NewProp_bDatabaseMinigameComplete_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_BoxPlacedLocation = { "BoxPlacedLocation", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UArchiveGameInstance, BoxPlacedLocation), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BoxPlacedLocation_MetaData), NewProp_BoxPlacedLocation_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_BoxPlacedRotation = { "BoxPlacedRotation", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UArchiveGameInstance, BoxPlacedRotation), Z_Construct_UScriptStruct_FRotator, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BoxPlacedRotation_MetaData), NewProp_BoxPlacedRotation_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_PlacedBoxTransform = { "PlacedBoxTransform", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UArchiveGameInstance, PlacedBoxTransform), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlacedBoxTransform_MetaData), NewProp_PlacedBoxTransform_MetaData) };
@@ -972,6 +995,16 @@ void Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsMarker12_SetBit
 	((UArchiveGameInstance*)Obj)->bIsMarker12 = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsMarker12 = { "bIsMarker12", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UArchiveGameInstance), &Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsMarker12_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsMarker12_MetaData), NewProp_bIsMarker12_MetaData) };
+void Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsMarker13_SetBit(void* Obj)
+{
+	((UArchiveGameInstance*)Obj)->bIsMarker13 = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsMarker13 = { "bIsMarker13", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UArchiveGameInstance), &Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsMarker13_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsMarker13_MetaData), NewProp_bIsMarker13_MetaData) };
+void Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsMarker14_SetBit(void* Obj)
+{
+	((UArchiveGameInstance*)Obj)->bIsMarker14 = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsMarker14 = { "bIsMarker14", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UArchiveGameInstance), &Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsMarker14_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsMarker14_MetaData), NewProp_bIsMarker14_MetaData) };
 void Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bHasKeycard_SetBit(void* Obj)
 {
 	((UArchiveGameInstance*)Obj)->bHasKeycard = 1;
@@ -1000,6 +1033,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UArchiveG
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bShreddedGameComplete,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bMoldGameComplete,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bBoxWasPlaced,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bDatabaseMinigameComplete,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_BoxPlacedLocation,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_BoxPlacedRotation,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_PlacedBoxTransform,
@@ -1053,6 +1087,8 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UArchiveG
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsMarker10,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsMarker11,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsMarker12,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsMarker13,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bIsMarker14,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bHasKeycard,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_SavedSelect,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_SavedFrom,
@@ -1104,10 +1140,10 @@ UArchiveGameInstance::~UArchiveGameInstance() {}
 struct Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UArchiveGameInstance, UArchiveGameInstance::StaticClass, TEXT("UArchiveGameInstance"), &Z_Registration_Info_UClass_UArchiveGameInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UArchiveGameInstance), 3147353504U) },
+		{ Z_Construct_UClass_UArchiveGameInstance, UArchiveGameInstance::StaticClass, TEXT("UArchiveGameInstance"), &Z_Registration_Info_UClass_UArchiveGameInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UArchiveGameInstance), 263251160U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_3718768225(TEXT("/Script/ArchiveMystery"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_303511891(TEXT("/Script/ArchiveMystery"),
 	Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

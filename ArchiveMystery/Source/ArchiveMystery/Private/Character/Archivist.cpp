@@ -24,6 +24,7 @@
 #include "QuestMarker/QuestMarker.h"
 #include "TimerManager.h"
 #include "Engine/TriggerBox.h"
+#include "Items/FolderItem.h"
 
 
 AArchivist::AArchivist()
@@ -94,6 +95,19 @@ void AArchivist::BeginPlay()
 			{
 				MainMenuWidget->AddToViewport();
 			}
+		}
+	}
+
+	TArray<AActor*> FoundTriggers;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ATriggerBox::StaticClass(), FoundTriggers);
+
+	for (AActor* Actor : FoundTriggers)
+	{
+		if (Actor->ActorHasTag("FolderDropZone"))
+		{
+			FolderDropZone = Cast<ATriggerBox>(Actor);
+			UE_LOG(LogTemp, Warning, TEXT("Fant FolderDropZone triggerbox."));
+			break;
 		}
 	}
 
@@ -394,6 +408,45 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 		return;
 	}
 
+	// Før alt annet: sjekk om vi holder en folder
+	if (HeldFolder)
+	{
+		// Sjekk om vi har en drop zone (TriggerBox)
+		if (FolderDropZone && FolderDropZone->IsOverlappingActor(this))
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Spilleren står i drop zone. Folder slippes."));
+
+			// Slipp folderen pent
+			HeldFolder->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+
+			// Sett plassering på bordet
+			FVector DropLocation = FolderDropZone->GetActorLocation() + FVector(-20, 0, 15.f);
+			FRotator DropRotation = FRotator::ZeroRotator;
+
+			HeldFolder->SetActorLocation(DropLocation);
+			HeldFolder->SetActorRotation(DropRotation);
+
+			// Evt. deaktiver physics (slik at den står stille)
+			HeldFolder->Mesh->SetSimulatePhysics(false);
+			HeldFolder->Mesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+
+			// Si at den ikke lenger er plukket opp
+			HeldFolder->bIsPickedUp = false;
+			HeldFolder = nullptr;
+
+			bIsInputLocked = true;
+			CurrentInputTime = 0.0f;
+
+			// Avslutt funksjonen, så vi ikke prøver å plukke opp noe annet
+			return;
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Ikke i drop zone, kan ikke slippe folderen her."));
+			return;
+		}
+	}
+
 	bool bDidInteract = false;
 
 	ADocumentItem* OverlappingDocument = Cast<ADocumentItem>(OverlappingItems);
@@ -542,6 +595,30 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 				bDidInteract = true;
 			}
 		}
+
+		if (AFolderItem* Folder = Cast<AFolderItem>(OverlappingItems))
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Found FolderItem to pick up."));
+
+			// Sjekk om database-minispillet er fullført
+			UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance());
+			if (GI && !GI->bDatabaseMinigameComplete)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Database minispillet er IKKE ferdig. Kan ikke plukke opp folderen."));
+				return;
+			}
+
+			if (!Folder->bIsPickedUp && !HeldFolder)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Folderen plukkes opp."));
+				Folder->OnPickedUp(GetMesh(), FName("RightHandSocket"));
+				HeldFolder = Folder;
+
+				SetOverlappingItems(nullptr);
+				bDidInteract = true;
+			}
+		}
+
 	}
 
 	if (bDidInteract)
@@ -643,6 +720,7 @@ void AArchivist::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 
 		// PickUp
 		EnhancedInputComponent->BindAction(PickUpAction, ETriggerEvent::Triggered, this, &AArchivist::PickUp);
+
 
 		//Looking at paintings and enter pause menu 
 		EnhancedInputComponent->BindAction(EnterMinigameAction, ETriggerEvent::Triggered, this, &AArchivist::TryEnterMinigame);

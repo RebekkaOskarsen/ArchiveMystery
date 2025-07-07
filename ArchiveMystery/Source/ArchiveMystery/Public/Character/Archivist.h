@@ -356,6 +356,11 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
 	AOpenBox* BoxToPlaceBeforeMinigame;
 
+	//----------Folder placement-------------------------------------------//
+
+	UPROPERTY()
+	ATriggerBox* FolderDropZone;
+
 private:
 
 	//------- Camera properties-------------------------------------------------//
@@ -380,5 +385,8 @@ private:
 	TSubclassOf<class UPauseMenuWidget> PauseMenuWidgetClass;
 
 	void TogglePauseMenu();
+
+	UPROPERTY()
+	class AFolderItem* HeldFolder;
 
 };

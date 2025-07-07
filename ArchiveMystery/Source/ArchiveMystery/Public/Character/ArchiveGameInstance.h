@@ -55,6 +55,9 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	bool bBoxWasPlaced ;
 
+	UPROPERTY(BlueprintReadWrite, Category = "Progress")
+	bool bDatabaseMinigameComplete = false;
+
 	UPROPERTY(BlueprintReadWrite)
 	FVector BoxPlacedLocation;
 
@@ -222,6 +225,12 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool bIsMarker12;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsMarker13;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsMarker14;
 
 	//Keycards 
 	UPROPERTY(BlueprintReadWrite, Category = "Keycards")
