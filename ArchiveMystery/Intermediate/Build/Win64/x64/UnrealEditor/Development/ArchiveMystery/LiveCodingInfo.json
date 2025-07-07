@@ -2,7 +2,11 @@
 	"RemapUnityFiles": 
 	{
 		"Module.ArchiveMystery.1.cpp.obj": [
+			"ArchiveMystery.cpp.obj",
+			"ArchiveGameInstance.gen.cpp.obj",
 			"ArchiveGhost.gen.cpp.obj",
+			"ArchiveMystery.init.gen.cpp.obj",
+			"Archivist.gen.cpp.obj",
 			"ArchivistAnimInstance.gen.cpp.obj",
 			"BrushSelectionWidget.gen.cpp.obj",
 			"DatabaseMinigameGameMode.gen.cpp.obj",
@@ -11,14 +15,9 @@
 			"DocumentItem.gen.cpp.obj",
 			"DoubleDoor.gen.cpp.obj",
 			"ErrorWidget.gen.cpp.obj",
+			"FolderItem.gen.cpp.obj",
 			"GhostAnimInstance.gen.cpp.obj",
 			"InfoBookWidget.gen.cpp.obj",
-			"ArchiveGameInstance.gen.cpp.obj",
-			"ArchiveMystery.init.gen.cpp.obj",
-			"Archivist.gen.cpp.obj",
-			"FolderItem.gen.cpp.obj"
-		],
-		"Module.ArchiveMystery.2.cpp.obj": [
 			"InfoWidget.gen.cpp.obj",
 			"Items.gen.cpp.obj",
 			"KeycardItem.gen.cpp.obj",
@@ -44,16 +43,17 @@
 			"TriggerMoldGame.gen.cpp.obj",
 			"TriggerScanner.gen.cpp.obj",
 			"W_QuestLog_Pause.gen.cpp.obj",
-			"PerModuleInline.gen.cpp.obj",
-			"ArchiveMystery.cpp.obj",
-			"ArchiveGameInstance.cpp.obj"
+			"PerModuleInline.gen.cpp.obj"
 		],
-		"Module.ArchiveMystery.3.cpp.obj": [
+		"Module.ArchiveMystery.2.cpp.obj": [
+			"ArchiveGameInstance.cpp.obj",
 			"ArchiveGhost.cpp.obj",
+			"Archivist.cpp.obj",
 			"ArchivistAnimInstance.cpp.obj",
 			"GhostAnimInstance.cpp.obj",
 			"PaintingInfo.cpp.obj",
 			"DatabaseMinigameGameMode.cpp.obj",
+			"DatabaseResultWidget.cpp.obj",
 			"DatabaseWidget.cpp.obj",
 			"ErrorWidget.cpp.obj",
 			"InfoBookWidget.cpp.obj",
@@ -67,6 +67,7 @@
 			"PauseMenuWidget.cpp.obj",
 			"OpenBox.cpp.obj",
 			"DocumentItem.cpp.obj",
+			"FolderItem.cpp.obj",
 			"Items.cpp.obj",
 			"BrushSelectionWidget.cpp.obj",
 			"Mold.cpp.obj",
@@ -77,16 +78,13 @@
 			"MoldTutorial.cpp.obj",
 			"NextPaper.cpp.obj",
 			"TriggerMoldGame.cpp.obj",
+			"QuestMarker.cpp.obj",
 			"QuestLogData.cpp.obj",
 			"W_QuestLog_Pause.cpp.obj",
 			"TriggerDeliverDocuments.cpp.obj",
 			"TriggerMailInteraction.cpp.obj",
 			"TriggerScanner.cpp.obj",
-			"Minigame.cpp.obj",
-			"Archivist.cpp.obj",
-			"DatabaseResultWidget.cpp.obj",
-			"FolderItem.cpp.obj",
-			"QuestMarker.cpp.obj"
+			"Minigame.cpp.obj"
 		]
 	}
 }
