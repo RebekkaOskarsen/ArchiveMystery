@@ -123,6 +123,9 @@
     <ClCompile Include="..\..\Source\ArchiveMystery\Private\Database\MailWidget.cpp">
       <Filter>Source\ArchiveMystery\Private\Database</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\ArchiveMystery\Private\Database\ScannedDocumentWidget.cpp">
+      <Filter>Source\ArchiveMystery\Private\Database</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\ArchiveMystery\Private\Database\StartPageWidget.cpp">
       <Filter>Source\ArchiveMystery\Private\Database</Filter>
     </ClCompile>
@@ -277,6 +280,9 @@
       <Filter>Source\ArchiveMystery\Public\Database</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\ArchiveMystery\Public\Database\MailWidget.h">
+      <Filter>Source\ArchiveMystery\Public\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\ArchiveMystery\Public\Database\ScannedDocumentWidget.h">
       <Filter>Source\ArchiveMystery\Public\Database</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\ArchiveMystery\Public\Database\StartPageWidget.h">

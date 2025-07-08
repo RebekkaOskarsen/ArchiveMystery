@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Components/Button.h"
 #include "MailWidget.generated.h"
 
 /**
@@ -23,4 +24,24 @@ protected:
 public:
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Text_PlayerName_Mail;
+
+	UPROPERTY(meta = (BindWidget))
+	UButton* Button_SeeScannedDocuments;
+
+	UPROPERTY(meta = (BindWidget))
+	UButton* Button_Send;
+
+	// Klassen til scannede dokument-widgeten (sett i Blueprint)
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<UUserWidget> ScannedDocumentWidgetClass;
+
+	// Instans når den er vist
+	UPROPERTY()
+	UUserWidget* ScannedDocumentWidgetInstance;
+
+	UFUNCTION()
+	void OnSeeScannedDocumentsClicked();
+
+	UFUNCTION()
+	void ShowSendButton();
 };

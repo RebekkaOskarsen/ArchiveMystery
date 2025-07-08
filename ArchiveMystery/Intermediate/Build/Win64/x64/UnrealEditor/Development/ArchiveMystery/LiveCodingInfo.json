@@ -2,10 +2,7 @@
 	"RemapUnityFiles": 
 	{
 		"Module.ArchiveMystery.1.cpp.obj": [
-			"ArchiveMystery.cpp.obj",
-			"ArchiveGameInstance.gen.cpp.obj",
 			"ArchiveGhost.gen.cpp.obj",
-			"ArchiveMystery.init.gen.cpp.obj",
 			"Archivist.gen.cpp.obj",
 			"ArchivistAnimInstance.gen.cpp.obj",
 			"BrushSelectionWidget.gen.cpp.obj",
@@ -18,11 +15,14 @@
 			"FolderItem.gen.cpp.obj",
 			"GhostAnimInstance.gen.cpp.obj",
 			"InfoBookWidget.gen.cpp.obj",
+			"ArchiveGameInstance.gen.cpp.obj",
+			"ArchiveMystery.init.gen.cpp.obj"
+		],
+		"Module.ArchiveMystery.2.cpp.obj": [
 			"InfoWidget.gen.cpp.obj",
 			"Items.gen.cpp.obj",
 			"KeycardItem.gen.cpp.obj",
 			"LoginWidget.gen.cpp.obj",
-			"MailWidget.gen.cpp.obj",
 			"MainMenuWidget.gen.cpp.obj",
 			"Minigame.gen.cpp.obj",
 			"Mold.gen.cpp.obj",
@@ -43,12 +43,13 @@
 			"TriggerMoldGame.gen.cpp.obj",
 			"TriggerScanner.gen.cpp.obj",
 			"W_QuestLog_Pause.gen.cpp.obj",
-			"PerModuleInline.gen.cpp.obj"
+			"MailWidget.gen.cpp.obj",
+			"ScannedDocumentWidget.gen.cpp.obj"
 		],
-		"Module.ArchiveMystery.2.cpp.obj": [
-			"ArchiveGameInstance.cpp.obj",
+		"Module.ArchiveMystery.3.cpp.obj": [
+			"PerModuleInline.gen.cpp.obj",
+			"ArchiveMystery.cpp.obj",
 			"ArchiveGhost.cpp.obj",
-			"Archivist.cpp.obj",
 			"ArchivistAnimInstance.cpp.obj",
 			"GhostAnimInstance.cpp.obj",
 			"PaintingInfo.cpp.obj",
@@ -59,7 +60,6 @@
 			"InfoBookWidget.cpp.obj",
 			"InfoWidget.cpp.obj",
 			"LoginWidget.cpp.obj",
-			"MailWidget.cpp.obj",
 			"StartPageWidget.cpp.obj",
 			"DoubleDoor.cpp.obj",
 			"KeycardItem.cpp.obj",
@@ -67,7 +67,6 @@
 			"PauseMenuWidget.cpp.obj",
 			"OpenBox.cpp.obj",
 			"DocumentItem.cpp.obj",
-			"FolderItem.cpp.obj",
 			"Items.cpp.obj",
 			"BrushSelectionWidget.cpp.obj",
 			"Mold.cpp.obj",
@@ -84,7 +83,12 @@
 			"TriggerDeliverDocuments.cpp.obj",
 			"TriggerMailInteraction.cpp.obj",
 			"TriggerScanner.cpp.obj",
-			"Minigame.cpp.obj"
+			"Minigame.cpp.obj",
+			"ArchiveGameInstance.cpp.obj",
+			"Archivist.cpp.obj",
+			"MailWidget.cpp.obj",
+			"ScannedDocumentWidget.cpp.obj",
+			"FolderItem.cpp.obj"
 		]
 	}
 }

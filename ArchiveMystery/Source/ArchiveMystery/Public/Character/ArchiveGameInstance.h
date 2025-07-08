@@ -58,6 +58,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "Progress")
 	bool bDatabaseMinigameComplete = false;
 
+	UPROPERTY(BlueprintReadWrite, Category = "Progress")
+	bool bHasScannedDocuments = false;
+
 	UPROPERTY(BlueprintReadWrite)
 	FVector BoxPlacedLocation;
 

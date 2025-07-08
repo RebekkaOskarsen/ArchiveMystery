@@ -411,6 +411,12 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 	// Før alt annet: sjekk om vi holder en folder
 	if (HeldFolder)
 	{
+		if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
+		{
+			GI->bHasScannedDocuments = true;
+			UE_LOG(LogTemp, Warning, TEXT("Documents have been scanned."));
+		}
+
 		// Sjekk om vi har en drop zone (TriggerBox)
 		if (FolderDropZone && FolderDropZone->IsOverlappingActor(this))
 		{

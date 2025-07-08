@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Items.h"
+#include "Blueprint/UserWidget.h"
 #include "GameFramework/Actor.h"
 #include "FolderItem.generated.h"
 

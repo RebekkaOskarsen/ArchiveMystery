@@ -5,6 +5,7 @@
 #include "Components/TextBlock.h"
 #include "Kismet/GameplayStatics.h"
 #include "Character/ArchiveGameInstance.h"
+#include "Database/ScannedDocumentWidget.h"
 
 void UMailWidget::NativeConstruct()
 {
@@ -18,4 +19,65 @@ void UMailWidget::NativeConstruct()
 			Text_PlayerName_Mail->SetText(FText::FromString(Message));
 		}
 	}
+
+    if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
+    {
+        if (GI->bHasScannedDocuments)
+        {
+            if (Button_SeeScannedDocuments)
+            {
+                Button_SeeScannedDocuments->SetVisibility(ESlateVisibility::Visible);
+                Button_SeeScannedDocuments->SetIsEnabled(true);
+                UE_LOG(LogTemp, Warning, TEXT("Knappen for scannede dokumenter er synlig."));
+            }
+        }
+        else
+        {
+            if (Button_SeeScannedDocuments)
+            {
+                Button_SeeScannedDocuments->SetVisibility(ESlateVisibility::Hidden);
+                Button_SeeScannedDocuments->SetIsEnabled(false);
+                UE_LOG(LogTemp, Warning, TEXT("Knappen for scannede dokumenter er skjult."));
+            }
+        }
+    }
+
+    if (Button_SeeScannedDocuments)
+    {
+        Button_SeeScannedDocuments->OnClicked.AddDynamic(this, &UMailWidget::OnSeeScannedDocumentsClicked);
+    }
+}
+
+void UMailWidget::OnSeeScannedDocumentsClicked()
+{
+    if (ScannedDocumentWidgetInstance)
+    {
+        return;
+    }
+
+    if (ScannedDocumentWidgetClass)
+    {
+        UUserWidget* NewWidget = CreateWidget<UUserWidget>(GetWorld(), ScannedDocumentWidgetClass);
+        if (NewWidget)
+        {
+            UScannedDocumentWidget* ScannedWidget = Cast<UScannedDocumentWidget>(NewWidget);
+            if (ScannedWidget)
+            {
+                ScannedWidget->ParentMailWidget = this;
+            }
+
+            ScannedDocumentWidgetInstance = NewWidget;
+            ScannedDocumentWidgetInstance->AddToViewport();
+            UE_LOG(LogTemp, Warning, TEXT("ScannedDocument-widget vist."));
+        }
+    }
+}
+
+void UMailWidget::ShowSendButton()
+{
+    if (Button_Send)
+    {
+        Button_Send->SetVisibility(ESlateVisibility::Visible);
+        UE_LOG(LogTemp, Warning, TEXT("Send-knappen er nå synlig."));
+    }
 }
