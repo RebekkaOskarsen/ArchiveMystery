@@ -46,6 +46,11 @@ void UMailWidget::NativeConstruct()
     {
         Button_SeeScannedDocuments->OnClicked.AddDynamic(this, &UMailWidget::OnSeeScannedDocumentsClicked);
     }
+
+    if (Button_Send)
+    {
+        Button_Send->OnClicked.AddDynamic(this, &UMailWidget::OnSendButtonClicked);
+    }
 }
 
 void UMailWidget::OnSeeScannedDocumentsClicked()
@@ -79,5 +84,20 @@ void UMailWidget::ShowSendButton()
     {
         Button_Send->SetVisibility(ESlateVisibility::Visible);
         UE_LOG(LogTemp, Warning, TEXT("Send-knappen er nå synlig."));
+    }
+}
+
+void UMailWidget::OnSendButtonClicked()
+{
+    UE_LOG(LogTemp, Warning, TEXT("Send-knapp trykket. Viser gratulasjons-widget."));
+
+    if (CompletionMessageWidgetClass)
+    {
+        UUserWidget* CompletionMessage = CreateWidget<UUserWidget>(GetWorld(), CompletionMessageWidgetClass);
+        if (CompletionMessage)
+        {
+            CompletionMessage->AddToViewport();
+            RemoveFromParent(); // Skjul mail-widget
+        }
     }
 }

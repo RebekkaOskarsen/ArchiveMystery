@@ -33,6 +33,9 @@ public:
 
 	// Klassen til scannede dokument-widgeten (sett i Blueprint)
 	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<UUserWidget> CompletionMessageWidgetClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
 	TSubclassOf<UUserWidget> ScannedDocumentWidgetClass;
 
 	// Instans når den er vist
@@ -44,4 +47,7 @@ public:
 
 	UFUNCTION()
 	void ShowSendButton();
+
+	UFUNCTION()
+	void OnSendButtonClicked();
 };

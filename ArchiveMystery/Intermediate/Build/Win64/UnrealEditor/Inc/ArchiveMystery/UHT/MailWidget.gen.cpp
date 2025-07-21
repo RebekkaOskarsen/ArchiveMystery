@@ -49,6 +49,35 @@ DEFINE_FUNCTION(UMailWidget::execOnSeeScannedDocumentsClicked)
 }
 // End Class UMailWidget Function OnSeeScannedDocumentsClicked
 
+// Begin Class UMailWidget Function OnSendButtonClicked
+struct Z_Construct_UFunction_UMailWidget_OnSendButtonClicked_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Database/MailWidget.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UMailWidget_OnSendButtonClicked_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UMailWidget, nullptr, "OnSendButtonClicked", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UMailWidget_OnSendButtonClicked_Statics::Function_MetaDataParams), Z_Construct_UFunction_UMailWidget_OnSendButtonClicked_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UMailWidget_OnSendButtonClicked()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UMailWidget_OnSendButtonClicked_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UMailWidget::execOnSendButtonClicked)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->OnSendButtonClicked();
+	P_NATIVE_END;
+}
+// End Class UMailWidget Function OnSendButtonClicked
+
 // Begin Class UMailWidget Function ShowSendButton
 struct Z_Construct_UFunction_UMailWidget_ShowSendButton_Statics
 {
@@ -84,6 +113,7 @@ void UMailWidget::StaticRegisterNativesUMailWidget()
 	UClass* Class = UMailWidget::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
 		{ "OnSeeScannedDocumentsClicked", &UMailWidget::execOnSeeScannedDocumentsClicked },
+		{ "OnSendButtonClicked", &UMailWidget::execOnSendButtonClicked },
 		{ "ShowSendButton", &UMailWidget::execShowSendButton },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -115,7 +145,7 @@ struct Z_Construct_UClass_UMailWidget_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/Database/MailWidget.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ScannedDocumentWidgetClass_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CompletionMessageWidgetClass_MetaData[] = {
 		{ "Category", "Widgets" },
 #if !UE_BUILD_SHIPPING
 		{ "Comment", "// Klassen til scannede dokument-widgeten (sett i Blueprint)\n" },
@@ -124,6 +154,10 @@ struct Z_Construct_UClass_UMailWidget_Statics
 #if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Klassen til scannede dokument-widgeten (sett i Blueprint)" },
 #endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ScannedDocumentWidgetClass_MetaData[] = {
+		{ "Category", "Widgets" },
+		{ "ModuleRelativePath", "Public/Database/MailWidget.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ScannedDocumentWidgetInstance_MetaData[] = {
 #if !UE_BUILD_SHIPPING
@@ -139,12 +173,14 @@ struct Z_Construct_UClass_UMailWidget_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Text_PlayerName_Mail;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Button_SeeScannedDocuments;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Button_Send;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_CompletionMessageWidgetClass;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_ScannedDocumentWidgetClass;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ScannedDocumentWidgetInstance;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_UMailWidget_OnSeeScannedDocumentsClicked, "OnSeeScannedDocumentsClicked" }, // 3882627852
+		{ &Z_Construct_UFunction_UMailWidget_OnSendButtonClicked, "OnSendButtonClicked" }, // 4223381828
 		{ &Z_Construct_UFunction_UMailWidget_ShowSendButton, "ShowSendButton" }, // 2419479662
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
@@ -156,12 +192,14 @@ struct Z_Construct_UClass_UMailWidget_Statics
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UMailWidget_Statics::NewProp_Text_PlayerName_Mail = { "Text_PlayerName_Mail", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UMailWidget, Text_PlayerName_Mail), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Text_PlayerName_Mail_MetaData), NewProp_Text_PlayerName_Mail_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UMailWidget_Statics::NewProp_Button_SeeScannedDocuments = { "Button_SeeScannedDocuments", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UMailWidget, Button_SeeScannedDocuments), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Button_SeeScannedDocuments_MetaData), NewProp_Button_SeeScannedDocuments_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UMailWidget_Statics::NewProp_Button_Send = { "Button_Send", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UMailWidget, Button_Send), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Button_Send_MetaData), NewProp_Button_Send_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UMailWidget_Statics::NewProp_CompletionMessageWidgetClass = { "CompletionMessageWidgetClass", nullptr, (EPropertyFlags)0x0014000000010001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UMailWidget, CompletionMessageWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CompletionMessageWidgetClass_MetaData), NewProp_CompletionMessageWidgetClass_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UMailWidget_Statics::NewProp_ScannedDocumentWidgetClass = { "ScannedDocumentWidgetClass", nullptr, (EPropertyFlags)0x0014000000010001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UMailWidget, ScannedDocumentWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ScannedDocumentWidgetClass_MetaData), NewProp_ScannedDocumentWidgetClass_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UMailWidget_Statics::NewProp_ScannedDocumentWidgetInstance = { "ScannedDocumentWidgetInstance", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UMailWidget, ScannedDocumentWidgetInstance), Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ScannedDocumentWidgetInstance_MetaData), NewProp_ScannedDocumentWidgetInstance_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UMailWidget_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMailWidget_Statics::NewProp_Text_PlayerName_Mail,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMailWidget_Statics::NewProp_Button_SeeScannedDocuments,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMailWidget_Statics::NewProp_Button_Send,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMailWidget_Statics::NewProp_CompletionMessageWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMailWidget_Statics::NewProp_ScannedDocumentWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMailWidget_Statics::NewProp_ScannedDocumentWidgetInstance,
 };
@@ -204,14 +242,14 @@ UMailWidget::~UMailWidget() {}
 // End Class UMailWidget
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_minas_OneDrive_Dokumenter_Personal_Projects_NGA_2025_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Database_MailWidget_h_Statics
+struct Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Database_MailWidget_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UMailWidget, UMailWidget::StaticClass, TEXT("UMailWidget"), &Z_Registration_Info_UClass_UMailWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UMailWidget), 1743340934U) },
+		{ Z_Construct_UClass_UMailWidget, UMailWidget::StaticClass, TEXT("UMailWidget"), &Z_Registration_Info_UClass_UMailWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UMailWidget), 261298470U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_minas_OneDrive_Dokumenter_Personal_Projects_NGA_2025_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Database_MailWidget_h_2485747188(TEXT("/Script/ArchiveMystery"),
-	Z_CompiledInDeferFile_FID_Users_minas_OneDrive_Dokumenter_Personal_Projects_NGA_2025_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Database_MailWidget_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_minas_OneDrive_Dokumenter_Personal_Projects_NGA_2025_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Database_MailWidget_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Database_MailWidget_h_4263442739(TEXT("/Script/ArchiveMystery"),
+	Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Database_MailWidget_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Database_MailWidget_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

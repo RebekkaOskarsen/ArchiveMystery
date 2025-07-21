@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define ARCHIVEMYSTERY_Mold_generated_h
 
-#define FID_Users_minas_OneDrive_Dokumenter_Personal_Projects_NGA_2025_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_Mold_h_24_INCLASS_NO_PURE_DECLS \
+#define FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_Mold_h_24_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAMold(); \
 	friend struct Z_Construct_UClass_AMold_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(AMold)
 
 
-#define FID_Users_minas_OneDrive_Dokumenter_Personal_Projects_NGA_2025_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_Mold_h_24_ENHANCED_CONSTRUCTORS \
+#define FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_Mold_h_24_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AMold(AMold&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~AMold();
 
 
-#define FID_Users_minas_OneDrive_Dokumenter_Personal_Projects_NGA_2025_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_Mold_h_21_PROLOG
-#define FID_Users_minas_OneDrive_Dokumenter_Personal_Projects_NGA_2025_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_Mold_h_24_GENERATED_BODY \
+#define FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_Mold_h_21_PROLOG
+#define FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_Mold_h_24_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_minas_OneDrive_Dokumenter_Personal_Projects_NGA_2025_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_Mold_h_24_INCLASS_NO_PURE_DECLS \
-	FID_Users_minas_OneDrive_Dokumenter_Personal_Projects_NGA_2025_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_Mold_h_24_ENHANCED_CONSTRUCTORS \
+	FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_Mold_h_24_INCLASS_NO_PURE_DECLS \
+	FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_Mold_h_24_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -48,7 +48,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> ARCHIVEMYSTERY_API UClass* StaticClass<class AMold>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Users_minas_OneDrive_Dokumenter_Personal_Projects_NGA_2025_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_Mold_h
+#define CURRENT_FILE_ID FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_Mold_h
 
 
 #define FOREACH_ENUM_EMOLDSIZE(op) \
