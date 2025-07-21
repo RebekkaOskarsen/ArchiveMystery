@@ -2,7 +2,6 @@
 	"RemapUnityFiles": 
 	{
 		"Module.ArchiveMystery.1.cpp.obj": [
-			"PerModuleInline.gen.cpp.obj",
 			"ArchiveGameInstance.gen.cpp.obj",
 			"ArchiveGhost.gen.cpp.obj",
 			"ArchiveMystery.init.gen.cpp.obj",
@@ -17,7 +16,9 @@
 			"DoubleDoor.gen.cpp.obj",
 			"ErrorWidget.gen.cpp.obj",
 			"FolderItem.gen.cpp.obj",
-			"GhostAnimInstance.gen.cpp.obj",
+			"GhostAnimInstance.gen.cpp.obj"
+		],
+		"Module.ArchiveMystery.2.cpp.obj": [
 			"InfoBookWidget.gen.cpp.obj",
 			"InfoWidget.gen.cpp.obj",
 			"Items.gen.cpp.obj",
@@ -43,10 +44,11 @@
 			"TriggerDeliverDocuments.gen.cpp.obj",
 			"TriggerMailInteraction.gen.cpp.obj",
 			"TriggerMoldGame.gen.cpp.obj",
-			"TriggerScanner.gen.cpp.obj",
-			"W_QuestLog_Pause.gen.cpp.obj"
+			"TriggerScanner.gen.cpp.obj"
 		],
-		"Module.ArchiveMystery.2.cpp.obj": [
+		"Module.ArchiveMystery.3.cpp.obj": [
+			"W_QuestLog_Pause.gen.cpp.obj",
+			"PerModuleInline.gen.cpp.obj",
 			"ArchiveMystery.cpp.obj",
 			"ArchiveGameInstance.cpp.obj",
 			"ArchiveGhost.cpp.obj",
@@ -54,6 +56,7 @@
 			"ArchivistAnimInstance.cpp.obj",
 			"GhostAnimInstance.cpp.obj",
 			"PaintingInfo.cpp.obj",
+			"CompletionMessageWidget.cpp.obj",
 			"DatabaseMinigameGameMode.cpp.obj",
 			"DatabaseResultWidget.cpp.obj",
 			"DatabaseWidget.cpp.obj",
@@ -61,6 +64,7 @@
 			"InfoBookWidget.cpp.obj",
 			"InfoWidget.cpp.obj",
 			"LoginWidget.cpp.obj",
+			"MailWidget.cpp.obj",
 			"ScannedDocumentWidget.cpp.obj",
 			"StartPageWidget.cpp.obj",
 			"DoubleDoor.cpp.obj",
@@ -86,9 +90,7 @@
 			"TriggerDeliverDocuments.cpp.obj",
 			"TriggerMailInteraction.cpp.obj",
 			"TriggerScanner.cpp.obj",
-			"Minigame.cpp.obj",
-			"CompletionMessageWidget.cpp.obj",
-			"MailWidget.cpp.obj"
+			"Minigame.cpp.obj"
 		]
 	}
 }

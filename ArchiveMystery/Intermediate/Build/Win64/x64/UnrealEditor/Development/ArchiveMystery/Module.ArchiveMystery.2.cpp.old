@@ -13,7 +13,6 @@
 #include "C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Database/InfoBookWidget.cpp"
 #include "C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Database/InfoWidget.cpp"
 #include "C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Database/LoginWidget.cpp"
-#include "C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Database/MailWidget.cpp"
 #include "C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Database/ScannedDocumentWidget.cpp"
 #include "C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Database/StartPageWidget.cpp"
 #include "C:/ArchiveMystery/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Door/DoubleDoor.cpp"
