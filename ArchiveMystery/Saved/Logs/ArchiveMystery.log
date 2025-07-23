@@ -5866,3 +5866,25 @@ FPackageName: Skipped package /Game/3DAssets/Walls/Reimported/SM_Wall has a vali
 [2025.07.23-09.31.22:394][436]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 1319.933105
 [2025.07.23-09.31.23:396][439]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
 [2025.07.23-09.31.23:396][439]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 1320.594482, Update Interval: 308.717926
+[2025.07.23-09.32.03:009][721]LogUObjectHash: Compacting FUObjectHashTables data took   0.77ms
+[2025.07.23-09.32.04:298][721]LogSlate: Window 'Save Content' being destroyed
+[2025.07.23-09.32.04:327][721]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2025.07.23-09.32.04:393][721]OBJ SavePackage: Generating thumbnails for [0] asset(s) in package [/Game/Blueprint/BP_URL_Triggerbox] ([2] browsable assets)...
+[2025.07.23-09.32.04:393][721]OBJ SavePackage: Finished generating thumbnails for package [/Game/Blueprint/BP_URL_Triggerbox]
+[2025.07.23-09.32.04:399][721]LogSavePackage: Moving output files for package: /Game/Blueprint/BP_URL_Triggerbox
+[2025.07.23-09.32.04:399][721]LogSavePackage: Moving '../../../../../../Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/Tirsdag/ArchiveMystery/Saved/BP_URL_Triggerbox67648ED54163B35F1E3A70A285EBF1EE.tmp' to '../../../../../../Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/Tirsdag/ArchiveMystery/Content/Blueprint/BP_URL_Triggerbox.uasset'
+[2025.07.23-09.32.04:402][721]OBJ SavePackage: Generating thumbnails for [0] asset(s) in package [/Game/Blueprint/PicturesOnTheWall/MeshAndMaterial/Painting_PopUp] ([2] browsable assets)...
+[2025.07.23-09.32.04:402][721]OBJ SavePackage: Finished generating thumbnails for package [/Game/Blueprint/PicturesOnTheWall/MeshAndMaterial/Painting_PopUp]
+[2025.07.23-09.32.04:412][721]LogSavePackage: Moving output files for package: /Game/Blueprint/PicturesOnTheWall/MeshAndMaterial/Painting_PopUp
+[2025.07.23-09.32.04:412][721]LogSavePackage: Moving '../../../../../../Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/Tirsdag/ArchiveMystery/Saved/Painting_PopUp78E0D09646B7A138EE0645B233E6179E.tmp' to '../../../../../../Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/Tirsdag/ArchiveMystery/Content/Blueprint/PicturesOnTheWall/MeshAndMaterial/Painting_PopUp.uasset'
+[2025.07.23-09.32.04:425][721]LogFileHelpers: InternalPromptForCheckoutAndSave took 97.166 ms
+[2025.07.23-09.32.04:479][721]LogContentValidation: Display: Starting to validate 2 assets
+[2025.07.23-09.32.04:479][721]LogContentValidation: Enabled validators:
+[2025.07.23-09.32.04:479][721]LogContentValidation: 	/Script/DataValidation.EditorValidator_Material
+[2025.07.23-09.32.04:479][721]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
+[2025.07.23-09.32.04:479][721]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
+[2025.07.23-09.32.04:479][721]LogContentValidation: 	/Script/DataValidation.PackageFileValidator
+[2025.07.23-09.32.04:479][721]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
+[2025.07.23-09.32.04:479][721]LogContentValidation: 	/Script/InputBlueprintNodes.EnhancedInputUserWidgetValidator
+[2025.07.23-09.32.04:481][721]AssetCheck: /Game/Blueprint/BP_URL_Triggerbox Validating asset
+[2025.07.23-09.32.04:481][721]AssetCheck: /Game/Blueprint/PicturesOnTheWall/MeshAndMaterial/Painting_PopUp Validating asset

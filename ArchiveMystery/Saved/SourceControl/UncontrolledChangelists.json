@@ -1,0 +1,13 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/Tirsdag/ArchiveMystery/Content/Blueprint/BP_URL_Triggerbox.uasset",
+				"C:/Users/henri/OneDrive - Universitetet i Innlandet/Skrivebord/Tirsdag/ArchiveMystery/Content/Blueprint/PicturesOnTheWall/MeshAndMaterial/Painting_PopUp.uasset"
+			]
+		}
+	]
+}
