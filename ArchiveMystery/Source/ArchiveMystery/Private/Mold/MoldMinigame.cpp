@@ -83,7 +83,7 @@ void AMoldMinigame::BeginPlay()
 		Paper2->SetActorHiddenInGame(true);
 	}
 
-	SpawnMoldForCurrentPaper();
+	//SpawnMoldForCurrentPaper();
 
 	HideBrushUI();
 
@@ -145,7 +145,12 @@ void AMoldMinigame::SpawnMoldForCurrentPaper()
 		AMold* Mold = Cast<AMold>(MoldActor);
 		if (Mold)
 		{
-			if (Mold->PaperIndex == CurrentPaperIndex)
+			bool bIsCorrectPaper = (Mold->PaperIndex == CurrentPaperIndex);
+			bool bIsMediumOnly = Mold->ActorHasTag("MediumOnly");
+
+			bool bShouldShow = bIsCorrectPaper && ((CurrentDifficulty == EMoldDifficulty::Medium && bIsMediumOnly) || (!bIsMediumOnly));
+
+			if (bShouldShow)
 			{
 				Mold->SetActorHiddenInGame(false);
 				Mold->SetActorEnableCollision(true);
@@ -154,7 +159,6 @@ void AMoldMinigame::SpawnMoldForCurrentPaper()
 			}
 			else
 			{
-				//Hide and disable mold from the other paper
 				Mold->SetActorHiddenInGame(true);
 				Mold->SetActorEnableCollision(false);
 			}
@@ -234,6 +238,13 @@ void AMoldMinigame::StartGame(EMoldDifficulty Difficulty)
 {
 	CurrentDifficulty = Difficulty;
 
+	if (CurrentDifficulty == EMoldDifficulty::Medium)
+	{
+		IncreaseMoldForMedium();
+	}
+
+	SpawnMoldForCurrentPaper();
+
 	if (CurrentDifficulty == EMoldDifficulty::Hard)
 	{
 		CountdownTime = HardModeTimeLimit;
@@ -292,6 +303,24 @@ void AMoldMinigame::OnCountdownFinished()
 			{
 				TryAgainBtn->OnClicked.AddDynamic(this, &AMoldMinigame::OnTryAgainClicked);
 			}
+		}
+	}
+}
+
+void AMoldMinigame::IncreaseMoldForMedium()
+{
+	TArray<AActor*> MoldActors;
+	UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("MediumOnly"), MoldActors);
+
+	for (AActor* MoldActor : MoldActors)
+	{
+		AMold* Mold = Cast<AMold>(MoldActor);
+		if (Mold && Mold->PaperIndex == CurrentPaperIndex)
+		{
+			Mold->SetActorHiddenInGame(false);
+			Mold->SetActorEnableCollision(true);
+			Mold->SetMoldMinigame(this);
+			MoldCount++;
 		}
 	}
 }
@@ -396,5 +425,32 @@ void AMoldMinigame::OnExitClicked()
 	}
 
 	UGameplayStatics::OpenLevel(this, FName("Archive-Mystery"));
+}
+
+void AMoldMinigame::ShowIngameTutorial()
+{
+	if (IngameTutorialWidgetClass)
+	{
+		if (IngameTutorialWidget)
+		{
+			IngameTutorialWidget->RemoveFromParent();
+			IngameTutorialWidget = nullptr;
+		}
+
+		IngameTutorialWidget = CreateWidget<UUserWidget>(GetWorld(), IngameTutorialWidgetClass);
+		if (IngameTutorialWidget)
+		{
+			IngameTutorialWidget->AddToViewport();
+		}
+	}
+}
+
+void AMoldMinigame::HideIngameTutorial()
+{
+	if (IngameTutorialWidget)
+	{
+		IngameTutorialWidget->RemoveFromParent();
+		IngameTutorialWidget = nullptr;
+	}
 }
 

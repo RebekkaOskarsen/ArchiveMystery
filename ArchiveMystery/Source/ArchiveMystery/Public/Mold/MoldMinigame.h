@@ -11,8 +11,9 @@
 UENUM(BlueprintType)
 enum class EMoldDifficulty : uint8
 {
-	Easy  UMETA(DisplayName = "Easy"),
-	Hard  UMETA(DisplayName = "Hard")
+	Easy	UMETA(DisplayName = "Easy"),
+	Medium	UMETA(DisplayName = "Medium"),
+	Hard	UMETA(DisplayName = "Hard")
 };
 
 UCLASS()
@@ -70,6 +71,8 @@ public:
 	void UpdateCountdownTick();
 	void OnCountdownFinished();
 
+	//Medium
+	void IncreaseMoldForMedium();
 
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> TryAgainWidgetClass;
@@ -157,4 +160,16 @@ private:
 
 	UFUNCTION()
 	void OnExitClicked();
+
+	// Ingame Tutorial
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> IngameTutorialWidgetClass;
+
+	UUserWidget* IngameTutorialWidget;
+
+	UFUNCTION(BlueprintCallable)
+	void ShowIngameTutorial();
+
+	UFUNCTION(BlueprintCallable)
+	void HideIngameTutorial();
 };
