@@ -4,6 +4,7 @@
 #include "Scanner/TriggerScanner.h"
 #include "Components/BoxComponent.h"
 #include "Blueprint/UserWidget.h"
+#include "Character/ArchiveGameInstance.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/PlayerController.h"
 #include "Character/Archivist.h"
@@ -62,24 +63,52 @@ void ATriggerScanner::Tick(float DeltaTime)
 
 void ATriggerScanner::CheckForInteraction()
 {
-	if (bPlayerIsInside)
-	{
-		APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-		AArchivist* Archivist = Cast<AArchivist>(UGameplayStatics::GetPlayerCharacter(this, 0));
+	if (!bPlayerIsInside) return;
 
-		if (PlayerController && Archivist && PlayerController->WasInputKeyJustPressed(EKeys::E))
+	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+	AArchivist* Archivist = Cast<AArchivist>(UGameplayStatics::GetPlayerCharacter(this, 0));
+	UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance());
+
+	if (!PlayerController || !Archivist || !GI) return;
+
+	if (PlayerController->WasInputKeyJustPressed(EKeys::E))
+	{
+		if (GI->bReadyToScanFolderDocuments)
 		{
-			if (Archivist->bHasPlacedBox &&
-				Archivist->bHasFinishedShreddedPaperMinigame &&
-				Archivist->bHasFinishedMoldMinigame &&
-				Archivist->bHasFoundDocument1 &&
-				Archivist->bHasFoundDocument2)
+			ShowSecondScannerWidget();
+			return; 
+		}
+
+		if (Archivist->bHasPlacedBox &&
+			Archivist->bHasFinishedShreddedPaperMinigame &&
+			Archivist->bHasFinishedMoldMinigame &&
+			Archivist->bHasFoundDocument1 &&
+			Archivist->bHasFoundDocument2)
+		{
+			ShowScannerWidget();
+		}
+	}
+}
+
+void ATriggerScanner::ShowSecondScannerWidget()
+{
+	if (!SecondScannerWidgetInstance && SecondScannerWidgetClass)
+	{
+		SecondScannerWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), SecondScannerWidgetClass);
+		if (SecondScannerWidgetInstance)
+		{
+			SecondScannerWidgetInstance->AddToViewport();
+
+			APlayerController* PC = GetWorld()->GetFirstPlayerController();
+			if (PC)
 			{
-				ShowScannerWidget();
+				PC->SetInputMode(FInputModeGameOnly());
+				PC->bShowMouseCursor = false; 
 			}
 		}
 	}
 }
+
 
 void ATriggerScanner::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {

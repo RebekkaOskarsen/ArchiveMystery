@@ -262,6 +262,10 @@ struct Z_Construct_UClass_UArchiveGameInstance_Statics
 		{ "Category", "Progress" },
 		{ "ModuleRelativePath", "Public/Character/ArchiveGameInstance.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bReadyToScanFolderDocuments_MetaData[] = {
+		{ "Category", "Progress" },
+		{ "ModuleRelativePath", "Public/Character/ArchiveGameInstance.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BoxPlacedLocation_MetaData[] = {
 		{ "Category", "ArchiveGameInstance" },
 		{ "ModuleRelativePath", "Public/Character/ArchiveGameInstance.h" },
@@ -587,6 +591,8 @@ struct Z_Construct_UClass_UArchiveGameInstance_Statics
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bDatabaseMinigameComplete;
 	static void NewProp_bHasScannedDocuments_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bHasScannedDocuments;
+	static void NewProp_bReadyToScanFolderDocuments_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bReadyToScanFolderDocuments;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_BoxPlacedLocation;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_BoxPlacedRotation;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_PlacedBoxTransform;
@@ -753,6 +759,11 @@ void Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bHasScannedDocumen
 	((UArchiveGameInstance*)Obj)->bHasScannedDocuments = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bHasScannedDocuments = { "bHasScannedDocuments", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UArchiveGameInstance), &Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bHasScannedDocuments_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bHasScannedDocuments_MetaData), NewProp_bHasScannedDocuments_MetaData) };
+void Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bReadyToScanFolderDocuments_SetBit(void* Obj)
+{
+	((UArchiveGameInstance*)Obj)->bReadyToScanFolderDocuments = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bReadyToScanFolderDocuments = { "bReadyToScanFolderDocuments", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UArchiveGameInstance), &Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bReadyToScanFolderDocuments_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bReadyToScanFolderDocuments_MetaData), NewProp_bReadyToScanFolderDocuments_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_BoxPlacedLocation = { "BoxPlacedLocation", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UArchiveGameInstance, BoxPlacedLocation), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BoxPlacedLocation_MetaData), NewProp_BoxPlacedLocation_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_BoxPlacedRotation = { "BoxPlacedRotation", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UArchiveGameInstance, BoxPlacedRotation), Z_Construct_UScriptStruct_FRotator, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BoxPlacedRotation_MetaData), NewProp_BoxPlacedRotation_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_PlacedBoxTransform = { "PlacedBoxTransform", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UArchiveGameInstance, PlacedBoxTransform), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlacedBoxTransform_MetaData), NewProp_PlacedBoxTransform_MetaData) };
@@ -1046,6 +1057,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UArchiveG
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bBoxWasPlaced,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bDatabaseMinigameComplete,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bHasScannedDocuments,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_bReadyToScanFolderDocuments,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_BoxPlacedLocation,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_BoxPlacedRotation,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchiveGameInstance_Statics::NewProp_PlacedBoxTransform,
@@ -1149,14 +1161,14 @@ UArchiveGameInstance::~UArchiveGameInstance() {}
 // End Class UArchiveGameInstance
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_henri_OneDrive___Universitetet_i_Innlandet_Skrivebord_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_Statics
+struct Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UArchiveGameInstance, UArchiveGameInstance::StaticClass, TEXT("UArchiveGameInstance"), &Z_Registration_Info_UClass_UArchiveGameInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UArchiveGameInstance), 1029977293U) },
+		{ Z_Construct_UClass_UArchiveGameInstance, UArchiveGameInstance::StaticClass, TEXT("UArchiveGameInstance"), &Z_Registration_Info_UClass_UArchiveGameInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UArchiveGameInstance), 4193802468U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_henri_OneDrive___Universitetet_i_Innlandet_Skrivebord_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_459835844(TEXT("/Script/ArchiveMystery"),
-	Z_CompiledInDeferFile_FID_Users_henri_OneDrive___Universitetet_i_Innlandet_Skrivebord_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_henri_OneDrive___Universitetet_i_Innlandet_Skrivebord_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_1380743146(TEXT("/Script/ArchiveMystery"),
+	Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_ArchiveGameInstance_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

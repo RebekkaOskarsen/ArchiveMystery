@@ -61,6 +61,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "Progress")
 	bool bHasScannedDocuments = false;
 
+	UPROPERTY(BlueprintReadWrite, Category = "Progress")
+	bool bReadyToScanFolderDocuments = false;
+
 	UPROPERTY(BlueprintReadWrite)
 	FVector BoxPlacedLocation;
 

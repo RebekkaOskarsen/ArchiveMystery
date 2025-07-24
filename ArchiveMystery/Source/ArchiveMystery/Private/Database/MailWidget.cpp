@@ -22,7 +22,7 @@ void UMailWidget::NativeConstruct()
 
     if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
     {
-        if (GI->bHasScannedDocuments)
+        if (GI->bReadyToScanFolderDocuments)
         {
             if (Button_SeeScannedDocuments)
             {

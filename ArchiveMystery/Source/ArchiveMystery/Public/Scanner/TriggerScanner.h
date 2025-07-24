@@ -58,4 +58,14 @@ public:
 	TSubclassOf<UUserWidget> PromptWidgetClass;
 
 	UUserWidget* PromptWidgetInstance;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	TSubclassOf<UUserWidget> SecondScannerWidgetClass;
+
+	UPROPERTY()
+	UUserWidget* SecondScannerWidgetInstance;
+
+	UFUNCTION()
+	void ShowSecondScannerWidget();
+
 };

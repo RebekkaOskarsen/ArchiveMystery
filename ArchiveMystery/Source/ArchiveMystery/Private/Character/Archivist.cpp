@@ -411,10 +411,16 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 	// Før alt annet: sjekk om vi holder en folder
 	if (HeldFolder)
 	{
-		if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
+		/*if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
 		{
 			GI->bHasScannedDocuments = true;
 			UE_LOG(LogTemp, Warning, TEXT("Documents have been scanned."));
+		}*/
+
+		if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
+		{
+			GI->bReadyToScanFolderDocuments = true;
+			UE_LOG(LogTemp, Warning, TEXT("Spilleren kan nå scanne folder-dokumentene."));
 		}
 
 		// Sjekk om vi har en drop zone (TriggerBox)

@@ -196,6 +196,35 @@ DEFINE_FUNCTION(ATriggerScanner::execScanDocuments)
 }
 // End Class ATriggerScanner Function ScanDocuments
 
+// Begin Class ATriggerScanner Function ShowSecondScannerWidget
+struct Z_Construct_UFunction_ATriggerScanner_ShowSecondScannerWidget_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Scanner/TriggerScanner.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATriggerScanner_ShowSecondScannerWidget_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATriggerScanner, nullptr, "ShowSecondScannerWidget", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ATriggerScanner_ShowSecondScannerWidget_Statics::Function_MetaDataParams), Z_Construct_UFunction_ATriggerScanner_ShowSecondScannerWidget_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_ATriggerScanner_ShowSecondScannerWidget()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATriggerScanner_ShowSecondScannerWidget_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ATriggerScanner::execShowSecondScannerWidget)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->ShowSecondScannerWidget();
+	P_NATIVE_END;
+}
+// End Class ATriggerScanner Function ShowSecondScannerWidget
+
 // Begin Class ATriggerScanner
 void ATriggerScanner::StaticRegisterNativesATriggerScanner()
 {
@@ -204,6 +233,7 @@ void ATriggerScanner::StaticRegisterNativesATriggerScanner()
 		{ "OnOverlapBegin", &ATriggerScanner::execOnOverlapBegin },
 		{ "OnOverlapEnd", &ATriggerScanner::execOnOverlapEnd },
 		{ "ScanDocuments", &ATriggerScanner::execScanDocuments },
+		{ "ShowSecondScannerWidget", &ATriggerScanner::execShowSecondScannerWidget },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -248,17 +278,28 @@ struct Z_Construct_UClass_ATriggerScanner_Statics
 		{ "ToolTip", "Widget" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SecondScannerWidgetClass_MetaData[] = {
+		{ "Category", "Widgets" },
+		{ "ModuleRelativePath", "Public/Scanner/TriggerScanner.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SecondScannerWidgetInstance_MetaData[] = {
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/Scanner/TriggerScanner.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_TriggerBox;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_ScannerWidgetClass;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ScannerWidgetInstance;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_PromptWidgetClass;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_SecondScannerWidgetClass;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_SecondScannerWidgetInstance;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_ATriggerScanner_OnOverlapBegin, "OnOverlapBegin" }, // 3022315622
 		{ &Z_Construct_UFunction_ATriggerScanner_OnOverlapEnd, "OnOverlapEnd" }, // 4291783997
 		{ &Z_Construct_UFunction_ATriggerScanner_ScanDocuments, "ScanDocuments" }, // 4234727757
+		{ &Z_Construct_UFunction_ATriggerScanner_ShowSecondScannerWidget, "ShowSecondScannerWidget" }, // 1031791275
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -270,11 +311,15 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATriggerScanne
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ATriggerScanner_Statics::NewProp_ScannerWidgetClass = { "ScannerWidgetClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ATriggerScanner, ScannerWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ScannerWidgetClass_MetaData), NewProp_ScannerWidgetClass_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATriggerScanner_Statics::NewProp_ScannerWidgetInstance = { "ScannerWidgetInstance", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ATriggerScanner, ScannerWidgetInstance), Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ScannerWidgetInstance_MetaData), NewProp_ScannerWidgetInstance_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ATriggerScanner_Statics::NewProp_PromptWidgetClass = { "PromptWidgetClass", nullptr, (EPropertyFlags)0x0014000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ATriggerScanner, PromptWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PromptWidgetClass_MetaData), NewProp_PromptWidgetClass_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ATriggerScanner_Statics::NewProp_SecondScannerWidgetClass = { "SecondScannerWidgetClass", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ATriggerScanner, SecondScannerWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SecondScannerWidgetClass_MetaData), NewProp_SecondScannerWidgetClass_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATriggerScanner_Statics::NewProp_SecondScannerWidgetInstance = { "SecondScannerWidgetInstance", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ATriggerScanner, SecondScannerWidgetInstance), Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SecondScannerWidgetInstance_MetaData), NewProp_SecondScannerWidgetInstance_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ATriggerScanner_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATriggerScanner_Statics::NewProp_TriggerBox,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATriggerScanner_Statics::NewProp_ScannerWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATriggerScanner_Statics::NewProp_ScannerWidgetInstance,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATriggerScanner_Statics::NewProp_PromptWidgetClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATriggerScanner_Statics::NewProp_SecondScannerWidgetClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATriggerScanner_Statics::NewProp_SecondScannerWidgetInstance,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_ATriggerScanner_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_ATriggerScanner_Statics::DependentSingletons[])() = {
@@ -314,14 +359,14 @@ ATriggerScanner::~ATriggerScanner() {}
 // End Class ATriggerScanner
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_henri_OneDrive___Universitetet_i_Innlandet_Skrivebord_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Scanner_TriggerScanner_h_Statics
+struct Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Scanner_TriggerScanner_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ATriggerScanner, ATriggerScanner::StaticClass, TEXT("ATriggerScanner"), &Z_Registration_Info_UClass_ATriggerScanner, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ATriggerScanner), 3247963850U) },
+		{ Z_Construct_UClass_ATriggerScanner, ATriggerScanner::StaticClass, TEXT("ATriggerScanner"), &Z_Registration_Info_UClass_ATriggerScanner, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ATriggerScanner), 804756182U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_henri_OneDrive___Universitetet_i_Innlandet_Skrivebord_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Scanner_TriggerScanner_h_792828926(TEXT("/Script/ArchiveMystery"),
-	Z_CompiledInDeferFile_FID_Users_henri_OneDrive___Universitetet_i_Innlandet_Skrivebord_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Scanner_TriggerScanner_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_henri_OneDrive___Universitetet_i_Innlandet_Skrivebord_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Scanner_TriggerScanner_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Scanner_TriggerScanner_h_2835040671(TEXT("/Script/ArchiveMystery"),
+	Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Scanner_TriggerScanner_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Scanner_TriggerScanner_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration
