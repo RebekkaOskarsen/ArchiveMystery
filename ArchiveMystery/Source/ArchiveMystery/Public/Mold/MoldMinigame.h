@@ -83,6 +83,9 @@ public:
 	UFUNCTION()
 	void OnTryAgainClicked();
 
+	UFUNCTION()
+	void ResetMold();
+
 private:
 	UPROPERTY(EditAnywhere, Category = "Camera")
 	UCameraComponent* MoldCamera;

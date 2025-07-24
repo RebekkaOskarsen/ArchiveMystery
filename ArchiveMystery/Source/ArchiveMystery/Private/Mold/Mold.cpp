@@ -90,7 +90,9 @@ void AMold::OnBrushed(EBrushSize BrushSize)
 			bIsDestroyed = true;
 
 			MoldMinigameRef->OnMoldDestroyed();
-			Destroy();
+
+			SetActorHiddenInGame(true);
+			SetActorEnableCollision(false);
 		}
 	}
 }
@@ -98,5 +100,15 @@ void AMold::OnBrushed(EBrushSize BrushSize)
 void AMold::SetMoldMinigame(AMoldMinigame* Minigame)
 {
 	MoldMinigameRef = Minigame;
+}
+
+void AMold::ResetMold()
+{
+	bIsDestroyed = false;
+	MoldSize = EMoldSize::Big;
+	MoldHealth = MaxHealth;
+
+	SetActorHiddenInGame(false);
+	SetActorEnableCollision(true);
 }
 

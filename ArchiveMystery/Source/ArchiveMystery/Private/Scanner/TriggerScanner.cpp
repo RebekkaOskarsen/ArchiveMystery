@@ -8,6 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/PlayerController.h"
 #include "Character/Archivist.h"
+#include "Character/ArchiveGameInstance.h"
 
 ATriggerScanner::ATriggerScanner()
 {
@@ -148,11 +149,23 @@ void ATriggerScanner::ScanDocuments()
 		ScannerWidgetInstance->RemoveFromParent();
 		ScannerWidgetInstance = nullptr;
 
+		// restore input
 		APlayerController* PC = GetWorld()->GetFirstPlayerController();
 		if (PC)
 		{
 			PC->SetInputMode(FInputModeGameOnly());
 			PC->bShowMouseCursor = false;
+		}
+
+		AArchivist* Archivist = Cast<AArchivist>(UGameplayStatics::GetPlayerCharacter(this, 0));
+		if (Archivist)
+		{
+			Archivist->bHasScannedDocuments = true;
+		}
+		if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
+		{
+			GI->bHasScannedDocuments = true;
+			GI->SaveQuestLogData();
 		}
 	}
 }

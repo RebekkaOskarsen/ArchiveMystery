@@ -121,6 +121,7 @@ void AArchivist::BeginPlay()
 		bHasFinishedMoldMinigame = GameInstance->bMoldGameComplete;
 		bHasFoundDocument1 = GameInstance->bHasFoundDocument1;
 		bHasFoundDocument2 = GameInstance->bHasFoundDocument2;
+		bHasScannedDocuments = GameInstance->bHasScannedDocuments;
 
 		if (bHasFoundDocument1)
 		{

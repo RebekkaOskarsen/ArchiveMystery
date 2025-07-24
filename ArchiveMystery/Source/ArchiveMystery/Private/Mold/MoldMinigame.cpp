@@ -178,6 +178,14 @@ void AMoldMinigame::CheckWinCondition()
 		{
 			ShowExitUI();
 		}
+		if (CurrentDifficulty == EMoldDifficulty::Easy)
+		{
+			if (UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
+			{
+				GameInstance->bHasCompletedMoldEasy = true;
+				GameInstance->SaveQuestLogData();
+			}
+		}
 	}
 
 	AArchivist* Archivist = Cast<AArchivist>(UGameplayStatics::GetPlayerCharacter(this, 0));
@@ -333,7 +341,44 @@ void AMoldMinigame::OnTryAgainClicked()
 		TryAgainWidget = nullptr;
 	}
 
+	ResetMold();
+
 	ShowTutorial();
+}
+
+void AMoldMinigame::ResetMold()
+{
+	TArray<AActor*> MoldActors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AMold::StaticClass(), MoldActors);
+
+	MoldCount = 0;
+
+	for (AActor* MoldActor : MoldActors)
+	{
+		AMold* Mold = Cast<AMold>(MoldActor);
+		if (Mold)
+		{
+			bool bIsCorrectPaper = Mold->PaperIndex == CurrentPaperIndex;
+			bool bIsMediumOnly = Mold->ActorHasTag("MediumOnly");
+
+			bool bShouldShow = bIsCorrectPaper && (
+				!bIsMediumOnly ||
+				(CurrentDifficulty == EMoldDifficulty::Medium || CurrentDifficulty == EMoldDifficulty::Hard)
+				);
+
+			if (bShouldShow)
+			{
+				Mold->ResetMold();
+				Mold->SetMoldMinigame(this);
+				MoldCount++;
+			}
+			else
+			{
+				Mold->SetActorHiddenInGame(true);
+				Mold->SetActorEnableCollision(false);
+			}
+		}
+	}
 }
 
 void AMoldMinigame::ShowBrushUI()

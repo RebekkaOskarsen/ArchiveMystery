@@ -67,4 +67,7 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Effects")
 	UNiagaraSystem* SparkleEffect;
 
+	UFUNCTION()
+	void ResetMold();
+
 };

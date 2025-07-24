@@ -50,6 +50,8 @@ void UArchiveGameInstance::ResetAllProgress()
     bHasFoundDocument1 = false;
     bHasFoundDocument2 = false;
 
+    bHasScannedDocuments = false;
+
     bIsCustomized = false;
 
     //Skin color
@@ -101,6 +103,9 @@ void UArchiveGameInstance::ResetAllProgress()
 
     //Tutorial
     bTutorialPlayed = false;
+
+    //Mold
+    bHasCompletedMoldEasy = false;
 
     // Clear quest entries
     if (QuestLogData)
@@ -184,6 +189,10 @@ UArchiveGameInstance::UArchiveGameInstance()
 
     bHasFoundDocument1 = false;
     bHasFoundDocument2 = false;
+
+    bHasScannedDocuments = false;
+
+    bHasCompletedMoldEasy = false;
 }
 
 //Saves the data to a JSON file 
@@ -273,6 +282,9 @@ void UArchiveGameInstance::SaveQuestLogData()
     JsonObject->SetBoolField("bHasFoundDocument1", bHasFoundDocument1);
     JsonObject->SetBoolField("bHasFoundDocument2", bHasFoundDocument2);
 
+    JsonObject->SetBoolField("bHasScannedDocuments", bHasScannedDocuments);
+
+    JsonObject->SetBoolField("bHasCompletedMoldEasy", bHasCompletedMoldEasy);
 
     // Save position
     FVector Loc = PlacedBoxTransform.GetLocation();
@@ -399,6 +411,12 @@ void UArchiveGameInstance::LoadQuestLogData()
                 bHasFoundDocument1 = JsonObject->GetBoolField("bHasFoundDocument1");
                 bHasFoundDocument2 = JsonObject->GetBoolField("bHasFoundDocument2");
 
+                if (JsonObject->HasField("bHasScannedDocuments"))
+                {
+                    bHasScannedDocuments = JsonObject->GetBoolField("bHasScannedDocuments");
+                }
+
+                bHasCompletedMoldEasy = JsonObject->GetBoolField("bHasCompletedMoldEasy");
 
                 FVector Loc(
                     JsonObject->GetNumberField("BoxLocX"),
@@ -406,7 +424,7 @@ void UArchiveGameInstance::LoadQuestLogData()
                     JsonObject->GetNumberField("BoxLocZ")
                 );
 
-                // Reconstruct orientation *exactly* from quaternion
+    
                 FQuat Quat(
                     JsonObject->GetNumberField("BoxQuatX"),
                     JsonObject->GetNumberField("BoxQuatY"),

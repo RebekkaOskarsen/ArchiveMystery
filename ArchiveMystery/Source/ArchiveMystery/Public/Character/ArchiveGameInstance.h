@@ -242,6 +242,10 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "Keycards")
 	bool bHasKeycard;
 
+	//Mold Unlock
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "MoldProgress")
+	bool bHasCompletedMoldEasy = false;
+
 
 	// Lagrede SQL-inputverdier
 	UPROPERTY(BlueprintReadWrite)
