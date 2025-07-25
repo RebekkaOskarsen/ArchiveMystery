@@ -97,6 +97,7 @@ void UArchiveGameInstance::ResetAllProgress()
     bIsMarker12 = false;
     bIsMarker13 = false;
     bIsMarker14 = false;
+    bIsMarker15 = false;
 
     //Sequence
     bIntroCutscenePlayed = false;
@@ -178,6 +179,7 @@ UArchiveGameInstance::UArchiveGameInstance()
     bIsMarker12 = false;
     bIsMarker13 = false;
     bIsMarker14 = false;
+    bIsMarker15 = false;
 
     // Reset other relevant flags
     bBoxPlacedBeforeMoldGame = false;
@@ -272,6 +274,7 @@ void UArchiveGameInstance::SaveQuestLogData()
     JsonObject->SetBoolField("bIsMarker12", bIsMarker12);
     JsonObject->SetBoolField("bIsMarker13", bIsMarker13);
     JsonObject->SetBoolField("bIsMarker14", bIsMarker14);
+    JsonObject->SetBoolField("bIsMarker15", bIsMarker15);
 
     JsonObject->SetBoolField("bHasKeycard", bHasKeycard);
 
@@ -401,6 +404,7 @@ void UArchiveGameInstance::LoadQuestLogData()
                 bIsMarker12 = JsonObject->GetBoolField("bIsMarker12");
                 bIsMarker13 = JsonObject->GetBoolField("bIsMarker13");
                 bIsMarker14 = JsonObject->GetBoolField("bIsMarker14");
+                bIsMarker15 = JsonObject->GetBoolField("bIsMarker15");
 
                 bHasKeycard = JsonObject->GetBoolField("bHasKeycard");
 

@@ -102,6 +102,7 @@ void AQuestMarker::OnTriggerEnter(UPrimitiveComponent*, AActor* OtherActor,
             case 12: GI->bIsMarker12 = true; break;
             case 13: GI->bIsMarker13 = true; break;
             case 14: GI->bIsMarker14 = true; break;
+            case 15: GI->bIsMarker15 = true; break;
             default: break;
             }
 
@@ -136,6 +137,7 @@ bool AQuestMarker::IsCompleted(const UArchiveGameInstance* GI) const
     case 12:  return GI->bIsMarker12;
     case 13:  return GI->bIsMarker13;
     case 14:  return GI->bIsMarker14;
+    case 15:  return GI->bIsMarker15;
 
     default: return false;
     }
