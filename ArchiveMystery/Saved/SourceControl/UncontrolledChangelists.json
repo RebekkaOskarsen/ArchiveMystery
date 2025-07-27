@@ -1,0 +1,22 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/Users/henri/Downloads/hh/ArchiveMystery/Content/Blueprint/M_Outline.uasset",
+				"C:/Users/henri/Downloads/hh/ArchiveMystery/Content/Blueprint/M_Outlineh.uasset",
+				"C:/Users/henri/Downloads/hh/ArchiveMystery/Content/Blueprint/LineTrace/M_Outline_2.uasset",
+				"C:/Users/henri/Downloads/hh/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/4/EV/W6FGKEEB3H6M7RD6RNBGPN.uasset",
+				"C:/Users/henri/Downloads/hh/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/1/H4/Z1C1H3AL81WAUYDFGXBJKA.uasset",
+				"C:/Users/henri/Downloads/hh/ArchiveMystery/Content/Blueprint/PicturesOnTheWall/MeshAndMaterial/Painting_Pesta.uasset",
+				"C:/Users/henri/Downloads/hh/ArchiveMystery/Content/Blueprint/PicturesOnTheWall/MeshAndMaterial/Painting_Scream.uasset",
+				"C:/Users/henri/Downloads/hh/ArchiveMystery/Content/Blueprint/PicturesOnTheWall/MeshAndMaterial/Painting_Solen.uasset",
+				"C:/Users/henri/Downloads/hh/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/4/P6/ZJ103CTFOXBJE58YIM4VQC.uasset",
+				"C:/Users/henri/Downloads/hh/ArchiveMystery/Content/Blueprint/SM_Fume_Hood.uasset",
+				"C:/Users/henri/Downloads/hh/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/1/C8/MDUKWAX3EAEQIU80P18U6Q.uasset"
+			]
+		}
+	]
+}
