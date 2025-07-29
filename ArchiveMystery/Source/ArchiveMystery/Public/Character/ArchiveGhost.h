@@ -19,6 +19,7 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 public:	
 	// Called every frame
@@ -36,6 +37,12 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Ghost")
 	class UCapsuleComponent* CollisionCapsule;
+
+	UFUNCTION(BlueprintCallable, Category = "GhostSave")
+	int32 GetCurrentTargetIndex() const { return CurrentTargetIndex; }
+
+	UFUNCTION(BlueprintCallable, Category = "GhostSave")
+	void SetCurrentTargetIndex(int32 NewIndex) { CurrentTargetIndex = NewIndex; }
 
 private:
 	int32 CurrentTargetIndex = 0;

@@ -25,6 +25,7 @@
 #include "TimerManager.h"
 #include "Engine/TriggerBox.h"
 #include "Items/FolderItem.h"
+#include "Character/ArchiveGhost.h"
 
 
 AArchivist::AArchivist()
@@ -998,6 +999,17 @@ void AArchivist::SaveProgressBeforeMainMenu()
 		UE_LOG(LogTemp, Warning, TEXT("Saved progress: Level = %s, Location = %s"),
 			*GI->LastLevelName,
 			*GI->SavedPlayerLocation.ToString());
+
+		TArray<AActor*> Ghosts;
+		UGameplayStatics::GetAllActorsOfClass(GetWorld(), AArchiveGhost::StaticClass(), Ghosts);
+		if (Ghosts.Num() > 0)
+		{
+			if (AArchiveGhost* Ghost = Cast<AArchiveGhost>(Ghosts[0]))
+			{
+				GI->GhostLocation = Ghost->GetActorLocation();
+				GI->GhostTargetIndex = Ghost->GetCurrentTargetIndex();
+			}
+		}
 
 		GI->SaveQuestLogData();
 	}

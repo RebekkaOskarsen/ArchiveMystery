@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "Character/GhostAnimInstance.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "Character/ArchiveGameInstance.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AArchiveGhost::AArchiveGhost()
@@ -31,6 +33,34 @@ void AArchiveGhost::BeginPlay()
 	{
 		CollisionCapsule->OnComponentBeginOverlap.AddDynamic(this, &AArchiveGhost::OnPlayerEnter);
 		CollisionCapsule->OnComponentEndOverlap.AddDynamic(this, &AArchiveGhost::OnPlayerExit);
+	}
+
+	if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
+	{
+		if (!GI->GhostLocation.IsZero() && TargetPoints.Num() > 0)
+		{
+			// teleport ghost back
+			SetActorLocation(GI->GhostLocation);
+
+			// clamp and restore patrol index
+			CurrentTargetIndex = FMath::Clamp(GI->GhostTargetIndex, 0, TargetPoints.Num() - 1);
+		}
+	}
+}
+
+void AArchiveGhost::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+
+	if (EndPlayReason == EEndPlayReason::LevelTransition ||
+		EndPlayReason == EEndPlayReason::RemovedFromWorld)
+	{
+		if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
+		{
+			GI->GhostLocation = GetActorLocation();
+			GI->GhostTargetIndex = CurrentTargetIndex;
+			GI->SaveQuestLogData();
+		}
 	}
 }
 

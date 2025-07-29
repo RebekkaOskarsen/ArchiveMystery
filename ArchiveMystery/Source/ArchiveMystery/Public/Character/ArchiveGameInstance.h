@@ -277,4 +277,8 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	FString PlayerName;
 
+	//Ghost
+	UPROPERTY() FVector GhostLocation;
+	UPROPERTY() int32   GhostTargetIndex;
+
 };

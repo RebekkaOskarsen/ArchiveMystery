@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ // Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "Character/ArchiveGameInstance.h"
@@ -307,6 +307,13 @@ void UArchiveGameInstance::SaveQuestLogData()
     JsonObject->SetNumberField("BoxScaleY", Scale.Y);
     JsonObject->SetNumberField("BoxScaleZ", Scale.Z);
 
+    //--------------Ghost-------------------//
+    JsonObject->SetNumberField("GhostPosX", GhostLocation.X);
+    JsonObject->SetNumberField("GhostPosY", GhostLocation.Y);
+    JsonObject->SetNumberField("GhostPosZ", GhostLocation.Z);
+
+    JsonObject->SetNumberField("GhostTargetIndex", GhostTargetIndex);
+
     FString OutputString;
     TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutputString);
     FJsonSerializer::Serialize(JsonObject.ToSharedRef(), Writer);
@@ -445,6 +452,20 @@ void UArchiveGameInstance::LoadQuestLogData()
 
                 // Build the transform
                 PlacedBoxTransform = FTransform(Quat, Loc, Scale);
+
+                //--------------------Ghost-------------------//
+                if (JsonObject->HasField("GhostPosX"))
+                {
+                    GhostLocation = FVector(
+                        JsonObject->GetNumberField("GhostPosX"),
+                        JsonObject->GetNumberField("GhostPosY"),
+                        JsonObject->GetNumberField("GhostPosZ")
+                    );
+                }
+                if (JsonObject->HasField("GhostTargetIndex"))
+                {
+                    GhostTargetIndex = JsonObject->GetIntegerField("GhostTargetIndex");
+                }
             }
         }
     }
