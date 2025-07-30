@@ -16,8 +16,8 @@ ARCHIVEMYSTERY_API UClass* Z_Construct_UClass_AKeycardItem_NoRegister();
 ARCHIVEMYSTERY_API UEnum* Z_Construct_UEnum_ArchiveMystery_EKeycardType();
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 ENGINE_API UClass* Z_Construct_UClass_UTextRenderComponent_NoRegister();
-NIAGARA_API UClass* Z_Construct_UClass_UNiagaraComponent_NoRegister();
 UMG_API UClass* Z_Construct_UClass_UUserWidget_NoRegister();
+UMG_API UClass* Z_Construct_UClass_UWidgetComponent_NoRegister();
 UPackage* Z_Construct_UPackage__Script_ArchiveMystery();
 // End Cross Module References
 
@@ -112,23 +112,17 @@ struct Z_Construct_UClass_AKeycardItem_Statics
 		{ "ToolTip", "Press E Widget" },
 #endif
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Sparkle_MetaData[] = {
-		{ "Category", "KeycardItem" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "//Particle\n" },
-#endif
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PressEWidgetComponent_MetaData[] = {
+		{ "Category", "UI" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/Door/KeycardItem.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Particle" },
-#endif
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FBytePropertyParams NewProp_KeycardType_Underlying;
 	static const UECodeGen_Private::FEnumPropertyParams NewProp_KeycardType;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_KeycardText;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_PressEWidgetClass;
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_Sparkle;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_PressEWidgetComponent;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -140,13 +134,13 @@ const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_AKeycardItem_Sta
 const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_AKeycardItem_Statics::NewProp_KeycardType = { "KeycardType", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AKeycardItem, KeycardType), Z_Construct_UEnum_ArchiveMystery_EKeycardType, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_KeycardType_MetaData), NewProp_KeycardType_MetaData) }; // 3089706930
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AKeycardItem_Statics::NewProp_KeycardText = { "KeycardText", nullptr, (EPropertyFlags)0x00100000000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AKeycardItem, KeycardText), Z_Construct_UClass_UTextRenderComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_KeycardText_MetaData), NewProp_KeycardText_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AKeycardItem_Statics::NewProp_PressEWidgetClass = { "PressEWidgetClass", nullptr, (EPropertyFlags)0x0014000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AKeycardItem, PressEWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PressEWidgetClass_MetaData), NewProp_PressEWidgetClass_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AKeycardItem_Statics::NewProp_Sparkle = { "Sparkle", nullptr, (EPropertyFlags)0x00100000000a0009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AKeycardItem, Sparkle), Z_Construct_UClass_UNiagaraComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Sparkle_MetaData), NewProp_Sparkle_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AKeycardItem_Statics::NewProp_PressEWidgetComponent = { "PressEWidgetComponent", nullptr, (EPropertyFlags)0x0010000000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AKeycardItem, PressEWidgetComponent), Z_Construct_UClass_UWidgetComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PressEWidgetComponent_MetaData), NewProp_PressEWidgetComponent_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AKeycardItem_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AKeycardItem_Statics::NewProp_KeycardType_Underlying,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AKeycardItem_Statics::NewProp_KeycardType,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AKeycardItem_Statics::NewProp_KeycardText,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AKeycardItem_Statics::NewProp_PressEWidgetClass,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AKeycardItem_Statics::NewProp_Sparkle,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AKeycardItem_Statics::NewProp_PressEWidgetComponent,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AKeycardItem_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AKeycardItem_Statics::DependentSingletons[])() = {
@@ -186,18 +180,18 @@ AKeycardItem::~AKeycardItem() {}
 // End Class AKeycardItem
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Door_KeycardItem_h_Statics
+struct Z_CompiledInDeferFile_FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Door_KeycardItem_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
 		{ EKeycardType_StaticEnum, TEXT("EKeycardType"), &Z_Registration_Info_UEnum_EKeycardType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3089706930U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AKeycardItem, AKeycardItem::StaticClass, TEXT("AKeycardItem"), &Z_Registration_Info_UClass_AKeycardItem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AKeycardItem), 1986141364U) },
+		{ Z_Construct_UClass_AKeycardItem, AKeycardItem::StaticClass, TEXT("AKeycardItem"), &Z_Registration_Info_UClass_AKeycardItem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AKeycardItem), 3224307228U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Door_KeycardItem_h_2001807195(TEXT("/Script/ArchiveMystery"),
-	Z_CompiledInDeferFile_FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Door_KeycardItem_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Door_KeycardItem_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Door_KeycardItem_h_3631121226(TEXT("/Script/ArchiveMystery"),
+	Z_CompiledInDeferFile_FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Door_KeycardItem_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Door_KeycardItem_h_Statics::ClassInfo),
 	nullptr, 0,
-	Z_CompiledInDeferFile_FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Door_KeycardItem_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Door_KeycardItem_h_Statics::EnumInfo));
+	Z_CompiledInDeferFile_FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Door_KeycardItem_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Door_KeycardItem_h_Statics::EnumInfo));
 // End Registration
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

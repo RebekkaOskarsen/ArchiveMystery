@@ -5,6 +5,7 @@
 #include "Character/Archivist.h"
 #include "Components/SphereComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Components/WidgetComponent.h"
 
 void AOpenBox::Equip(USceneComponent* InParent, FName InSocketName)
 {
@@ -23,6 +24,14 @@ void AOpenBox::Equip(USceneComponent* InParent, FName InSocketName)
     if (PickupSound)
     {
         UGameplayStatics::PlaySoundAtLocation(this, PickupSound, GetActorLocation());
+    }
+}
+
+void AOpenBox::OnUnequipped()
+{
+    if (PressEWidgetComponent)
+    {
+        PressEWidgetComponent->SetVisibility(false);
     }
 }
 
@@ -47,6 +56,19 @@ void AOpenBox::EnablePhysics(bool bEnable)
     }
 }
 
+AOpenBox::AOpenBox()
+{
+    PressEWidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("PressEWidgetComp"));
+    PressEWidgetComponent->SetupAttachment(RootComponent);
+
+    PressEWidgetComponent->SetWidgetSpace(EWidgetSpace::Screen);
+    PressEWidgetComponent->SetDrawAtDesiredSize(true);
+
+    PressEWidgetComponent->SetRelativeLocation(FVector(0.f, 0.f, 0.f));
+
+    PressEWidgetComponent->SetVisibility(false);
+}
+
 void AOpenBox::BeginPlay()
 {
     Super::BeginPlay();
@@ -55,6 +77,10 @@ void AOpenBox::BeginPlay()
     ItemMesh->bCastDynamicShadow = false;
     ItemMesh->CastShadow = false;
 
+    if (PressEWidgetClass && PressEWidgetComponent)
+    {
+        PressEWidgetComponent->SetWidgetClass(PressEWidgetClass);
+    }
 }
 
 void AOpenBox::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -66,13 +92,9 @@ void AOpenBox::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor*
     {
         Archivist->SetOverlappingItems(this);
 
-        if (PressEWidgetClass && !PressEWidgetInstance)
+        if (PressEWidgetComponent)
         {
-            PressEWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), PressEWidgetClass);
-            if (PressEWidgetInstance)
-            {
-                PressEWidgetInstance->AddToViewport();
-            }
+            PressEWidgetComponent->SetVisibility(true);
         }
     }
 }
@@ -87,9 +109,8 @@ void AOpenBox::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AAct
         Archivist->SetOverlappingItems(nullptr);
     }
 
-    if (PressEWidgetInstance)
+    if (PressEWidgetComponent)
     {
-        PressEWidgetInstance->RemoveFromParent();
-        PressEWidgetInstance = nullptr;
+        PressEWidgetComponent->SetVisibility(false);
     }
 }

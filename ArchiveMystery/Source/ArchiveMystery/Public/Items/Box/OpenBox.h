@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Items/Items.h"
+#include "Components/WidgetComponent.h" 
 #include "OpenBox.generated.h"
 
 
@@ -15,7 +16,11 @@ class ARCHIVEMYSTERY_API AOpenBox : public AItems
 public:
 	void Equip(USceneComponent* InParent, FName InSocketName);
 
+	virtual void OnUnequipped() override;
+
 	void EnablePhysics(bool bEnable);
+
+	AOpenBox();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Pickup")
 	bool bHasBeenPlaced = false;
@@ -29,6 +34,9 @@ public:
 	//Sound
 	UPROPERTY(EditAnywhere, Category = "Sound")
 	USoundBase* PickupSound;
+
+	UPROPERTY(EditAnywhere, Category = "UI")
+	UWidgetComponent* PressEWidgetComponent;
 
 protected:
 	virtual void BeginPlay() override;

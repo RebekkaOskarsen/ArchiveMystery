@@ -3,6 +3,7 @@
 
 #include "Door/KeycardItem.h"
 #include "Character/Archivist.h"
+#include "Components/WidgetComponent.h"
 
 AKeycardItem::AKeycardItem()
 {
@@ -17,11 +18,15 @@ AKeycardItem::AKeycardItem()
 	KeycardText->SetRelativeRotation(FRotator(90.f, 0.f, 180.f));
 	KeycardText->SetRelativeLocation(FVector(0.f, 0.f, 1.2f));
 
-	//Particle
-	Sparkle = CreateDefaultSubobject<UNiagaraComponent>(TEXT("Sparkle"));
-	Sparkle->SetupAttachment(RootComponent);
-	Sparkle->SetRelativeLocation(FVector(0.f, 0.f, 20.f));
-	Sparkle->SetAutoActivate(true);
+	PressEWidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("PressEWidgetComp"));
+	PressEWidgetComponent->SetupAttachment(RootComponent);
+
+	PressEWidgetComponent->SetWidgetSpace(EWidgetSpace::Screen);
+	PressEWidgetComponent->SetDrawAtDesiredSize(true);
+
+	PressEWidgetComponent->SetRelativeLocation(FVector(0.f, 0.f, 0.f));
+
+	PressEWidgetComponent->SetVisibility(false);
 }
 
 void AKeycardItem::NotifyActorBeginOverlap(AActor* OtherActor)
@@ -32,13 +37,9 @@ void AKeycardItem::NotifyActorBeginOverlap(AActor* OtherActor)
 	{
 		Archivist->SetOverlappingItems(this);
 
-		if (PressEWidgetClass && !PressEWidgetInstance)
+		if (PressEWidgetComponent)
 		{
-			PressEWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), PressEWidgetClass);
-			if (PressEWidgetInstance)
-			{
-				PressEWidgetInstance->AddToViewport();
-			}
+			PressEWidgetComponent->SetVisibility(true);
 		}
 	}
 }
@@ -54,10 +55,9 @@ void AKeycardItem::NotifyActorEndOverlap(AActor* OtherActor)
 			Archivist->SetOverlappingItems(nullptr);
 		}
 
-		if (PressEWidgetInstance)
+		if (PressEWidgetComponent)
 		{
-			PressEWidgetInstance->RemoveFromParent();
-			PressEWidgetInstance = nullptr;
+			PressEWidgetComponent->SetVisibility(false);
 		}
 	}
 }
@@ -78,5 +78,10 @@ void AKeycardItem::BeginPlay()
 	if (KeycardText)
 	{
 		KeycardText->SetText(Label);
+	}
+
+	if (PressEWidgetClass && PressEWidgetComponent)
+	{
+		PressEWidgetComponent->SetWidgetClass(PressEWidgetClass);
 	}
 }

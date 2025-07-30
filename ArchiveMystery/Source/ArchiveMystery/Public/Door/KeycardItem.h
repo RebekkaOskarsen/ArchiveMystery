@@ -7,6 +7,7 @@
 #include "Components/TextRenderComponent.h"
 #include "NiagaraComponent.h"
 #include "NiagaraFunctionLibrary.h"
+#include "Components/WidgetComponent.h" 
 #include "KeycardItem.generated.h"
 
 UENUM(BlueprintType)
@@ -40,9 +41,9 @@ public:
 
 	UUserWidget* PressEWidgetInstance;
 
-	//Particle
-	UPROPERTY(VisibleAnywhere)
-	UNiagaraComponent* Sparkle;
+	UPROPERTY(EditAnywhere, Category = "UI")
+	UWidgetComponent* PressEWidgetComponent;
+
 
 protected:
 	virtual void BeginPlay() override;
