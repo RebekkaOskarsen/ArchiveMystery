@@ -116,6 +116,58 @@ public:
 
 	void PlaySparkEffect(FVector Location);
 
+	// Difficulty widget
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
+	TSubclassOf<UUserWidget> DifficultyWidgetClass;
+
+	UUserWidget* DifficultyWidgetInstance;
+
+	FString SelectedDifficulty; // For evt. logikk senere
+
+	void ShowDifficultyMenu();
+
+	UFUNCTION()
+	void OnEasySelected();
+
+	UFUNCTION()
+	void OnMediumSelected();
+
+	UFUNCTION()
+	void OnHardSelected();
+
+	void ProceedToTutorial();
+
+	void HideAllPaperStrips();
+
+	void ActivatePaperSetForDifficulty();
+
+	void SetupSnappingRules();
+
+	int32 ExpectedPieceCount = 16; // default for medium
+
+	TArray<FString> ActivePaperTags;
+
+	FTimerHandle HardModeTimerHandle;
+	float HardModeTimeLimit = 180.0f; // 3 minutter
+
+	void OnHardModeTimeUp();
+
+	void RestartHardMode();
+
+	void EndPlay(const EEndPlayReason::Type EndPlayReason);
+
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> TimerWidgetClass;
+
+	UUserWidget* TimerWidgetInstance = nullptr;
+
+	FTimerHandle CountdownUpdateTimer;
+	int32 RemainingSeconds = 180; // 3 minutter
+
+	void StartHardModeTimerUI();
+
+	void UpdateTimerDisplay();
+
 protected:
 
 	virtual void BeginPlay() override;
@@ -132,10 +184,10 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Snapping")
 	AActor* PaperSheet;
 
-	TMap<FString, FString> ParentMap; 
+	TMap<FString, FString> ParentMap;
 
-	TSet<FString> LockedPaperstrips; 
-	
+	TSet<FString> LockedPaperstrips;
+
 	TMap<FString, TArray<UStaticMeshComponent*>> GroupMap;
 
 	FString FindParent(const FString& Node);

@@ -22,9 +22,14 @@ AMinigame::AMinigame()
     bIsDragging = false;
     SelectedMesh = nullptr;
 
+    DifficultyWidgetClass = LoadObject<UClass>(nullptr, TEXT("/Game/ShreddedPaper_minigame/Blueprints/WBP_DifficultySelect.WBP_DifficultySelect_C"));
+
     GameMenuWidgetClass = LoadObject<UClass>(nullptr, TEXT("/Game/ShreddedPaper_minigame/Blueprints/GameMenuWidget.GameMenuWidget_C"));
 
     PauseMenuWidgetClass = LoadClass<UUserWidget>(nullptr, TEXT("/Game/Blueprint/PauseMenu/WBP_PauseMenuMinigame.WBP_PauseMenuMinigame_C"));
+
+    TimerWidgetClass = LoadClass<UUserWidget>(nullptr, TEXT("/Game/ShreddedPaper_minigame/Blueprints/WBP_Timer.WBP_Timer_C"));
+
 }
 
 void AMinigame::BeginPlay()
@@ -40,35 +45,6 @@ void AMinigame::BeginPlay()
         InputComponent->BindKey(EKeys::P, IE_Pressed, this, &AMinigame::TogglePauseMenu);
     }
 
-    //if (GameMenuWidgetClass)
-    //{
-    //    GameMenuWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), GameMenuWidgetClass);
-    //    if (GameMenuWidgetInstance)
-    //    {
-    //        GameMenuWidgetInstance->AddToViewport();
-
-    //        BackToTutorialButton = Cast<UButton>(GameMenuWidgetInstance->GetWidgetFromName(TEXT("BackToTutorialButton")));
-    //        if (BackToTutorialButton)
-    //        {
-    //            BackToTutorialButton->OnClicked.AddDynamic(this, &AMinigame::ShowTutorial);
-    //        }
-    //    }
-    //}
-
-    //if (TutorialWidgetClass)
-    //{
-    //    TutorialWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), TutorialWidgetClass);
-    //    if (TutorialWidgetInstance)
-    //    {
-    //        TutorialWidgetInstance->AddToViewport();
-
-    //        StartButton = Cast<UButton>(TutorialWidgetInstance->GetWidgetFromName(TEXT("StartGameButton")));
-    //        if (StartButton)
-    //        {
-    //            StartButton->OnClicked.AddDynamic(this, &AMinigame::StartGame);
-    //        }
-    //    }
-    //}
 
     SetActorLocation(FVector(0.0f, 0.0f, 150.0f));
     SetActorRotation(FRotator(-90.0f, 0.0f, 0.0f));
@@ -80,36 +56,16 @@ void AMinigame::BeginPlay()
         PC->bEnableClickEvents = true;
         PC->bEnableMouseOverEvents = true;
     }
-    // Sets up the snapping rules 
-    SnappingRules.Add("paperstrip01", { "paperstrip02" });
-    SnappingRules.Add("paperstrip02", { "paperstrip01", "paperstrip03" });
-    SnappingRules.Add("paperstrip03", { "paperstrip02", "paperstrip04" });
-    SnappingRules.Add("paperstrip04", { "paperstrip03", "paperstrip05" });
-    SnappingRules.Add("paperstrip05", { "paperstrip04", "paperstrip06" });
-    SnappingRules.Add("paperstrip06", { "paperstrip05", "paperstrip07" });
-    SnappingRules.Add("paperstrip07", { "paperstrip06", "paperstrip08" });
-    SnappingRules.Add("paperstrip08", { "paperstrip07", "paperstrip09" });
-    SnappingRules.Add("paperstrip09", { "paperstrip08", "paperstrip10" });
-    SnappingRules.Add("paperstrip10", { "paperstrip09", "paperstrip11" });
-    SnappingRules.Add("paperstrip11", { "paperstrip10", "paperstrip12" });
-    SnappingRules.Add("paperstrip12", { "paperstrip11", "paperstrip13" });
-    SnappingRules.Add("paperstrip13", { "paperstrip12", "paperstrip14" });
-    SnappingRules.Add("paperstrip14", { "paperstrip13", "paperstrip15" });
-    SnappingRules.Add("paperstrip15", { "paperstrip14", "paperstrip16" });
-    SnappingRules.Add("paperstrip16", { "paperstrip15" });
-
-    for (const TPair<FString, TArray<FString>>& Pair : SnappingRules)
-    {
-        const FString& Paperstrip = Pair.Key;
-        ParentMap.Add(Paperstrip, Paperstrip);
-    }
 
     if (PaperSheet)
     {
         PaperSheet->SetActorHiddenInGame(true);
     }
 
-    ShowTutorial();
+    ShowDifficultyMenu();
+    HideAllPaperStrips();
+
+
 }
 
 //Starts the game by removing the tutorial 
@@ -187,28 +143,38 @@ void AMinigame::ShowGameMenu()
 // Shows the tutorial when the button is clicked 
 void AMinigame::ShowTutorial()
 {
-
-    if (GameMenuWidgetInstance && GameMenuWidgetInstance->IsInViewport())
+    // Fjern GameMenu hvis den vises
+    if (IsValid(GameMenuWidgetInstance))
     {
         GameMenuWidgetInstance->RemoveFromParent();
+        GameMenuWidgetInstance = nullptr;
     }
 
-    if (!TutorialWidgetInstance && TutorialWidgetClass)
+    // Fjern forrige tutorial om den finnes
+    if (IsValid(TutorialWidgetInstance))
+    {
+        TutorialWidgetInstance->RemoveFromParent();
+        TutorialWidgetInstance = nullptr;
+    }
+
+    // Lag og vis en ny tutorial-widget
+    if (TutorialWidgetClass && GetWorld())
     {
         TutorialWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), TutorialWidgetClass);
         if (TutorialWidgetInstance)
         {
-            if (UButton* StartBtn = Cast<UButton>(
-                TutorialWidgetInstance->GetWidgetFromName(TEXT("StartGameButton"))))
+            TutorialWidgetInstance->AddToViewport();
+
+            // Sjekk om knappen finnes før binding
+            if (UButton* StartBtn = Cast<UButton>(TutorialWidgetInstance->GetWidgetFromName(TEXT("StartGameButton"))))
             {
-                StartBtn->OnClicked.AddDynamic(this, &AMinigame::StartGame);
+                StartBtn->OnClicked.AddUniqueDynamic(this, &AMinigame::StartGame); // Bruk AddUniqueDynamic!
+            }
+            else
+            {
+                UE_LOG(LogTemp, Error, TEXT("StartGameButton ikke funnet i TutorialWidget!"));
             }
         }
-    }
-
-    if (TutorialWidgetInstance && !TutorialWidgetInstance->IsInViewport())
-    {
-        TutorialWidgetInstance->AddToViewport();
     }
 
     if (APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0))
@@ -253,23 +219,32 @@ void AMinigame::MergeGroups(const FString& NodeA, const FString& NodeB)
 //Checks if two paperstrips are correctly snapped together 
 void AMinigame::ValidateGroups()
 {
+    UE_LOG(LogTemp, Warning, TEXT("ValidateGroups called"));
+
     TMap<FString, int32> GroupCounts;
 
-    for (const TPair<FString, FString>& Pair : ParentMap)
+    // Gå bare gjennom aktive biter
+    for (const FString& Tag : ActivePaperTags)
     {
-        FindParent(Pair.Key);
-    }
-
-    for (const TPair<FString, FString>& Pair : ParentMap)
-    {
-        FString Root = FindParent(Pair.Key);
+        FString Root = FindParent(Tag);
         GroupCounts.FindOrAdd(Root)++;
     }
 
-    if (GroupCounts.Num() == 1 && GroupCounts.begin()->Value == 16)
+    for (const TPair<FString, int32>& Pair : GroupCounts)
     {
-        FString Root = GroupCounts.begin()->Key;
+        UE_LOG(LogTemp, Warning, TEXT("Group %s has %d pieces"), *Pair.Key, Pair.Value);
+    }
+
+    UE_LOG(LogTemp, Warning, TEXT("ExpectedPieceCount: %d"), ExpectedPieceCount);
+
+    if (GroupCounts.Num() == 1 && GroupCounts.begin()->Value == ExpectedPieceCount)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("All pieces snapped together - calling OnAllPiecesSnapped"));
         OnAllPiecesSnapped();
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Not all pieces snapped yet"));
     }
 }
 
@@ -419,6 +394,7 @@ void AMinigame::Tick(float DeltaTime)
 
                                                         if (Distance <= SnapThreshold)
                                                         {
+
                                                             ShouldSnap = true;
                                                             SnapOffset = TargetLocation - SelectedLocation;
                                                             break;
@@ -498,16 +474,31 @@ void AMinigame::Tick(float DeltaTime)
 //When all the paperstrips are snapped together, the paperstrips actors are destroyed and the paper sheet is shown 
 void AMinigame::OnAllPiecesSnapped()
 {
+    if (SelectedDifficulty == "Hard" && GetWorldTimerManager().IsTimerActive(HardModeTimerHandle))
+    {
+        GetWorldTimerManager().ClearTimer(HardModeTimerHandle);
+    }
+
+    if (GetWorldTimerManager().IsTimerActive(CountdownUpdateTimer))
+    {
+        GetWorldTimerManager().ClearTimer(CountdownUpdateTimer);
+    }
+
+    if (TimerWidgetInstance)
+    {
+        TimerWidgetInstance->RemoveFromParent();
+        TimerWidgetInstance = nullptr;
+    }
+
     for (TActorIterator<AActor> ActorItr(GetWorld()); ActorItr; ++ActorItr)
     {
-        if (ActorItr->ActorHasTag("paperstrip01") || ActorItr->ActorHasTag("paperstrip02") || ActorItr->ActorHasTag("paperstrip03") ||
-            ActorItr->ActorHasTag("paperstrip04") || ActorItr->ActorHasTag("paperstrip05") || ActorItr->ActorHasTag("paperstrip06") ||
-            ActorItr->ActorHasTag("paperstrip07") || ActorItr->ActorHasTag("paperstrip08") || ActorItr->ActorHasTag("paperstrip09") ||
-            ActorItr->ActorHasTag("paperstrip10") || ActorItr->ActorHasTag("paperstrip11") || ActorItr->ActorHasTag("paperstrip12") ||
-            ActorItr->ActorHasTag("paperstrip13") || ActorItr->ActorHasTag("paperstrip14") || ActorItr->ActorHasTag("paperstrip15") ||
-            ActorItr->ActorHasTag("paperstrip16"))
+        for (const FString& Tag : ActivePaperTags)
         {
-            ActorItr->Destroy();
+            if (ActorItr->ActorHasTag(*Tag))
+            {
+                ActorItr->Destroy();
+                break; // Viktig for ytelse
+            }
         }
     }
 
@@ -545,10 +536,6 @@ void AMinigame::OnAllPiecesSnapped()
         }
     }
 
-    //if (UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
-    //{
-    //    GameInstance->bShreddedGameComplete = true;
-    //}
 }
 
 //Binds the input for dragging and releasing the paperstrips 
@@ -621,5 +608,349 @@ void AMinigame::PlaySparkEffect(FVector Location)
             true,
             ENCPoolMethod::AutoRelease
         );
+    }
+}
+
+void AMinigame::ShowDifficultyMenu()
+{
+    if (DifficultyWidgetClass)
+    {
+        DifficultyWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), DifficultyWidgetClass);
+        if (DifficultyWidgetInstance)
+        {
+            DifficultyWidgetInstance->AddToViewport();
+
+            if (UButton* EasyBtn = Cast<UButton>(DifficultyWidgetInstance->GetWidgetFromName(TEXT("EasyButton"))))
+            {
+                EasyBtn->OnClicked.AddDynamic(this, &AMinigame::OnEasySelected);
+            }
+
+            if (UButton* MediumBtn = Cast<UButton>(DifficultyWidgetInstance->GetWidgetFromName(TEXT("MediumButton"))))
+            {
+                MediumBtn->OnClicked.AddDynamic(this, &AMinigame::OnMediumSelected);
+            }
+
+            if (UButton* HardBtn = Cast<UButton>(DifficultyWidgetInstance->GetWidgetFromName(TEXT("HardButton"))))
+            {
+                HardBtn->OnClicked.AddDynamic(this, &AMinigame::OnHardSelected);
+            }
+        }
+
+        if (APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0))
+        {
+            PC->bShowMouseCursor = true;
+            FInputModeUIOnly InputMode;
+            InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+            PC->SetInputMode(InputMode);
+        }
+    }
+}
+
+void AMinigame::OnEasySelected()
+{
+    SelectedDifficulty = "Easy";
+    ProceedToTutorial();
+}
+
+void AMinigame::OnMediumSelected()
+{
+    SelectedDifficulty = "Medium";
+    ProceedToTutorial();
+}
+
+void AMinigame::OnHardSelected()
+{
+    SelectedDifficulty = "Hard";
+    ProceedToTutorial();
+}
+
+void AMinigame::ProceedToTutorial()
+{
+    if (DifficultyWidgetInstance)
+    {
+        DifficultyWidgetInstance->RemoveFromParent();
+        DifficultyWidgetInstance = nullptr;
+    }
+
+    if (SelectedDifficulty == "Easy")
+    {
+        ExpectedPieceCount = 14;
+        SnapThreshold = 4.0f; // Mer tilgivende snapping
+    }
+    else if (SelectedDifficulty == "Medium")
+    {
+        ExpectedPieceCount = 16;
+        SnapThreshold = 5.0f; // Standard
+    }
+    else if (SelectedDifficulty == "Hard")
+    {
+        ExpectedPieceCount = 22;
+        SnapThreshold = 3.0f;
+
+        // Start timer
+        StartHardModeTimerUI();
+
+        // Start hard mode countdown
+        GetWorldTimerManager().SetTimer(HardModeTimerHandle, this, &AMinigame::OnHardModeTimeUp, HardModeTimeLimit, false);
+    }
+
+    ActivatePaperSetForDifficulty();
+    SetupSnappingRules();
+    ShowTutorial(); // Bruker eksisterende tutorial-funksjon
+
+}
+
+void AMinigame::HideAllPaperStrips()
+{
+    for (TActorIterator<AActor> ActorItr(GetWorld()); ActorItr; ++ActorItr)
+    {
+        if (ActorItr->ActorHasTag("Draggable") ||
+            ActorItr->Tags.Num() > 0 && ActorItr->Tags[0].ToString().StartsWith("paperstrip"))
+        {
+            ActorItr->SetActorHiddenInGame(true);
+            ActorItr->SetActorEnableCollision(false);
+        }
+    }
+
+    if (PaperSheet)
+    {
+        PaperSheet->SetActorHiddenInGame(true);
+        PaperSheet->SetActorEnableCollision(false);
+    }
+}
+
+void AMinigame::ActivatePaperSetForDifficulty()
+{
+    TArray<FString> PaperTags;
+
+    if (SelectedDifficulty == "Easy")
+    {
+        for (int i = 1; i <= 14; ++i)
+        {
+            PaperTags.Add(FString::Printf(TEXT("paperstrip_easy%02d"), i));
+        }
+    }
+    else if (SelectedDifficulty == "Medium")
+    {
+        for (int i = 1; i <= 16; ++i)
+        {
+            PaperTags.Add(FString::Printf(TEXT("paperstrip%02d"), i));
+        }
+    }
+    else if (SelectedDifficulty == "Hard")
+    {
+        for (int i = 1; i <= 22; ++i)
+        {
+            PaperTags.Add(FString::Printf(TEXT("paperstrip_hard%02d"), i));
+        }
+    }
+
+    for (const FString& Tag : PaperTags)
+    {
+        for (TActorIterator<AActor> ActorItr(GetWorld()); ActorItr; ++ActorItr)
+        {
+            if (ActorItr->ActorHasTag(*Tag))
+            {
+                ActorItr->SetActorHiddenInGame(false);
+                ActorItr->SetActorEnableCollision(true);
+            }
+        }
+    }
+
+    ActivePaperTags = PaperTags; // Lagre aktive tags til bruk ved Win
+
+}
+
+void AMinigame::SetupSnappingRules()
+{
+    SnappingRules.Empty();
+    ParentMap.Empty();
+
+    if (SelectedDifficulty == "Easy")
+    {
+        SnappingRules.Add("paperstrip_easy01", { "paperstrip_easy11", "paperstrip_easy10", "paperstrip_easy14" });
+        SnappingRules.Add("paperstrip_easy02", { "paperstrip_easy04", "paperstrip_easy07", "paperstrip_easy08", "paperstrip_easy12" });
+        SnappingRules.Add("paperstrip_easy03", { "paperstrip_easy06", "paperstrip_easy06", "paperstrip_easy08" });
+        SnappingRules.Add("paperstrip_easy04", { "paperstrip_easy02", "paperstrip_easy12" });
+        SnappingRules.Add("paperstrip_easy05", { "paperstrip_easy13" });
+        SnappingRules.Add("paperstrip_easy06", { "paperstrip_easy03", "paperstrip_easy08", "paperstrip_easy09" });
+        SnappingRules.Add("paperstrip_easy07", { "paperstrip_easy02", "paperstrip_easy03", "paperstrip_easy08" });
+        SnappingRules.Add("paperstrip_easy08", { "paperstrip_easy02", "paperstrip_easy03", "paperstrip_easy06", "paperstrip_easy07", "paperstrip_easy09", "paperstrip_easy10", "paperstrip_easy11", "paperstrip_easy12" });
+        SnappingRules.Add("paperstrip_easy09", { "paperstrip_easy06", "paperstrip_easy08", "paperstrip_easy10", "paperstrip_easy13" });
+        SnappingRules.Add("paperstrip_easy10", { "paperstrip_easy01", "paperstrip_easy08", "paperstrip_easy09", "paperstrip_easy11", "paperstrip_easy13", "paperstrip_easy14" });
+        SnappingRules.Add("paperstrip_easy11", { "paperstrip_easy01", "paperstrip_easy08", "paperstrip_easy10", "paperstrip_easy12" });
+        SnappingRules.Add("paperstrip_easy12", { "paperstrip_easy02", "paperstrip_easy04", "paperstrip_easy08", "paperstrip_easy11" });
+        SnappingRules.Add("paperstrip_easy13", { "paperstrip_easy05", "paperstrip_easy09", "paperstrip_easy10", "paperstrip_easy14" });
+        SnappingRules.Add("paperstrip_easy14", { "paperstrip_easy01", "paperstrip_easy10", "paperstrip_easy13" });
+
+        for (int i = 1; i <= 14; ++i)
+        {
+            const FString Tag = FString::Printf(TEXT("paperstrip_easy%02d"), i);
+            ParentMap.Add(Tag, Tag);
+        }
+    }
+    else if (SelectedDifficulty == "Medium")
+    {
+        // Sets up the snapping rules 
+        SnappingRules.Add("paperstrip01", { "paperstrip02" });
+        SnappingRules.Add("paperstrip02", { "paperstrip01", "paperstrip03" });
+        SnappingRules.Add("paperstrip03", { "paperstrip02", "paperstrip04" });
+        SnappingRules.Add("paperstrip04", { "paperstrip03", "paperstrip05" });
+        SnappingRules.Add("paperstrip05", { "paperstrip04", "paperstrip06" });
+        SnappingRules.Add("paperstrip06", { "paperstrip05", "paperstrip07" });
+        SnappingRules.Add("paperstrip07", { "paperstrip06", "paperstrip08" });
+        SnappingRules.Add("paperstrip08", { "paperstrip07", "paperstrip09" });
+        SnappingRules.Add("paperstrip09", { "paperstrip08", "paperstrip10" });
+        SnappingRules.Add("paperstrip10", { "paperstrip09", "paperstrip11" });
+        SnappingRules.Add("paperstrip11", { "paperstrip10", "paperstrip12" });
+        SnappingRules.Add("paperstrip12", { "paperstrip11", "paperstrip13" });
+        SnappingRules.Add("paperstrip13", { "paperstrip12", "paperstrip14" });
+        SnappingRules.Add("paperstrip14", { "paperstrip13", "paperstrip15" });
+        SnappingRules.Add("paperstrip15", { "paperstrip14", "paperstrip16" });
+        SnappingRules.Add("paperstrip16", { "paperstrip15" });
+
+        for (int i = 1; i <= 16; ++i)
+        {
+            const FString Tag = FString::Printf(TEXT("paperstrip%02d"), i);
+            ParentMap.Add(Tag, Tag);
+        }
+    }
+    else if (SelectedDifficulty == "Hard")
+    {
+        SnappingRules.Add("paperstrip_hard01", { "paperstrip_hard02" });
+        SnappingRules.Add("paperstrip_hard02", { "paperstrip_hard01", "paperstrip_hard03" });
+        SnappingRules.Add("paperstrip_hard03", { "paperstrip_hard02", "paperstrip_hard04" });
+        SnappingRules.Add("paperstrip_hard04", { "paperstrip_hard03", "paperstrip_hard05" });
+        SnappingRules.Add("paperstrip_hard05", { "paperstrip_hard04", "paperstrip_hard06" });
+        SnappingRules.Add("paperstrip_hard06", { "paperstrip_hard05", "paperstrip_hard07" });
+        SnappingRules.Add("paperstrip_hard07", { "paperstrip_hard06", "paperstrip_hard08" });
+        SnappingRules.Add("paperstrip_hard08", { "paperstrip_hard07", "paperstrip_hard09" });
+        SnappingRules.Add("paperstrip_hard09", { "paperstrip_hard08", "paperstrip_hard10" });
+        SnappingRules.Add("paperstrip_hard10", { "paperstrip_hard09", "paperstrip_hard11" });
+        SnappingRules.Add("paperstrip_hard11", { "paperstrip_hard10", "paperstrip_hard12" });
+        SnappingRules.Add("paperstrip_hard12", { "paperstrip_hard11", "paperstrip_hard13" });
+        SnappingRules.Add("paperstrip_hard13", { "paperstrip_hard12", "paperstrip_hard14" });
+        SnappingRules.Add("paperstrip_hard14", { "paperstrip_hard13", "paperstrip_hard15" });
+        SnappingRules.Add("paperstrip_hard15", { "paperstrip_hard14", "paperstrip_hard16" });
+        SnappingRules.Add("paperstrip_hard16", { "paperstrip_hard15", "paperstrip_hard17" });
+        SnappingRules.Add("paperstrip_hard17", { "paperstrip_hard16", "paperstrip_hard18" });
+        SnappingRules.Add("paperstrip_hard18", { "paperstrip_hard17", "paperstrip_hard19" });
+        SnappingRules.Add("paperstrip_hard19", { "paperstrip_hard18", "paperstrip_hard20" });
+        SnappingRules.Add("paperstrip_hard20", { "paperstrip_hard19", "paperstrip_hard21" });
+        SnappingRules.Add("paperstrip_hard21", { "paperstrip_hard20", "paperstrip_hard22" });
+        SnappingRules.Add("paperstrip_hard22", { "paperstrip_hard21" });
+
+        for (int i = 1; i <= 22; ++i)
+        {
+            const FString Tag = FString::Printf(TEXT("paperstrip_hard%02d"), i);
+            ParentMap.Add(Tag, Tag);
+        }
+    }
+}
+
+void AMinigame::OnHardModeTimeUp()
+{
+    if (!IsValid(this)) return;
+    if (!GetWorld()) return;
+
+    UE_LOG(LogTemp, Warning, TEXT("Tiden er ute - viser vanskelighetsmeny"));
+
+    // Fjern timer-widgeten hvis den finnes
+    if (TimerWidgetInstance)
+    {
+        TimerWidgetInstance->RemoveFromParent();
+        TimerWidgetInstance = nullptr;
+    }
+
+    // Fjern hard mode timer og sekund-teller
+    GetWorldTimerManager().ClearTimer(HardModeTimerHandle);
+    GetWorldTimerManager().ClearTimer(CountdownUpdateTimer);
+
+    // Skjul papirbiter
+    HideAllPaperStrips();
+
+    // Vis vanskelighetsmeny på nytt
+    ShowDifficultyMenu();
+}
+
+
+
+void AMinigame::RestartHardMode()
+{
+    if (!IsValid(this)) return;
+    if (!GetWorld()) return;
+
+    HideAllPaperStrips();
+    SetupSnappingRules();
+    ActivatePaperSetForDifficulty();
+    ShowTutorial();
+}
+
+void AMinigame::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+    Super::EndPlay(EndPlayReason);
+
+    if (GetWorldTimerManager().IsTimerActive(HardModeTimerHandle))
+    {
+        GetWorldTimerManager().ClearTimer(HardModeTimerHandle);
+    }
+
+    if (GetWorldTimerManager().IsTimerActive(CountdownUpdateTimer))
+    {
+        GetWorldTimerManager().ClearTimer(CountdownUpdateTimer);
+    }
+
+    if (TimerWidgetInstance)
+    {
+        TimerWidgetInstance->RemoveFromParent();
+        TimerWidgetInstance = nullptr;
+    }
+}
+
+void AMinigame::StartHardModeTimerUI()
+{
+    if (!TimerWidgetClass || !GetWorld()) return;
+
+    // Lag widgeten og legg til på skjermen
+    TimerWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), TimerWidgetClass);
+    if (TimerWidgetInstance)
+    {
+        TimerWidgetInstance->AddToViewport();
+    }
+
+    RemainingSeconds = 180; // 3 minutter
+
+    // Start oppdatering hvert sekund
+    GetWorldTimerManager().SetTimer(CountdownUpdateTimer, this, &AMinigame::UpdateTimerDisplay, 1.0f, true);
+}
+
+void AMinigame::UpdateTimerDisplay()
+{
+    if (!IsValid(TimerWidgetInstance)) return;
+
+    // Formatér tiden
+    int32 Minutes = RemainingSeconds / 60;
+    int32 Seconds = RemainingSeconds % 60;
+
+    FString TimeString = FString::Printf(TEXT("TID IGJEN: %02d:%02d"), Minutes, Seconds);
+
+    if (UTextBlock* CountdownText = Cast<UTextBlock>(TimerWidgetInstance->GetWidgetFromName(TEXT("CountdownText"))))
+    {
+        CountdownText->SetText(FText::FromString(TimeString));
+    }
+
+    RemainingSeconds--;
+
+    if (RemainingSeconds < 0)
+    {
+        GetWorldTimerManager().ClearTimer(CountdownUpdateTimer);
+
+        if (TimerWidgetInstance)
+        {
+            TimerWidgetInstance->RemoveFromParent();
+            TimerWidgetInstance = nullptr;
+        }
+
+        OnHardModeTimeUp(); // Fortsatt den samme
     }
 }

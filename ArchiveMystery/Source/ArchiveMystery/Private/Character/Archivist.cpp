@@ -949,37 +949,52 @@ void AArchivist::TogglePauseMenu()
 	if (!PC) return;
 
 	bIsPaused = !bIsPaused;
-	PC->SetPause(bIsPaused);
+
+	ACharacter* Character = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
 
 	if (bIsPaused)
 	{
-		// Show pause UI
+		// Vis pausemeny
 		if (PauseMenuWidgetClass && !PauseMenuWidget)
 		{
 			PauseMenuWidget = CreateWidget<UPauseMenuWidget>(GetWorld(), PauseMenuWidgetClass);
 			PauseMenuWidget->AddToViewport();
 		}
 
-		// Show cursor & allow both game + UI input
+		// Vis musepeker og tillat UI-input
 		PC->bShowMouseCursor = true;
 		FInputModeGameAndUI InputMode;
 		InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+		InputMode.SetHideCursorDuringCapture(false);
 		PC->SetInputMode(InputMode);
+
+		// Deaktiver gameplay-input
+		if (Character)
+		{
+			Character->DisableInput(PC);
+		}
 	}
 	else
 	{
-		// Hide pause UI
+		// Skjul pausemeny
 		if (PauseMenuWidget)
 		{
 			PauseMenuWidget->RemoveFromParent();
 			PauseMenuWidget = nullptr;
 		}
 
-		// Hide cursor & return to game?only input
+		// Skjul musepeker og sett tilbake til spillkontroll
 		PC->bShowMouseCursor = false;
 		PC->SetInputMode(FInputModeGameOnly());
+
+		// Aktiver gameplay-input igjen
+		if (Character)
+		{
+			Character->EnableInput(PC);
+		}
 	}
 }
+
 
 void AArchivist::ApplyMaterialToSlot(int32 MaterialSlotIndex, UMaterialInterface* NewMaterial)
 {
