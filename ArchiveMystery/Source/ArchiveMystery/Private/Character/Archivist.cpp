@@ -26,6 +26,7 @@
 #include "Engine/TriggerBox.h"
 #include "Items/FolderItem.h"
 #include "Character/ArchiveGhost.h"
+#include "HUD/IntroGuideWidget.h"
 
 
 AArchivist::AArchivist()
@@ -326,6 +327,21 @@ void AArchivist::BeginPlay()
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
 		{
 			Subsystem->AddMappingContext(CharacterMappingContext, 0);
+		}
+	} 
+	{
+		APlayerController* PC = GetWorld()->GetFirstPlayerController();
+		if (PC
+			// skip any UI-only or menu levels:
+			&& !CurrentMapName.Contains("MainMenuLevel")
+			&& !CurrentMapName.Contains("Language_Level")
+			&& !CurrentMapName.Contains("StartGame")
+			&& !CurrentMapName.Contains("Minigame"))
+		{
+			PC->bShowMouseCursor = false;
+			PC->SetIgnoreLookInput(false);
+			PC->SetIgnoreMoveInput(false);
+			PC->SetInputMode(FInputModeGameOnly());
 		}
 	}
 
@@ -1041,13 +1057,11 @@ void AArchivist::PlayIntroSequenceIfNeeded()
 
 	if (!GI->bIntroCutscenePlayed)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Trying to find cutscene actor..."));
 
 		for (TActorIterator<ALevelSequenceActor> It(GetWorld()); It; ++It)
 		{
 			ALevelSequenceActor* SequenceActor = *It;
-			UE_LOG(LogTemp, Warning, TEXT("Found actor: %s"), *SequenceActor->GetName());
-
+			
 			if (SequenceActor && SequenceActor->Tags.Contains("StartCutscene"))
 			{
 				ULevelSequencePlayer* SequencePlayer = SequenceActor->GetSequencePlayer();
@@ -1062,24 +1076,14 @@ void AArchivist::PlayIntroSequenceIfNeeded()
 					GetWorld()->GetTimerManager().SetTimer(
 						TutorialTimerHandle,
 						this,
-						&AArchivist::ShowTutorial,
+						&AArchivist::ShowIntroGuide,
 						SeqLength,
 						false
 					);
 				}
-				else
-				{
-					UE_LOG(LogTemp, Warning, TEXT("SequencePlayer was null"));
-				}
 				return;
 			}
 		}
-
-		UE_LOG(LogTemp, Warning, TEXT("Start_cutscene actor not found"));
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Intro cutscene already played"));
 	}
 }
 
@@ -1124,47 +1128,26 @@ void AArchivist::ReinitialiseQuestMarkers()
 	}
 }
 
-void AArchivist::OnTutorialTriggerOverlap(AActor* OverlappedActor, AActor* OtherActor)
+void AArchivist::ShowIntroGuide()
 {
-	if (OtherActor != this)
-		return;
-
-	// remove the widget
-	if (TutorialWidgetInstance)
+	if (IntroGuideWidgetInstance)
 	{
-		TutorialWidgetInstance->RemoveFromParent();
-		TutorialWidgetInstance = nullptr;
+		IntroGuideWidgetInstance->RemoveFromParent();
+		IntroGuideWidgetInstance = nullptr;
 	}
-
-	// unbind so it only ever fires once
-	if (auto* Box = Cast<ATriggerBox>(OverlappedActor))
+	if (IntroGuideWidgetClass)
 	{
-		Box->OnActorBeginOverlap.RemoveDynamic(this, &AArchivist::OnTutorialTriggerOverlap);
-	}
-}
-
-void AArchivist::ShowTutorial()
-{
-	auto* GI = Cast<UArchiveGameInstance>(GetGameInstance());
-	if (!GI || GI->bTutorialPlayed || !TutorialWidgetClass) return;
-
-	// 1) Create & show the widget
-	TutorialWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), TutorialWidgetClass);
-	if (TutorialWidgetInstance)
-	{
-		TutorialWidgetInstance->AddToViewport();
-	}
-
-	GI->bTutorialPlayed = true;
-
-	// 2) Find the TriggerBox in the level (tagged "FinishTutorial") and bind its overlap
-	for (TActorIterator<ATriggerBox> It(GetWorld()); It; ++It)
-	{
-		ATriggerBox* Box = *It;
-		if (Box->ActorHasTag("FinishTutorial"))
+		IntroGuideWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), IntroGuideWidgetClass);
+		if (IntroGuideWidgetInstance)
 		{
-			Box->OnActorBeginOverlap.AddDynamic(this, &AArchivist::OnTutorialTriggerOverlap);
-			break;  // only bind the first one we find
+			IntroGuideWidgetInstance->AddToViewport();
+			if (APlayerController* PC = GetWorld()->GetFirstPlayerController())
+			{
+				PC->bShowMouseCursor = true;
+				FInputModeUIOnly UI;
+				UI.SetWidgetToFocus(IntroGuideWidgetInstance->TakeWidget());
+				PC->SetInputMode(UI);
+			}
 		}
 	}
 }

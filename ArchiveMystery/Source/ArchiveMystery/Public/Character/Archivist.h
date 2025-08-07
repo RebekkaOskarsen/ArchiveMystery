@@ -284,18 +284,28 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void PlayIntroSequenceIfNeeded();
 
-	//Tutorial
-	UPROPERTY(EditAnywhere, Category = "Tutorial")
-	TSubclassOf<UUserWidget> TutorialWidgetClass;
+	////Tutorial
+	//UPROPERTY(EditAnywhere, Category = "Tutorial")
+	//TSubclassOf<UUserWidget> TutorialWidgetClass;
 
-	UUserWidget* TutorialWidgetInstance = nullptr;
+	//UUserWidget* TutorialWidgetInstance = nullptr;
 
-	UFUNCTION()
-	void OnTutorialTriggerOverlap(AActor* OverlappedActor, AActor* OtherActor);
+	//UFUNCTION()
+	//void OnTutorialTriggerOverlap(AActor* OverlappedActor, AActor* OtherActor);
+
+	//FTimerHandle TutorialTimerHandle;
+
+	//void ShowTutorial();
 
 	FTimerHandle TutorialTimerHandle;
 
-	void ShowTutorial();
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> IntroGuideWidgetClass;
+
+	UUserWidget* IntroGuideWidgetInstance = nullptr;
+
+	UFUNCTION(BlueprintCallable)
+	void ShowIntroGuide();
 
 protected:
 	virtual void BeginPlay() override;
