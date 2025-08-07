@@ -485,3 +485,12 @@ void UArchiveGameInstance::LoadQuestLogData()
         }
     }
 }
+
+void UArchiveGameInstance::AddMoldScore(int32 NewScore)
+{
+    MoldScoreHistory.Insert(NewScore, 0); // Add to the front
+    if (MoldScoreHistory.Num() > 5)
+    {
+        MoldScoreHistory.RemoveAt(5); // Remove oldest
+    }
+}

@@ -31,7 +31,7 @@ protected:
 	EMoldDifficulty CurrentDifficulty;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Game")
-	float HardModeTimeLimit = 30.0f; // seconds
+	float HardModeTimeLimit = 210.0f; // seconds
 
 	FTimerHandle HardModeTimerHandle;
 

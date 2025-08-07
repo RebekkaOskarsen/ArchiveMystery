@@ -255,6 +255,18 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "MoldProgress")
 	bool bHasCompletedMoldEasy = false;
 
+	//Score mold
+	UPROPERTY(BlueprintReadWrite)
+	int32 LastMoldScore;
+
+	UPROPERTY(BlueprintReadWrite)
+	TArray<int32> MoldScores;
+
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Mold")
+	TArray<int32> MoldScoreHistory;
+
+	UFUNCTION(BlueprintCallable)
+	void AddMoldScore(int32 NewScore);
 
 	// Lagrede SQL-inputverdier
 	UPROPERTY(BlueprintReadWrite)

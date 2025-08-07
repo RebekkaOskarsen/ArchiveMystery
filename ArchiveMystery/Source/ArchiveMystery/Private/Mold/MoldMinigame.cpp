@@ -105,7 +105,14 @@ void AMoldMinigame::OnMoldDestroyed()
 	if (MoldCount > 0)
 	{
 		MoldCount--;
-		CheckWinCondition();
+
+		// Check win only when MoldCount reaches zero
+		if (MoldCount <= 0)
+		{
+			
+
+			CheckWinCondition();
+		}
 	}
 }
 
@@ -185,6 +192,18 @@ void AMoldMinigame::CheckWinCondition()
 				GameInstance->bHasCompletedMoldEasy = true;
 				GameInstance->SaveQuestLogData();
 			}
+		}
+	}
+
+	if (CurrentDifficulty == EMoldDifficulty::Hard && CurrentPaperIndex == 2)
+	{
+		GetWorldTimerManager().ClearTimer(CountdownTickHandle);
+
+		// Save the remaining time as the score
+		if (UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
+		{
+			GameInstance->AddMoldScore(CountdownTime); // Save to history
+			GameInstance->LastMoldScore = CountdownTime;
 		}
 	}
 
@@ -280,7 +299,11 @@ void AMoldMinigame::UpdateCountdownTick()
 	{
 		if (UTextBlock* CountdownText = Cast<UTextBlock>(CountdownWidget->GetWidgetFromName(TEXT("CountdownText"))))
 		{
-			CountdownText->SetText(FText::FromString(FString::FromInt(CountdownTime)));
+			int32 Minutes = CountdownTime / 60;
+			int32 Seconds = CountdownTime % 60;
+
+			FString TimeString = FString::Printf(TEXT("%d:%02d"), Minutes, Seconds);
+			CountdownText->SetText(FText::FromString(TimeString));
 		}
 	}
 
