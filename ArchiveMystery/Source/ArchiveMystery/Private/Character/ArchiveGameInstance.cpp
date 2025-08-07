@@ -9,6 +9,13 @@
 #include "Dom/JsonObject.h"
 #include "Serialization/JsonSerializer.h"
 
+void UArchiveGameInstance::Init()
+{
+    Super::Init();
+    UE_LOG(LogTemp, Warning, TEXT("Init() called, loading save file..."));
+
+    LoadQuestLogData();
+}
 
 void UArchiveGameInstance::SetSavedPlayerLocation(FVector Location)
 {
@@ -98,6 +105,7 @@ void UArchiveGameInstance::ResetAllProgress()
     bIsMarker13 = false;
     bIsMarker14 = false;
     bIsMarker15 = false;
+    bIsMarker16 = false;
 
     //Sequence
     bIntroCutscenePlayed = false;
@@ -180,6 +188,7 @@ UArchiveGameInstance::UArchiveGameInstance()
     bIsMarker13 = false;
     bIsMarker14 = false;
     bIsMarker15 = false;
+    bIsMarker16 = false;
 
     // Reset other relevant flags
     bBoxPlacedBeforeMoldGame = false;
@@ -275,6 +284,9 @@ void UArchiveGameInstance::SaveQuestLogData()
     JsonObject->SetBoolField("bIsMarker13", bIsMarker13);
     JsonObject->SetBoolField("bIsMarker14", bIsMarker14);
     JsonObject->SetBoolField("bIsMarker15", bIsMarker15);
+    JsonObject->SetBoolField("bIsMarker16", bIsMarker16);
+
+    JsonObject->SetBoolField("bIsEnglish", bIsEnglish);
 
     JsonObject->SetBoolField("bHasKeycard", bHasKeycard);
 
@@ -412,6 +424,9 @@ void UArchiveGameInstance::LoadQuestLogData()
                 bIsMarker13 = JsonObject->GetBoolField("bIsMarker13");
                 bIsMarker14 = JsonObject->GetBoolField("bIsMarker14");
                 bIsMarker15 = JsonObject->GetBoolField("bIsMarker15");
+                bIsMarker16 = JsonObject->GetBoolField("bIsMarker16");
+
+                bIsEnglish = JsonObject->GetBoolField("bIsEnglish");
 
                 bHasKeycard = JsonObject->GetBoolField("bHasKeycard");
 

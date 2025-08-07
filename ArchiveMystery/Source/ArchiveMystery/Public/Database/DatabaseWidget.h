@@ -4,10 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Components/ComboBoxString.h"
 #include "DatabaseWidget.generated.h"
 
 /**
- * 
+ *
  */
 
 class UEditableTextBox;
@@ -21,51 +22,30 @@ class ARCHIVEMYSTERY_API UDatabaseWidget : public UUserWidget
 	GENERATED_BODY()
 
 protected:
-	FReply NativeOnPreviewKeyDown(const FGeometry& InGeometry, const FKeyEvent& InKeyEvent);
-
-
 
 	UPROPERTY(meta = (BindWidget))
-	UEditableTextBox* SelectInputBox;
+	UComboBoxString* SelectComboBox;
 
 	UPROPERTY(meta = (BindWidget))
-	UEditableTextBox* FromInputBox;
+	UComboBoxString* FromComboBox;
 
 	UPROPERTY(meta = (BindWidget))
-	UEditableTextBox* WhereInputBox;
+	UComboBoxString* WhereComboBox;
+
 	UPROPERTY(meta = (BindWidget))
-	UEditableTextBox* LikeInputBox;
+	UComboBoxString* LikeComboBox;
+
 	UPROPERTY(meta = (BindWidget))
-	UEditableTextBox* AndInputBox;
+	UComboBoxString* AndComboBox;
 
 	UPROPERTY(meta = (BindWidget))
 	UButton* SubmitButton;
 
-	// Optional feedback message
-	/*UPROPERTY(meta = (BindWidgetOptional))
-	UTextBlock* FeedbackText;*/
-
-	// Husk å eksponere til Blueprint hvis du vil tilordne widget i editoren
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 	TSubclassOf<UUserWidget> ResultWidgetClass;
 
 	UFUNCTION()
 	void OnSubmitClicked();
-
-	UFUNCTION()
-	void OnSelectTextCommitted(const FText& Text, ETextCommit::Type CommitMethod);
-
-	UFUNCTION()
-	void OnFromTextCommitted(const FText& Text, ETextCommit::Type CommitMethod);
-
-	UFUNCTION()
-	void OnWhereTextCommitted(const FText& Text, ETextCommit::Type CommitMethod);
-
-	UFUNCTION()
-	void OnLikeTextCommitted(const FText& Text, ETextCommit::Type CommitMethod);
-
-	UFUNCTION()
-	void OnAndTextCommitted(const FText& Text, ETextCommit::Type CommitMethod);
 
 	virtual void NativeConstruct() override;
 

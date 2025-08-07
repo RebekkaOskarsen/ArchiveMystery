@@ -9,45 +9,13 @@
 #include "Character/ArchiveGameInstance.h"
 #include "Kismet/GameplayStatics.h"
 
-
-FReply UDatabaseWidget::NativeOnPreviewKeyDown(const FGeometry& InGeometry, const FKeyEvent& InKeyEvent)
-{
-
-	const FKey PressedKey = InKeyEvent.GetKey();
-	if (PressedKey == EKeys::Tab)
-	{
-		if (SelectInputBox->HasKeyboardFocus())
-		{
-			FromInputBox->SetKeyboardFocus();
-			return FReply::Handled();
-		}
-		else if (FromInputBox->HasKeyboardFocus())
-		{
-			WhereInputBox->SetKeyboardFocus();
-			return FReply::Handled();
-		}
-		else if (WhereInputBox->HasKeyboardFocus())
-		{
-			LikeInputBox->SetKeyboardFocus();
-			return FReply::Handled();
-		}
-		else if (LikeInputBox->HasKeyboardFocus())
-		{
-			AndInputBox->SetKeyboardFocus();
-			return FReply::Handled();
-		}
-		else if (AndInputBox->HasKeyboardFocus())
-		{
-			SubmitButton->SetKeyboardFocus();
-			return FReply::Handled();
-		}
-	}
-	return Super::NativeOnPreviewKeyDown(InGeometry, InKeyEvent);
-}
-
 void UDatabaseWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
+	UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(GetGameInstance());
+	const bool bIsEnglish = GameInstance && GameInstance->bIsEnglish;
+	UE_LOG(LogTemp, Warning, TEXT("bIsEnglish = %s"), bIsEnglish ? TEXT("true") : TEXT("false"));
+
 
 	if (OpenInfoButton)
 	{
@@ -59,10 +27,126 @@ void UDatabaseWidget::NativeConstruct()
 		SubmitButton->OnClicked.AddDynamic(this, &UDatabaseWidget::OnSubmitClicked);
 	}
 
-	if (SelectInputBox)
+	if (SelectComboBox)
 	{
-		SelectInputBox->SetUserFocus(GetOwningPlayer());
+		SelectComboBox->ClearOptions();
+		SelectComboBox->AddOption(bIsEnglish ? TEXT("Select columns...") : TEXT("Velg kolonner..."));
+
+		if (bIsEnglish)
+		{
+			SelectComboBox->AddOption(TEXT("name, content"));
+
+			SelectComboBox->AddOption(TEXT("doc_name, doc_content")); //Wrong answer
+			SelectComboBox->AddOption(TEXT("title, description")); //Wrong answer
+			SelectComboBox->AddOption(TEXT("id, description")); //Wrong answer
+		}
+		else
+		{
+			SelectComboBox->AddOption(TEXT("navn, innhold"));
+
+			SelectComboBox->AddOption(TEXT("dok_navn, dok_innhold")); //Wrong answer
+			SelectComboBox->AddOption(TEXT("tittel, beskrivelse")); //Wrong answer
+			SelectComboBox->AddOption(TEXT("id, beskrivelse")); //Wrong answer
+
+		}
+
+		SelectComboBox->SetSelectedIndex(0);
 	}
+
+	if (FromComboBox)
+	{
+		FromComboBox->ClearOptions();
+		FromComboBox->AddOption(bIsEnglish ? TEXT("Choose table...") : TEXT("Velg en tabell..."));
+
+		if (bIsEnglish)
+		{
+			FromComboBox->AddOption(TEXT("documents"));
+
+			FromComboBox->AddOption(TEXT("archive")); //Wrong answer      
+			FromComboBox->AddOption(TEXT("files")); //Wrong answer           
+			FromComboBox->AddOption(TEXT("doc")); //Wrong answer
+		}
+		else
+		{
+			FromComboBox->AddOption(TEXT("dokumenter"));
+
+			FromComboBox->AddOption(TEXT("arkiv")); //Wrong answer             
+			FromComboBox->AddOption(TEXT("filer")); //Wrong answer            
+			FromComboBox->AddOption(TEXT("dok")); //Wrong answer
+		}
+
+		FromComboBox->SetSelectedIndex(0);
+	}
+
+	if (WhereComboBox)
+	{
+		WhereComboBox->ClearOptions();
+		WhereComboBox->AddOption(bIsEnglish ? TEXT("Choose column...") : TEXT("Velg kolonne..."));
+
+		if (bIsEnglish)
+		{
+			WhereComboBox->AddOption(TEXT("documentname"));
+			WhereComboBox->AddOption(TEXT("document_id"));      // annen kolonne
+			WhereComboBox->AddOption(TEXT("title"));            // feil felt
+			WhereComboBox->AddOption(TEXT("name"));             // for generelt
+		}
+		else
+		{
+			WhereComboBox->AddOption(TEXT("dokumentnavn"));
+			WhereComboBox->AddOption(TEXT("dokument_id"));      // annen kolonne
+			WhereComboBox->AddOption(TEXT("tittel"));           // feil kolonne
+			WhereComboBox->AddOption(TEXT("navn"));             // for generelt
+		}
+
+		WhereComboBox->SetSelectedIndex(0);
+	}
+
+	if (LikeComboBox)
+	{
+		LikeComboBox->ClearOptions();
+		LikeComboBox->AddOption(bIsEnglish ? TEXT("Choose keyword...") : TEXT("Velg soekeord..."));
+
+		if (bIsEnglish)
+		{
+			LikeComboBox->AddOption(TEXT("%building specifications%"));
+			LikeComboBox->AddOption(TEXT("%blueprints%"));                 // feil innhold
+			LikeComboBox->AddOption(TEXT("%structure%"));                  // annet tema
+			LikeComboBox->AddOption(TEXT("building specifications"));      // mangler %
+		}
+		else
+		{
+			LikeComboBox->AddOption(TEXT("%bygning spesifikasjoner%"));
+			LikeComboBox->AddOption(TEXT("%blåkopi%"));                    // feil dokumenttype
+			LikeComboBox->AddOption(TEXT("%struktur%"));                   // annet tema
+			LikeComboBox->AddOption(TEXT("bygning spesifikasjoner"));      // mangler %
+		}
+
+		LikeComboBox->SetSelectedIndex(0);
+	}
+
+	if (AndComboBox)
+	{
+		AndComboBox->ClearOptions();
+		AndComboBox->AddOption(bIsEnglish ? TEXT("Choose condition...") : TEXT("Velg betingelse..."));
+
+		if (bIsEnglish)
+		{
+			AndComboBox->AddOption(TEXT("Company= Treplanken AS"));
+			AndComboBox->AddOption(TEXT("Company= Treewood AS"));          // feil firmanavn
+			AndComboBox->AddOption(TEXT("firm= Treplanken AS"));          // feil kolonnenavn
+			AndComboBox->AddOption(TEXT("company_name= Treplanken AS"));  // ikke riktig felt
+		}
+		else
+		{
+			AndComboBox->AddOption(TEXT("Bedrift= Treplanken AS"));
+			AndComboBox->AddOption(TEXT("Bedrift= TreTømmer AS"));         // feil firmanavn
+			AndComboBox->AddOption(TEXT("firma= Treplanken AS"));          // feil kolonnenavn
+			AndComboBox->AddOption(TEXT("bedriftsnavn= Treplanken AS"));   // ikke riktig felt
+		}
+
+		AndComboBox->SetSelectedIndex(0);
+	}
+
 
 	if (Text_PlayerName_Database)
 	{
@@ -73,14 +157,13 @@ void UDatabaseWidget::NativeConstruct()
 		}
 	}
 
-	UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(GetGameInstance());
 	if (GameInstance)
 	{
-		if (SelectInputBox) SelectInputBox->SetText(FText::FromString(GameInstance->SavedSelect));
-		if (FromInputBox)   FromInputBox->SetText(FText::FromString(GameInstance->SavedFrom));
-		if (WhereInputBox)  WhereInputBox->SetText(FText::FromString(GameInstance->SavedWhere));
-		if (LikeInputBox)   LikeInputBox->SetText(FText::FromString(GameInstance->SavedLike));
-		if (AndInputBox)    AndInputBox->SetText(FText::FromString(GameInstance->SavedAnd));
+		if (SelectComboBox) SelectComboBox->SetSelectedOption(GameInstance->SavedSelect);
+		if (FromComboBox)   FromComboBox->SetSelectedOption(GameInstance->SavedFrom);
+		if (WhereComboBox)  WhereComboBox->SetSelectedOption(GameInstance->SavedWhere);
+		if (LikeComboBox)   LikeComboBox->SetSelectedOption(GameInstance->SavedLike);
+		if (AndComboBox)    AndComboBox->SetSelectedOption(GameInstance->SavedAnd);
 	}
 
 }
@@ -88,7 +171,7 @@ void UDatabaseWidget::NativeConstruct()
 void UDatabaseWidget::OnSubmitClicked()
 {
 	UE_LOG(LogTemp, Warning, TEXT("OnOpenInfoClicked called"));
-	if (!SelectInputBox || !FromInputBox || !WhereInputBox || !LikeInputBox || !AndInputBox)
+	if (!SelectComboBox || !FromComboBox || !WhereComboBox || !LikeComboBox || !AndComboBox)
 		return;
 
 	auto CleanText = [](const FString& In)
@@ -101,26 +184,52 @@ void UDatabaseWidget::OnSubmitClicked()
 		};
 
 	// Hent og rens input
-	const FString SelectText = CleanText(SelectInputBox->GetText().ToString());
-	const FString FromText = CleanText(FromInputBox->GetText().ToString());
-	const FString WhereText = CleanText(WhereInputBox->GetText().ToString());
-	const FString LikeText = CleanText(LikeInputBox->GetText().ToString());
-	const FString AndText = CleanText(AndInputBox->GetText().ToString());
+	const FString SelectText = CleanText(SelectComboBox ? SelectComboBox->GetSelectedOption() : TEXT(""));
+	const FString FromText = CleanText(FromComboBox ? FromComboBox->GetSelectedOption() : TEXT(""));
+	const FString WhereText = CleanText(WhereComboBox ? WhereComboBox->GetSelectedOption() : TEXT(""));
+	const FString LikeText = CleanText(LikeComboBox ? LikeComboBox->GetSelectedOption() : TEXT(""));
+	const FString AndText = CleanText(AndComboBox ? AndComboBox->GetSelectedOption() : TEXT(""));
 
 	// Korrekte svar – også renset for mellomrom
-	const TArray<FString> ExpectedSelectOptions = { TEXT("document_name,document_content"), TEXT("dokument_navn,dokument_innhold") };
+	/*const TArray<FString> ExpectedSelectOptions = { TEXT("document_name,document_content"), TEXT("dokument_navn,dokument_innhold") };
 	const TArray<FString> ExpectedFromOptions = { TEXT("documents"), TEXT("dokumenter") };
 	const TArray<FString> ExpectedWhereOptions = { TEXT("documentname"), TEXT("dokumentnavn") };
 	const TArray<FString> ExpectedLikeOptions = { TEXT("%buildingspecifications%"), TEXT("%bygningspesifikasjoner%") };
-	const TArray<FString> ExpectedAndOptions = { TEXT("company=treplankenas"), TEXT("bedrift=treplankenas"), TEXT("bedrift=treplanken as") };
+	const TArray<FString> ExpectedAndOptions = { TEXT("company=treplankenas"), TEXT("bedrift=treplankenas") };*/
 
+	TArray<FString> ExpectedSelectOptions;
+	TArray<FString> ExpectedFromOptions;
+	TArray<FString> ExpectedWhereOptions;
+	TArray<FString> ExpectedLikeOptions;
+	TArray<FString> ExpectedAndOptions;
+
+	if (UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(GetGameInstance()))
+	{
+		if (GameInstance->bIsEnglish)
+		{
+			ExpectedSelectOptions = { TEXT("name,content") };
+			ExpectedFromOptions = { TEXT("documents") };
+			ExpectedWhereOptions = { TEXT("documentname") };
+			ExpectedLikeOptions = { TEXT("%buildingspecifications%") };
+			ExpectedAndOptions = { TEXT("company=treplankenas") };
+		}
+		else
+		{
+			ExpectedSelectOptions = { TEXT("navn,innhold") };
+			ExpectedFromOptions = { TEXT("dokumenter") };
+			ExpectedWhereOptions = { TEXT("dokumentnavn") };
+			ExpectedLikeOptions = { TEXT("%bygningspesifikasjoner%") };
+			ExpectedAndOptions = { TEXT("bedrift=treplankenas") };
+		}
+	}
 
 	// Sammenlign
-	const bool bSelectOK = ExpectedSelectOptions.Contains(SelectText);
-	const bool bFromOK = ExpectedFromOptions.Contains(FromText);
-	const bool bWhereOK = ExpectedWhereOptions.Contains(WhereText);
-	const bool bLikeOK = ExpectedLikeOptions.Contains(LikeText);
-	const bool bAndOK = ExpectedAndOptions.Contains(AndText);
+	const bool bSelectOK = ExpectedSelectOptions.Contains(SelectText) && !SelectText.Contains("velg");
+	const bool bFromOK = ExpectedFromOptions.Contains(FromText) && !FromText.Contains("velg");
+	const bool bWhereOK = ExpectedWhereOptions.Contains(WhereText) && !WhereText.Contains("velg");
+	const bool bLikeOK = ExpectedLikeOptions.Contains(LikeText) && !LikeText.Contains("velg");
+	const bool bAndOK = ExpectedAndOptions.Contains(AndText) && !AndText.Contains("velg");
+
 
 	if (bSelectOK && bFromOK && bWhereOK && bLikeOK && bAndOK)
 	{
@@ -143,13 +252,13 @@ void UDatabaseWidget::OnSubmitClicked()
 	else
 	{
 		UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(GetGameInstance());
-		if (GameInstance && SelectInputBox && FromInputBox && WhereInputBox && LikeInputBox && AndInputBox)
+		if (GameInstance && SelectComboBox && FromComboBox && WhereComboBox && LikeComboBox && AndComboBox)
 		{
-			GameInstance->SavedSelect = SelectInputBox->GetText().ToString();
-			GameInstance->SavedFrom = FromInputBox->GetText().ToString();
-			GameInstance->SavedWhere = WhereInputBox->GetText().ToString();
-			GameInstance->SavedLike = LikeInputBox->GetText().ToString();
-			GameInstance->SavedAnd = AndInputBox->GetText().ToString();
+			GameInstance->SavedSelect = SelectComboBox->GetSelectedOption();
+			GameInstance->SavedFrom = FromComboBox->GetSelectedOption();
+			GameInstance->SavedWhere = WhereComboBox->GetSelectedOption();
+			GameInstance->SavedLike = LikeComboBox->GetSelectedOption();
+			GameInstance->SavedAnd = AndComboBox->GetSelectedOption();
 		}
 
 		if (ErrorWidgetClass)
@@ -169,57 +278,16 @@ void UDatabaseWidget::OnSubmitClicked()
 	}
 }
 
-void UDatabaseWidget::OnSelectTextCommitted(const FText& Text, ETextCommit::Type CommitMethod)
-{
-	// Når spilleren trykker Enter i Select-feltet, flytt fokus til FROM-feltet
-	if (CommitMethod == ETextCommit::OnEnter && FromInputBox)
-	{
-		FromInputBox->SetKeyboardFocus();
-	}
-}
-
-void UDatabaseWidget::OnFromTextCommitted(const FText& Text, ETextCommit::Type CommitMethod)
-{
-	if (CommitMethod == ETextCommit::OnEnter && WhereInputBox)
-	{
-		WhereInputBox->SetKeyboardFocus();
-	}
-}
-
-void UDatabaseWidget::OnWhereTextCommitted(const FText& Text, ETextCommit::Type CommitMethod)
-{
-	if (CommitMethod == ETextCommit::OnEnter && LikeInputBox)
-	{
-		LikeInputBox->SetKeyboardFocus();
-	}
-}
-
-void UDatabaseWidget::OnLikeTextCommitted(const FText& Text, ETextCommit::Type CommitMethod)
-{
-	if (CommitMethod == ETextCommit::OnEnter && AndInputBox)
-	{
-		AndInputBox->SetKeyboardFocus();
-	}
-}
-
-void UDatabaseWidget::OnAndTextCommitted(const FText& Text, ETextCommit::Type CommitMethod)
-{
-	if (CommitMethod == ETextCommit::OnEnter)
-	{
-		OnSubmitClicked(); // Submit spørringen
-	}
-}
-
 void UDatabaseWidget::OnOpenInfoClicked()
 {
 	UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(GetGameInstance());
-	if (GameInstance && SelectInputBox && FromInputBox && WhereInputBox && LikeInputBox && AndInputBox)
+	if (GameInstance && SelectComboBox && FromComboBox && WhereComboBox && LikeComboBox && AndComboBox)
 	{
-		GameInstance->SavedSelect = SelectInputBox->GetText().ToString();
-		GameInstance->SavedFrom = FromInputBox->GetText().ToString();
-		GameInstance->SavedWhere = WhereInputBox->GetText().ToString();
-		GameInstance->SavedLike = LikeInputBox->GetText().ToString();
-		GameInstance->SavedAnd = AndInputBox->GetText().ToString();
+		GameInstance->SavedSelect = SelectComboBox->GetSelectedOption();
+		GameInstance->SavedFrom = FromComboBox->GetSelectedOption();
+		GameInstance->SavedWhere = WhereComboBox->GetSelectedOption();
+		GameInstance->SavedLike = LikeComboBox->GetSelectedOption();
+		GameInstance->SavedAnd = AndComboBox->GetSelectedOption();
 	}
 
 	if (InfoWidgetClass)

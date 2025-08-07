@@ -16,6 +16,9 @@ class ARCHIVEMYSTERY_API UArchiveGameInstance : public UGameInstance
 	GENERATED_BODY()
 
 public:
+
+	virtual void Init() override;
+
 	FVector SavedPlayerLocation;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Save System")
@@ -241,6 +244,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool bIsMarker15;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsMarker16;
+
 	//Keycards 
 	UPROPERTY(BlueprintReadWrite, Category = "Keycards")
 	bool bHasKeycard;
@@ -265,6 +271,9 @@ public:
 
 	UPROPERTY(BlueprintReadWrite)
 	FString SavedAnd;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Language")
+	bool bIsEnglish;
 
 	//Intro sequence
 	UPROPERTY(BlueprintReadWrite, Category = "Save")
