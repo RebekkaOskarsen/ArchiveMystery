@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Items/Items.h"
 #include "Components/TextRenderComponent.h"
+#include "Components/BoxComponent.h"    
 #include "NiagaraComponent.h"
 #include "NiagaraFunctionLibrary.h"
 #include "Components/WidgetComponent.h" 
@@ -27,9 +28,27 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Keycard")
 	EKeycardType KeycardType;
 
-	void NotifyActorBeginOverlap(AActor* OtherActor);
+	virtual void OnSphereOverlap(UPrimitiveComponent* OverlappedComponent,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex,
+		bool bFromSweep,
+		const FHitResult& SweepResult) override;
 
-	void NotifyActorEndOverlap(AActor* OtherActor);
+	virtual void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex) override;
+
+
+	UFUNCTION()
+	void OnOutlineBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
+		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
+		bool bFromSweep, const FHitResult& SweepResult);
+
+	UFUNCTION()
+	void OnOutlineEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
+		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 	//Text
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
@@ -47,4 +66,7 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
+
+	UPROPERTY(VisibleAnywhere)
+	UBoxComponent* OutlineTrigger;
 };

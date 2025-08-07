@@ -20,45 +20,65 @@ AKeycardItem::AKeycardItem()
 
 	PressEWidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("PressEWidgetComp"));
 	PressEWidgetComponent->SetupAttachment(RootComponent);
-
 	PressEWidgetComponent->SetWidgetSpace(EWidgetSpace::Screen);
 	PressEWidgetComponent->SetDrawAtDesiredSize(true);
-
-	PressEWidgetComponent->SetRelativeLocation(FVector(0.f, 0.f, 0.f));
-
 	PressEWidgetComponent->SetVisibility(false);
-}
 
-void AKeycardItem::NotifyActorBeginOverlap(AActor* OtherActor)
-{
-	Super::NotifyActorBeginOverlap(OtherActor);
+	// outline trigger (bigger than your sphere)
+	OutlineTrigger = CreateDefaultSubobject<UBoxComponent>(TEXT("OutlineTrigger"));
+	OutlineTrigger->SetupAttachment(RootComponent);
+	OutlineTrigger->SetBoxExtent({ 150,150,150 });
+	OutlineTrigger->SetCollisionProfileName(TEXT("Trigger"));
+	OutlineTrigger->OnComponentBeginOverlap.AddDynamic(this, &AKeycardItem::OnOutlineBegin);
+	OutlineTrigger->OnComponentEndOverlap.AddDynamic(this, &AKeycardItem::OnOutlineEnd);
 
-	if (AArchivist* Archivist = Cast<AArchivist>(OtherActor))
+	// prepare mesh for custom depth but start disabled
+	if (ItemMesh)
 	{
-		Archivist->SetOverlappingItems(this);
-
-		if (PressEWidgetComponent)
-		{
-			PressEWidgetComponent->SetVisibility(true);
-		}
+		ItemMesh->SetRenderCustomDepth(false);
+		ItemMesh->SetCustomDepthStencilValue(252);
 	}
 }
 
-void AKeycardItem::NotifyActorEndOverlap(AActor* OtherActor)
+void AKeycardItem::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	Super::NotifyActorEndOverlap(OtherActor);
+	Super::OnSphereOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
 
-	if (AArchivist* Archivist = Cast<AArchivist>(OtherActor))
+	if (AArchivist* Player = Cast<AArchivist>(OtherActor))
 	{
-		if (Archivist->GetOverlappingItems() == this)
-		{
-			Archivist->SetOverlappingItems(nullptr);
-		}
+		Player->SetOverlappingItems(this);
+		PressEWidgetComponent->SetVisibility(true);
+	}
+}
 
-		if (PressEWidgetComponent)
-		{
-			PressEWidgetComponent->SetVisibility(false);
-		}
+void AKeycardItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	Super::OnSphereEndOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
+
+	if (AArchivist* Player = Cast<AArchivist>(OtherActor))
+	{
+		if (Player->GetOverlappingItems() == this)
+			Player->SetOverlappingItems(nullptr);
+
+		PressEWidgetComponent->SetVisibility(false);
+	}
+}
+
+void AKeycardItem::OnOutlineBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if (Cast<AArchivist>(OtherActor))
+	{
+		if (ItemMesh)
+			ItemMesh->SetRenderCustomDepth(true);
+	}
+}
+
+void AKeycardItem::OnOutlineEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	if (Cast<AArchivist>(OtherActor))
+	{
+		if (ItemMesh)
+			ItemMesh->SetRenderCustomDepth(false);
 	}
 }
 
