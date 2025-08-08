@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
 #include "SavingSystem/QuestLogData.h"
+#include "Mold/MoldMinigame.h"
 #include "ArchiveGameInstance.generated.h"
 
 /**
@@ -257,7 +258,10 @@ public:
 
 	//Score mold
 	UPROPERTY(BlueprintReadWrite)
-	int32 LastMoldScore;
+	int32 LastMoldScore = 0;
+
+	UPROPERTY(BlueprintReadOnly)
+	int32 BestMoldScore = 0;
 
 	UPROPERTY(BlueprintReadWrite)
 	TArray<int32> MoldScores;
@@ -266,7 +270,10 @@ public:
 	TArray<int32> MoldScoreHistory;
 
 	UFUNCTION(BlueprintCallable)
-	void AddMoldScore(int32 NewScore);
+	void AddMoldScore(int32 Seconds);
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	EMoldDifficulty LastMoldDifficulty;
 
 	// Lagrede SQL-inputverdier
 	UPROPERTY(BlueprintReadWrite)

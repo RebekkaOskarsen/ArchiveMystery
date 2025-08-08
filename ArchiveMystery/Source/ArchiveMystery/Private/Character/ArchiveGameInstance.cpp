@@ -204,6 +204,8 @@ UArchiveGameInstance::UArchiveGameInstance()
     bHasScannedDocuments = false;
 
     bHasCompletedMoldEasy = false;
+
+    MoldScoreHistory.Reserve(5);
 }
 
 //Saves the data to a JSON file 
@@ -486,11 +488,24 @@ void UArchiveGameInstance::LoadQuestLogData()
     }
 }
 
-void UArchiveGameInstance::AddMoldScore(int32 NewScore)
+void UArchiveGameInstance::AddMoldScore(int32 Seconds)
 {
-    MoldScoreHistory.Insert(NewScore, 0); // Add to the front
+    Seconds = FMath::Max(0, Seconds);
+
+    LastMoldScore = Seconds;
+    MoldScoreHistory.Add(Seconds);
+
+    // Highest first
+    MoldScoreHistory.Sort([](int32 A, int32 B) { return A > B; });
+
+    // Keep only top 5
     if (MoldScoreHistory.Num() > 5)
-    {
-        MoldScoreHistory.RemoveAt(5); // Remove oldest
-    }
+        MoldScoreHistory.SetNum(5);
+
+    BestMoldScore = MoldScoreHistory.Num() ? MoldScoreHistory[0] : 0;
+
+    UE_LOG(LogTemp, Log, TEXT("Added score %d | Best %d | Count %d"),
+        Seconds, BestMoldScore, MoldScoreHistory.Num());
+
+    SaveQuestLogData();
 }

@@ -265,6 +265,11 @@ void AMoldMinigame::StartGame(EMoldDifficulty Difficulty)
 {
 	CurrentDifficulty = Difficulty;
 
+	if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
+	{
+		GI->LastMoldDifficulty = Difficulty;
+	}
+
 	if (CurrentDifficulty == EMoldDifficulty::Medium)
 	{
 		IncreaseMoldForMedium();
