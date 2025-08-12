@@ -28,12 +28,14 @@ class UInputAction;
 class AItems;
 class AOpenBox;
 class ADocumentItem;
+class ABookItem;
 
 UENUM(BlueprintType)
 enum class ECharacterState : uint8
 {
 	ECS_Unequipped UMETA(DisplayName = "Unequipped"),
-	ECS_EquippedOneHandedBox UMETA(DisplayName = "Equipped One-Handed Box")
+	ECS_EquippedOneHandedBox UMETA(DisplayName = "Equipped One-Handed Box"),
+	ECS_EquippedOneHanded UMETA(DisplayName = "Equipped Book")
 };
 
 UCLASS()
@@ -195,6 +197,25 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AActor* KeycardActor;
 
+	//----------------Book Item-----------------------------//
+	UPROPERTY(EditAnywhere, Category = "Drop Zone")
+	ATriggerBox* BookDropZone = nullptr;
+
+	// track state
+	bool bIsInBookDropZone = false;
+	ABookItem* EquippedBook = nullptr;
+
+	UFUNCTION()
+	void OnBookDropBeginOverlap(AActor* OverlappedActor, AActor* OtherActor);
+
+	UFUNCTION()
+	void OnBookDropEndOverlap(AActor* OverlappedActor, AActor* OtherActor);
+
+	UPROPERTY(BlueprintReadWrite) bool bPlayOpenBook = false;
+	UPROPERTY(BlueprintReadWrite) bool bPlayReadBook = false;
+
+	FTimerHandle BookOpenTimer;
+
 
 	bool bIsPaused;
 	//----Saving skin color-------------------------------------------------//
@@ -330,8 +351,11 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
 	UInputAction* PickUpAction;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Input)
 	UInputAction* OpenDoorAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	UInputAction* ReadBookAction;
 
 	//-----------Character movement-----------------------------//
 
@@ -353,6 +377,8 @@ protected:
 	void PickUp(const FInputActionValue& Value);
 
 	void TryOpenDoor(const FInputActionValue& Value);
+
+	void OnReadBook(const FInputActionValue& Value);
 
 	// ------------Main menu-----------------------------------------------------//
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
@@ -398,5 +424,7 @@ private:
 
 	UPROPERTY()
 	class AFolderItem* HeldFolder;
+
+	bool bBookIsOpen = false;
 
 };

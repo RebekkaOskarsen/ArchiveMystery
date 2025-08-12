@@ -14,6 +14,7 @@
 #include "Items/Document/DocumentItem.h"
 #include "Door/DoubleDoor.h"
 #include "Door/KeycardItem.h"
+#include "Items/Book/BookItem.h"
 #include <Kismet/GameplayStatics.h>
 #include "Blueprint/UserWidget.h"
 #include "Character/ArchiveGameInstance.h"
@@ -352,6 +353,32 @@ void AArchivist::BeginPlay()
 		DropZone->OnActorEndOverlap.AddDynamic(this, &AArchivist::OnDropZoneEndOverlap);
 	}
 
+	if (!BookDropZone)
+	{
+		TArray<AActor*> FoundBookTriggers;
+		UGameplayStatics::GetAllActorsOfClass(GetWorld(), ATriggerBox::StaticClass(), FoundBookTriggers);
+		for (AActor* Actor : FoundBookTriggers)
+		{
+			if (Actor->ActorHasTag("BookDropZone"))
+			{
+				BookDropZone = Cast<ATriggerBox>(Actor);
+				UE_LOG(LogTemp, Warning, TEXT("Found BookDropZone triggerbox."));
+				break;
+			}
+		}
+	}
+
+	if (BookDropZone)
+	{
+		// Bind our overlap handlers to the *actor* events
+		BookDropZone->OnActorBeginOverlap.AddDynamic(this, &AArchivist::OnBookDropBeginOverlap);
+		BookDropZone->OnActorEndOverlap.AddDynamic(this, &AArchivist::OnBookDropEndOverlap);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("BookDropZone not found or not tagged!"));
+	}
+
 	if (!GameInstance->SavedPlayerLocation.IsZero())
 	{
 		SetActorLocation(GameInstance->SavedPlayerLocation);
@@ -477,7 +504,46 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 		}
 	}
 
+	if (EquippedBook && bPlayOpenBook || bPlayReadBook)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("You need to close the book (press R) before you can put it down."));
+		return;
+	}
+
 	bool bDidInteract = false;
+
+	if (EquippedBook)
+	{
+		if (!bBookIsOpen && bIsInBookDropZone)
+		{
+			// snap it down
+			EquippedBook->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+			EquippedBook->SetActorLocation(BookDropZone->GetActorLocation());
+			EquippedBook->SetActorRotation(BookDropZone->GetActorRotation());
+			EquippedBook = nullptr;
+			CharacterState = ECharacterState::ECS_Unequipped;
+
+			bPlayOpenBook = false;
+			bPlayReadBook = false;
+
+			bDidInteract = true;
+			UE_LOG(LogTemp, Warning, TEXT("Book placed!"));
+		}
+	}
+	else if (ABookItem* OverlappingBook = Cast<ABookItem>(OverlappingItems))
+	{
+		// attach to right hand
+		OverlappingBook->EquipBook(GetMesh(), FName("RightHandSocket"));
+
+		// store so we can drop later
+		EquippedBook = OverlappingBook;
+		CharacterState = ECharacterState::ECS_EquippedOneHanded;
+		// or whatever state you use for “holding one item”
+
+		SetOverlappingItems(nullptr);
+		bDidInteract = true;
+		UE_LOG(LogTemp, Warning, TEXT("Picked up book: %s"), *OverlappingBook->GetName());
+	}
 
 	ADocumentItem* OverlappingDocument = Cast<ADocumentItem>(OverlappingItems);
 	if (OverlappingDocument)
@@ -674,6 +740,59 @@ void AArchivist::TryOpenDoor(const FInputActionValue& Value)
 	}
 }
 
+void AArchivist::OnReadBook(const FInputActionValue& Value)
+{
+	ABookItem* Book = Cast<ABookItem>(EquippedBook);
+	if (!Book) return;
+
+	// Character anim BP
+	UArchivistAnimInstance* BI = Cast<UArchivistAnimInstance>(GetMesh()->GetAnimInstance());
+	if (!BI) return;
+
+	if (!bBookIsOpen)
+	{
+		// --- OPEN & START READING ---
+		// 1) Play book's opening ? reading (book mesh)
+		Book->PlayOpenAndRead();
+
+		// 2) Character: play open, then swap to reading after the opening length
+		BI->bPlayOpenBook = true;
+		bBookIsOpen = true;
+
+		// use the book’s OpeningAnim length if available, else fallback
+		float delay = 0.8f;
+		if (Book->OpeningAnim)
+		{
+			delay = Book->OpeningAnim->GetPlayLength();
+		}
+
+		GetWorldTimerManager().ClearTimer(BookOpenTimer);
+		GetWorldTimerManager().SetTimer(
+			BookOpenTimer,
+			[this, BI]()
+			{
+				BI->bPlayOpenBook = false;   // stop one-shot open
+				BI->bPlayReadBook = true;    // loop reading
+			},
+			delay,
+			false
+		);
+	}
+	else
+	{
+		// --- CLOSE & STOP READING ---
+		GetWorldTimerManager().ClearTimer(BookOpenTimer);
+
+		// stop character reading/open flags
+		BI->bPlayReadBook = false;
+		BI->bPlayOpenBook = false;
+		bBookIsOpen = false;
+
+		// play book’s closing (book mesh)
+		Book->PlayClose();
+	}
+}
+
 void AArchivist::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -759,6 +878,9 @@ void AArchivist::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 
 		//Door
 		EnhancedInputComponent->BindAction(OpenDoorAction, ETriggerEvent::Triggered, this, &AArchivist::TryOpenDoor);
+
+		//Book
+		EnhancedInputComponent->BindAction(ReadBookAction, ETriggerEvent::Started, this, &AArchivist::OnReadBook);
 	}
 }
 
@@ -1125,6 +1247,24 @@ void AArchivist::ReinitialiseQuestMarkers()
 			Marker->SetActorHiddenInGame(true);
 			Marker->Trigger->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		}
+	}
+}
+
+void AArchivist::OnBookDropBeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
+{
+	if (OtherActor == this)
+	{
+		bIsInBookDropZone = true;
+		UE_LOG(LogTemp, Warning, TEXT("Entered BookDropZone"));
+	}
+}
+
+void AArchivist::OnBookDropEndOverlap(AActor* OverlappedActor, AActor* OtherActor)
+{
+	if (OtherActor == this)
+	{
+		bIsInBookDropZone = false;
+		UE_LOG(LogTemp, Warning, TEXT("Left BookDropZone"));
 	}
 }
 

@@ -26,4 +26,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Idle")
 	void ResetIdleBreak();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bPlayOpenBook = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bPlayReadBook = false;
 };
