@@ -206,6 +206,7 @@ UArchiveGameInstance::UArchiveGameInstance()
     bHasCompletedMoldEasy = false;
 
     MoldScoreHistory.Reserve(5);
+    ShreddedScoreHistory.Reserve(5);
 }
 
 //Saves the data to a JSON file 
@@ -508,4 +509,15 @@ void UArchiveGameInstance::AddMoldScore(int32 Seconds)
         Seconds, BestMoldScore, MoldScoreHistory.Num());
 
     SaveQuestLogData();
+}
+
+void UArchiveGameInstance::AddShreddedScore(int32 SecondsLeft)
+{
+    if (SecondsLeft < 0) SecondsLeft = 0;
+    ShreddedScoreHistory.Add(SecondsLeft);
+    ShreddedScoreHistory.Sort([](int32 A, int32 B) { return A > B; });
+    if (ShreddedScoreHistory.Num() > 5)
+    {
+        ShreddedScoreHistory.SetNum(5);
+    }
 }

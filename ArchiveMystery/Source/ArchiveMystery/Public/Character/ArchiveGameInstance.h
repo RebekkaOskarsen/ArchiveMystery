@@ -275,6 +275,16 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	EMoldDifficulty LastMoldDifficulty;
 
+	//Shredded Score
+	UPROPERTY(BlueprintReadOnly)
+	TArray<int32> ShreddedScoreHistory;
+
+	UPROPERTY(BlueprintReadOnly)
+	bool bLastShreddedWasHard = false;
+
+	UFUNCTION(BlueprintCallable)
+	void AddShreddedScore(int32 SecondsLeft);
+
 	// Lagrede SQL-inputverdier
 	UPROPERTY(BlueprintReadWrite)
 	FString SavedSelect;

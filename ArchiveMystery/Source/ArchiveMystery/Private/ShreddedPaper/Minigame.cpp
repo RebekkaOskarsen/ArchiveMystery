@@ -536,6 +536,29 @@ void AMinigame::OnAllPiecesSnapped()
         }
     }
 
+    if (SelectedDifficulty == "Hard")
+    {
+        // RemainingSeconds is the time left (your countdown variable)
+        if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
+        {
+            GI->bLastShreddedWasHard = true;
+
+            // append, sort (desc), and trim to top 5
+            GI->ShreddedScoreHistory.Add(RemainingSeconds);
+            GI->ShreddedScoreHistory.Sort([](int32 A, int32 B) { return A > B; });
+            if (GI->ShreddedScoreHistory.Num() > 5)
+            {
+                GI->ShreddedScoreHistory.SetNum(5);
+            }
+        }
+    }
+    else
+    {
+        if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
+        {
+            GI->bLastShreddedWasHard = false;
+        }
+    }
 }
 
 //Binds the input for dragging and releasing the paperstrips 
@@ -649,18 +672,24 @@ void AMinigame::ShowDifficultyMenu()
 void AMinigame::OnEasySelected()
 {
     SelectedDifficulty = "Easy";
+    if (auto GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
+        GI->bLastShreddedWasHard = false;
     ProceedToTutorial();
 }
 
 void AMinigame::OnMediumSelected()
 {
     SelectedDifficulty = "Medium";
+    if (auto GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
+        GI->bLastShreddedWasHard = false;
     ProceedToTutorial();
 }
 
 void AMinigame::OnHardSelected()
 {
     SelectedDifficulty = "Hard";
+    if (auto GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
+        GI->bLastShreddedWasHard = true;
     ProceedToTutorial();
 }
 
