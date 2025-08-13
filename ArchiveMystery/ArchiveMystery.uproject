@@ -31,6 +31,10 @@
 		{
 			"Name": "TextureFormatOodle",
 			"Enabled": false
+		},
+		{
+			"Name": "ElectraPlayer",
+			"Enabled": true
 		}
 	],
 	"TargetPlatforms": [
