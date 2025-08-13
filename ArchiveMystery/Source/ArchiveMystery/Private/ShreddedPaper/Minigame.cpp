@@ -62,7 +62,7 @@ void AMinigame::BeginPlay()
         PaperSheet->SetActorHiddenInGame(true);
     }
 
-    ShowDifficultyMenu();
+    ShowTutorial();
     HideAllPaperStrips();
 
 
@@ -168,7 +168,7 @@ void AMinigame::ShowTutorial()
             // Sjekk om knappen finnes før binding
             if (UButton* StartBtn = Cast<UButton>(TutorialWidgetInstance->GetWidgetFromName(TEXT("StartGameButton"))))
             {
-                StartBtn->OnClicked.AddUniqueDynamic(this, &AMinigame::StartGame); // Bruk AddUniqueDynamic!
+                StartBtn->OnClicked.AddUniqueDynamic(this, &AMinigame::OnTutorialContinue); // Bruk AddUniqueDynamic!
             }
             else
             {
@@ -674,7 +674,23 @@ void AMinigame::OnEasySelected()
     SelectedDifficulty = "Easy";
     if (auto GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
         GI->bLastShreddedWasHard = false;
-    ProceedToTutorial();
+
+    // Close diff widget
+    if (DifficultyWidgetInstance)
+    {
+        DifficultyWidgetInstance->RemoveFromParent();
+        DifficultyWidgetInstance = nullptr;
+    }
+
+    // Configure
+    ExpectedPieceCount = 14;
+    SnapThreshold = 4.0f;
+
+    ActivatePaperSetForDifficulty();
+    SetupSnappingRules();
+
+    // Start the actual minigame UI flow
+    StartGame();
 }
 
 void AMinigame::OnMediumSelected()
@@ -682,7 +698,20 @@ void AMinigame::OnMediumSelected()
     SelectedDifficulty = "Medium";
     if (auto GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
         GI->bLastShreddedWasHard = false;
-    ProceedToTutorial();
+
+    if (DifficultyWidgetInstance)
+    {
+        DifficultyWidgetInstance->RemoveFromParent();
+        DifficultyWidgetInstance = nullptr;
+    }
+
+    ExpectedPieceCount = 16;
+    SnapThreshold = 5.0f;
+
+    ActivatePaperSetForDifficulty();
+    SetupSnappingRules();
+    StartGame();
+
 }
 
 void AMinigame::OnHardSelected()
@@ -690,43 +719,34 @@ void AMinigame::OnHardSelected()
     SelectedDifficulty = "Hard";
     if (auto GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
         GI->bLastShreddedWasHard = true;
-    ProceedToTutorial();
-}
 
-void AMinigame::ProceedToTutorial()
-{
     if (DifficultyWidgetInstance)
     {
         DifficultyWidgetInstance->RemoveFromParent();
         DifficultyWidgetInstance = nullptr;
     }
 
-    if (SelectedDifficulty == "Easy")
-    {
-        ExpectedPieceCount = 14;
-        SnapThreshold = 4.0f; // Mer tilgivende snapping
-    }
-    else if (SelectedDifficulty == "Medium")
-    {
-        ExpectedPieceCount = 16;
-        SnapThreshold = 5.0f; // Standard
-    }
-    else if (SelectedDifficulty == "Hard")
-    {
-        ExpectedPieceCount = 22;
-        SnapThreshold = 3.0f;
+    ExpectedPieceCount = 22;
+    SnapThreshold = 3.0f;
 
-        // Start timer
-        StartHardModeTimerUI();
-
-        // Start hard mode countdown
-        GetWorldTimerManager().SetTimer(HardModeTimerHandle, this, &AMinigame::OnHardModeTimeUp, HardModeTimeLimit, false);
-    }
+    // Start timer UI + countdown
+    StartHardModeTimerUI();
+    GetWorldTimerManager().SetTimer(HardModeTimerHandle, this, &AMinigame::OnHardModeTimeUp, HardModeTimeLimit, false);
 
     ActivatePaperSetForDifficulty();
     SetupSnappingRules();
-    ShowTutorial(); // Bruker eksisterende tutorial-funksjon
+    StartGame();
 
+}
+
+void AMinigame::OnTutorialContinue()
+{
+    if (IsValid(TutorialWidgetInstance))
+    {
+        TutorialWidgetInstance->RemoveFromParent();
+        TutorialWidgetInstance = nullptr;
+    }
+    ShowDifficultyMenu();
 }
 
 void AMinigame::HideAllPaperStrips()

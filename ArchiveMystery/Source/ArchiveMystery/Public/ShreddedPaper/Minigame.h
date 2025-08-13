@@ -135,7 +135,8 @@ public:
 	UFUNCTION()
 	void OnHardSelected();
 
-	void ProceedToTutorial();
+	UFUNCTION()
+	void OnTutorialContinue();
 
 	void HideAllPaperStrips();
 
