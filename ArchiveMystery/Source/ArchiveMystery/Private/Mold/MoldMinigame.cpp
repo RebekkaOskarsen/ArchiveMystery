@@ -307,7 +307,7 @@ void AMoldMinigame::UpdateCountdownTick()
 			int32 Minutes = CountdownTime / 60;
 			int32 Seconds = CountdownTime % 60;
 
-			FString TimeString = FString::Printf(TEXT("%d:%02d"), Minutes, Seconds);
+			FString TimeString = FString::Printf(TEXT("%02d:%02d"), Minutes, Seconds);
 			CountdownText->SetText(FText::FromString(TimeString));
 		}
 	}

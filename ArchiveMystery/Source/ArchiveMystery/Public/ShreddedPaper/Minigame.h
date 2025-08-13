@@ -169,6 +169,32 @@ public:
 
 	void UpdateTimerDisplay();
 
+	//Ingame Tutorial
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
+	TSubclassOf<UUserWidget> IngameTutorialWidgetClass;
+
+	UUserWidget* IngameTutorialWidgetInstance = nullptr;
+
+	UFUNCTION(BlueprintCallable, Category = "Game")
+	void ShowIngameTutorial();
+
+	UFUNCTION()
+	void OnIngameTutorialClose();
+
+	bool bHardCountdownPaused = false;
+
+	float HardModeTimeRemaining = 0.f;
+	float CountdownSecondsRemaining = 0.f;
+
+	//Try again Widget
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
+	TSubclassOf<UUserWidget> TryAgainWidgetClass;
+
+	UUserWidget* TryAgainWidgetInstance = nullptr;
+
+	UFUNCTION()
+	void OnTryAgainClicked();
+
 protected:
 
 	virtual void BeginPlay() override;

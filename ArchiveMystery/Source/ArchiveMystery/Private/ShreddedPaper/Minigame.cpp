@@ -74,31 +74,24 @@ void AMinigame::StartGame()
     if (TutorialWidgetInstance)
     {
         TutorialWidgetInstance->RemoveFromViewport();
+        TutorialWidgetInstance = nullptr;
     }
 
     ShowGameMenu();
 
-    if (GameMenuWidgetClass)
+    if (GameMenuWidgetInstance)
     {
-        GameMenuWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), GameMenuWidgetClass);
-        if (GameMenuWidgetInstance)
+        if (UButton* BackButton = Cast<UButton>(
+            GameMenuWidgetInstance->GetWidgetFromName(TEXT("BackToTutorialButton"))))
         {
-            GameMenuWidgetInstance->AddToViewport();
-
-            // re-bind your question-mark button
-            if (UButton* BackButton = Cast<UButton>(GameMenuWidgetInstance->GetWidgetFromName(TEXT("BackToTutorialButton"))))
-            {
-                BackButton->OnClicked.AddDynamic(this, &AMinigame::ShowTutorial);
-            }
+            BackButton->OnClicked.RemoveAll(this);
+            BackButton->OnClicked.AddDynamic(this, &AMinigame::ShowIngameTutorial);
         }
     }
 
-
     if (APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0))
     {
-        // Show the cursor again
         PC->bShowMouseCursor = true;
-        // Give mouse focus back to the world (so line-traces and drag work)
         FInputModeGameAndUI InputMode;
         InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
         InputMode.SetHideCursorDuringCapture(false);
@@ -108,35 +101,32 @@ void AMinigame::StartGame()
 
 void AMinigame::ShowGameMenu()
 {
-    // 1) If we haven’t created it yet, do so and bind the question-mark button
     if (!GameMenuWidgetInstance && GameMenuWidgetClass)
     {
         GameMenuWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), GameMenuWidgetClass);
         if (GameMenuWidgetInstance)
         {
-            if (UButton* BackBtn = Cast<UButton>(
-                GameMenuWidgetInstance->GetWidgetFromName(TEXT("BackToTutorialButton"))))
-            {
-                BackBtn->OnClicked.AddDynamic(this, &AMinigame::ShowTutorial);
-            }
+            GameMenuWidgetInstance->AddToViewport();
         }
     }
 
-    // 2) Make sure it’s on-screen
-    if (GameMenuWidgetInstance && !GameMenuWidgetInstance->IsInViewport())
+    if (GameMenuWidgetInstance)
     {
-        GameMenuWidgetInstance->AddToViewport();
-    }
+        if (UButton* BackBtn = Cast<UButton>(GameMenuWidgetInstance->GetWidgetFromName(TEXT("BackToTutorialButton"))))
+        {
+            BackBtn->OnClicked.RemoveAll(this);            // ensure no stale binding
+            BackBtn->OnClicked.AddDynamic(this, &AMinigame::ShowIngameTutorial);
+        }
 
-    // 3) Give it UI focus & show cursor
-    if (APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0))
-    {
-        PC->bShowMouseCursor = true;
-        FInputModeGameAndUI InputMode;
-        InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
-        InputMode.SetWidgetToFocus(GameMenuWidgetInstance->TakeWidget());
-        InputMode.SetHideCursorDuringCapture(false);
-        PC->SetInputMode(InputMode);
+        if (APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0))
+        {
+            PC->bShowMouseCursor = true;
+            FInputModeGameAndUI InputMode;
+            InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+            InputMode.SetWidgetToFocus(GameMenuWidgetInstance->TakeWidget());
+            InputMode.SetHideCursorDuringCapture(false);
+            PC->SetInputMode(InputMode);
+        }
     }
 }
 
@@ -899,27 +889,62 @@ void AMinigame::SetupSnappingRules()
 
 void AMinigame::OnHardModeTimeUp()
 {
-    if (!IsValid(this)) return;
-    if (!GetWorld()) return;
+    if (!IsValid(this) || !GetWorld()) return;
 
-    UE_LOG(LogTemp, Warning, TEXT("Tiden er ute - viser vanskelighetsmeny"));
+    UE_LOG(LogTemp, Warning, TEXT("Time is up - showing Try Again"));
 
-    // Fjern timer-widgeten hvis den finnes
+    // Remove timer UI if present
     if (TimerWidgetInstance)
     {
         TimerWidgetInstance->RemoveFromParent();
         TimerWidgetInstance = nullptr;
     }
 
-    // Fjern hard mode timer og sekund-teller
+    // Stop both timers
     GetWorldTimerManager().ClearTimer(HardModeTimerHandle);
     GetWorldTimerManager().ClearTimer(CountdownUpdateTimer);
 
-    // Skjul papirbiter
+    // Hide all paper strips so the board is “clean”
     HideAllPaperStrips();
 
-    // Vis vanskelighetsmeny på nytt
-    ShowDifficultyMenu();
+    // Show the Try Again widget (WBP_ShreddedTryAgain)
+    if (TryAgainWidgetClass)
+    {
+        // Clear any existing instance (safety)
+        if (IsValid(TryAgainWidgetInstance))
+        {
+            TryAgainWidgetInstance->RemoveFromParent();
+            TryAgainWidgetInstance = nullptr;
+        }
+
+        TryAgainWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), TryAgainWidgetClass);
+        if (TryAgainWidgetInstance)
+        {
+            TryAgainWidgetInstance->AddToViewport();
+
+            // Expect the button to be named "TryAgainButton" in the widget
+            if (UButton* TryAgainBtn = Cast<UButton>(TryAgainWidgetInstance->GetWidgetFromName(TEXT("TryAgainButton"))))
+            {
+                TryAgainBtn->OnClicked.RemoveAll(this);
+                TryAgainBtn->OnClicked.AddDynamic(this, &AMinigame::OnTryAgainClicked);
+            }
+
+            // Give UI focus to the Try Again widget
+            if (APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0))
+            {
+                PC->bShowMouseCursor = true;
+                FInputModeUIOnly UI;
+                UI.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+                UI.SetWidgetToFocus(TryAgainWidgetInstance->TakeWidget());
+                PC->SetInputMode(UI);
+            }
+        }
+    }
+    else
+    {
+        // Fallback if class not set: just send the player to the tutorial
+        ShowTutorial();
+    }
 }
 
 
@@ -1002,4 +1027,97 @@ void AMinigame::UpdateTimerDisplay()
 
         OnHardModeTimeUp(); // Fortsatt den samme
     }
+}
+
+void AMinigame::ShowIngameTutorial()
+{
+    if (SelectedDifficulty == "Hard")
+    {
+        GetWorldTimerManager().PauseTimer(HardModeTimerHandle);
+        GetWorldTimerManager().PauseTimer(CountdownUpdateTimer);
+        bHardCountdownPaused = true;
+    }
+
+    // Build/show widget
+    if (IsValid(IngameTutorialWidgetInstance))
+    {
+        IngameTutorialWidgetInstance->RemoveFromParent();
+        IngameTutorialWidgetInstance = nullptr;
+    }
+
+    if (!IngameTutorialWidgetClass || !GetWorld()) return;
+
+    IngameTutorialWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), IngameTutorialWidgetClass);
+    if (IngameTutorialWidgetInstance)
+    {
+        IngameTutorialWidgetInstance->AddToViewport();
+
+        if (UButton* ResumeBtn = Cast<UButton>(IngameTutorialWidgetInstance->GetWidgetFromName(TEXT("ResumeButton"))))
+        {
+            ResumeBtn->OnClicked.AddDynamic(this, &AMinigame::OnIngameTutorialClose);
+        }
+
+        bIsDragging = false;
+
+        if (APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0))
+        {
+            PC->bShowMouseCursor = true;
+            FInputModeUIOnly UI;
+            UI.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+            UI.SetWidgetToFocus(IngameTutorialWidgetInstance->TakeWidget());
+            PC->SetInputMode(UI);
+        }
+    }
+
+}
+
+void AMinigame::OnIngameTutorialClose()
+{
+    if (IngameTutorialWidgetInstance)
+    {
+        IngameTutorialWidgetInstance->RemoveFromParent();
+        IngameTutorialWidgetInstance = nullptr;
+    }
+
+    // Resume timers if they were paused
+    if (SelectedDifficulty == "Hard" && bHardCountdownPaused)
+    {
+        GetWorldTimerManager().UnPauseTimer(HardModeTimerHandle);
+        GetWorldTimerManager().UnPauseTimer(CountdownUpdateTimer);
+        bHardCountdownPaused = false;
+    }
+
+    // Return focus to the game + UI
+    if (APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0))
+    {
+        PC->bShowMouseCursor = true;
+        FInputModeGameAndUI InputMode;
+        InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+        InputMode.SetHideCursorDuringCapture(false);
+        PC->SetInputMode(InputMode);
+    }
+}
+
+void AMinigame::OnTryAgainClicked()
+{
+    if (TryAgainWidgetInstance)
+    {
+        TryAgainWidgetInstance->RemoveFromParent();
+        TryAgainWidgetInstance = nullptr;
+    }
+
+    // Make sure any timer UI is gone and counters are reset
+    if (TimerWidgetInstance)
+    {
+        TimerWidgetInstance->RemoveFromParent();
+        TimerWidgetInstance = nullptr;
+    }
+    RemainingSeconds = 180;           // reset UI countdown for next Hard attempt
+    bHardCountdownPaused = false;     // safety
+
+    // Clean up the board
+    HideAllPaperStrips();
+
+    // Send player back to the original tutorial flow
+    ShowTutorial();
 }
