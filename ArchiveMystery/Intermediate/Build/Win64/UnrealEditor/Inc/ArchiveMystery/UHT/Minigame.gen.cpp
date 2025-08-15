@@ -26,6 +26,64 @@ UMG_API UClass* Z_Construct_UClass_UUserWidget_NoRegister();
 UPackage* Z_Construct_UPackage__Script_ArchiveMystery();
 // End Cross Module References
 
+// Begin Class AMinigame Function BeginCutscene
+struct Z_Construct_UFunction_AMinigame_BeginCutscene_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMinigame_BeginCutscene_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMinigame, nullptr, "BeginCutscene", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMinigame_BeginCutscene_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMinigame_BeginCutscene_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AMinigame_BeginCutscene()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMinigame_BeginCutscene_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AMinigame::execBeginCutscene)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->BeginCutscene();
+	P_NATIVE_END;
+}
+// End Class AMinigame Function BeginCutscene
+
+// Begin Class AMinigame Function OnCutsceneFinished
+struct Z_Construct_UFunction_AMinigame_OnCutsceneFinished_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMinigame_OnCutsceneFinished_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMinigame, nullptr, "OnCutsceneFinished", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMinigame_OnCutsceneFinished_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMinigame_OnCutsceneFinished_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AMinigame_OnCutsceneFinished()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMinigame_OnCutsceneFinished_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AMinigame::execOnCutsceneFinished)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->OnCutsceneFinished();
+	P_NATIVE_END;
+}
+// End Class AMinigame Function OnCutsceneFinished
+
 // Begin Class AMinigame Function OnEasySelected
 struct Z_Construct_UFunction_AMinigame_OnEasySelected_Statics
 {
@@ -54,6 +112,35 @@ DEFINE_FUNCTION(AMinigame::execOnEasySelected)
 	P_NATIVE_END;
 }
 // End Class AMinigame Function OnEasySelected
+
+// Begin Class AMinigame Function OnExitButtonClicked
+struct Z_Construct_UFunction_AMinigame_OnExitButtonClicked_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMinigame_OnExitButtonClicked_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMinigame, nullptr, "OnExitButtonClicked", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMinigame_OnExitButtonClicked_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMinigame_OnExitButtonClicked_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AMinigame_OnExitButtonClicked()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMinigame_OnExitButtonClicked_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AMinigame::execOnExitButtonClicked)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->OnExitButtonClicked();
+	P_NATIVE_END;
+}
+// End Class AMinigame Function OnExitButtonClicked
 
 // Begin Class AMinigame Function OnExitClicked
 struct Z_Construct_UFunction_AMinigame_OnExitClicked_Statics
@@ -264,6 +351,35 @@ DEFINE_FUNCTION(AMinigame::execOnTutorialContinue)
 }
 // End Class AMinigame Function OnTutorialContinue
 
+// Begin Class AMinigame Function OnWhiteoutFinished
+struct Z_Construct_UFunction_AMinigame_OnWhiteoutFinished_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMinigame_OnWhiteoutFinished_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMinigame, nullptr, "OnWhiteoutFinished", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMinigame_OnWhiteoutFinished_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMinigame_OnWhiteoutFinished_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AMinigame_OnWhiteoutFinished()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMinigame_OnWhiteoutFinished_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AMinigame::execOnWhiteoutFinished)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->OnWhiteoutFinished();
+	P_NATIVE_END;
+}
+// End Class AMinigame Function OnWhiteoutFinished
+
 // Begin Class AMinigame Function ShowGameMenu
 struct Z_Construct_UFunction_AMinigame_ShowGameMenu_Statics
 {
@@ -354,13 +470,48 @@ DEFINE_FUNCTION(AMinigame::execShowTutorial)
 }
 // End Class AMinigame Function ShowTutorial
 
+// Begin Class AMinigame Function SkipCutscene
+struct Z_Construct_UFunction_AMinigame_SkipCutscene_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMinigame_SkipCutscene_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMinigame, nullptr, "SkipCutscene", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMinigame_SkipCutscene_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMinigame_SkipCutscene_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AMinigame_SkipCutscene()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMinigame_SkipCutscene_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AMinigame::execSkipCutscene)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->SkipCutscene();
+	P_NATIVE_END;
+}
+// End Class AMinigame Function SkipCutscene
+
 // Begin Class AMinigame Function StartGame
 struct Z_Construct_UFunction_AMinigame_StartGame_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
 		{ "Category", "Game" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//--------------------------------------UI & EFFECTS---------------------------------------------------------------//\n" },
+#endif
 		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "--------------------------------------UI & EFFECTS---------------------------------------------------------------" },
+#endif
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
@@ -384,12 +535,44 @@ DEFINE_FUNCTION(AMinigame::execStartGame)
 }
 // End Class AMinigame Function StartGame
 
+// Begin Class AMinigame Function StartWhiteoutBeforeEnd
+struct Z_Construct_UFunction_AMinigame_StartWhiteoutBeforeEnd_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMinigame_StartWhiteoutBeforeEnd_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMinigame, nullptr, "StartWhiteoutBeforeEnd", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMinigame_StartWhiteoutBeforeEnd_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMinigame_StartWhiteoutBeforeEnd_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AMinigame_StartWhiteoutBeforeEnd()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMinigame_StartWhiteoutBeforeEnd_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AMinigame::execStartWhiteoutBeforeEnd)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->StartWhiteoutBeforeEnd();
+	P_NATIVE_END;
+}
+// End Class AMinigame Function StartWhiteoutBeforeEnd
+
 // Begin Class AMinigame
 void AMinigame::StaticRegisterNativesAMinigame()
 {
 	UClass* Class = AMinigame::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
+		{ "BeginCutscene", &AMinigame::execBeginCutscene },
+		{ "OnCutsceneFinished", &AMinigame::execOnCutsceneFinished },
 		{ "OnEasySelected", &AMinigame::execOnEasySelected },
+		{ "OnExitButtonClicked", &AMinigame::execOnExitButtonClicked },
 		{ "OnExitClicked", &AMinigame::execOnExitClicked },
 		{ "OnHardSelected", &AMinigame::execOnHardSelected },
 		{ "OnIngameTutorialClose", &AMinigame::execOnIngameTutorialClose },
@@ -397,10 +580,13 @@ void AMinigame::StaticRegisterNativesAMinigame()
 		{ "OnResumeClicked", &AMinigame::execOnResumeClicked },
 		{ "OnTryAgainClicked", &AMinigame::execOnTryAgainClicked },
 		{ "OnTutorialContinue", &AMinigame::execOnTutorialContinue },
+		{ "OnWhiteoutFinished", &AMinigame::execOnWhiteoutFinished },
 		{ "ShowGameMenu", &AMinigame::execShowGameMenu },
 		{ "ShowIngameTutorial", &AMinigame::execShowIngameTutorial },
 		{ "ShowTutorial", &AMinigame::execShowTutorial },
+		{ "SkipCutscene", &AMinigame::execSkipCutscene },
 		{ "StartGame", &AMinigame::execStartGame },
+		{ "StartWhiteoutBeforeEnd", &AMinigame::execStartWhiteoutBeforeEnd },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -480,16 +666,6 @@ struct Z_Construct_UClass_AMinigame_Statics
 		{ "Category", "Fade" },
 		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ExitWidgetClass_MetaData[] = {
-		{ "Category", "UI" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "//--------------------------------------UI & EFFECTS---------------------------------------------------------------//\n" },
-#endif
-		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "--------------------------------------UI & EFFECTS---------------------------------------------------------------" },
-#endif
-	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_TutorialWidgetClass_MetaData[] = {
 		{ "Category", "UI" },
 		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
@@ -540,6 +716,48 @@ struct Z_Construct_UClass_AMinigame_Statics
 		{ "ToolTip", "Try again Widget" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ExitWidgetClass_MetaData[] = {
+		{ "Category", "UI" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//-----------------------------Cutscene and skip functionality----------------------------------------//\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "-----------------------------Cutscene and skip functionality----------------------------------------" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CutsceneWidgetClass_MetaData[] = {
+		{ "Category", "UI" },
+		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_WhiteoutWidgetClass_MetaData[] = {
+		{ "Category", "UI" },
+		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ExitWidgetInstance_MetaData[] = {
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CutsceneWidgetInstance_MetaData[] = {
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_WhiteoutWidgetInstance_MetaData[] = {
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_WhiteoutLeadSeconds_MetaData[] = {
+		{ "Category", "Cutscene" },
+		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CutsceneLength_MetaData[] = {
+		{ "Category", "Cutscene" },
+		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_WhiteoutLength_MetaData[] = {
+		{ "Category", "Cutscene" },
+		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SnapThreshold_MetaData[] = {
 		{ "Category", "Snapping" },
 		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
@@ -571,7 +789,6 @@ struct Z_Construct_UClass_AMinigame_Statics
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_CurrentFadeTime;
 	static void NewProp_bIsFadingIn_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsFadingIn;
-	static const UECodeGen_Private::FClassPropertyParams NewProp_ExitWidgetClass;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_TutorialWidgetClass;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_GameMenuWidgetClass;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_SnapSound;
@@ -580,13 +797,25 @@ struct Z_Construct_UClass_AMinigame_Statics
 	static const UECodeGen_Private::FClassPropertyParams NewProp_TimerWidgetClass;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_IngameTutorialWidgetClass;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_TryAgainWidgetClass;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_ExitWidgetClass;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_CutsceneWidgetClass;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_WhiteoutWidgetClass;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_ExitWidgetInstance;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_CutsceneWidgetInstance;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_WhiteoutWidgetInstance;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_WhiteoutLeadSeconds;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_CutsceneLength;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_WhiteoutLength;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_SnapThreshold;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PaperSheet;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_PauseMenuWidgetClass;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
+		{ &Z_Construct_UFunction_AMinigame_BeginCutscene, "BeginCutscene" }, // 2649215126
+		{ &Z_Construct_UFunction_AMinigame_OnCutsceneFinished, "OnCutsceneFinished" }, // 3091593573
 		{ &Z_Construct_UFunction_AMinigame_OnEasySelected, "OnEasySelected" }, // 3169544647
+		{ &Z_Construct_UFunction_AMinigame_OnExitButtonClicked, "OnExitButtonClicked" }, // 1939199824
 		{ &Z_Construct_UFunction_AMinigame_OnExitClicked, "OnExitClicked" }, // 3805274764
 		{ &Z_Construct_UFunction_AMinigame_OnHardSelected, "OnHardSelected" }, // 3240756149
 		{ &Z_Construct_UFunction_AMinigame_OnIngameTutorialClose, "OnIngameTutorialClose" }, // 2614084935
@@ -594,10 +823,13 @@ struct Z_Construct_UClass_AMinigame_Statics
 		{ &Z_Construct_UFunction_AMinigame_OnResumeClicked, "OnResumeClicked" }, // 3111000937
 		{ &Z_Construct_UFunction_AMinigame_OnTryAgainClicked, "OnTryAgainClicked" }, // 3372086785
 		{ &Z_Construct_UFunction_AMinigame_OnTutorialContinue, "OnTutorialContinue" }, // 1145385279
+		{ &Z_Construct_UFunction_AMinigame_OnWhiteoutFinished, "OnWhiteoutFinished" }, // 1000408077
 		{ &Z_Construct_UFunction_AMinigame_ShowGameMenu, "ShowGameMenu" }, // 545015565
 		{ &Z_Construct_UFunction_AMinigame_ShowIngameTutorial, "ShowIngameTutorial" }, // 360399407
 		{ &Z_Construct_UFunction_AMinigame_ShowTutorial, "ShowTutorial" }, // 4198789240
-		{ &Z_Construct_UFunction_AMinigame_StartGame, "StartGame" }, // 587238722
+		{ &Z_Construct_UFunction_AMinigame_SkipCutscene, "SkipCutscene" }, // 1187381589
+		{ &Z_Construct_UFunction_AMinigame_StartGame, "StartGame" }, // 453928026
+		{ &Z_Construct_UFunction_AMinigame_StartWhiteoutBeforeEnd, "StartWhiteoutBeforeEnd" }, // 3281923662
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -623,7 +855,6 @@ void Z_Construct_UClass_AMinigame_Statics::NewProp_bIsFadingIn_SetBit(void* Obj)
 	((AMinigame*)Obj)->bIsFadingIn = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_bIsFadingIn = { "bIsFadingIn", nullptr, (EPropertyFlags)0x0010000000020001, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AMinigame), &Z_Construct_UClass_AMinigame_Statics::NewProp_bIsFadingIn_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsFadingIn_MetaData), NewProp_bIsFadingIn_MetaData) };
-const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_ExitWidgetClass = { "ExitWidgetClass", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, ExitWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ExitWidgetClass_MetaData), NewProp_ExitWidgetClass_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_TutorialWidgetClass = { "TutorialWidgetClass", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, TutorialWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TutorialWidgetClass_MetaData), NewProp_TutorialWidgetClass_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_GameMenuWidgetClass = { "GameMenuWidgetClass", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, GameMenuWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_GameMenuWidgetClass_MetaData), NewProp_GameMenuWidgetClass_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_SnapSound = { "SnapSound", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, SnapSound), Z_Construct_UClass_USoundBase_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SnapSound_MetaData), NewProp_SnapSound_MetaData) };
@@ -632,6 +863,15 @@ const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMinigame_Stati
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_TimerWidgetClass = { "TimerWidgetClass", nullptr, (EPropertyFlags)0x0014000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, TimerWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TimerWidgetClass_MetaData), NewProp_TimerWidgetClass_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_IngameTutorialWidgetClass = { "IngameTutorialWidgetClass", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, IngameTutorialWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_IngameTutorialWidgetClass_MetaData), NewProp_IngameTutorialWidgetClass_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_TryAgainWidgetClass = { "TryAgainWidgetClass", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, TryAgainWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TryAgainWidgetClass_MetaData), NewProp_TryAgainWidgetClass_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_ExitWidgetClass = { "ExitWidgetClass", nullptr, (EPropertyFlags)0x0014000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, ExitWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ExitWidgetClass_MetaData), NewProp_ExitWidgetClass_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_CutsceneWidgetClass = { "CutsceneWidgetClass", nullptr, (EPropertyFlags)0x0014000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, CutsceneWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CutsceneWidgetClass_MetaData), NewProp_CutsceneWidgetClass_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_WhiteoutWidgetClass = { "WhiteoutWidgetClass", nullptr, (EPropertyFlags)0x0014000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, WhiteoutWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_WhiteoutWidgetClass_MetaData), NewProp_WhiteoutWidgetClass_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_ExitWidgetInstance = { "ExitWidgetInstance", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, ExitWidgetInstance), Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ExitWidgetInstance_MetaData), NewProp_ExitWidgetInstance_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_CutsceneWidgetInstance = { "CutsceneWidgetInstance", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, CutsceneWidgetInstance), Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CutsceneWidgetInstance_MetaData), NewProp_CutsceneWidgetInstance_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_WhiteoutWidgetInstance = { "WhiteoutWidgetInstance", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, WhiteoutWidgetInstance), Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_WhiteoutWidgetInstance_MetaData), NewProp_WhiteoutWidgetInstance_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_WhiteoutLeadSeconds = { "WhiteoutLeadSeconds", nullptr, (EPropertyFlags)0x0010000000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, WhiteoutLeadSeconds), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_WhiteoutLeadSeconds_MetaData), NewProp_WhiteoutLeadSeconds_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_CutsceneLength = { "CutsceneLength", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, CutsceneLength), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CutsceneLength_MetaData), NewProp_CutsceneLength_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_WhiteoutLength = { "WhiteoutLength", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, WhiteoutLength), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_WhiteoutLength_MetaData), NewProp_WhiteoutLength_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_SnapThreshold = { "SnapThreshold", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, SnapThreshold), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SnapThreshold_MetaData), NewProp_SnapThreshold_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_PaperSheet = { "PaperSheet", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, PaperSheet), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PaperSheet_MetaData), NewProp_PaperSheet_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_PauseMenuWidgetClass = { "PauseMenuWidgetClass", nullptr, (EPropertyFlags)0x0024080000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, PauseMenuWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PauseMenuWidgetClass_MetaData), NewProp_PauseMenuWidgetClass_MetaData) };
@@ -646,7 +886,6 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMinigame
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_FadeDuration,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_CurrentFadeTime,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_bIsFadingIn,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_ExitWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_TutorialWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_GameMenuWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_SnapSound,
@@ -655,6 +894,15 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMinigame
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_TimerWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_IngameTutorialWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_TryAgainWidgetClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_ExitWidgetClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_CutsceneWidgetClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_WhiteoutWidgetClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_ExitWidgetInstance,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_CutsceneWidgetInstance,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_WhiteoutWidgetInstance,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_WhiteoutLeadSeconds,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_CutsceneLength,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_WhiteoutLength,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_SnapThreshold,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_PaperSheet,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_PauseMenuWidgetClass,
@@ -697,14 +945,14 @@ AMinigame::~AMinigame() {}
 // End Class AMinigame
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_Statics
+struct Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMinigame, AMinigame::StaticClass, TEXT("AMinigame"), &Z_Registration_Info_UClass_AMinigame, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMinigame), 3979586028U) },
+		{ Z_Construct_UClass_AMinigame, AMinigame::StaticClass, TEXT("AMinigame"), &Z_Registration_Info_UClass_AMinigame, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMinigame), 331816006U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_1500188225(TEXT("/Script/ArchiveMystery"),
-	Z_CompiledInDeferFile_FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_3331967792(TEXT("/Script/ArchiveMystery"),
+	Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

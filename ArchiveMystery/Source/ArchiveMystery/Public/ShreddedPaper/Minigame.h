@@ -77,12 +77,6 @@ public:
 
 	//--------------------------------------UI & EFFECTS---------------------------------------------------------------//
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
-	TSubclassOf<UUserWidget> ExitWidgetClass;
-
-	UUserWidget* ExitWidgetInstance;
-
-
 	UFUNCTION(BlueprintCallable, Category = "Game")
 	void StartGame();
 
@@ -194,6 +188,58 @@ public:
 
 	UFUNCTION()
 	void OnTryAgainClicked();
+
+	//-----------------------------Cutscene and skip functionality----------------------------------------//
+
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> ExitWidgetClass;
+
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> CutsceneWidgetClass;
+
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> WhiteoutWidgetClass;
+
+	UPROPERTY()
+	UUserWidget* ExitWidgetInstance = nullptr;
+	UPROPERTY()
+	UUserWidget* CutsceneWidgetInstance = nullptr;
+	UPROPERTY()
+	UUserWidget* WhiteoutWidgetInstance = nullptr;
+
+	// Timere
+	FTimerHandle CutsceneTimerHandle;
+	FTimerHandle WhiteoutTimerHandle;
+	FTimerHandle WhiteoutEarlyTimerHandle;
+	TSharedPtr<SWidget> WhiteoutSlate;
+	bool bWhiteoutShown = false;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Cutscene")
+	float WhiteoutLeadSeconds = 0.9f;
+
+	UFUNCTION()
+	void StartWhiteoutBeforeEnd();
+
+	UPROPERTY(EditAnywhere, Category = "Cutscene")
+	float CutsceneLength = 28.f;
+
+	UPROPERTY(EditAnywhere, Category = "Cutscene")
+	float WhiteoutLength = 1.f;
+
+	bool bCutsceneActive = false;
+
+	UFUNCTION()
+	void OnExitButtonClicked();
+
+	UFUNCTION()
+	void SkipCutscene();
+
+	UFUNCTION()
+	void BeginCutscene();
+	UFUNCTION()
+	void OnCutsceneFinished();
+	UFUNCTION()
+	void OnWhiteoutFinished();
 
 protected:
 

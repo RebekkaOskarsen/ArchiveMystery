@@ -92,6 +92,53 @@ private:
 
 	int32 CurrentPaperIndex;
 
+	// ----------------- Cutscene --------------------------------------//
+	UPROPERTY(EditDefaultsOnly, Category = "Cutscene")
+	TSubclassOf<UUserWidget> CutsceneWidgetClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Cutscene")
+	TSubclassOf<UUserWidget> WhiteoutWidgetClass;
+
+	UPROPERTY()
+	UUserWidget* CutsceneWidgetInstance = nullptr;
+
+	UPROPERTY()
+	UUserWidget* WhiteoutWidgetInstance = nullptr;
+
+	FTimerHandle CutsceneTimerHandle;
+	FTimerHandle WhiteoutTimerHandle;
+	FTimerHandle WhiteoutEarlyTimerHandle;
+
+
+	UPROPERTY(EditDefaultsOnly, Category = "Cutscene")
+	float CutsceneLength = 22.f;       // matches your old BP "Delay 22"
+
+	UPROPERTY(EditDefaultsOnly, Category = "Cutscene")
+	float WhiteoutLength = 1.f;        // matches your old BP "Delay 1"
+
+	bool bCutsceneActive = false;
+
+	UFUNCTION()
+	void BeginCutscene();
+
+	UFUNCTION()
+	void SkipCutscene();
+
+	UFUNCTION()
+	void OnCutsceneFinished();
+
+	UFUNCTION()
+	void OnWhiteoutFinished();
+
+	//UFUNCTION()
+	//void ShowExitUI();
+
+	UFUNCTION()
+	void StartWhiteoutBeforeEnd();
+
+	UFUNCTION()
+	void SetUIOnlyFocus(UUserWidget* Widget);
+
 //----------------References to the Paper 1 and Paper 2---------------------//
 	UPROPERTY(EditAnywhere, Category = "Papers")
 	AActor* Paper1;
@@ -116,6 +163,7 @@ private:
 	UPROPERTY()
 	UUserWidget* ExitWidget;
 
+	UFUNCTION()
 	void ShowExitUI();
 
 

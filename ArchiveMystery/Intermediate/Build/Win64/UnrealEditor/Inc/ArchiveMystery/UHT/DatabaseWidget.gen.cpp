@@ -13,6 +13,7 @@ void EmptyLinkFunctionForGeneratedCodeDatabaseWidget() {}
 ARCHIVEMYSTERY_API UClass* Z_Construct_UClass_UDatabaseWidget();
 ARCHIVEMYSTERY_API UClass* Z_Construct_UClass_UDatabaseWidget_NoRegister();
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
+ENGINE_API UClass* Z_Construct_UClass_USoundBase_NoRegister();
 UMG_API UClass* Z_Construct_UClass_UButton_NoRegister();
 UMG_API UClass* Z_Construct_UClass_UComboBoxString_NoRegister();
 UMG_API UClass* Z_Construct_UClass_UTextBlock_NoRegister();
@@ -148,6 +149,10 @@ struct Z_Construct_UClass_UDatabaseWidget_Statics
 		{ "Category", "UI" },
 		{ "ModuleRelativePath", "Public/Database/DatabaseWidget.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BackgroundMusic_MetaData[] = {
+		{ "Category", "Audio" },
+		{ "ModuleRelativePath", "Public/Database/DatabaseWidget.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Text_PlayerName_Database_MetaData[] = {
 		{ "BindWidget", "" },
 		{ "EditInline", "true" },
@@ -164,6 +169,7 @@ struct Z_Construct_UClass_UDatabaseWidget_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_OpenInfoButton;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_InfoWidgetClass;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_ErrorWidgetClass;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_BackgroundMusic;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Text_PlayerName_Database;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
@@ -187,6 +193,7 @@ const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UDatabaseWidget
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UDatabaseWidget_Statics::NewProp_OpenInfoButton = { "OpenInfoButton", nullptr, (EPropertyFlags)0x0020080000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UDatabaseWidget, OpenInfoButton), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OpenInfoButton_MetaData), NewProp_OpenInfoButton_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UDatabaseWidget_Statics::NewProp_InfoWidgetClass = { "InfoWidgetClass", nullptr, (EPropertyFlags)0x0024080000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UDatabaseWidget, InfoWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InfoWidgetClass_MetaData), NewProp_InfoWidgetClass_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UDatabaseWidget_Statics::NewProp_ErrorWidgetClass = { "ErrorWidgetClass", nullptr, (EPropertyFlags)0x0024080000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UDatabaseWidget, ErrorWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ErrorWidgetClass_MetaData), NewProp_ErrorWidgetClass_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UDatabaseWidget_Statics::NewProp_BackgroundMusic = { "BackgroundMusic", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UDatabaseWidget, BackgroundMusic), Z_Construct_UClass_USoundBase_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BackgroundMusic_MetaData), NewProp_BackgroundMusic_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UDatabaseWidget_Statics::NewProp_Text_PlayerName_Database = { "Text_PlayerName_Database", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UDatabaseWidget, Text_PlayerName_Database), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Text_PlayerName_Database_MetaData), NewProp_Text_PlayerName_Database_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UDatabaseWidget_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UDatabaseWidget_Statics::NewProp_SelectComboBox,
@@ -199,6 +206,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UDatabase
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UDatabaseWidget_Statics::NewProp_OpenInfoButton,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UDatabaseWidget_Statics::NewProp_InfoWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UDatabaseWidget_Statics::NewProp_ErrorWidgetClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UDatabaseWidget_Statics::NewProp_BackgroundMusic,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UDatabaseWidget_Statics::NewProp_Text_PlayerName_Database,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UDatabaseWidget_Statics::PropPointers) < 2048);
@@ -240,14 +248,14 @@ UDatabaseWidget::~UDatabaseWidget() {}
 // End Class UDatabaseWidget
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Database_DatabaseWidget_h_Statics
+struct Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Database_DatabaseWidget_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UDatabaseWidget, UDatabaseWidget::StaticClass, TEXT("UDatabaseWidget"), &Z_Registration_Info_UClass_UDatabaseWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UDatabaseWidget), 1794776456U) },
+		{ Z_Construct_UClass_UDatabaseWidget, UDatabaseWidget::StaticClass, TEXT("UDatabaseWidget"), &Z_Registration_Info_UClass_UDatabaseWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UDatabaseWidget), 2544541144U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Database_DatabaseWidget_h_2980515546(TEXT("/Script/ArchiveMystery"),
-	Z_CompiledInDeferFile_FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Database_DatabaseWidget_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Database_DatabaseWidget_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Database_DatabaseWidget_h_3756029443(TEXT("/Script/ArchiveMystery"),
+	Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Database_DatabaseWidget_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Database_DatabaseWidget_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

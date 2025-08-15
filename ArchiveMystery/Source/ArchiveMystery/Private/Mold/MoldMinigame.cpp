@@ -29,6 +29,8 @@ AMoldMinigame::AMoldMinigame()
 
 	bCanBrush = false;
 	BrushSelectionWidget = nullptr;
+	CutsceneWidgetClass = LoadClass<UUserWidget>(nullptr, TEXT("/Game/Sequences/Movie_Cutscenes/Cutscene_2_Mold/W_Cutscene_2.W_Cutscene_2_C"));
+	WhiteoutWidgetClass = LoadClass<UUserWidget>(nullptr, TEXT("/Game/Blueprint/Small_Quest_System/W_Whiteout.W_Whiteout_C"));
 }
 
 void AMoldMinigame::BeginPlay()
@@ -223,12 +225,16 @@ void AMoldMinigame::CheckWinCondition()
 
 void AMoldMinigame::ShowExitUI()
 {
-	if (ExitWidgetClass)
+	if (!ExitWidgetClass) return;
+
+	ExitWidget = CreateWidget<UUserWidget>(GetWorld(), ExitWidgetClass);
+	if (ExitWidget)
 	{
-		ExitWidget = CreateWidget<UUserWidget>(GetWorld(), ExitWidgetClass);
-		if (ExitWidget)
+		ExitWidget->AddToViewport();
+
+		if (UButton* ExitBtn = Cast<UButton>(ExitWidget->GetWidgetFromName(TEXT("ExitButton"))))
 		{
-			ExitWidget->AddToViewport();
+			ExitBtn->OnClicked.AddUniqueDynamic(this, &AMoldMinigame::BeginCutscene);
 		}
 	}
 }
@@ -527,3 +533,113 @@ void AMoldMinigame::HideIngameTutorial()
 	}
 }
 
+void AMoldMinigame::SetUIOnlyFocus(UUserWidget* Widget)
+{
+	if (!Widget) return;
+	if (APlayerController* PC = GetWorld()->GetFirstPlayerController())
+	{
+		PC->bShowMouseCursor = true;
+		FInputModeUIOnly Mode;
+		Mode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+		Mode.SetWidgetToFocus(Widget->TakeWidget());
+		PC->SetInputMode(Mode);
+	}
+}
+
+void AMoldMinigame::BeginCutscene()
+{
+
+	if (!GetWorld() || !CutsceneWidgetClass)
+	{
+		UGameplayStatics::OpenLevel(this, FName(TEXT("Archive-Mystery")));
+		return;
+	}
+
+	if (ExitWidget) { ExitWidget->RemoveFromParent(); ExitWidget = nullptr; }
+
+	if (!IsValid(CutsceneWidgetInstance))
+	{
+		CutsceneWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), CutsceneWidgetClass);
+		if (!CutsceneWidgetInstance)
+		{
+			UGameplayStatics::OpenLevel(this, FName(TEXT("Archive-Mystery")));
+			return;
+		}
+	}
+	if (!CutsceneWidgetInstance->IsInViewport())
+		CutsceneWidgetInstance->AddToViewport();
+
+	SetUIOnlyFocus(CutsceneWidgetInstance);
+
+	if (UButton* Skip = Cast<UButton>(CutsceneWidgetInstance->GetWidgetFromName(TEXT("SkipButton"))))
+	{
+		Skip->OnClicked.AddUniqueDynamic(this, &AMoldMinigame::SkipCutscene);
+	}
+
+	bCutsceneActive = true;
+
+	if (WhiteoutLength < CutsceneLength)
+	{
+		GetWorldTimerManager().SetTimer(
+			WhiteoutEarlyTimerHandle, this, &AMoldMinigame::StartWhiteoutBeforeEnd,
+			CutsceneLength - 1.0f, false
+		);
+	}
+
+	GetWorldTimerManager().SetTimer(
+		CutsceneTimerHandle, this, &AMoldMinigame::OnCutsceneFinished, CutsceneLength, false);
+}
+
+void AMoldMinigame::OnCutsceneFinished()
+{
+	if (!bCutsceneActive) return;
+	bCutsceneActive = false;
+
+	if (IsValid(CutsceneWidgetInstance))
+	{
+		CutsceneWidgetInstance->RemoveFromParent();
+		CutsceneWidgetInstance = nullptr;
+	}
+
+	GetWorldTimerManager().SetTimer(
+		WhiteoutTimerHandle, this, &AMoldMinigame::OnWhiteoutFinished, WhiteoutLength, false);
+}
+
+
+
+void AMoldMinigame::OnWhiteoutFinished()
+{
+
+	WhiteoutWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), WhiteoutWidgetClass);
+	if (WhiteoutWidgetInstance)
+	{
+		WhiteoutWidgetInstance->AddToViewport(/*ZOrder=*/10000);
+
+	}
+
+	UGameplayStatics::OpenLevel(this, FName(TEXT("Archive-Mystery")));
+}
+
+void AMoldMinigame::SkipCutscene()
+{
+	GetWorldTimerManager().ClearTimer(CutsceneTimerHandle);
+	GetWorldTimerManager().ClearTimer(WhiteoutTimerHandle);
+
+	if (IsValid(CutsceneWidgetInstance)) { CutsceneWidgetInstance->RemoveFromParent(); CutsceneWidgetInstance = nullptr; }
+	if (IsValid(WhiteoutWidgetInstance)) { WhiteoutWidgetInstance->RemoveFromParent(); WhiteoutWidgetInstance = nullptr; }
+
+	bCutsceneActive = false;
+
+	UGameplayStatics::OpenLevel(this, FName(TEXT("Archive-Mystery")));
+}
+
+void AMoldMinigame::StartWhiteoutBeforeEnd()
+{
+	if (!WhiteoutWidgetClass) return;
+
+	WhiteoutWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), WhiteoutWidgetClass);
+	if (WhiteoutWidgetInstance)
+	{
+		WhiteoutWidgetInstance->AddToViewport(10000);
+	}
+}

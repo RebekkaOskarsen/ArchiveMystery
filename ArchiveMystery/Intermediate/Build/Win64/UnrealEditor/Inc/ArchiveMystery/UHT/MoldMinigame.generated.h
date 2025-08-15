@@ -9,17 +9,25 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UUserWidget;
 enum class EMoldDifficulty : uint8;
 #ifdef ARCHIVEMYSTERY_MoldMinigame_generated_h
 #error "MoldMinigame.generated.h already included, missing '#pragma once' in MoldMinigame.h"
 #endif
 #define ARCHIVEMYSTERY_MoldMinigame_generated_h
 
-#define FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Mold_MoldMinigame_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_MoldMinigame_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execHideIngameTutorial); \
 	DECLARE_FUNCTION(execShowIngameTutorial); \
 	DECLARE_FUNCTION(execOnExitClicked); \
 	DECLARE_FUNCTION(execOnResumeClicked); \
+	DECLARE_FUNCTION(execShowExitUI); \
+	DECLARE_FUNCTION(execSetUIOnlyFocus); \
+	DECLARE_FUNCTION(execStartWhiteoutBeforeEnd); \
+	DECLARE_FUNCTION(execOnWhiteoutFinished); \
+	DECLARE_FUNCTION(execOnCutsceneFinished); \
+	DECLARE_FUNCTION(execSkipCutscene); \
+	DECLARE_FUNCTION(execBeginCutscene); \
 	DECLARE_FUNCTION(execResetMold); \
 	DECLARE_FUNCTION(execOnTryAgainClicked); \
 	DECLARE_FUNCTION(execStartGame); \
@@ -29,7 +37,7 @@ enum class EMoldDifficulty : uint8;
 	DECLARE_FUNCTION(execOnHardModeTimeExpired);
 
 
-#define FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Mold_MoldMinigame_h_22_INCLASS_NO_PURE_DECLS \
+#define FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_MoldMinigame_h_22_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAMoldMinigame(); \
 	friend struct Z_Construct_UClass_AMoldMinigame_Statics; \
@@ -38,7 +46,7 @@ public: \
 	DECLARE_SERIALIZER(AMoldMinigame)
 
 
-#define FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Mold_MoldMinigame_h_22_ENHANCED_CONSTRUCTORS \
+#define FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_MoldMinigame_h_22_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AMoldMinigame(AMoldMinigame&&); \
@@ -50,13 +58,13 @@ public: \
 	NO_API virtual ~AMoldMinigame();
 
 
-#define FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Mold_MoldMinigame_h_19_PROLOG
-#define FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Mold_MoldMinigame_h_22_GENERATED_BODY \
+#define FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_MoldMinigame_h_19_PROLOG
+#define FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_MoldMinigame_h_22_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Mold_MoldMinigame_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Mold_MoldMinigame_h_22_INCLASS_NO_PURE_DECLS \
-	FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Mold_MoldMinigame_h_22_ENHANCED_CONSTRUCTORS \
+	FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_MoldMinigame_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_MoldMinigame_h_22_INCLASS_NO_PURE_DECLS \
+	FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_MoldMinigame_h_22_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -64,7 +72,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> ARCHIVEMYSTERY_API UClass* StaticClass<class AMoldMinigame>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Mold_MoldMinigame_h
+#define CURRENT_FILE_ID FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Mold_MoldMinigame_h
 
 
 #define FOREACH_ENUM_EMOLDDIFFICULTY(op) \

@@ -1,8 +1,8 @@
 {
 	"SourceFiles": [
-		"C:\\Users\\henri\\Downloads\\onsdag\\ArchiveMystery\\Source\\ArchiveMystery\\ArchiveMystery.Build.cs",
-		"C:\\Users\\henri\\Downloads\\onsdag\\ArchiveMystery\\Source\\ArchiveMystery.Target.cs",
-		"C:\\Users\\henri\\Downloads\\onsdag\\ArchiveMystery\\Source\\ArchiveMysteryEditor.Target.cs"
+		"C:\\ArchiveMystery\\ArchiveMystery\\ArchiveMystery\\Source\\ArchiveMystery\\ArchiveMystery.Build.cs",
+		"C:\\ArchiveMystery\\ArchiveMystery\\ArchiveMystery\\Source\\ArchiveMystery.Target.cs",
+		"C:\\ArchiveMystery\\ArchiveMystery\\ArchiveMystery\\Source\\ArchiveMysteryEditor.Target.cs"
 	],
 	"EngineVersion": "5.5.4"
 }

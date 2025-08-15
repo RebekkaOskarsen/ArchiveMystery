@@ -477,8 +477,8 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 			HeldFolder->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
 
 			// Sett plassering på bordet
-			FVector DropLocation = FolderDropZone->GetActorLocation() + FVector(-20, 0, 15.f);
-			FRotator DropRotation = FRotator::ZeroRotator;
+			FVector DropLocation = FolderDropZone->GetActorLocation() + FVector(-20, 100, 12.f);
+			FRotator DropRotation = FRotator(90.f, 0.f, 0.f);
 
 			HeldFolder->SetActorLocation(DropLocation);
 			HeldFolder->SetActorRotation(DropRotation);

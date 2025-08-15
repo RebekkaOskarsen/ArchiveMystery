@@ -61,6 +61,10 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 	TSubclassOf<UUserWidget> ErrorWidgetClass;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
+	USoundBase* BackgroundMusic;
+
+
 public:
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Text_PlayerName_Database;

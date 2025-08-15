@@ -14,9 +14,15 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define ARCHIVEMYSTERY_Minigame_generated_h
 
-#define FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_26_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_26_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execOnExitClicked); \
 	DECLARE_FUNCTION(execOnResumeClicked); \
+	DECLARE_FUNCTION(execOnWhiteoutFinished); \
+	DECLARE_FUNCTION(execOnCutsceneFinished); \
+	DECLARE_FUNCTION(execBeginCutscene); \
+	DECLARE_FUNCTION(execSkipCutscene); \
+	DECLARE_FUNCTION(execOnExitButtonClicked); \
+	DECLARE_FUNCTION(execStartWhiteoutBeforeEnd); \
 	DECLARE_FUNCTION(execOnTryAgainClicked); \
 	DECLARE_FUNCTION(execOnIngameTutorialClose); \
 	DECLARE_FUNCTION(execShowIngameTutorial); \
@@ -29,7 +35,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	DECLARE_FUNCTION(execStartGame);
 
 
-#define FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_26_INCLASS_NO_PURE_DECLS \
+#define FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_26_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAMinigame(); \
 	friend struct Z_Construct_UClass_AMinigame_Statics; \
@@ -38,7 +44,7 @@ public: \
 	DECLARE_SERIALIZER(AMinigame)
 
 
-#define FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_26_ENHANCED_CONSTRUCTORS \
+#define FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_26_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AMinigame(AMinigame&&); \
@@ -50,13 +56,13 @@ public: \
 	NO_API virtual ~AMinigame();
 
 
-#define FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_23_PROLOG
-#define FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_26_GENERATED_BODY \
+#define FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_23_PROLOG
+#define FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_26_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_26_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_26_INCLASS_NO_PURE_DECLS \
-	FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_26_ENHANCED_CONSTRUCTORS \
+	FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_26_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_26_INCLASS_NO_PURE_DECLS \
+	FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_26_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -64,7 +70,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> ARCHIVEMYSTERY_API UClass* StaticClass<class AMinigame>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h
+#define CURRENT_FILE_ID FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

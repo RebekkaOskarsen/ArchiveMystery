@@ -8,6 +8,8 @@
 #include "Character/Archivist.h"
 #include <Character/ArchiveGameInstance.h>
 
+#include "Blueprint/WidgetTree.h"
+
 
 AMinigame::AMinigame()
 {
@@ -29,6 +31,10 @@ AMinigame::AMinigame()
     PauseMenuWidgetClass = LoadClass<UUserWidget>(nullptr, TEXT("/Game/Blueprint/PauseMenu/WBP_PauseMenuMinigame.WBP_PauseMenuMinigame_C"));
 
     TimerWidgetClass = LoadClass<UUserWidget>(nullptr, TEXT("/Game/ShreddedPaper_minigame/Blueprints/WBP_Timer.WBP_Timer_C"));
+
+    CutsceneWidgetClass = LoadClass<UUserWidget>(nullptr, TEXT("/Game/Sequences/Movie_Cutscenes/Cutscene_1_Paper/W_Cutscene_1.W_Cutscene_1_C"));
+
+    WhiteoutWidgetClass = LoadClass<UUserWidget>(nullptr, TEXT("/Game/Blueprint/Small_Quest_System/W_Whiteout.W_Whiteout_C"));
 
 }
 
@@ -517,12 +523,25 @@ void AMinigame::OnAllPiecesSnapped()
         GameInstance->SaveQuestLogData();
     }
 
+    UE_LOG(LogTemp, Warning, TEXT("OnAllPiecesSnapped: creating ExitWidget"));
+
     if (ExitWidgetClass)
     {
-        UUserWidget* ExitWidget = CreateWidget<UUserWidget>(GetWorld(), ExitWidgetClass);
-        if (ExitWidget)
+        ExitWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), ExitWidgetClass);
+        if (ExitWidgetInstance)
         {
-            ExitWidget->AddToViewport();
+            ExitWidgetInstance->AddToViewport();
+
+            // Finn knappen i Exit-widgeten og bind
+            if (UButton* ExitBtn = Cast<UButton>(ExitWidgetInstance->GetWidgetFromName(TEXT("ExitButton"))))
+            {
+                ExitBtn->OnClicked.AddUniqueDynamic(this, &AMinigame::OnExitButtonClicked);
+            }
+            else if (UButton* ExitAlt = Cast<UButton>(ExitWidgetInstance->GetWidgetFromName(TEXT("ExitWidget"))))
+            {
+                // hvis knappen faktisk heter "ExitWidget"
+                ExitAlt->OnClicked.AddUniqueDynamic(this, &AMinigame::OnExitButtonClicked);
+            }
         }
     }
 
@@ -964,21 +983,18 @@ void AMinigame::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
     Super::EndPlay(EndPlayReason);
 
-    if (GetWorldTimerManager().IsTimerActive(HardModeTimerHandle))
-    {
-        GetWorldTimerManager().ClearTimer(HardModeTimerHandle);
-    }
+    // Timere
+    FTimerManager& TM = GetWorldTimerManager();
+    TM.ClearTimer(CutsceneTimerHandle);
+    TM.ClearTimer(WhiteoutTimerHandle);
+    TM.ClearTimer(WhiteoutEarlyTimerHandle); // <-- NY: sørg for at early-whiteout ikke lever videre
 
-    if (GetWorldTimerManager().IsTimerActive(CountdownUpdateTimer))
-    {
-        GetWorldTimerManager().ClearTimer(CountdownUpdateTimer);
-    }
+    // Widgets
+    if (IsValid(ExitWidgetInstance)) { ExitWidgetInstance->RemoveFromParent();     ExitWidgetInstance = nullptr; }
+    if (IsValid(CutsceneWidgetInstance)) { CutsceneWidgetInstance->RemoveFromParent(); CutsceneWidgetInstance = nullptr; }
+    if (IsValid(WhiteoutWidgetInstance)) { WhiteoutWidgetInstance->RemoveFromParent(); WhiteoutWidgetInstance = nullptr; }
 
-    if (TimerWidgetInstance)
-    {
-        TimerWidgetInstance->RemoveFromParent();
-        TimerWidgetInstance = nullptr;
-    }
+    bCutsceneActive = false;
 }
 
 void AMinigame::StartHardModeTimerUI()
@@ -1006,7 +1022,7 @@ void AMinigame::UpdateTimerDisplay()
     int32 Minutes = RemainingSeconds / 60;
     int32 Seconds = RemainingSeconds % 60;
 
-    FString TimeString = FString::Printf(TEXT("TID IGJEN: %02d:%02d"), Minutes, Seconds);
+    FString TimeString = FString::Printf(TEXT("TIME LEFT: %02d:%02d"), Minutes, Seconds);
 
     if (UTextBlock* CountdownText = Cast<UTextBlock>(TimerWidgetInstance->GetWidgetFromName(TEXT("CountdownText"))))
     {
@@ -1120,4 +1136,141 @@ void AMinigame::OnTryAgainClicked()
 
     // Send player back to the original tutorial flow
     ShowTutorial();
+}
+
+void AMinigame::OnExitButtonClicked()
+{
+    UE_LOG(LogTemp, Warning, TEXT("OnExitButtonClicked"));
+
+    if (IsValid(ExitWidgetInstance))
+    {
+        ExitWidgetInstance->RemoveFromParent();
+        ExitWidgetInstance = nullptr;
+    }
+
+    BeginCutscene();
+}
+
+void AMinigame::SkipCutscene()
+{
+    FTimerManager& TM = GetWorldTimerManager();
+    TM.ClearTimer(CutsceneTimerHandle);
+    TM.ClearTimer(WhiteoutTimerHandle);
+    TM.ClearTimer(WhiteoutEarlyTimerHandle);
+
+    if (IsValid(CutsceneWidgetInstance)) { CutsceneWidgetInstance->RemoveFromParent(); CutsceneWidgetInstance = nullptr; }
+    if (IsValid(WhiteoutWidgetInstance)) { WhiteoutWidgetInstance->RemoveFromParent(); WhiteoutWidgetInstance = nullptr; }
+    if (IsValid(ExitWidgetInstance)) { ExitWidgetInstance->RemoveFromParent();     ExitWidgetInstance = nullptr; }
+
+    bCutsceneActive = false;
+
+    UGameplayStatics::OpenLevel(this, FName(TEXT("Archive-Mystery")));
+}
+
+
+
+void AMinigame::BeginCutscene()
+{
+
+    if (!GetWorld() || !CutsceneWidgetClass) return;
+
+    CutsceneWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), CutsceneWidgetClass);
+
+    if (CutsceneWidgetInstance)
+    {
+        CutsceneWidgetInstance->AddToViewport();
+
+        if (APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0))
+        {
+            PC->bShowMouseCursor = true;
+            FInputModeUIOnly InputMode;
+            InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+            InputMode.SetWidgetToFocus(CutsceneWidgetInstance->TakeWidget());
+            PC->SetInputMode(InputMode);
+        }
+
+        if (UButton* SkipButton = Cast<UButton>(CutsceneWidgetInstance->GetWidgetFromName(TEXT("SkipButton"))))
+        {
+            SkipButton->OnClicked.AddUniqueDynamic(this, &AMinigame::SkipCutscene);
+        }
+    }
+
+    if (UUserWidget* CutsceneUI = Cast<UUserWidget>(CutsceneWidgetInstance))
+    {
+        if (CutsceneUI->WidgetTree)
+        {
+            TArray<UWidget*> All;
+            CutsceneUI->WidgetTree->GetAllWidgets(All);
+            for (UWidget* W : All)
+            {
+                const bool bEnabled = W->GetIsEnabled();
+            }
+        }
+    }
+
+    if (APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0))
+    {
+        PC->bShowMouseCursor = true;
+        FInputModeUIOnly UI;
+        UI.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+        PC->SetInputMode(UI);
+    }
+
+    bCutsceneActive = true;
+
+    const float Lead = FMath::Clamp(WhiteoutLeadSeconds, 0.f, FMath::Max(0.f, CutsceneLength - 0.01f));
+    if (Lead > KINDA_SMALL_NUMBER && CutsceneLength > Lead)
+    {
+        GetWorldTimerManager().SetTimer(
+            WhiteoutEarlyTimerHandle, this, &AMinigame::StartWhiteoutBeforeEnd,
+            CutsceneLength - Lead, false);
+    }
+
+
+    GetWorldTimerManager().SetTimer(
+        CutsceneTimerHandle, this, &AMinigame::OnCutsceneFinished, CutsceneLength, false);
+}
+
+void AMinigame::OnCutsceneFinished()
+{
+    GetWorldTimerManager().ClearTimer(WhiteoutEarlyTimerHandle);
+
+    if (!bCutsceneActive) return;
+    bCutsceneActive = false;
+
+    if (!WhiteoutWidgetInstance && WhiteoutWidgetClass && GetWorld())
+    {
+        WhiteoutWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), WhiteoutWidgetClass);
+        if (WhiteoutWidgetInstance)
+        {
+            WhiteoutWidgetInstance->AddToViewport(10000);
+        }
+    }
+
+    if (IsValid(CutsceneWidgetInstance))
+    {
+        CutsceneWidgetInstance->RemoveFromParent();
+        CutsceneWidgetInstance = nullptr;
+    }
+
+    GetWorldTimerManager().SetTimer(
+        WhiteoutTimerHandle, this, &AMinigame::OnWhiteoutFinished, WhiteoutLength, false);
+}
+
+
+void AMinigame::OnWhiteoutFinished()
+{
+    UGameplayStatics::OpenLevel(this, FName(TEXT("Archive-Mystery")));
+}
+
+void AMinigame::StartWhiteoutBeforeEnd()
+{
+    if (!GetWorld() || !WhiteoutWidgetClass) return;
+    if (WhiteoutWidgetInstance) return;
+
+    WhiteoutWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), WhiteoutWidgetClass);
+    if (WhiteoutWidgetInstance)
+    {
+        WhiteoutWidgetInstance->AddToViewport(10000);
+    }
 }

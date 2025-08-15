@@ -166,6 +166,10 @@ void UDatabaseWidget::NativeConstruct()
 		if (AndComboBox)    AndComboBox->SetSelectedOption(GameInstance->SavedAnd);
 	}
 
+	if (BackgroundMusic)
+	{
+		UGameplayStatics::PlaySound2D(this, BackgroundMusic);
+	}
 }
 
 void UDatabaseWidget::OnSubmitClicked()

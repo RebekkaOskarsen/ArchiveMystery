@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define ARCHIVEMYSTERY_OpenBox_generated_h
 
-#define FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Items_Box_OpenBox_h_14_INCLASS_NO_PURE_DECLS \
+#define FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Items_Box_OpenBox_h_14_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAOpenBox(); \
 	friend struct Z_Construct_UClass_AOpenBox_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(AOpenBox)
 
 
-#define FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Items_Box_OpenBox_h_14_ENHANCED_CONSTRUCTORS \
+#define FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Items_Box_OpenBox_h_14_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AOpenBox(AOpenBox&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~AOpenBox();
 
 
-#define FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Items_Box_OpenBox_h_11_PROLOG
-#define FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Items_Box_OpenBox_h_14_GENERATED_BODY \
+#define FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Items_Box_OpenBox_h_11_PROLOG
+#define FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Items_Box_OpenBox_h_14_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Items_Box_OpenBox_h_14_INCLASS_NO_PURE_DECLS \
-	FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Items_Box_OpenBox_h_14_ENHANCED_CONSTRUCTORS \
+	FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Items_Box_OpenBox_h_14_INCLASS_NO_PURE_DECLS \
+	FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Items_Box_OpenBox_h_14_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -48,7 +48,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> ARCHIVEMYSTERY_API UClass* StaticClass<class AOpenBox>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Users_henri_Downloads_onsdag_ArchiveMystery_Source_ArchiveMystery_Public_Items_Box_OpenBox_h
+#define CURRENT_FILE_ID FID_ArchiveMystery_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Items_Box_OpenBox_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
