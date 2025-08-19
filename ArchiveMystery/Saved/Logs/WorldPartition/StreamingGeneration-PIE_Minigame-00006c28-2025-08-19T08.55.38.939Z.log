@@ -1,0 +1,680 @@
+[+] Containers:
+ |- [+] Container: /Game/ShreddedPaper_minigame/Minigame
+ |   |- [+] ActorDescs:
+ |   |   |- Guid:03920DF94EEFC9F86CC66185D32A3DA1 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_A4AE111137DC54FB00_1240666663 Label:SM_SkySphere SpatiallyLoaded:false EditorBounds:IsValid=true, Min=(X=-1638400.000 Y=-1638400.000 Z=-1638400.000), Max=(X=1638400.000 Y=1638400.000 Z=1638400.000) RuntimeBounds:IsValid=true, Min=(X=-1638400.000 Y=-1638400.000 Z=-1638400.000), Max=(X=1638400.000 Y=1638400.000 Z=1638400.000) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:true FolderPath:Lighting FolderGuid:B7E9BD5B45A652654791988DEF54CCEB
+ |   |   |- Guid:06642FA6486930D0BB28A9ABAB914D96 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1318702828 Label:paperstrip_easy10 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=27.439 Y=2.939 Z=0.455), Max=(X=64.505 Y=44.617 Z=2.453) RuntimeBounds:IsValid=true, Min=(X=27.439 Y=2.939 Z=0.455), Max=(X=64.505 Y=44.617 Z=2.453) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:07E46A1941D7069B6B7D72BBA1D7DADE NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1327170023 Label:paperstrip_hard15 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-59.398 Y=67.895 Z=0.301), Max=(X=59.596 Y=74.372 Z=3.160) RuntimeBounds:IsValid=true, Min=(X=-59.398 Y=67.895 Z=0.301), Max=(X=59.596 Y=74.372 Z=3.160) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:0ECB24E8417D0A0E15C45A9340966119 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1188166014 Label:paperstrip_hard06 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-79.443 Y=-124.223 Z=0.535), Max=(X=39.464 Y=-117.514 Z=3.154) RuntimeBounds:IsValid=true, Min=(X=-79.443 Y=-124.223 Z=0.535), Max=(X=39.464 Y=-117.514 Z=3.154) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:102EFC9344640CDFFB68D5AE639B0BF0 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283573002_1758767513 Label:paperstrip15 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-77.769 Y=13.894 Z=-8.012), Max=(X=21.836 Y=20.780 Z=-5.138) RuntimeBounds:IsValid=true, Min=(X=-77.769 Y=13.894 Z=-8.012), Max=(X=21.836 Y=20.780 Z=-5.138) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:18477E7540E9A20F3EDB75BE414AE285 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1372746832 Label:paperstrip_easy14 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-10.121 Y=17.000 Z=0.534), Max=(X=19.469 Y=57.800 Z=2.048) RuntimeBounds:IsValid=true, Min=(X=-10.121 Y=17.000 Z=0.534), Max=(X=19.469 Y=57.800 Z=2.048) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:1A7F6E61431C28FFC7CED1AD3C25D924 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1243212824 Label:paperstrip_easy06 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-91.174 Y=-42.434 Z=0.522), Max=(X=-55.817 Y=-13.117 Z=3.149) RuntimeBounds:IsValid=true, Min=(X=-91.174 Y=-42.434 Z=0.522), Max=(X=-55.817 Y=-13.117 Z=3.149) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:1D3D26F04B6DC10BEFB5B69E5CF914C8 NativeClass:/Script/Engine.VolumetricCloud Name:VolumetricCloud_UAID_A85E45CFE40401D200_1470381760 Label:VolumetricCloud SpatiallyLoaded:false EditorBounds:IsValid=true, Min=(X=-38.000 Y=-138.000 Z=-128.000), Max=(X=218.000 Y=118.000 Z=128.000) RuntimeBounds:IsValid=true, Min=(X=90.000 Y=-10.000 Z=0.000), Max=(X=90.000 Y=-10.000 Z=0.000) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false FolderPath:Lighting FolderGuid:B7E9BD5B45A652654791988DEF54CCEB
+ |   |   |- Guid:1DE8D7AC4103A2EABA11649C7FCF8ACA NativeClass:/Script/Engine.SkyLight Name:SkyLight_UAID_A85E45CFE40401D200_1470380759 Label:SkyLight SpatiallyLoaded:false EditorBounds:IsValid=true, Min=(X=-1.000 Y=-1.000 Z=-1.000), Max=(X=90.000 Y=1.000 Z=1.000) RuntimeBounds:IsValid=true, Min=(X=90.000 Y=0.000 Z=0.000), Max=(X=90.000 Y=0.000 Z=0.000) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false FolderPath:Lighting FolderGuid:B7E9BD5B45A652654791988DEF54CCEB
+ |   |   |- Guid:252DDE1146FDD935035D58ADF99508AD NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_E00AF6773600536102_1774455535 Label:SM_Table SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-213.734 Y=-307.641 Z=-209.973), Max=(X=213.466 Y=400.761 Z=-17.646) RuntimeBounds:IsValid=true, Min=(X=-213.734 Y=-307.641 Z=-209.973), Max=(X=213.466 Y=400.761 Z=-17.646) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:true ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:2CE12F874AA39D020A0F4BA5739BD305 NativeClass:/Script/Engine.SkyAtmosphere Name:SkyAtmosphere_UAID_A85E45CFE40401D200_1470382762 Label:SkyAtmosphere SpatiallyLoaded:false EditorBounds:IsValid=true, Min=(X=-48.000 Y=-128.000 Z=-128.000), Max=(X=320.000 Y=128.000 Z=128.000) RuntimeBounds:IsValid=true, Min=(X=80.000 Y=0.000 Z=0.000), Max=(X=80.000 Y=0.000 Z=0.000) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false FolderPath:Lighting FolderGuid:B7E9BD5B45A652654791988DEF54CCEB
+ |   |   |- Guid:2D04F3F94962ED3B2C4470968661FAF0 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283583002_1097868696 Label:paperstrip08 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-117.504 Y=-17.472 Z=-8.044), Max=(X=-16.406 Y=-10.060 Z=-5.031) RuntimeBounds:IsValid=true, Min=(X=-117.504 Y=-17.472 Z=-8.044), Max=(X=-16.406 Y=-10.060 Z=-5.031) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:31AC1D844B2E239A1F4C5A8FB2F1BD5A NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283573002_2129975519 Label:paperstrip09 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-57.050 Y=-12.442 Z=-7.469), Max=(X=43.298 Y=-5.558 Z=-4.930) RuntimeBounds:IsValid=true, Min=(X=-57.050 Y=-12.442 Z=-7.469), Max=(X=43.298 Y=-5.558 Z=-4.930) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:371F80B14024176E216073B90BF5E108 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1281400020 Label:paperstrip_hard12 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-62.523 Y=19.079 Z=0.094), Max=(X=56.379 Y=24.921 Z=2.990) RuntimeBounds:IsValid=true, Min=(X=-62.523 Y=19.079 Z=0.094), Max=(X=56.379 Y=24.921 Z=2.990) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:3847B7D6449C28D34E8FEAA1A6DECAF5 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1406175030 Label:paperstrip_hard22 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-71.269 Y=101.703 Z=0.504), Max=(X=47.740 Y=106.973 Z=3.152) RuntimeBounds:IsValid=true, Min=(X=-71.269 Y=101.703 Z=0.504), Max=(X=47.740 Y=106.973 Z=3.152) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:398882C5497777B45A31109A8096193C NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1185166820 Label:paperstrip_easy02 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-59.698 Y=-72.736 Z=1.972), Max=(X=-26.314 Y=-43.323 Z=3.555) RuntimeBounds:IsValid=true, Min=(X=-59.698 Y=-72.736 Z=1.972), Max=(X=-26.314 Y=-43.323 Z=3.555) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:3AEEF94A4F045CC0C53AFBB7D63672D6 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B2838A4202_1203312479 Label:PaperSheet SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-53.122 Y=241.231 Z=-5.842), Max=(X=100.116 Y=352.346 Z=-0.626) RuntimeBounds:IsValid=true, Min=(X=-53.122 Y=241.231 Z=-5.842), Max=(X=100.116 Y=352.346 Z=-0.626) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:3B6EA4B84972E78C348B849D3F07B06F NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1125814010 Label:paperstrip_hard02 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-59.553 Y=30.681 Z=0.374), Max=(X=59.377 Y=36.826 Z=3.067) RuntimeBounds:IsValid=true, Min=(X=-59.553 Y=30.681 Z=0.374), Max=(X=59.377 Y=36.826 Z=3.067) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:3F6144C24083E8D88DF58080CCFD6094 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1384338028 Label:paperstrip_hard20 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-62.507 Y=40.907 Z=0.521), Max=(X=56.286 Y=45.944 Z=3.334) RuntimeBounds:IsValid=true, Min=(X=-62.507 Y=40.907 Z=0.521), Max=(X=56.286 Y=45.944 Z=3.334) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:40844D1F4BED0A3179DD8983BDFF41B7 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_E00AF6773600FC6102_1771267280 Label:SM_Tape_Dispenser SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=23.208 Y=125.862 Z=-20.000), Max=(X=77.867 Y=154.616 Z=2.924) RuntimeBounds:IsValid=true, Min=(X=23.208 Y=125.862 Z=-20.000), Max=(X=77.867 Y=154.616 Z=2.924) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:true ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:41A2B45147F7141E76F02689F89B1F3A NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283573002_1947306515 Label:paperstrip13 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-88.519 Y=-35.049 Z=-7.747), Max=(X=12.188 Y=-28.403 Z=-5.459) RuntimeBounds:IsValid=true, Min=(X=-88.519 Y=-35.049 Z=-7.747), Max=(X=12.188 Y=-28.403 Z=-5.459) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:4E6121EC4923ABB56F9175B16ACF0E54 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1217545016 Label:paperstrip_hard08 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-49.443 Y=-86.157 Z=0.433), Max=(X=69.410 Y=-80.189 Z=3.178) RuntimeBounds:IsValid=true, Min=(X=-49.443 Y=-86.157 Z=0.433), Max=(X=69.410 Y=-80.189 Z=3.178) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:507EF8EA402F49C69A41B7A4F766C67A NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283583002_1129830697 Label:paperstrip07 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-78.069 Y=-2.054 Z=-8.209), Max=(X=23.589 Y=5.196 Z=-5.364) RuntimeBounds:IsValid=true, Min=(X=-78.069 Y=-2.054 Z=-8.209), Max=(X=23.589 Y=5.196 Z=-5.364) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:5368FABB47D6D9580DAECA8B0417BF92 NativeClass:/Script/Engine.WorldDataLayers Name:WorldDataLayers Label:WorldDataLayers-1 SpatiallyLoaded:false EditorBounds:IsValid=false, Min=(X=0.000 Y=0.000 Z=0.000), Max=(X=0.000 Y=0.000 Z=0.000) RuntimeBounds:IsValid=false, Min=(X=0.000 Y=0.000 Z=0.000), Max=(X=0.000 Y=0.000 Z=0.000) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:true
+ |   |   |- Guid:5B6FBED545AB4E18E1BCB7A2CD84B65E NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283583002_1187166699 Label:paperstrip05 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-118.186 Y=10.173 Z=-7.507), Max=(X=-17.850 Y=16.191 Z=-5.322) RuntimeBounds:IsValid=true, Min=(X=-118.186 Y=10.173 Z=-7.507), Max=(X=-17.850 Y=16.191 Z=-5.322) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:67E186104B4EA302549B739FD7ECE485 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1373225027 Label:paperstrip_hard19 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-67.782 Y=82.771 Z=0.425), Max=(X=51.056 Y=87.411 Z=3.286) RuntimeBounds:IsValid=true, Min=(X=-67.782 Y=82.771 Z=0.425), Max=(X=51.056 Y=87.411 Z=3.286) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:6A472CDC4D0415DD7674A29948CAC761 BaseClass:/Game/Minigame-Mold/Sound/BP_MusicManager.BP_MusicManager_C NativeClass:/Script/Engine.Actor Name:BP_MusicManager_C_UAID_E00AF6773600026202_1128370335 Label:BP_MusicManager SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=140.000 Y=230.000 Z=-20.000), Max=(X=140.000 Y=230.000 Z=-20.000) RuntimeBounds:IsValid=true, Min=(X=140.000 Y=230.000 Z=-20.000), Max=(X=140.000 Y=230.000 Z=-20.000) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:6A60D1284326A0D8D11621AA537ABDDB NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1280286826 Label:paperstrip_easy08 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-6.250 Y=-106.560 Z=1.081), Max=(X=32.471 Y=-62.134 Z=3.461) RuntimeBounds:IsValid=true, Min=(X=-6.250 Y=-106.560 Z=1.081), Max=(X=32.471 Y=-62.134 Z=3.461) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:6AA003774DEA9C04CF8442991C7AE386 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283573002_1636726512 Label:paperstrip16 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-57.607 Y=-42.052 Z=-8.155), Max=(X=41.268 Y=-34.326 Z=-4.667) RuntimeBounds:IsValid=true, Min=(X=-57.607 Y=-42.052 Z=-8.155), Max=(X=41.268 Y=-34.326 Z=-4.667) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:6B3D0B274B2DB7B54C9EB4A873E041B2 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1138766011 Label:paperstrip_hard03 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-79.571 Y=-65.493 Z=0.337), Max=(X=39.360 Y=-59.223 Z=2.987) RuntimeBounds:IsValid=true, Min=(X=-79.571 Y=-65.493 Z=0.337), Max=(X=39.360 Y=-59.223 Z=2.987) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:715473054DAB2E8E69BB05B10E6E3408 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1347557025 Label:paperstrip_hard17 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-69.508 Y=-57.217 Z=-0.070), Max=(X=49.425 Y=-50.988 Z=3.169) RuntimeBounds:IsValid=true, Min=(X=-69.508 Y=-57.217 Z=-0.070), Max=(X=49.425 Y=-50.988 Z=3.169) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:737CB3BC4BDE497F28E4CDAE1AAE5BDD NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1217102822 Label:paperstrip_easy04 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-79.919 Y=74.490 Z=1.681), Max=(X=-49.498 Y=92.386 Z=2.893) RuntimeBounds:IsValid=true, Min=(X=-79.919 Y=74.490 Z=1.681), Max=(X=-49.498 Y=92.386 Z=2.893) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:804431F34165F997D15E8F95BA484AD3 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283573002_1901519514 Label:paperstrip14 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-68.433 Y=-10.543 Z=-7.656), Max=(X=31.914 Y=-3.937 Z=-5.436) RuntimeBounds:IsValid=true, Min=(X=-68.433 Y=-10.543 Z=-7.656), Max=(X=31.914 Y=-3.937 Z=-5.436) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:835967F843A02BEA1A1AEB95EE5AAF19 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1259346019 Label:paperstrip_hard11 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-69.380 Y=62.419 Z=0.378), Max=(X=49.661 Y=68.662 Z=2.933) RuntimeBounds:IsValid=true, Min=(X=-69.380 Y=62.419 Z=0.378), Max=(X=49.661 Y=68.662 Z=2.933) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:83C0C744437CB822D99C319289EA2BC1 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1334020829 Label:paperstrip_easy11 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-45.057 Y=63.984 Z=0.153), Max=(X=-4.825 Y=102.028 Z=2.409) RuntimeBounds:IsValid=true, Min=(X=-45.057 Y=63.984 Z=0.153), Max=(X=-4.825 Y=102.028 Z=2.409) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:8498F8DA477C925605385095F86D1D1D NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1346035830 Label:paperstrip_easy12 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-33.373 Y=34.053 Z=0.968), Max=(X=-3.434 Y=62.456 Z=2.796) RuntimeBounds:IsValid=true, Min=(X=-33.373 Y=34.053 Z=0.968), Max=(X=-3.434 Y=62.456 Z=2.796) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:86E800844AFA9BE94FC4FBBE96932A8C NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1229270017 Label:paperstrip_hard09 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-63.949 Y=3.602 Z=-0.008), Max=(X=54.914 Y=9.675 Z=2.974) RuntimeBounds:IsValid=true, Min=(X=-63.949 Y=3.602 Z=-0.008), Max=(X=54.914 Y=9.675 Z=2.974) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:881710FE4FE0A240BE394AAB3885B89B NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1359928831 Label:paperstrip_easy13 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=43.929 Y=-82.140 Z=0.482), Max=(X=89.779 Y=-45.208 Z=2.786) RuntimeBounds:IsValid=true, Min=(X=43.929 Y=-82.140 Z=0.482), Max=(X=89.779 Y=-45.208 Z=2.786) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:914525764BEE3CD4862A0F912FA07015 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1248471018 Label:paperstrip_hard10 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-62.529 Y=-8.924 Z=-0.008), Max=(X=56.497 Y=-2.542 Z=2.975) RuntimeBounds:IsValid=true, Min=(X=-62.529 Y=-8.924 Z=-0.008), Max=(X=56.497 Y=-2.542 Z=2.975) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:962D6BE34E7839A2A94E65B8F6CE5D43 NativeClass:/Script/Engine.PlayerStart Name:PlayerStart_UAID_F02F74551BF5599B01_1153002503 Label:PlayerStart SpatiallyLoaded:false EditorBounds:IsValid=true, Min=(X=-440.000 Y=-128.000 Z=-36.000), Max=(X=-72.000 Y=128.000 Z=220.000) RuntimeBounds:IsValid=true, Min=(X=-240.000 Y=-40.000 Z=0.000), Max=(X=-160.000 Y=40.000 Z=184.000) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:971810E244FE0278F837FF82DE030319 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1205676015 Label:paperstrip_hard07 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-69.455 Y=-30.338 Z=0.433), Max=(X=49.375 Y=-23.959 Z=3.404) RuntimeBounds:IsValid=true, Min=(X=-69.455 Y=-30.338 Z=0.433), Max=(X=49.375 Y=-23.959 Z=3.404) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:997F9C9D4E0D87EFF27B37AD4DA88CBA NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1230314823 Label:paperstrip_easy05 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=10.206 Y=-32.217 Z=1.304), Max=(X=39.840 Y=-8.437 Z=2.999) RuntimeBounds:IsValid=true, Min=(X=10.206 Y=-32.217 Z=1.304), Max=(X=39.840 Y=-8.437 Z=2.999) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:9D080A454197B2F8C932FA9B96D0A427 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_E00AF6773600FC6102_1891135281 Label:pen SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=25.018 Y=-166.771 Z=-20.037), Max=(X=85.121 Y=-114.824 Z=-14.637) RuntimeBounds:IsValid=true, Min=(X=25.018 Y=-166.771 Z=-20.037), Max=(X=85.121 Y=-114.824 Z=-14.637) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:true ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:A064C74F42BAF09F547135A18C51FCE8 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283583002_1262208701 Label:paperstrip03 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-108.017 Y=-89.107 Z=-7.599), Max=(X=-7.577 Y=-81.760 Z=-4.655) RuntimeBounds:IsValid=true, Min=(X=-108.017 Y=-89.107 Z=-7.599), Max=(X=-7.577 Y=-81.760 Z=-4.655) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:A46BA59044A7E86956DCB1A8EDF5572A NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1395081029 Label:paperstrip_hard21 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-59.502 Y=-46.201 Z=0.504), Max=(X=59.470 Y=-40.817 Z=3.071) RuntimeBounds:IsValid=true, Min=(X=-59.502 Y=-46.201 Z=0.504), Max=(X=59.470 Y=-40.817 Z=3.071) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:AAAC6B5742760A58C2206DB37E44683C NativeClass:/Script/Engine.DirectionalLight Name:DirectionalLight_UAID_A85E45CFE40401D200_1470382761 Label:DirectionalLight SpatiallyLoaded:false EditorBounds:IsValid=false, Min=(X=0.000 Y=0.000 Z=0.000), Max=(X=0.000 Y=0.000 Z=0.000) RuntimeBounds:IsValid=false, Min=(X=0.000 Y=0.000 Z=0.000), Max=(X=0.000 Y=0.000 Z=0.000) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:true FolderPath:Lighting FolderGuid:B7E9BD5B45A652654791988DEF54CCEB
+ |   |   |- Guid:AF970BE9497305AD576CD49363ED0B39 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1311467022 Label:paperstrip_hard14 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-69.430 Y=-103.644 Z=0.355), Max=(X=49.375 Y=-96.653 Z=3.250) RuntimeBounds:IsValid=true, Min=(X=-69.430 Y=-103.644 Z=0.355), Max=(X=49.375 Y=-96.653 Z=3.250) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:B1F2C5CD45F83BC97ECF71A637611784 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283583002_1158612698 Label:paperstrip06 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-78.192 Y=-55.758 Z=-8.210), Max=(X=22.514 Y=-49.443 Z=-5.535) RuntimeBounds:IsValid=true, Min=(X=-78.192 Y=-55.758 Z=-8.210), Max=(X=22.514 Y=-49.443 Z=-5.535) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:B312AEAD42F159C94CEF8FB9C249594C BaseClass:/Game/ShreddedPaper_minigame/Blueprints/Minigame_BP.Minigame_BP_C NativeClass:/Script/ArchiveMystery.Minigame Name:Minigame_BP_C_UAID_646EE0F0B283944D02_1223527855 Label:Minigame_BP SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-1010.000 Y=-960.000 Z=-870.000), Max=(X=1010.000 Y=1060.000 Z=1150.000) RuntimeBounds:IsValid=true, Min=(X=0.000 Y=50.000 Z=140.000), Max=(X=0.000 Y=50.000 Z=140.000) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:BB613BD54A59F0689D5A7081FCAB7B13 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1255770825 Label:paperstrip_easy07 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-79.661 Y=31.781 Z=1.558), Max=(X=-51.266 Y=57.013 Z=3.544) RuntimeBounds:IsValid=true, Min=(X=-79.661 Y=31.781 Z=1.558), Max=(X=-51.266 Y=57.013 Z=3.544) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:BC1A4C8F416512035F221CA5F2F219A2 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283583002_1292782702 Label:paperstrip02 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-27.807 Y=36.293 Z=-7.792), Max=(X=72.408 Y=43.575 Z=-4.887) RuntimeBounds:IsValid=true, Min=(X=-27.807 Y=36.293 Z=-7.792), Max=(X=72.408 Y=43.575 Z=-4.887) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:BF0AA556437A24F40421429354EBD13E NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1295763021 Label:paperstrip_hard13 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-79.519 Y=-77.269 Z=0.094), Max=(X=39.308 Y=-70.852 Z=3.063) RuntimeBounds:IsValid=true, Min=(X=-79.519 Y=-77.269 Z=0.094), Max=(X=39.308 Y=-70.852 Z=3.063) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:C47A8A5F485B402C368CA683933E2FEB NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283573002_2036877517 Label:paperstrip11 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-97.690 Y=-23.680 Z=-7.737), Max=(X=2.407 Y=-17.251 Z=-4.987) RuntimeBounds:IsValid=true, Min=(X=-97.690 Y=-23.680 Z=-7.737), Max=(X=2.407 Y=-17.251 Z=-4.987) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:C4EEE93A4B434E8FB64BABB5B1ACC48F NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1358186026 Label:paperstrip_hard18 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-65.099 Y=93.466 Z=0.585), Max=(X=53.892 Y=98.469 Z=3.286) RuntimeBounds:IsValid=true, Min=(X=-65.099 Y=93.466 Z=0.585), Max=(X=53.892 Y=98.469 Z=3.286) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:CB262BB046C45854AD6F538153DDEDE8 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1201022821 Label:paperstrip_easy03 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-19.484 Y=-72.434 Z=1.281), Max=(X=11.464 Y=-42.387 Z=2.903) RuntimeBounds:IsValid=true, Min=(X=-19.484 Y=-72.434 Z=1.281), Max=(X=11.464 Y=-42.387 Z=2.903) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:CCC79BEB4B602CA51C05139446040334 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1086059009 Label:paperstrip_hard01 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-79.549 Y=-112.563 Z=0.414), Max=(X=39.443 Y=-106.895 Z=3.067) RuntimeBounds:IsValid=true, Min=(X=-79.549 Y=-112.563 Z=0.414), Max=(X=39.443 Y=-106.895 Z=3.067) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:CCE04DE541F0D0955388238F6798E947 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283583002_1221714700 Label:paperstrip04 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-88.019 Y=-64.404 Z=-7.327), Max=(X=12.336 Y=-58.031 Z=-4.654) RuntimeBounds:IsValid=true, Min=(X=-88.019 Y=-64.404 Z=-7.327), Max=(X=12.336 Y=-58.031 Z=-4.654) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:D10A43E84E153865CA050C8EBB449633 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1152002819 Label:paperstrip_easy01 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=40.511 Y=78.324 Z=0.458), Max=(X=79.946 Y=112.103 Z=1.971) RuntimeBounds:IsValid=true, Min=(X=40.511 Y=78.324 Z=0.458), Max=(X=79.946 Y=112.103 Z=1.971) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:D3FB7383421AAEFD3DB6F8B1E415A9FE NativeClass:/Script/Engine.ExponentialHeightFog Name:ExponentialHeightFog_UAID_A85E45CFE40401D200_1470382763 Label:ExponentialHeightFog SpatiallyLoaded:false EditorBounds:IsValid=true, Min=(X=-5728.000 Y=-178.000 Z=-6978.000), Max=(X=-5472.000 Y=78.000 Z=-6722.000) RuntimeBounds:IsValid=true, Min=(X=-5600.000 Y=-50.000 Z=-6850.000), Max=(X=-5600.000 Y=-50.000 Z=-6850.000) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false FolderPath:Lighting FolderGuid:B7E9BD5B45A652654791988DEF54CCEB
+ |   |   |- Guid:DCD3D418406B3BFCA6A49582ED4C91B4 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1337540024 Label:paperstrip_hard16 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-79.516 Y=74.489 Z=-0.070), Max=(X=39.425 Y=81.185 Z=3.301) RuntimeBounds:IsValid=true, Min=(X=-79.516 Y=74.489 Z=-0.070), Max=(X=39.425 Y=81.185 Z=3.301) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:DFB340D646319C163308DDBA89403A66 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283573002_1984756516 Label:paperstrip12 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-108.506 Y=30.507 Z=-7.738), Max=(X=-7.802 Y=37.164 Z=-5.457) RuntimeBounds:IsValid=true, Min=(X=-108.506 Y=30.507 Z=-7.738), Max=(X=-7.802 Y=37.164 Z=-5.457) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:E2001F104E7999AB626672A5E84FB6FF NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1153389012 Label:paperstrip_hard04 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-59.571 Y=-21.584 Z=0.337), Max=(X=59.352 Y=-14.669 Z=3.013) RuntimeBounds:IsValid=true, Min=(X=-59.571 Y=-21.584 Z=0.337), Max=(X=59.352 Y=-14.669 Z=3.013) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:EA8E36AA4010E3EB503C14AA78D03505 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283573002_2094617518 Label:paperstrip10 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-97.002 Y=-48.000 Z=-7.502), Max=(X=3.200 Y=-41.167 Z=-4.925) RuntimeBounds:IsValid=true, Min=(X=-97.002 Y=-48.000 Z=-7.502), Max=(X=3.200 Y=-41.167 Z=-4.925) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:EBCF231847FB55870A72119C5ADB5B68 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1166372013 Label:paperstrip_hard05 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-54.136 Y=53.237 Z=0.399), Max=(X=64.727 Y=60.226 Z=3.227) RuntimeBounds:IsValid=true, Min=(X=-54.136 Y=53.237 Z=0.399), Max=(X=64.727 Y=60.226 Z=3.227) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:F3E3D1124C51690568C9209C4B5D494B NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1297529827 Label:paperstrip_easy09 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-42.388 Y=-32.556 Z=0.494), Max=(X=-5.813 Y=-3.416 Z=2.719) RuntimeBounds:IsValid=true, Min=(X=-42.388 Y=-32.556 Z=0.494), Max=(X=-5.813 Y=-3.416 Z=2.719) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- Guid:F61EE6A744CF9F39F40FC6A491155D65 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283583002_1320171703 Label:paperstrip01 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-97.103 Y=71.546 Z=-8.098), Max=(X=2.220 Y=78.889 Z=-5.170) RuntimeBounds:IsValid=true, Min=(X=-97.103 Y=71.546 Z=-8.098), Max=(X=2.220 Y=78.889 Z=-5.170) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |- [+] Clusters:
+ |   |   |- [+] [  0]
+ |   |   |   |- Guid:03920DF94EEFC9F86CC66185D32A3DA1 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_A4AE111137DC54FB00_1240666663 Label:SM_SkySphere SpatiallyLoaded:false EditorBounds:IsValid=true, Min=(X=-1638400.000 Y=-1638400.000 Z=-1638400.000), Max=(X=1638400.000 Y=1638400.000 Z=1638400.000) RuntimeBounds:IsValid=true, Min=(X=-1638400.000 Y=-1638400.000 Z=-1638400.000), Max=(X=1638400.000 Y=1638400.000 Z=1638400.000) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:true FolderPath:Lighting FolderGuid:B7E9BD5B45A652654791988DEF54CCEB
+ |   |   |- [+] [  1]
+ |   |   |   |- Guid:06642FA6486930D0BB28A9ABAB914D96 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1318702828 Label:paperstrip_easy10 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=27.439 Y=2.939 Z=0.455), Max=(X=64.505 Y=44.617 Z=2.453) RuntimeBounds:IsValid=true, Min=(X=27.439 Y=2.939 Z=0.455), Max=(X=64.505 Y=44.617 Z=2.453) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [  2]
+ |   |   |   |- Guid:07E46A1941D7069B6B7D72BBA1D7DADE NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1327170023 Label:paperstrip_hard15 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-59.398 Y=67.895 Z=0.301), Max=(X=59.596 Y=74.372 Z=3.160) RuntimeBounds:IsValid=true, Min=(X=-59.398 Y=67.895 Z=0.301), Max=(X=59.596 Y=74.372 Z=3.160) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [  3]
+ |   |   |   |- Guid:0ECB24E8417D0A0E15C45A9340966119 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1188166014 Label:paperstrip_hard06 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-79.443 Y=-124.223 Z=0.535), Max=(X=39.464 Y=-117.514 Z=3.154) RuntimeBounds:IsValid=true, Min=(X=-79.443 Y=-124.223 Z=0.535), Max=(X=39.464 Y=-117.514 Z=3.154) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [  4]
+ |   |   |   |- Guid:102EFC9344640CDFFB68D5AE639B0BF0 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283573002_1758767513 Label:paperstrip15 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-77.769 Y=13.894 Z=-8.012), Max=(X=21.836 Y=20.780 Z=-5.138) RuntimeBounds:IsValid=true, Min=(X=-77.769 Y=13.894 Z=-8.012), Max=(X=21.836 Y=20.780 Z=-5.138) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [  5]
+ |   |   |   |- Guid:18477E7540E9A20F3EDB75BE414AE285 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1372746832 Label:paperstrip_easy14 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-10.121 Y=17.000 Z=0.534), Max=(X=19.469 Y=57.800 Z=2.048) RuntimeBounds:IsValid=true, Min=(X=-10.121 Y=17.000 Z=0.534), Max=(X=19.469 Y=57.800 Z=2.048) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [  6]
+ |   |   |   |- Guid:1A7F6E61431C28FFC7CED1AD3C25D924 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1243212824 Label:paperstrip_easy06 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-91.174 Y=-42.434 Z=0.522), Max=(X=-55.817 Y=-13.117 Z=3.149) RuntimeBounds:IsValid=true, Min=(X=-91.174 Y=-42.434 Z=0.522), Max=(X=-55.817 Y=-13.117 Z=3.149) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [  7]
+ |   |   |   |- Guid:1D3D26F04B6DC10BEFB5B69E5CF914C8 NativeClass:/Script/Engine.VolumetricCloud Name:VolumetricCloud_UAID_A85E45CFE40401D200_1470381760 Label:VolumetricCloud SpatiallyLoaded:false EditorBounds:IsValid=true, Min=(X=-38.000 Y=-138.000 Z=-128.000), Max=(X=218.000 Y=118.000 Z=128.000) RuntimeBounds:IsValid=true, Min=(X=90.000 Y=-10.000 Z=0.000), Max=(X=90.000 Y=-10.000 Z=0.000) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false FolderPath:Lighting FolderGuid:B7E9BD5B45A652654791988DEF54CCEB
+ |   |   |- [+] [  8]
+ |   |   |   |- Guid:1DE8D7AC4103A2EABA11649C7FCF8ACA NativeClass:/Script/Engine.SkyLight Name:SkyLight_UAID_A85E45CFE40401D200_1470380759 Label:SkyLight SpatiallyLoaded:false EditorBounds:IsValid=true, Min=(X=-1.000 Y=-1.000 Z=-1.000), Max=(X=90.000 Y=1.000 Z=1.000) RuntimeBounds:IsValid=true, Min=(X=90.000 Y=0.000 Z=0.000), Max=(X=90.000 Y=0.000 Z=0.000) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false FolderPath:Lighting FolderGuid:B7E9BD5B45A652654791988DEF54CCEB
+ |   |   |- [+] [  9]
+ |   |   |   |- Guid:252DDE1146FDD935035D58ADF99508AD NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_E00AF6773600536102_1774455535 Label:SM_Table SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-213.734 Y=-307.641 Z=-209.973), Max=(X=213.466 Y=400.761 Z=-17.646) RuntimeBounds:IsValid=true, Min=(X=-213.734 Y=-307.641 Z=-209.973), Max=(X=213.466 Y=400.761 Z=-17.646) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:true ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 10]
+ |   |   |   |- Guid:2CE12F874AA39D020A0F4BA5739BD305 NativeClass:/Script/Engine.SkyAtmosphere Name:SkyAtmosphere_UAID_A85E45CFE40401D200_1470382762 Label:SkyAtmosphere SpatiallyLoaded:false EditorBounds:IsValid=true, Min=(X=-48.000 Y=-128.000 Z=-128.000), Max=(X=320.000 Y=128.000 Z=128.000) RuntimeBounds:IsValid=true, Min=(X=80.000 Y=0.000 Z=0.000), Max=(X=80.000 Y=0.000 Z=0.000) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false FolderPath:Lighting FolderGuid:B7E9BD5B45A652654791988DEF54CCEB
+ |   |   |- [+] [ 11]
+ |   |   |   |- Guid:2D04F3F94962ED3B2C4470968661FAF0 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283583002_1097868696 Label:paperstrip08 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-117.504 Y=-17.472 Z=-8.044), Max=(X=-16.406 Y=-10.060 Z=-5.031) RuntimeBounds:IsValid=true, Min=(X=-117.504 Y=-17.472 Z=-8.044), Max=(X=-16.406 Y=-10.060 Z=-5.031) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 12]
+ |   |   |   |- Guid:31AC1D844B2E239A1F4C5A8FB2F1BD5A NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283573002_2129975519 Label:paperstrip09 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-57.050 Y=-12.442 Z=-7.469), Max=(X=43.298 Y=-5.558 Z=-4.930) RuntimeBounds:IsValid=true, Min=(X=-57.050 Y=-12.442 Z=-7.469), Max=(X=43.298 Y=-5.558 Z=-4.930) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 13]
+ |   |   |   |- Guid:371F80B14024176E216073B90BF5E108 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1281400020 Label:paperstrip_hard12 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-62.523 Y=19.079 Z=0.094), Max=(X=56.379 Y=24.921 Z=2.990) RuntimeBounds:IsValid=true, Min=(X=-62.523 Y=19.079 Z=0.094), Max=(X=56.379 Y=24.921 Z=2.990) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 14]
+ |   |   |   |- Guid:3847B7D6449C28D34E8FEAA1A6DECAF5 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1406175030 Label:paperstrip_hard22 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-71.269 Y=101.703 Z=0.504), Max=(X=47.740 Y=106.973 Z=3.152) RuntimeBounds:IsValid=true, Min=(X=-71.269 Y=101.703 Z=0.504), Max=(X=47.740 Y=106.973 Z=3.152) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 15]
+ |   |   |   |- Guid:398882C5497777B45A31109A8096193C NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1185166820 Label:paperstrip_easy02 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-59.698 Y=-72.736 Z=1.972), Max=(X=-26.314 Y=-43.323 Z=3.555) RuntimeBounds:IsValid=true, Min=(X=-59.698 Y=-72.736 Z=1.972), Max=(X=-26.314 Y=-43.323 Z=3.555) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 16]
+ |   |   |   |- Guid:3AEEF94A4F045CC0C53AFBB7D63672D6 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B2838A4202_1203312479 Label:PaperSheet SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-53.122 Y=241.231 Z=-5.842), Max=(X=100.116 Y=352.346 Z=-0.626) RuntimeBounds:IsValid=true, Min=(X=-53.122 Y=241.231 Z=-5.842), Max=(X=100.116 Y=352.346 Z=-0.626) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |   |- Guid:B312AEAD42F159C94CEF8FB9C249594C BaseClass:/Game/ShreddedPaper_minigame/Blueprints/Minigame_BP.Minigame_BP_C NativeClass:/Script/ArchiveMystery.Minigame Name:Minigame_BP_C_UAID_646EE0F0B283944D02_1223527855 Label:Minigame_BP SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-1010.000 Y=-960.000 Z=-870.000), Max=(X=1010.000 Y=1060.000 Z=1150.000) RuntimeBounds:IsValid=true, Min=(X=0.000 Y=50.000 Z=140.000), Max=(X=0.000 Y=50.000 Z=140.000) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 17]
+ |   |   |   |- Guid:3B6EA4B84972E78C348B849D3F07B06F NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1125814010 Label:paperstrip_hard02 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-59.553 Y=30.681 Z=0.374), Max=(X=59.377 Y=36.826 Z=3.067) RuntimeBounds:IsValid=true, Min=(X=-59.553 Y=30.681 Z=0.374), Max=(X=59.377 Y=36.826 Z=3.067) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 18]
+ |   |   |   |- Guid:3F6144C24083E8D88DF58080CCFD6094 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1384338028 Label:paperstrip_hard20 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-62.507 Y=40.907 Z=0.521), Max=(X=56.286 Y=45.944 Z=3.334) RuntimeBounds:IsValid=true, Min=(X=-62.507 Y=40.907 Z=0.521), Max=(X=56.286 Y=45.944 Z=3.334) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 19]
+ |   |   |   |- Guid:40844D1F4BED0A3179DD8983BDFF41B7 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_E00AF6773600FC6102_1771267280 Label:SM_Tape_Dispenser SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=23.208 Y=125.862 Z=-20.000), Max=(X=77.867 Y=154.616 Z=2.924) RuntimeBounds:IsValid=true, Min=(X=23.208 Y=125.862 Z=-20.000), Max=(X=77.867 Y=154.616 Z=2.924) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:true ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 20]
+ |   |   |   |- Guid:41A2B45147F7141E76F02689F89B1F3A NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283573002_1947306515 Label:paperstrip13 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-88.519 Y=-35.049 Z=-7.747), Max=(X=12.188 Y=-28.403 Z=-5.459) RuntimeBounds:IsValid=true, Min=(X=-88.519 Y=-35.049 Z=-7.747), Max=(X=12.188 Y=-28.403 Z=-5.459) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 21]
+ |   |   |   |- Guid:4E6121EC4923ABB56F9175B16ACF0E54 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1217545016 Label:paperstrip_hard08 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-49.443 Y=-86.157 Z=0.433), Max=(X=69.410 Y=-80.189 Z=3.178) RuntimeBounds:IsValid=true, Min=(X=-49.443 Y=-86.157 Z=0.433), Max=(X=69.410 Y=-80.189 Z=3.178) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 22]
+ |   |   |   |- Guid:507EF8EA402F49C69A41B7A4F766C67A NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283583002_1129830697 Label:paperstrip07 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-78.069 Y=-2.054 Z=-8.209), Max=(X=23.589 Y=5.196 Z=-5.364) RuntimeBounds:IsValid=true, Min=(X=-78.069 Y=-2.054 Z=-8.209), Max=(X=23.589 Y=5.196 Z=-5.364) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 23]
+ |   |   |   |- Guid:5368FABB47D6D9580DAECA8B0417BF92 NativeClass:/Script/Engine.WorldDataLayers Name:WorldDataLayers Label:WorldDataLayers-1 SpatiallyLoaded:false EditorBounds:IsValid=false, Min=(X=0.000 Y=0.000 Z=0.000), Max=(X=0.000 Y=0.000 Z=0.000) RuntimeBounds:IsValid=false, Min=(X=0.000 Y=0.000 Z=0.000), Max=(X=0.000 Y=0.000 Z=0.000) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:true
+ |   |   |- [+] [ 24]
+ |   |   |   |- Guid:5B6FBED545AB4E18E1BCB7A2CD84B65E NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283583002_1187166699 Label:paperstrip05 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-118.186 Y=10.173 Z=-7.507), Max=(X=-17.850 Y=16.191 Z=-5.322) RuntimeBounds:IsValid=true, Min=(X=-118.186 Y=10.173 Z=-7.507), Max=(X=-17.850 Y=16.191 Z=-5.322) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 25]
+ |   |   |   |- Guid:67E186104B4EA302549B739FD7ECE485 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1373225027 Label:paperstrip_hard19 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-67.782 Y=82.771 Z=0.425), Max=(X=51.056 Y=87.411 Z=3.286) RuntimeBounds:IsValid=true, Min=(X=-67.782 Y=82.771 Z=0.425), Max=(X=51.056 Y=87.411 Z=3.286) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 26]
+ |   |   |   |- Guid:6A472CDC4D0415DD7674A29948CAC761 BaseClass:/Game/Minigame-Mold/Sound/BP_MusicManager.BP_MusicManager_C NativeClass:/Script/Engine.Actor Name:BP_MusicManager_C_UAID_E00AF6773600026202_1128370335 Label:BP_MusicManager SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=140.000 Y=230.000 Z=-20.000), Max=(X=140.000 Y=230.000 Z=-20.000) RuntimeBounds:IsValid=true, Min=(X=140.000 Y=230.000 Z=-20.000), Max=(X=140.000 Y=230.000 Z=-20.000) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 27]
+ |   |   |   |- Guid:6A60D1284326A0D8D11621AA537ABDDB NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1280286826 Label:paperstrip_easy08 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-6.250 Y=-106.560 Z=1.081), Max=(X=32.471 Y=-62.134 Z=3.461) RuntimeBounds:IsValid=true, Min=(X=-6.250 Y=-106.560 Z=1.081), Max=(X=32.471 Y=-62.134 Z=3.461) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 28]
+ |   |   |   |- Guid:6AA003774DEA9C04CF8442991C7AE386 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283573002_1636726512 Label:paperstrip16 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-57.607 Y=-42.052 Z=-8.155), Max=(X=41.268 Y=-34.326 Z=-4.667) RuntimeBounds:IsValid=true, Min=(X=-57.607 Y=-42.052 Z=-8.155), Max=(X=41.268 Y=-34.326 Z=-4.667) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 29]
+ |   |   |   |- Guid:6B3D0B274B2DB7B54C9EB4A873E041B2 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1138766011 Label:paperstrip_hard03 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-79.571 Y=-65.493 Z=0.337), Max=(X=39.360 Y=-59.223 Z=2.987) RuntimeBounds:IsValid=true, Min=(X=-79.571 Y=-65.493 Z=0.337), Max=(X=39.360 Y=-59.223 Z=2.987) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 30]
+ |   |   |   |- Guid:715473054DAB2E8E69BB05B10E6E3408 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1347557025 Label:paperstrip_hard17 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-69.508 Y=-57.217 Z=-0.070), Max=(X=49.425 Y=-50.988 Z=3.169) RuntimeBounds:IsValid=true, Min=(X=-69.508 Y=-57.217 Z=-0.070), Max=(X=49.425 Y=-50.988 Z=3.169) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 31]
+ |   |   |   |- Guid:737CB3BC4BDE497F28E4CDAE1AAE5BDD NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1217102822 Label:paperstrip_easy04 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-79.919 Y=74.490 Z=1.681), Max=(X=-49.498 Y=92.386 Z=2.893) RuntimeBounds:IsValid=true, Min=(X=-79.919 Y=74.490 Z=1.681), Max=(X=-49.498 Y=92.386 Z=2.893) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 32]
+ |   |   |   |- Guid:804431F34165F997D15E8F95BA484AD3 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283573002_1901519514 Label:paperstrip14 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-68.433 Y=-10.543 Z=-7.656), Max=(X=31.914 Y=-3.937 Z=-5.436) RuntimeBounds:IsValid=true, Min=(X=-68.433 Y=-10.543 Z=-7.656), Max=(X=31.914 Y=-3.937 Z=-5.436) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 33]
+ |   |   |   |- Guid:835967F843A02BEA1A1AEB95EE5AAF19 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1259346019 Label:paperstrip_hard11 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-69.380 Y=62.419 Z=0.378), Max=(X=49.661 Y=68.662 Z=2.933) RuntimeBounds:IsValid=true, Min=(X=-69.380 Y=62.419 Z=0.378), Max=(X=49.661 Y=68.662 Z=2.933) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 34]
+ |   |   |   |- Guid:83C0C744437CB822D99C319289EA2BC1 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1334020829 Label:paperstrip_easy11 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-45.057 Y=63.984 Z=0.153), Max=(X=-4.825 Y=102.028 Z=2.409) RuntimeBounds:IsValid=true, Min=(X=-45.057 Y=63.984 Z=0.153), Max=(X=-4.825 Y=102.028 Z=2.409) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 35]
+ |   |   |   |- Guid:8498F8DA477C925605385095F86D1D1D NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1346035830 Label:paperstrip_easy12 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-33.373 Y=34.053 Z=0.968), Max=(X=-3.434 Y=62.456 Z=2.796) RuntimeBounds:IsValid=true, Min=(X=-33.373 Y=34.053 Z=0.968), Max=(X=-3.434 Y=62.456 Z=2.796) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 36]
+ |   |   |   |- Guid:86E800844AFA9BE94FC4FBBE96932A8C NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1229270017 Label:paperstrip_hard09 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-63.949 Y=3.602 Z=-0.008), Max=(X=54.914 Y=9.675 Z=2.974) RuntimeBounds:IsValid=true, Min=(X=-63.949 Y=3.602 Z=-0.008), Max=(X=54.914 Y=9.675 Z=2.974) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 37]
+ |   |   |   |- Guid:881710FE4FE0A240BE394AAB3885B89B NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1359928831 Label:paperstrip_easy13 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=43.929 Y=-82.140 Z=0.482), Max=(X=89.779 Y=-45.208 Z=2.786) RuntimeBounds:IsValid=true, Min=(X=43.929 Y=-82.140 Z=0.482), Max=(X=89.779 Y=-45.208 Z=2.786) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 38]
+ |   |   |   |- Guid:914525764BEE3CD4862A0F912FA07015 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1248471018 Label:paperstrip_hard10 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-62.529 Y=-8.924 Z=-0.008), Max=(X=56.497 Y=-2.542 Z=2.975) RuntimeBounds:IsValid=true, Min=(X=-62.529 Y=-8.924 Z=-0.008), Max=(X=56.497 Y=-2.542 Z=2.975) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 39]
+ |   |   |   |- Guid:962D6BE34E7839A2A94E65B8F6CE5D43 NativeClass:/Script/Engine.PlayerStart Name:PlayerStart_UAID_F02F74551BF5599B01_1153002503 Label:PlayerStart SpatiallyLoaded:false EditorBounds:IsValid=true, Min=(X=-440.000 Y=-128.000 Z=-36.000), Max=(X=-72.000 Y=128.000 Z=220.000) RuntimeBounds:IsValid=true, Min=(X=-240.000 Y=-40.000 Z=0.000), Max=(X=-160.000 Y=40.000 Z=184.000) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 40]
+ |   |   |   |- Guid:971810E244FE0278F837FF82DE030319 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1205676015 Label:paperstrip_hard07 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-69.455 Y=-30.338 Z=0.433), Max=(X=49.375 Y=-23.959 Z=3.404) RuntimeBounds:IsValid=true, Min=(X=-69.455 Y=-30.338 Z=0.433), Max=(X=49.375 Y=-23.959 Z=3.404) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 41]
+ |   |   |   |- Guid:997F9C9D4E0D87EFF27B37AD4DA88CBA NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1230314823 Label:paperstrip_easy05 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=10.206 Y=-32.217 Z=1.304), Max=(X=39.840 Y=-8.437 Z=2.999) RuntimeBounds:IsValid=true, Min=(X=10.206 Y=-32.217 Z=1.304), Max=(X=39.840 Y=-8.437 Z=2.999) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 42]
+ |   |   |   |- Guid:9D080A454197B2F8C932FA9B96D0A427 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_E00AF6773600FC6102_1891135281 Label:pen SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=25.018 Y=-166.771 Z=-20.037), Max=(X=85.121 Y=-114.824 Z=-14.637) RuntimeBounds:IsValid=true, Min=(X=25.018 Y=-166.771 Z=-20.037), Max=(X=85.121 Y=-114.824 Z=-14.637) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:true ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 43]
+ |   |   |   |- Guid:A064C74F42BAF09F547135A18C51FCE8 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283583002_1262208701 Label:paperstrip03 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-108.017 Y=-89.107 Z=-7.599), Max=(X=-7.577 Y=-81.760 Z=-4.655) RuntimeBounds:IsValid=true, Min=(X=-108.017 Y=-89.107 Z=-7.599), Max=(X=-7.577 Y=-81.760 Z=-4.655) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 44]
+ |   |   |   |- Guid:A46BA59044A7E86956DCB1A8EDF5572A NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1395081029 Label:paperstrip_hard21 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-59.502 Y=-46.201 Z=0.504), Max=(X=59.470 Y=-40.817 Z=3.071) RuntimeBounds:IsValid=true, Min=(X=-59.502 Y=-46.201 Z=0.504), Max=(X=59.470 Y=-40.817 Z=3.071) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 45]
+ |   |   |   |- Guid:AAAC6B5742760A58C2206DB37E44683C NativeClass:/Script/Engine.DirectionalLight Name:DirectionalLight_UAID_A85E45CFE40401D200_1470382761 Label:DirectionalLight SpatiallyLoaded:false EditorBounds:IsValid=false, Min=(X=0.000 Y=0.000 Z=0.000), Max=(X=0.000 Y=0.000 Z=0.000) RuntimeBounds:IsValid=false, Min=(X=0.000 Y=0.000 Z=0.000), Max=(X=0.000 Y=0.000 Z=0.000) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:true FolderPath:Lighting FolderGuid:B7E9BD5B45A652654791988DEF54CCEB
+ |   |   |- [+] [ 46]
+ |   |   |   |- Guid:AF970BE9497305AD576CD49363ED0B39 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1311467022 Label:paperstrip_hard14 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-69.430 Y=-103.644 Z=0.355), Max=(X=49.375 Y=-96.653 Z=3.250) RuntimeBounds:IsValid=true, Min=(X=-69.430 Y=-103.644 Z=0.355), Max=(X=49.375 Y=-96.653 Z=3.250) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 47]
+ |   |   |   |- Guid:B1F2C5CD45F83BC97ECF71A637611784 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283583002_1158612698 Label:paperstrip06 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-78.192 Y=-55.758 Z=-8.210), Max=(X=22.514 Y=-49.443 Z=-5.535) RuntimeBounds:IsValid=true, Min=(X=-78.192 Y=-55.758 Z=-8.210), Max=(X=22.514 Y=-49.443 Z=-5.535) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 48]
+ |   |   |   |- Guid:BB613BD54A59F0689D5A7081FCAB7B13 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1255770825 Label:paperstrip_easy07 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-79.661 Y=31.781 Z=1.558), Max=(X=-51.266 Y=57.013 Z=3.544) RuntimeBounds:IsValid=true, Min=(X=-79.661 Y=31.781 Z=1.558), Max=(X=-51.266 Y=57.013 Z=3.544) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 49]
+ |   |   |   |- Guid:BC1A4C8F416512035F221CA5F2F219A2 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283583002_1292782702 Label:paperstrip02 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-27.807 Y=36.293 Z=-7.792), Max=(X=72.408 Y=43.575 Z=-4.887) RuntimeBounds:IsValid=true, Min=(X=-27.807 Y=36.293 Z=-7.792), Max=(X=72.408 Y=43.575 Z=-4.887) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 50]
+ |   |   |   |- Guid:BF0AA556437A24F40421429354EBD13E NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1295763021 Label:paperstrip_hard13 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-79.519 Y=-77.269 Z=0.094), Max=(X=39.308 Y=-70.852 Z=3.063) RuntimeBounds:IsValid=true, Min=(X=-79.519 Y=-77.269 Z=0.094), Max=(X=39.308 Y=-70.852 Z=3.063) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 51]
+ |   |   |   |- Guid:C47A8A5F485B402C368CA683933E2FEB NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283573002_2036877517 Label:paperstrip11 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-97.690 Y=-23.680 Z=-7.737), Max=(X=2.407 Y=-17.251 Z=-4.987) RuntimeBounds:IsValid=true, Min=(X=-97.690 Y=-23.680 Z=-7.737), Max=(X=2.407 Y=-17.251 Z=-4.987) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 52]
+ |   |   |   |- Guid:C4EEE93A4B434E8FB64BABB5B1ACC48F NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1358186026 Label:paperstrip_hard18 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-65.099 Y=93.466 Z=0.585), Max=(X=53.892 Y=98.469 Z=3.286) RuntimeBounds:IsValid=true, Min=(X=-65.099 Y=93.466 Z=0.585), Max=(X=53.892 Y=98.469 Z=3.286) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 53]
+ |   |   |   |- Guid:CB262BB046C45854AD6F538153DDEDE8 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1201022821 Label:paperstrip_easy03 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-19.484 Y=-72.434 Z=1.281), Max=(X=11.464 Y=-42.387 Z=2.903) RuntimeBounds:IsValid=true, Min=(X=-19.484 Y=-72.434 Z=1.281), Max=(X=11.464 Y=-42.387 Z=2.903) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 54]
+ |   |   |   |- Guid:CCC79BEB4B602CA51C05139446040334 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1086059009 Label:paperstrip_hard01 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-79.549 Y=-112.563 Z=0.414), Max=(X=39.443 Y=-106.895 Z=3.067) RuntimeBounds:IsValid=true, Min=(X=-79.549 Y=-112.563 Z=0.414), Max=(X=39.443 Y=-106.895 Z=3.067) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 55]
+ |   |   |   |- Guid:CCE04DE541F0D0955388238F6798E947 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283583002_1221714700 Label:paperstrip04 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-88.019 Y=-64.404 Z=-7.327), Max=(X=12.336 Y=-58.031 Z=-4.654) RuntimeBounds:IsValid=true, Min=(X=-88.019 Y=-64.404 Z=-7.327), Max=(X=12.336 Y=-58.031 Z=-4.654) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 56]
+ |   |   |   |- Guid:D10A43E84E153865CA050C8EBB449633 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1152002819 Label:paperstrip_easy01 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=40.511 Y=78.324 Z=0.458), Max=(X=79.946 Y=112.103 Z=1.971) RuntimeBounds:IsValid=true, Min=(X=40.511 Y=78.324 Z=0.458), Max=(X=79.946 Y=112.103 Z=1.971) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 57]
+ |   |   |   |- Guid:D3FB7383421AAEFD3DB6F8B1E415A9FE NativeClass:/Script/Engine.ExponentialHeightFog Name:ExponentialHeightFog_UAID_A85E45CFE40401D200_1470382763 Label:ExponentialHeightFog SpatiallyLoaded:false EditorBounds:IsValid=true, Min=(X=-5728.000 Y=-178.000 Z=-6978.000), Max=(X=-5472.000 Y=78.000 Z=-6722.000) RuntimeBounds:IsValid=true, Min=(X=-5600.000 Y=-50.000 Z=-6850.000), Max=(X=-5600.000 Y=-50.000 Z=-6850.000) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false FolderPath:Lighting FolderGuid:B7E9BD5B45A652654791988DEF54CCEB
+ |   |   |- [+] [ 58]
+ |   |   |   |- Guid:DCD3D418406B3BFCA6A49582ED4C91B4 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1337540024 Label:paperstrip_hard16 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-79.516 Y=74.489 Z=-0.070), Max=(X=39.425 Y=81.185 Z=3.301) RuntimeBounds:IsValid=true, Min=(X=-79.516 Y=74.489 Z=-0.070), Max=(X=39.425 Y=81.185 Z=3.301) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 59]
+ |   |   |   |- Guid:DFB340D646319C163308DDBA89403A66 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283573002_1984756516 Label:paperstrip12 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-108.506 Y=30.507 Z=-7.738), Max=(X=-7.802 Y=37.164 Z=-5.457) RuntimeBounds:IsValid=true, Min=(X=-108.506 Y=30.507 Z=-7.738), Max=(X=-7.802 Y=37.164 Z=-5.457) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 60]
+ |   |   |   |- Guid:E2001F104E7999AB626672A5E84FB6FF NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1153389012 Label:paperstrip_hard04 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-59.571 Y=-21.584 Z=0.337), Max=(X=59.352 Y=-14.669 Z=3.013) RuntimeBounds:IsValid=true, Min=(X=-59.571 Y=-21.584 Z=0.337), Max=(X=59.352 Y=-14.669 Z=3.013) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 61]
+ |   |   |   |- Guid:EA8E36AA4010E3EB503C14AA78D03505 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283573002_2094617518 Label:paperstrip10 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-97.002 Y=-48.000 Z=-7.502), Max=(X=3.200 Y=-41.167 Z=-4.925) RuntimeBounds:IsValid=true, Min=(X=-97.002 Y=-48.000 Z=-7.502), Max=(X=3.200 Y=-41.167 Z=-4.925) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 62]
+ |   |   |   |- Guid:EBCF231847FB55870A72119C5ADB5B68 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C38002_1166372013 Label:paperstrip_hard05 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-54.136 Y=53.237 Z=0.399), Max=(X=64.727 Y=60.226 Z=3.227) RuntimeBounds:IsValid=true, Min=(X=-54.136 Y=53.237 Z=0.399), Max=(X=64.727 Y=60.226 Z=3.227) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 63]
+ |   |   |   |- Guid:F3E3D1124C51690568C9209C4B5D494B NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283C28002_1297529827 Label:paperstrip_easy09 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-42.388 Y=-32.556 Z=0.494), Max=(X=-5.813 Y=-3.416 Z=2.719) RuntimeBounds:IsValid=true, Min=(X=-42.388 Y=-32.556 Z=0.494), Max=(X=-5.813 Y=-3.416 Z=2.719) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |   |   |- [+] [ 64]
+ |   |   |   |- Guid:F61EE6A744CF9F39F40FC6A491155D65 NativeClass:/Script/Engine.StaticMeshActor Name:StaticMeshActor_UAID_646EE0F0B283583002_1320171703 Label:paperstrip01 SpatiallyLoaded:true EditorBounds:IsValid=true, Min=(X=-97.103 Y=71.546 Z=-8.098), Max=(X=2.220 Y=78.889 Z=-5.170) RuntimeBounds:IsValid=true, Min=(X=-97.103 Y=71.546 Z=-8.098), Max=(X=2.220 Y=78.889 Z=-5.170) RuntimeGrid:None EditorOnly:false RuntimeOnly:false HLODRelevant:false ListedInSceneOutliner:true IsMainWorldOnly:false
+ |- ContainerInstances:
+ |- [+] MainContainer:
+ |   |-        ID: 00000000000000000000000000000000
+ |   |-  ParentID: 00000000000000000000000000000000
+ |   |-    Bounds: IsValid=true, Min=(X=-213.734 Y=-307.641 Z=-209.973), Max=(X=213.466 Y=400.761 Z=140.000)
+ |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |   |- Container: /Game/ShreddedPaper_minigame/Minigame
+----------------------------------------------------------------------------------------------------------------
+Minigame - Persistent Level
+----------------------------------------------------------------------------------------------------------------
+[+] Content of Minigame Persistent Level
+ |- Always loaded Actor Count: 8 
+ |- Actor Path: /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.DirectionalLight_UAID_A85E45CFE40401D200_1470382761
+ |- Actor Package: /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame_InstanceOf_/Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/0/BQ/ZMIX7K1MGAB444CZGUG1YA
+ |- Actor Path: /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.ExponentialHeightFog_UAID_A85E45CFE40401D200_1470382763
+ |- Actor Package: /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame_InstanceOf_/Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/E/R7/RPK3F0T06MSEI2JDO2CPU7
+ |- Actor Path: /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.PlayerStart_UAID_F02F74551BF5599B01_1153002503
+ |- Actor Package: /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame_InstanceOf_/Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/C/74/P9EDGUEB3DK0FKOI0SD2VN
+ |- Actor Path: /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.SkyAtmosphere_UAID_A85E45CFE40401D200_1470382762
+ |- Actor Package: /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame_InstanceOf_/Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/7/S5/OTIM60Q1CF9XKH0P0S9AML
+ |- Actor Path: /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.SkyLight_UAID_A85E45CFE40401D200_1470380759
+ |- Actor Package: /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame_InstanceOf_/Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/8/TB/S9KHV4JWPK2JV7B44BTNYL
+ |- Actor Path: /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_A4AE111137DC54FB00_1240666663
+ |- Actor Package: /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame_InstanceOf_/Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/5/V7/AAYS2ZL7MX0FE0Y088JX7W
+ |- Actor Path: /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.VolumetricCloud_UAID_A85E45CFE40401D200_1470381760
+ |- Actor Package: /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame_InstanceOf_/Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/A/5E/SZKRFOVTO857Y0GATRX2SP
+ |- Actor Path: /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.WorldDataLayers
+ |- Actor Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/8/UR/CXC4DNJ8RPKCTO7O6DE7H2
+
+----------------------------------------------------------------------------------------------------------------
+Minigame - Runtime Hash Set
+----------------------------------------------------------------------------------------------------------------
+[+] Content of Cell Minigame_MainGrid_L0_X0_Y-1_Z-1 (0O3525OU5SSQLJD3WYJ02ZNLQ)
+ |- Actor Count: 1
+ |- Content Bounds: IsValid=true, Min=(X=25.018 Y=-166.771 Z=-20.037), Max=(X=85.121 Y=-114.824 Z=-14.637)
+ |- Cell Bounds: IsValid=true, Min=(X=0.000 Y=-25200.000 Z=-25200.000), Max=(X=25200.000 Y=0.000 Z=0.000)
+ |- Is 2D: False
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_E00AF6773600FC6102_1891135281
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/F/3H/PEZ559RGB6P5HABQZIHN6V
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 9D080A454197B2F8C932FA9B96D0A427
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+[+] Content of Cell Minigame_MainGrid_L0_X-1_Y-1_Z0 (67IVUVRCK4HRYLFP5JNTNGX9X)
+ |- Actor Count: 14
+ |- Content Bounds: IsValid=true, Min=(X=-91.174 Y=-124.223 Z=0.000), Max=(X=0.000 Y=-2.542 Z=3.555)
+ |- Cell Bounds: IsValid=true, Min=(X=-25200.000 Y=-25200.000 Z=0.000), Max=(X=0.000 Y=0.000 Z=25200.000)
+ |- Is 2D: False
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1188166014
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/7/X2/R200PEHTNQ4GX3BDP5EF81
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 0ECB24E8417D0A0E15C45A9340966119
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C28002_1243212824
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/B/32/BUZI8Y6E620LW5O3NBQ2HL
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 1A7F6E61431C28FFC7CED1AD3C25D924
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C28002_1185166820
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/A/XP/RCO2DW4R0U2RCTJY4WSP09
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 398882C5497777B45A31109A8096193C
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1138766011
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/0/W3/V8WB33UK12855DOHKADW9J
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 6B3D0B274B2DB7B54C9EB4A873E041B2
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1347557025
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/4/ZA/P1UIBDU07QNHH7FPUZ7KEK
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 715473054DAB2E8E69BB05B10E6E3408
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1248471018
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/B/DB/V7VTA1QUZBY4W56K6XYB0D
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 914525764BEE3CD4862A0F912FA07015
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1205676015
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/D/Y5/GMR0LRXIJFQD8PRAZE8B3N
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 971810E244FE0278F837FF82DE030319
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1395081029
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/B/VQ/LV9S6Q9QP03LLEUTKXGFRM
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: A46BA59044A7E86956DCB1A8EDF5572A
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1311467022
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/2/LQ/5Y14ZCSW6GYVVPG9B6C759
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: AF970BE9497305AD576CD49363ED0B39
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1295763021
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/1/OU/RBPKVENJ55DVP05I2J4Z5A
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: BF0AA556437A24F40421429354EBD13E
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C28002_1201022821
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/A/SP/81C3D3ER6C499WWRH8AAVU
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: CB262BB046C45854AD6F538153DDEDE8
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1086059009
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/F/4T/IHBCKA2MVSRB0LCP30ZUS4
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: CCC79BEB4B602CA51C05139446040334
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1153389012
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/1/NP/211T5C59WNDD24OID55050
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: E2001F104E7999AB626672A5E84FB6FF
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C28002_1297529827
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/8/PS/T10I09GPUC2ZLXMBQQ9TBP
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: F3E3D1124C51690568C9209C4B5D494B
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+[+] Content of Cell Minigame_MainGrid_L0_X-1_Y0_Z-1 (6ZTQTM9T2CAGXGO38K3SZCC37)
+ |- Actor Count: 6
+ |- Content Bounds: IsValid=true, Min=(X=-213.734 Y=0.000 Z=-209.973), Max=(X=0.000 Y=400.761 Z=-5.138)
+ |- Cell Bounds: IsValid=true, Min=(X=-25200.000 Y=0.000 Z=-25200.000), Max=(X=0.000 Y=25200.000 Z=0.000)
+ |- Is 2D: False
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283573002_1758767513
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/4/HV/H5QAFK8PR5IE0GKEX3GXLY
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 102EFC9344640CDFFB68D5AE639B0BF0
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_E00AF6773600536102_1774455535
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/0/RS/LUGO6F7PS5LX41WW12WTYB
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 252DDE1146FDD935035D58ADF99508AD
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283583002_1129830697
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/5/5T/WJEEG6APVZC6Z4JH3R20A4
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 507EF8EA402F49C69A41B7A4F766C67A
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283583002_1187166699
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/B/IK/6ZSJMZ1ATO7H25I45SNUPQ
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 5B6FBED545AB4E18E1BCB7A2CD84B65E
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283573002_1984756516
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/2/G7/SBCX9QNHSM2H0H2T1FPQJ1
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: DFB340D646319C163308DDBA89403A66
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283583002_1320171703
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/D/DD/3NPF07544137XGH1G2Z70Y
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: F61EE6A744CF9F39F40FC6A491155D65
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+[+] Content of Cell Minigame_MainGrid_L0_X0_Y0_Z-1 (7XMNI0WV4JL89TYRRJN3WCWU5)
+ |- Actor Count: 3
+ |- Content Bounds: IsValid=true, Min=(X=0.000 Y=36.293 Z=-20.000), Max=(X=140.000 Y=230.000 Z=0.000)
+ |- Cell Bounds: IsValid=true, Min=(X=0.000 Y=0.000 Z=-25200.000), Max=(X=25200.000 Y=25200.000 Z=0.000)
+ |- Is 2D: False
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_E00AF6773600FC6102_1771267280
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/9/HB/IIB5ZNS5TNV4IF3PEH8KN3
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 40844D1F4BED0A3179DD8983BDFF41B7
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.BP_MusicManager_C_UAID_E00AF6773600026202_1128370335
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/E/N3/2LWSHM64L3EGKYSQ2GIC4Y
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 6A472CDC4D0415DD7674A29948CAC761
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283583002_1292782702
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/D/92/4C1J7GRXGXHE9TXBOBKYF7
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: BC1A4C8F416512035F221CA5F2F219A2
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+[+] Content of Cell Minigame_MainGrid_L0_X-1_Y0_Z0 (99QOLTZPPH0V1ZZ4FX15LPSEF)
+ |- Actor Count: 13
+ |- Content Bounds: IsValid=true, Min=(X=-79.919 Y=3.602 Z=0.000), Max=(X=0.000 Y=106.973 Z=3.544)
+ |- Cell Bounds: IsValid=true, Min=(X=-25200.000 Y=0.000 Z=0.000), Max=(X=0.000 Y=25200.000 Z=25200.000)
+ |- Is 2D: False
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1281400020
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/0/25/5Y7ZS2XDL59X6V9SGPJIYU
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 371F80B14024176E216073B90BF5E108
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1406175030
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/D/46/2BA757LG8QMOBCSLF7BJFJ
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 3847B7D6449C28D34E8FEAA1A6DECAF5
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1125814010
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/B/0C/0R2CTNCNR9UFV75B9I8XFN
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 3B6EA4B84972E78C348B849D3F07B06F
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1384338028
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/3/YT/9Q77PHIH31FAV2WHJ93T76
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 3F6144C24083E8D88DF58080CCFD6094
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1373225027
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/E/JX/ZJGHP8R654R43ORDT7ROUL
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 67E186104B4EA302549B739FD7ECE485
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C28002_1217102822
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/8/2J/7M70TWAGJ62JLVEXVFEDG3
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 737CB3BC4BDE497F28E4CDAE1AAE5BDD
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1259346019
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/5/QQ/D8JNQR09J9410QME271LU9
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 835967F843A02BEA1A1AEB95EE5AAF19
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C28002_1334020829
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/8/4V/KPKM84AVDTD72C0W23W8D8
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 83C0C744437CB822D99C319289EA2BC1
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C28002_1346035830
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/9/DC/XEU52T6I6EPVQEOII0WYEA
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 8498F8DA477C925605385095F86D1D1D
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1229270017
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/4/I8/27V1YSSYCRIN000KT0Q01Z
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 86E800844AFA9BE94FC4FBBE96932A8C
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C28002_1255770825
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/C/5C/24DLWHGEGGJJJC4CWRW7DD
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: BB613BD54A59F0689D5A7081FCAB7B13
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1358186026
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/4/3M/D636WWO8C6E0OE8KYEUCTV
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: C4EEE93A4B434E8FB64BABB5B1ACC48F
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1337540024
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/0/LS/WL5HOQ9A46RN6XDQK0K4SH
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: DCD3D418406B3BFCA6A49582ED4C91B4
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+[+] Content of Cell Minigame_MainGrid_L0_X0_Y-1_Z0 (AKW8B6T74CVILU1WG19TLP7MV)
+ |- Actor Count: 4
+ |- Content Bounds: IsValid=true, Min=(X=0.000 Y=-106.560 Z=0.433), Max=(X=89.779 Y=-8.437 Z=3.461)
+ |- Cell Bounds: IsValid=true, Min=(X=0.000 Y=-25200.000 Z=0.000), Max=(X=25200.000 Y=0.000 Z=25200.000)
+ |- Is 2D: False
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1217545016
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/0/1K/CL1O9P5AKIL1LCEZ2EBQZ4
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 4E6121EC4923ABB56F9175B16ACF0E54
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C28002_1280286826
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/5/Y5/ONLRB7YVLME3CD4CTWX2OK
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 6A60D1284326A0D8D11621AA537ABDDB
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C28002_1359928831
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/5/DX/AJP0SUBU004VPRRO7IW1FA
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 881710FE4FE0A240BE394AAB3885B89B
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C28002_1230314823
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/B/3B/W3DALD0N64G51AVAZU0Q2C
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 997F9C9D4E0D87EFF27B37AD4DA88CBA
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+[+] Content of Cell Minigame_MainGrid_L0_X-1_Y-1_Z-1 (BZVMUK8WP75HBLPV1EG4JB4XE)
+ |- Actor Count: 10
+ |- Content Bounds: IsValid=true, Min=(X=-117.504 Y=-89.107 Z=-8.210), Max=(X=0.000 Y=-3.937 Z=-4.654)
+ |- Cell Bounds: IsValid=true, Min=(X=-25200.000 Y=-25200.000 Z=-25200.000), Max=(X=0.000 Y=0.000 Z=0.000)
+ |- Is 2D: False
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283583002_1097868696
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/C/9U/JQ865YA9IJHCWX0903DNMM
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 2D04F3F94962ED3B2C4470968661FAF0
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283573002_2129975519
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/3/82/7IPHWH3U57DJVRXWWJNQGB
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 31AC1D844B2E239A1F4C5A8FB2F1BD5A
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283573002_1947306515
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/4/EB/2AUUG4XVSI34ID2O1QCIY2
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 41A2B45147F7141E76F02689F89B1F3A
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283573002_1636726512
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/0/47/198K54CGAE9J4LO52UZ4X8
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 6AA003774DEA9C04CF8442991C7AE386
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283573002_1901519514
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/D/ZH/DBV8QZSQRCW1TS91Y4NTBU
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 804431F34165F997D15E8F95BA484AD3
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283583002_1262208701
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/C/VW/PQM750YX7RZL2ZCGTM6GJA
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: A064C74F42BAF09F547135A18C51FCE8
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283583002_1158612698
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/B/35/WW8XECU1NQ72QK93AR0S0N
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: B1F2C5CD45F83BC97ECF71A637611784
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283573002_2036877517
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/9/IR/DI8UCUXH6KVG6H7LXN61KQ
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: C47A8A5F485B402C368CA683933E2FEB
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283583002_1221714700
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/9/7O/MN6IV7TALEG7X4PXBUIUQ0
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: CCE04DE541F0D0955388238F6798E947
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283573002_2094617518
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/4/LB/Q5S3AP3NYR8Z4UOHJTQ6WM
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: EA8E36AA4010E3EB503C14AA78D03505
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+[+] Content of Cell Minigame_MainGrid_L0_X0_Y0_Z0 (ELNOCATKT3ZV9A50TTARZ7V8G)
+ |- Actor Count: 7
+ |- Content Bounds: IsValid=true, Min=(X=0.000 Y=2.939 Z=0.000), Max=(X=100.116 Y=352.346 Z=140.000)
+ |- Cell Bounds: IsValid=true, Min=(X=0.000 Y=0.000 Z=0.000), Max=(X=25200.000 Y=25200.000 Z=25200.000)
+ |- Is 2D: False
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C28002_1318702828
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/D/RD/JZYRFRK7J46BYJ5QLOCCCF
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 06642FA6486930D0BB28A9ABAB914D96
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1327170023
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/A/SZ/M91SS5ZBWFN2JULTORCO1Z
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 07E46A1941D7069B6B7D72BBA1D7DADE
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C28002_1372746832
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/9/L3/NW8V4TWXSTERKTC3U1XYUG
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 18477E7540E9A20F3EDB75BE414AE285
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B2838A4202_1203312479
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/D/PK/ADTT0FJEZX7064TTHKUMR5
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: 3AEEF94A4F045CC0C53AFBB7D63672D6
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.Minigame_BP_C_UAID_646EE0F0B283944D02_1223527855
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/4/7U/KDZCNV78A788PBHALNN304
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: B312AEAD42F159C94CEF8FB9C249594C
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C28002_1152002819
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/9/9M/LQZ7RLO2QLCUJAOSDKP8PJ
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: D10A43E84E153865CA050C8EBB449633
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |- [+] /Game/ShreddedPaper_minigame/UEDPIE_0_Minigame.Minigame:PersistentLevel.StaticMeshActor_UAID_646EE0F0B283C38002_1166372013
+ |   |-         Package: /Game/__ExternalActors__/ShreddedPaper_minigame/Minigame/A/FT/2OOSOD2BAIQN1U40V3I0W9
+ |   |-     Editor Only: 0
+ |   |-   Instance Guid: EBCF231847FB55870A72119C5ADB5B68
+ |   |- [+] Container:
+ |   |   |-        ID: 00000000000000000000000000000000
+ |   |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+

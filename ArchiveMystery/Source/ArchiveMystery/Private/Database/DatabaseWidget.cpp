@@ -34,19 +34,17 @@ void UDatabaseWidget::NativeConstruct()
 
 		if (bIsEnglish)
 		{
-			SelectComboBox->AddOption(TEXT("name, content"));
-
-			SelectComboBox->AddOption(TEXT("doc_name, doc_content")); //Wrong answer
-			SelectComboBox->AddOption(TEXT("title, description")); //Wrong answer
-			SelectComboBox->AddOption(TEXT("id, description")); //Wrong answer
+			SelectComboBox->AddOption(TEXT("name, content")); //Correct 
+			SelectComboBox->AddOption(TEXT("price, quantity"));
+			SelectComboBox->AddOption(TEXT("user_id, personal_identity_number")); 
+			SelectComboBox->AddOption(TEXT("latitude, longitude"));
 		}
 		else
 		{
-			SelectComboBox->AddOption(TEXT("navn, innhold"));
-
-			SelectComboBox->AddOption(TEXT("dok_navn, dok_innhold")); //Wrong answer
-			SelectComboBox->AddOption(TEXT("tittel, beskrivelse")); //Wrong answer
-			SelectComboBox->AddOption(TEXT("id, beskrivelse")); //Wrong answer
+			SelectComboBox->AddOption(TEXT("navn, innhold")); //Correct 
+			SelectComboBox->AddOption(TEXT("pris, antall"));
+			SelectComboBox->AddOption(TEXT("person_id, personnummer")); 
+			SelectComboBox->AddOption(TEXT("startdato, sluttdato"));
 
 		}
 
@@ -60,19 +58,17 @@ void UDatabaseWidget::NativeConstruct()
 
 		if (bIsEnglish)
 		{
-			FromComboBox->AddOption(TEXT("documents"));
-
-			FromComboBox->AddOption(TEXT("archive")); //Wrong answer      
-			FromComboBox->AddOption(TEXT("files")); //Wrong answer           
-			FromComboBox->AddOption(TEXT("doc")); //Wrong answer
+			FromComboBox->AddOption(TEXT("employees"));
+			FromComboBox->AddOption(TEXT("documents")); //Correct 
+			FromComboBox->AddOption(TEXT("sensors"));         
+			FromComboBox->AddOption(TEXT("transactions"));
 		}
 		else
 		{
-			FromComboBox->AddOption(TEXT("dokumenter"));
-
-			FromComboBox->AddOption(TEXT("arkiv")); //Wrong answer             
-			FromComboBox->AddOption(TEXT("filer")); //Wrong answer            
-			FromComboBox->AddOption(TEXT("dok")); //Wrong answer
+			FromComboBox->AddOption(TEXT("ansatte"));
+			FromComboBox->AddOption(TEXT("dokumenter")); //Correct 
+			FromComboBox->AddOption(TEXT("sensorer"));           
+			FromComboBox->AddOption(TEXT("transaksjoner"));
 		}
 
 		FromComboBox->SetSelectedIndex(0);
@@ -85,17 +81,17 @@ void UDatabaseWidget::NativeConstruct()
 
 		if (bIsEnglish)
 		{
-			WhereComboBox->AddOption(TEXT("documentname"));
-			WhereComboBox->AddOption(TEXT("document_id"));      // annen kolonne
-			WhereComboBox->AddOption(TEXT("title"));            // feil felt
-			WhereComboBox->AddOption(TEXT("name"));             // for generelt
+			WhereComboBox->AddOption(TEXT("gps_latitude"));
+			WhereComboBox->AddOption(TEXT("birthdate"));
+			WhereComboBox->AddOption(TEXT("documentname")); //Correct 
+			WhereComboBox->AddOption(TEXT("personal_identity_number"));
 		}
 		else
 		{
-			WhereComboBox->AddOption(TEXT("dokumentnavn"));
-			WhereComboBox->AddOption(TEXT("dokument_id"));      // annen kolonne
-			WhereComboBox->AddOption(TEXT("tittel"));           // feil kolonne
-			WhereComboBox->AddOption(TEXT("navn"));             // for generelt
+			WhereComboBox->AddOption(TEXT("gps_breddegrad"));    
+			WhereComboBox->AddOption(TEXT("bursdag"));
+			WhereComboBox->AddOption(TEXT("dokumentnavn")); //Correct 
+			WhereComboBox->AddOption(TEXT("personnummer"));
 		}
 
 		WhereComboBox->SetSelectedIndex(0);
@@ -109,16 +105,16 @@ void UDatabaseWidget::NativeConstruct()
 		if (bIsEnglish)
 		{
 			LikeComboBox->AddOption(TEXT("%building specifications%"));
-			LikeComboBox->AddOption(TEXT("%blueprints%"));                 // feil innhold
-			LikeComboBox->AddOption(TEXT("%structure%"));                  // annet tema
-			LikeComboBox->AddOption(TEXT("building specifications"));      // mangler %
+			LikeComboBox->AddOption(TEXT("%tax returns%"));
+			LikeComboBox->AddOption(TEXT("%structure%"));                  
+			LikeComboBox->AddOption(TEXT("%employee%"));
 		}
 		else
 		{
 			LikeComboBox->AddOption(TEXT("%bygning spesifikasjoner%"));
-			LikeComboBox->AddOption(TEXT("%blåkopi%"));                    // feil dokumenttype
-			LikeComboBox->AddOption(TEXT("%struktur%"));                   // annet tema
-			LikeComboBox->AddOption(TEXT("bygning spesifikasjoner"));      // mangler %
+			LikeComboBox->AddOption(TEXT("%selvangivelse%"));
+			LikeComboBox->AddOption(TEXT("%struktur%"));                   
+			LikeComboBox->AddOption(TEXT("%ansatt%"));
 		}
 
 		LikeComboBox->SetSelectedIndex(0);
@@ -131,17 +127,17 @@ void UDatabaseWidget::NativeConstruct()
 
 		if (bIsEnglish)
 		{
-			AndComboBox->AddOption(TEXT("Company= Treplanken AS"));
-			AndComboBox->AddOption(TEXT("Company= Treewood AS"));          // feil firmanavn
-			AndComboBox->AddOption(TEXT("firm= Treplanken AS"));          // feil kolonnenavn
-			AndComboBox->AddOption(TEXT("company_name= Treplanken AS"));  // ikke riktig felt
+			AndComboBox->AddOption(TEXT("Company= Grantreet AS"));          
+			AndComboBox->AddOption(TEXT("Firm= Epletreet AS"));          
+			AndComboBox->AddOption(TEXT("Company= Husplanken AS"));
+			AndComboBox->AddOption(TEXT("Company= Treplanken AS")); //Correct 
 		}
 		else
 		{
-			AndComboBox->AddOption(TEXT("Bedrift= Treplanken AS"));
-			AndComboBox->AddOption(TEXT("Bedrift= TreTømmer AS"));         // feil firmanavn
-			AndComboBox->AddOption(TEXT("firma= Treplanken AS"));          // feil kolonnenavn
-			AndComboBox->AddOption(TEXT("bedriftsnavn= Treplanken AS"));   // ikke riktig felt
+			AndComboBox->AddOption(TEXT("Bedrift= Grantreet AS"));         
+			AndComboBox->AddOption(TEXT("Firma= Epletreet AS"));       
+			AndComboBox->AddOption(TEXT("Bedrift= Husplanken AS"));
+			AndComboBox->AddOption(TEXT("Bedrift= Treplanken AS")); //Correct 
 		}
 
 		AndComboBox->SetSelectedIndex(0);

@@ -493,7 +493,7 @@ void AMinigame::OnAllPiecesSnapped()
             if (ActorItr->ActorHasTag(*Tag))
             {
                 ActorItr->Destroy();
-                break; // Viktig for ytelse
+                break; 
             }
         }
     }
@@ -532,14 +532,12 @@ void AMinigame::OnAllPiecesSnapped()
         {
             ExitWidgetInstance->AddToViewport();
 
-            // Finn knappen i Exit-widgeten og bind
             if (UButton* ExitBtn = Cast<UButton>(ExitWidgetInstance->GetWidgetFromName(TEXT("ExitButton"))))
             {
                 ExitBtn->OnClicked.AddUniqueDynamic(this, &AMinigame::OnExitButtonClicked);
             }
             else if (UButton* ExitAlt = Cast<UButton>(ExitWidgetInstance->GetWidgetFromName(TEXT("ExitWidget"))))
             {
-                // hvis knappen faktisk heter "ExitWidget"
                 ExitAlt->OnClicked.AddUniqueDynamic(this, &AMinigame::OnExitButtonClicked);
             }
         }
@@ -547,12 +545,11 @@ void AMinigame::OnAllPiecesSnapped()
 
     if (SelectedDifficulty == "Hard")
     {
-        // RemainingSeconds is the time left (your countdown variable)
+        // RemainingSeconds is the time left
         if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
         {
             GI->bLastShreddedWasHard = true;
 
-            // append, sort (desc), and trim to top 5
             GI->ShreddedScoreHistory.Add(RemainingSeconds);
             GI->ShreddedScoreHistory.Sort([](int32 A, int32 B) { return A > B; });
             if (GI->ShreddedScoreHistory.Num() > 5)
@@ -684,21 +681,18 @@ void AMinigame::OnEasySelected()
     if (auto GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
         GI->bLastShreddedWasHard = false;
 
-    // Close diff widget
     if (DifficultyWidgetInstance)
     {
         DifficultyWidgetInstance->RemoveFromParent();
         DifficultyWidgetInstance = nullptr;
     }
 
-    // Configure
     ExpectedPieceCount = 14;
     SnapThreshold = 4.0f;
 
     ActivatePaperSetForDifficulty();
     SetupSnappingRules();
 
-    // Start the actual minigame UI flow
     StartGame();
 }
 
@@ -738,7 +732,6 @@ void AMinigame::OnHardSelected()
     ExpectedPieceCount = 22;
     SnapThreshold = 3.0f;
 
-    // Start timer UI + countdown
     StartHardModeTimerUI();
     GetWorldTimerManager().SetTimer(HardModeTimerHandle, this, &AMinigame::OnHardModeTimeUp, HardModeTimeLimit, false);
 
@@ -815,7 +808,7 @@ void AMinigame::ActivatePaperSetForDifficulty()
         }
     }
 
-    ActivePaperTags = PaperTags; // Lagre aktive tags til bruk ved Win
+    ActivePaperTags = PaperTags; 
 
 }
 
@@ -912,24 +905,20 @@ void AMinigame::OnHardModeTimeUp()
 
     UE_LOG(LogTemp, Warning, TEXT("Time is up - showing Try Again"));
 
-    // Remove timer UI if present
     if (TimerWidgetInstance)
     {
         TimerWidgetInstance->RemoveFromParent();
         TimerWidgetInstance = nullptr;
     }
 
-    // Stop both timers
     GetWorldTimerManager().ClearTimer(HardModeTimerHandle);
     GetWorldTimerManager().ClearTimer(CountdownUpdateTimer);
 
-    // Hide all paper strips so the board is “clean”
     HideAllPaperStrips();
 
     // Show the Try Again widget (WBP_ShreddedTryAgain)
     if (TryAgainWidgetClass)
     {
-        // Clear any existing instance (safety)
         if (IsValid(TryAgainWidgetInstance))
         {
             TryAgainWidgetInstance->RemoveFromParent();
@@ -941,14 +930,12 @@ void AMinigame::OnHardModeTimeUp()
         {
             TryAgainWidgetInstance->AddToViewport();
 
-            // Expect the button to be named "TryAgainButton" in the widget
             if (UButton* TryAgainBtn = Cast<UButton>(TryAgainWidgetInstance->GetWidgetFromName(TEXT("TryAgainButton"))))
             {
                 TryAgainBtn->OnClicked.RemoveAll(this);
                 TryAgainBtn->OnClicked.AddDynamic(this, &AMinigame::OnTryAgainClicked);
             }
 
-            // Give UI focus to the Try Again widget
             if (APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0))
             {
                 PC->bShowMouseCursor = true;
@@ -961,7 +948,6 @@ void AMinigame::OnHardModeTimeUp()
     }
     else
     {
-        // Fallback if class not set: just send the player to the tutorial
         ShowTutorial();
     }
 }
@@ -987,7 +973,7 @@ void AMinigame::EndPlay(const EEndPlayReason::Type EndPlayReason)
     FTimerManager& TM = GetWorldTimerManager();
     TM.ClearTimer(CutsceneTimerHandle);
     TM.ClearTimer(WhiteoutTimerHandle);
-    TM.ClearTimer(WhiteoutEarlyTimerHandle); // <-- NY: sørg for at early-whiteout ikke lever videre
+    TM.ClearTimer(WhiteoutEarlyTimerHandle);
 
     // Widgets
     if (IsValid(ExitWidgetInstance)) { ExitWidgetInstance->RemoveFromParent();     ExitWidgetInstance = nullptr; }
@@ -1001,14 +987,13 @@ void AMinigame::StartHardModeTimerUI()
 {
     if (!TimerWidgetClass || !GetWorld()) return;
 
-    // Lag widgeten og legg til på skjermen
     TimerWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), TimerWidgetClass);
     if (TimerWidgetInstance)
     {
         TimerWidgetInstance->AddToViewport();
     }
 
-    RemainingSeconds = 180; // 3 minutter
+    RemainingSeconds = 150; // 2,5 minutes
 
     // Start oppdatering hvert sekund
     GetWorldTimerManager().SetTimer(CountdownUpdateTimer, this, &AMinigame::UpdateTimerDisplay, 1.0f, true);
@@ -1122,19 +1107,16 @@ void AMinigame::OnTryAgainClicked()
         TryAgainWidgetInstance = nullptr;
     }
 
-    // Make sure any timer UI is gone and counters are reset
     if (TimerWidgetInstance)
     {
         TimerWidgetInstance->RemoveFromParent();
         TimerWidgetInstance = nullptr;
     }
-    RemainingSeconds = 180;           // reset UI countdown for next Hard attempt
-    bHardCountdownPaused = false;     // safety
+    RemainingSeconds = 150;           // reset UI countdown for next Hard attempt
+    bHardCountdownPaused = false;     
 
-    // Clean up the board
     HideAllPaperStrips();
 
-    // Send player back to the original tutorial flow
     ShowTutorial();
 }
 

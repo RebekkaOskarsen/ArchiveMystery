@@ -143,7 +143,7 @@ public:
 	TArray<FString> ActivePaperTags;
 
 	FTimerHandle HardModeTimerHandle;
-	float HardModeTimeLimit = 180.0f; // 3 minutter
+	float HardModeTimeLimit = 150.0f; // 3 minutter
 
 	void OnHardModeTimeUp();
 
@@ -157,7 +157,7 @@ public:
 	UUserWidget* TimerWidgetInstance = nullptr;
 
 	FTimerHandle CountdownUpdateTimer;
-	int32 RemainingSeconds = 180; // 3 minutter
+	int32 RemainingSeconds = 150; // 3 minutter
 
 	void StartHardModeTimerUI();
 
