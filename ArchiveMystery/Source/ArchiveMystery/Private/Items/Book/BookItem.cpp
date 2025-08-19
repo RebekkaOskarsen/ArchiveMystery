@@ -5,6 +5,7 @@
 #include "Character/Archivist.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "TimerManager.h"
+#include "Blueprint/UserWidget.h"
 
 ABookItem::ABookItem()
 {
@@ -17,24 +18,46 @@ ABookItem::ABookItem()
     // Make Single Node mode (shows as “Use Animation Asset” in the editor)
     BookMesh->SetAnimationMode(EAnimationMode::AnimationSingleNode);
 
+    BookMesh->SetAbsolute(/*bNewAbsoluteLocation=*/false,
+        /*bNewAbsoluteRotation=*/false,
+        /*bNewAbsoluteScale=*/true);
+
+    BookMesh->SetWorldScale3D(FVector(1.0f));
+
     // If your base AItems has a StaticMesh ItemMesh, hide it for this item
     if (ItemMesh)
     {
-        ItemMesh->SetVisibility(false, true);
+        ItemMesh->SetHiddenInGame(true);
+        ItemMesh->SetVisibility(false, /*propagateToChildren=*/false); // do NOT propagate
         ItemMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+        ItemMesh->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
     }
 }
 
 void ABookItem::EquipBook(USceneComponent* InParent, FName InSocketName)
 {
-    if (!BookMesh || !InParent) return;
+    if (!InParent || !BookMesh) return;
 
     BookMesh->SetSimulatePhysics(false);
     BookMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
-    FAttachmentTransformRules Rules(EAttachmentRule::SnapToTarget, true);
+ 
+  // FAttachmentTransformRules Rules(EAttachmentRule::SnapToTarget, true);
     DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+
+    FAttachmentTransformRules Rules(
+        EAttachmentRule::SnapToTarget,   // Location
+        EAttachmentRule::SnapToTarget,   // Rotation
+        EAttachmentRule::KeepWorld,      // << keep world scale
+        true
+    );
     AttachToComponent(InParent, Rules, InSocketName);
+    SetActorScale3D(FVector(1.f));
+    if (PressEWidgetInstance)
+    {
+        PressEWidgetInstance->RemoveFromParent();
+        PressEWidgetInstance = nullptr;
+    }
 }
 
 void ABookItem::UnequipTo(FVector Location, FRotator Rotation)
@@ -43,10 +66,18 @@ void ABookItem::UnequipTo(FVector Location, FRotator Rotation)
     SetActorLocation(Location);
     SetActorRotation(Rotation);
 
+    SetActorScale3D(FVector(1.f));
+
     if (BookMesh)
     {
         BookMesh->SetSimulatePhysics(false);
         BookMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+    }
+
+    if (PressEWidgetInstance)
+    {
+        PressEWidgetInstance->RemoveFromParent();
+        PressEWidgetInstance = nullptr;
     }
 }
 
@@ -95,6 +126,13 @@ void ABookItem::PlayClose()
     bIsOpen = false;
 }
 
+void ABookItem::BeginPlay()
+{
+    Super::BeginPlay();
+
+   // BookMesh->SetAbsolute(false, false, true);
+}
+
 void ABookItem::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
     Super::OnSphereOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
@@ -103,6 +141,18 @@ void ABookItem::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor
     {
         P->SetOverlappingItems(this);
         UE_LOG(LogTemp, Warning, TEXT("Overlapping book: %s"), *GetName());
+        if (!IsAttachedTo(P) && PressEWidgetClass && !PressEWidgetInstance)
+        {
+            // (Optional) ensure it's the local player
+            if (APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0))
+            {
+                PressEWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), PressEWidgetClass);
+                if (PressEWidgetInstance)
+                {
+                    PressEWidgetInstance->AddToViewport();
+                }
+            }
+        }
     }
 }
 
@@ -117,8 +167,14 @@ void ABookItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AAc
             P->SetOverlappingItems(nullptr);
             UE_LOG(LogTemp, Warning, TEXT("Stopped overlapping book: %s"), *GetName());
         }
+        if (PressEWidgetInstance)
+        {
+            PressEWidgetInstance->RemoveFromParent();
+            PressEWidgetInstance = nullptr;
+        }
     }
 }
+
 
 void ABookItem::SwitchToOpenLoop()
 {

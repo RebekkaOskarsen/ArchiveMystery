@@ -533,7 +533,7 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 	else if (ABookItem* OverlappingBook = Cast<ABookItem>(OverlappingItems))
 	{
 		// attach to right hand
-		OverlappingBook->EquipBook(GetMesh(), FName("RightHandSocket"));
+		OverlappingBook->EquipBook(GetMesh(), FName("RightHandSocket2"));
 
 		// store so we can drop later
 		EquippedBook = OverlappingBook;
@@ -707,7 +707,7 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 			if (!Folder->bIsPickedUp && !HeldFolder)
 			{
 				UE_LOG(LogTemp, Warning, TEXT("Folderen plukkes opp."));
-				Folder->OnPickedUp(GetMesh(), FName("RightHandSocket"));
+				Folder->OnPickedUp(GetMesh(), FName("LeftHandSocket2"));
 				HeldFolder = Folder;
 
 				SetOverlappingItems(nullptr);
@@ -752,14 +752,11 @@ void AArchivist::OnReadBook(const FInputActionValue& Value)
 	if (!bBookIsOpen)
 	{
 		// --- OPEN & START READING ---
-		// 1) Play book's opening ? reading (book mesh)
 		Book->PlayOpenAndRead();
 
-		// 2) Character: play open, then swap to reading after the opening length
 		BI->bPlayOpenBook = true;
 		bBookIsOpen = true;
 
-		// use the book’s OpeningAnim length if available, else fallback
 		float delay = 0.8f;
 		if (Book->OpeningAnim)
 		{
@@ -771,8 +768,17 @@ void AArchivist::OnReadBook(const FInputActionValue& Value)
 			BookOpenTimer,
 			[this, BI]()
 			{
-				BI->bPlayOpenBook = false;   // stop one-shot open
-				BI->bPlayReadBook = true;    // loop reading
+				BI->bPlayOpenBook = false;
+				BI->bPlayReadBook = true;
+
+				if (ReadingWidgetClass && !ActiveReadingWidget)
+				{
+					ActiveReadingWidget = CreateWidget<UUserWidget>(GetWorld(), ReadingWidgetClass);
+					if (ActiveReadingWidget)
+					{
+						ActiveReadingWidget->AddToViewport();
+					}
+				}
 			},
 			delay,
 			false
@@ -790,6 +796,12 @@ void AArchivist::OnReadBook(const FInputActionValue& Value)
 
 		// play book’s closing (book mesh)
 		Book->PlayClose();
+
+		if (ActiveReadingWidget)
+		{
+			ActiveReadingWidget->RemoveFromParent();
+			ActiveReadingWidget = nullptr;
+		}
 	}
 }
 
@@ -812,6 +824,7 @@ void AArchivist::Tick(float DeltaTime)
 		if (UArchivistAnimInstance* AnimInstance = Cast<UArchivistAnimInstance>(SkeletalMesh->GetAnimInstance()))
 		{
 			AnimInstance->bIsHoldingBox = (EquippedBox != nullptr);
+			AnimInstance->bIsHoldingFolder = (HeldFolder != nullptr);
 		}
 	}
 
@@ -1171,40 +1184,73 @@ void AArchivist::SaveProgressBeforeMainMenu()
 void AArchivist::PlayIntroSequenceIfNeeded()
 {
 	UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance());
-	if (!GI)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("No GameInstance found"));
+	if (!GI) return;
+
+	if (GI->bIntroCutscenePlayed)
 		return;
+
+	for (TActorIterator<ALevelSequenceActor> It(GetWorld()); It; ++It)
+	{
+		ALevelSequenceActor* SequenceActor = *It;
+		if (!SequenceActor) continue;
+
+		if (SequenceActor->Tags.Contains("StartCutscene"))
+		{
+			if (ULevelSequencePlayer* SeqPlayer = SequenceActor->GetSequencePlayer())
+			{
+				SetGameplayInputLocked(true);
+
+				SeqPlayer->OnFinished.AddDynamic(this, &AArchivist::OnIntroSequenceFinished);
+
+				SeqPlayer->Play();
+				GI->bIntroCutscenePlayed = true;
+			}
+			return;
+		}
 	}
+}
+
+void AArchivist::OnIntroSequenceFinished()
+{
+	auto* GI = Cast<UArchiveGameInstance>(GetGameInstance());
+	if (!GI) return;
 
 	if (!GI->bIntroCutscenePlayed)
 	{
-
 		for (TActorIterator<ALevelSequenceActor> It(GetWorld()); It; ++It)
 		{
-			ALevelSequenceActor* SequenceActor = *It;
-			
-			if (SequenceActor && SequenceActor->Tags.Contains("StartCutscene"))
+			if (It->Tags.Contains("StartCutscene"))
 			{
-				ULevelSequencePlayer* SequencePlayer = SequenceActor->GetSequencePlayer();
-				if (SequencePlayer)
+				if (ULevelSequencePlayer* SeqPlayer = It->GetSequencePlayer())
 				{
-					SequencePlayer->Play();
+					SetGameplayInputLocked(true);
+
+					SeqPlayer->OnFinished.AddDynamic(this, &AArchivist::OnIntroSequenceFinished);
+
+					SeqPlayer->Play();
 					GI->bIntroCutscenePlayed = true;
-
-					float SeqLength = 6.0f;
-
-					// schedule our ShowTutorial() to fire when the sequence finishes
-					GetWorld()->GetTimerManager().SetTimer(
-						TutorialTimerHandle,
-						this,
-						&AArchivist::ShowIntroGuide,
-						SeqLength,
-						false
-					);
 				}
 				return;
 			}
+		}
+	}
+
+	ShowIntroGuide();
+}
+
+void AArchivist::SetGameplayInputLocked(bool bLock)
+{
+	if (APlayerController* PC = GetWorld()->GetFirstPlayerController())
+	{
+		PC->SetIgnoreMoveInput(bLock);
+		PC->SetIgnoreLookInput(bLock);
+	}
+
+	if (UCharacterMovementComponent* Move = GetCharacterMovement())
+	{
+		if (bLock)
+		{
+			Move->StopMovementImmediately();
 		}
 	}
 }

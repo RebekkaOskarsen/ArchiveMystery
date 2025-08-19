@@ -216,6 +216,13 @@ public:
 
 	FTimerHandle BookOpenTimer;
 
+	// Widget for Book
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<class UUserWidget> ReadingWidgetClass;
+
+	UPROPERTY()
+	UUserWidget* ActiveReadingWidget;
+
 
 	bool bIsPaused;
 	//----Saving skin color-------------------------------------------------//
@@ -302,22 +309,16 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SaveProgressBeforeMainMenu();
 
+	// Sequence
 	UFUNCTION(BlueprintCallable)
 	void PlayIntroSequenceIfNeeded();
 
-	////Tutorial
-	//UPROPERTY(EditAnywhere, Category = "Tutorial")
-	//TSubclassOf<UUserWidget> TutorialWidgetClass;
+	UFUNCTION()
+	void OnIntroSequenceFinished();
 
-	//UUserWidget* TutorialWidgetInstance = nullptr;
+	void SetGameplayInputLocked(bool bLock);
 
-	//UFUNCTION()
-	//void OnTutorialTriggerOverlap(AActor* OverlappedActor, AActor* OtherActor);
-
-	//FTimerHandle TutorialTimerHandle;
-
-	//void ShowTutorial();
-
+	// Tutorial
 	FTimerHandle TutorialTimerHandle;
 
 	UPROPERTY(EditAnywhere, Category = "UI")

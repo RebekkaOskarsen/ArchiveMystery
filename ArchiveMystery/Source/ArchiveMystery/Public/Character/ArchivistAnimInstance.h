@@ -31,4 +31,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bPlayReadBook = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Folder")
+	bool bIsHoldingFolder = false;
 };

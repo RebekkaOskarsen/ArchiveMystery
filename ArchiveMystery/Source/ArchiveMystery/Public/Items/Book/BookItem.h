@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Items/Items.h"
+#include "Blueprint/UserWidget.h"
 #include "BookItem.generated.h"
 
 /**
@@ -42,18 +43,24 @@ public:
     // Query
     UFUNCTION(BlueprintPure, Category = "Book")
     bool IsOpen() const { return bIsOpen; }
+
+    // Press E
+    UPROPERTY(EditAnywhere, Category = "UI")
+    TSubclassOf<UUserWidget> PressEWidgetClass;
+
+    UPROPERTY()
+    UUserWidget* PressEWidgetInstance = nullptr;
+
 protected:
-    virtual void OnSphereOverlap(
-        UPrimitiveComponent* OverlappedComponent,
-        AActor* OtherActor,
-        UPrimitiveComponent* OtherComp,
-        int32 OtherBodyIndex,
-        bool bFromSweep,
-        const FHitResult& SweepResult
-    ) override;
+
+    virtual void BeginPlay() override;
+
+    virtual void OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+        UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) override;
 
     virtual void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
         UPrimitiveComponent* OtherComp, int32 OtherBodyIndex) override;
+
 
 private:
     // After OpeningAnim finishes, we switch to OpenLoopAnim
