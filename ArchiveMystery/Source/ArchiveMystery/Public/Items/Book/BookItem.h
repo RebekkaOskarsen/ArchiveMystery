@@ -25,6 +25,7 @@ public:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Book|Mesh")
     USkeletalMeshComponent* BookMesh;
 
+    //Animation
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Book|Animation")
     class UAnimSequence* OpeningAnim;     // plays once
 
@@ -40,16 +41,21 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Book|Animation")
     void PlayClose();
 
-    // Query
     UFUNCTION(BlueprintPure, Category = "Book")
     bool IsOpen() const { return bIsOpen; }
 
-    // Press E
+    // Press E Widget
     UPROPERTY(EditAnywhere, Category = "UI")
     TSubclassOf<UUserWidget> PressEWidgetClass;
 
     UPROPERTY()
     UUserWidget* PressEWidgetInstance = nullptr;
+
+    //Sound
+    UPROPERTY(EditAnywhere, Category = "Book|Audio")
+    class USoundBase* OpenBookSound;
+
+   
 
 protected:
 
@@ -70,4 +76,6 @@ private:
 
     // Whether the book is currently considered "open/reading"
     bool bIsOpen = false;
+
+
 };

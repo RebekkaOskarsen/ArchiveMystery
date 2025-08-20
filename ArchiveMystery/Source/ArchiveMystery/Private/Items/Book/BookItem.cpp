@@ -11,6 +11,7 @@ ABookItem::ABookItem()
 {
     PrimaryActorTick.bCanEverTick = false;
 
+
     BookMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("BookMesh"));
     BookMesh->SetupAttachment(RootComponent);
     BookMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
@@ -87,6 +88,15 @@ void ABookItem::PlayOpenAndRead()
 
     UE_LOG(LogTemp, Warning, TEXT("Book: Play OPENING"));
     BookMesh->PlayAnimation(OpeningAnim, /*bLoop=*/false);
+
+    if (OpenBookSound)
+    {
+        UGameplayStatics::PlaySoundAtLocation(
+            this,
+            OpenBookSound,
+            GetActorLocation()
+        );
+    }
 
     const float OpenLen = OpeningAnim->GetPlayLength();
     GetWorldTimerManager().ClearTimer(OpenLoopTimerHandle);
