@@ -14,8 +14,14 @@ void UStartPageWidget::NativeConstruct()
 	{
 		if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
 		{
-			FString Message = FString::Printf(TEXT("You are logged in as: %s"), *GI->PlayerName);
+			const bool bIsEnglish = GI->bIsEnglish;
+
+			FString Message = bIsEnglish
+				? FString::Printf(TEXT("You are logged in as: %s"), *GI->PlayerName)
+				: FString::Printf(TEXT("Du er logget inn som: %s"), *GI->PlayerName);
+
 			Text_PlayerName->SetText(FText::FromString(Message));
 		}
 	}
 }
+

@@ -453,14 +453,9 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 		return;
 	}
 
-	// Før alt annet: sjekk om vi holder en folder
 	if (HeldFolder)
 	{
-		/*if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
-		{
-			GI->bHasScannedDocuments = true;
-			UE_LOG(LogTemp, Warning, TEXT("Documents have been scanned."));
-		}*/
+
 
 		if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
 		{
@@ -468,38 +463,30 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 			UE_LOG(LogTemp, Warning, TEXT("Spilleren kan nå scanne folder-dokumentene."));
 		}
 
-		// Sjekk om vi har en drop zone (TriggerBox)
 		if (FolderDropZone && FolderDropZone->IsOverlappingActor(this))
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Spilleren står i drop zone. Folder slippes."));
 
-			// Slipp folderen pent
 			HeldFolder->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
 
-			// Sett plassering på bordet
+			//Placement n the table 
 			FVector DropLocation = FolderDropZone->GetActorLocation() + FVector(-20, 100, 12.f);
 			FRotator DropRotation = FRotator(90.f, 0.f, 0.f);
 
 			HeldFolder->SetActorLocation(DropLocation);
 			HeldFolder->SetActorRotation(DropRotation);
 
-			// Evt. deaktiver physics (slik at den står stille)
+			HeldFolder->bIsScannedAndLocked = true;
+
 			HeldFolder->Mesh->SetSimulatePhysics(false);
 			HeldFolder->Mesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 
-			// Si at den ikke lenger er plukket opp
 			HeldFolder->bIsPickedUp = false;
 			HeldFolder = nullptr;
 
 			bIsInputLocked = true;
 			CurrentInputTime = 0.0f;
 
-			// Avslutt funksjonen, så vi ikke prøver å plukke opp noe annet
-			return;
-		}
-		else
-		{
-			UE_LOG(LogTemp, Warning, TEXT("Ikke i drop zone, kan ikke slippe folderen her."));
 			return;
 		}
 	}

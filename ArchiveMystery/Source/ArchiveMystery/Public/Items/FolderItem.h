@@ -24,6 +24,9 @@ public:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
     bool bIsPickedUp;
 
+    UPROPERTY(BlueprintReadWrite)
+    bool bIsScannedAndLocked = false;
+
     void OnPickedUp(USkeletalMeshComponent* AttachToMesh, FName SocketName);
 
     void OnDropped();

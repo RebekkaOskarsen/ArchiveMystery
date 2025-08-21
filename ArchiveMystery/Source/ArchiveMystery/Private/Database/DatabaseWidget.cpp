@@ -148,10 +148,15 @@ void UDatabaseWidget::NativeConstruct()
 	{
 		if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
 		{
-			FString Message = FString::Printf(TEXT("You are logged in as: %s"), *GI->PlayerName);
+			FString Message = bIsEnglish
+				? FString::Printf(TEXT("You are logged in as: %s"), *GI->PlayerName)
+				: FString::Printf(TEXT("Du er logget inn som: %s"), *GI->PlayerName);
+
 			Text_PlayerName_Database->SetText(FText::FromString(Message));
 		}
 	}
+
+
 
 	if (GameInstance)
 	{
@@ -162,10 +167,6 @@ void UDatabaseWidget::NativeConstruct()
 		if (AndComboBox)    AndComboBox->SetSelectedOption(GameInstance->SavedAnd);
 	}
 
-	if (BackgroundMusic)
-	{
-		UGameplayStatics::PlaySound2D(this, BackgroundMusic);
-	}
 }
 
 void UDatabaseWidget::OnSubmitClicked()
@@ -183,19 +184,11 @@ void UDatabaseWidget::OnSubmitClicked()
 			return Out;
 		};
 
-	// Hent og rens input
 	const FString SelectText = CleanText(SelectComboBox ? SelectComboBox->GetSelectedOption() : TEXT(""));
 	const FString FromText = CleanText(FromComboBox ? FromComboBox->GetSelectedOption() : TEXT(""));
 	const FString WhereText = CleanText(WhereComboBox ? WhereComboBox->GetSelectedOption() : TEXT(""));
 	const FString LikeText = CleanText(LikeComboBox ? LikeComboBox->GetSelectedOption() : TEXT(""));
 	const FString AndText = CleanText(AndComboBox ? AndComboBox->GetSelectedOption() : TEXT(""));
-
-	// Korrekte svar – også renset for mellomrom
-	/*const TArray<FString> ExpectedSelectOptions = { TEXT("document_name,document_content"), TEXT("dokument_navn,dokument_innhold") };
-	const TArray<FString> ExpectedFromOptions = { TEXT("documents"), TEXT("dokumenter") };
-	const TArray<FString> ExpectedWhereOptions = { TEXT("documentname"), TEXT("dokumentnavn") };
-	const TArray<FString> ExpectedLikeOptions = { TEXT("%buildingspecifications%"), TEXT("%bygningspesifikasjoner%") };
-	const TArray<FString> ExpectedAndOptions = { TEXT("company=treplankenas"), TEXT("bedrift=treplankenas") };*/
 
 	TArray<FString> ExpectedSelectOptions;
 	TArray<FString> ExpectedFromOptions;
@@ -223,7 +216,6 @@ void UDatabaseWidget::OnSubmitClicked()
 		}
 	}
 
-	// Sammenlign
 	const bool bSelectOK = ExpectedSelectOptions.Contains(SelectText) && !SelectText.Contains("velg");
 	const bool bFromOK = ExpectedFromOptions.Contains(FromText) && !FromText.Contains("velg");
 	const bool bWhereOK = ExpectedWhereOptions.Contains(WhereText) && !WhereText.Contains("velg");
@@ -234,7 +226,6 @@ void UDatabaseWidget::OnSubmitClicked()
 	if (bSelectOK && bFromOK && bWhereOK && bLikeOK && bAndOK)
 	{
 
-		// Eventuelt: vis neste widget
 		if (ResultWidgetClass)
 		{
 			APlayerController* PC = GetWorld()->GetFirstPlayerController();

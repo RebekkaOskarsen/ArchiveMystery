@@ -48,14 +48,14 @@ void ATriggerMailInteraction::CheckForInteraction()
 	if (PC && Archivist && PC->WasInputKeyJustPressed(EKeys::E))
 	{
 		// Sjekk at alle minispill og dokumenter er fullført
-	/*	if (Archivist->bHasPlacedBox &&
-			Archivist->bHasFinishedShreddedPaperMinigame &&
-			Archivist->bHasFinishedMoldMinigame &&
-			Archivist->bHasFoundDocument1 &&
-			Archivist->bHasFoundDocument2 &&
-			Archivist->bHasScannedDocuments &&
-			Archivist->bHasDeliveredDocuments)
-		{*/
+		//if (Archivist->bHasPlacedBox &&
+		//	Archivist->bHasFinishedShreddedPaperMinigame &&
+		//	Archivist->bHasFinishedMoldMinigame &&
+		//	Archivist->bHasFoundDocument1 &&
+		//	Archivist->bHasFoundDocument2 &&
+		//	Archivist->bHasScannedDocuments &&
+		//	Archivist->bHasDeliveredDocuments)
+		//{
 		ShowMailWidget();
 		//}
 	}

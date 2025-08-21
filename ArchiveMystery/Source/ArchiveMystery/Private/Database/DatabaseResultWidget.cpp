@@ -14,7 +14,12 @@ void UDatabaseResultWidget::NativeConstruct()
 	{
 		if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
 		{
-			FString Message = FString::Printf(TEXT("You are logged in as: %s"), *GI->PlayerName);
+			const bool bIsEnglish = GI->bIsEnglish;
+
+			FString Message = bIsEnglish
+				? FString::Printf(TEXT("You are logged in as: %s"), *GI->PlayerName)
+				: FString::Printf(TEXT("Du er logget inn som: %s"), *GI->PlayerName);
+
 			Text_PlayerName_Result->SetText(FText::FromString(Message));
 		}
 	}
@@ -24,3 +29,4 @@ void UDatabaseResultWidget::NativeConstruct()
 		GI->bDatabaseMinigameComplete = true;
 	}
 }
+

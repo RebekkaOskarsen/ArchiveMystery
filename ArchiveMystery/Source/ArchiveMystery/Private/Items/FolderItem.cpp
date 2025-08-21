@@ -40,7 +40,13 @@ void AFolderItem::BeginPlay()
 
 void AFolderItem::OnPickedUp(USkeletalMeshComponent* AttachToMesh, FName SocketName)
 {
-    if (!AttachToMesh) return;
+    if (bIsScannedAndLocked)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Folderen er låst og kan ikke plukkes opp igjen."));
+        return;
+    }
+
+	if (!AttachToMesh) return;
 
     // Fjern prompt-widget om den vises
     if (PickupPromptWidgetInstance)
@@ -75,6 +81,12 @@ void AFolderItem::OnOverlapBegin(
     bool bFromSweep,
     const FHitResult& SweepResult)
 {
+
+    if (bIsScannedAndLocked)
+    {
+        return;
+    }
+
     if (OtherActor)
     {
         UE_LOG(LogTemp, Warning, TEXT("AFolderItem overlappet med: %s"), *OtherActor->GetName());
