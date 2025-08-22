@@ -1,0 +1,29 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/Blueprint/PauseMenu/WBP_Settings.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/Blueprint/PauseMenu/WBP_PauseMenu.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/Blueprint/GuideWidgets/IntroGuideWidget/WBP_IntroGuide.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/Blueprint/GuideWidgets/ArchiveShelvesGuide/WB_ArchiveShelves.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/Blueprint/GuideWidgets/ArchiveShelvesGuide/WB_Moldroom.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/2DAssets/Buttons/Blue.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/2DAssets/Buttons/pink.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/2DAssets/Buttons/yellow.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/Blueprint/GuideWidgets/MoldRoomInfo/WBP_MoldRoomInfo.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/Blueprint/CustomizationPage/W_Customization_Button_.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/9/VO/PBO7YDF8G9008EVGUEJ59Y.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/9/YJ/LEQ1OFGIDN5KQET0USITDE.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/9/OF/19HPZGKWFPPJ9HD3SXOR2M.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/5/QX/5LQPVZC6Y64DJLUZXGS0UD.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/Blueprint/GuideWidgets/IntroGuideWidget/WBP_IntroGuidePausemenu.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/Blueprint/PicturesOnTheWall/Widgets/PaintingInfoWidget.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/Blueprint/PicturesOnTheWall/Blueprint/WBP_Website_Buttons.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/Blueprint/PicturesOnTheWall/Blueprint/WBP_Exit.uasset"
+			]
+		}
+	]
+}

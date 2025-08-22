@@ -2,7 +2,6 @@
 	"RemapUnityFiles": 
 	{
 		"Module.ArchiveMystery.1.cpp.obj": [
-			"ArchiveMystery.cpp.obj",
 			"ArchiveGameInstance.gen.cpp.obj",
 			"ArchiveGhost.gen.cpp.obj",
 			"ArchiveMystery.init.gen.cpp.obj",
@@ -17,7 +16,9 @@
 			"DatabaseResultWidget.gen.cpp.obj",
 			"DatabaseWidget.gen.cpp.obj",
 			"DocumentItem.gen.cpp.obj",
-			"DoubleDoor.gen.cpp.obj",
+			"DoubleDoor.gen.cpp.obj"
+		],
+		"Module.ArchiveMystery.2.cpp.obj": [
 			"ErrorWidget.gen.cpp.obj",
 			"ExitWidget.gen.cpp.obj",
 			"FolderItem.gen.cpp.obj",
@@ -38,7 +39,9 @@
 			"MoldGameMode.gen.cpp.obj",
 			"MoldMinigame.gen.cpp.obj",
 			"MoldPlayerController.gen.cpp.obj",
-			"MoldRoomInfo.gen.cpp.obj",
+			"MoldRoomInfo.gen.cpp.obj"
+		],
+		"Module.ArchiveMystery.3.cpp.obj": [
 			"MoldTutorial.gen.cpp.obj",
 			"NextPaper.gen.cpp.obj",
 			"OpenBox.gen.cpp.obj",
@@ -53,20 +56,28 @@
 			"TriggerMoldGame.gen.cpp.obj",
 			"TriggerScanner.gen.cpp.obj",
 			"W_QuestLog_Pause.gen.cpp.obj",
-			"PerModuleInline.gen.cpp.obj"
-		],
-		"Module.ArchiveMystery.2.cpp.obj": [
+			"PerModuleInline.gen.cpp.obj",
+			"ArchiveMystery.cpp.obj",
+			"ArchiveGameInstance.cpp.obj",
 			"ArchiveGhost.cpp.obj",
+			"Archivist.cpp.obj",
 			"ArchivistAnimInstance.cpp.obj",
 			"GhostAnimInstance.cpp.obj",
 			"PaintingInfo.cpp.obj",
+			"CompletionMessageWidget.cpp.obj",
 			"DatabaseMinigameGameMode.cpp.obj",
 			"DatabaseResultWidget.cpp.obj",
+			"DatabaseWidget.cpp.obj",
 			"ErrorWidget.cpp.obj",
+			"InfoBookWidget.cpp.obj",
 			"InfoWidget.cpp.obj",
+			"LoginWidget.cpp.obj",
+			"MailWidget.cpp.obj",
+			"ScannedDocumentWidget.cpp.obj",
 			"StartPageWidget.cpp.obj",
 			"DoubleDoor.cpp.obj",
 			"KeycardItem.cpp.obj",
+			"GuideWidget.cpp.obj",
 			"IntroGuideWidget.cpp.obj",
 			"MainMenuWidget.cpp.obj",
 			"MoldRoomInfo.cpp.obj",
@@ -91,20 +102,11 @@
 			"QuestMarker.cpp.obj",
 			"QuestLogData.cpp.obj",
 			"W_QuestLog_Pause.cpp.obj",
-			"ExitWidget.cpp.obj",
-			"Minigame.cpp.obj",
-			"ArchiveGameInstance.cpp.obj",
-			"Archivist.cpp.obj",
-			"CompletionMessageWidget.cpp.obj",
-			"DatabaseWidget.cpp.obj",
-			"InfoBookWidget.cpp.obj",
-			"LoginWidget.cpp.obj",
-			"MailWidget.cpp.obj",
-			"ScannedDocumentWidget.cpp.obj",
-			"GuideWidget.cpp.obj",
 			"TriggerDeliverDocuments.cpp.obj",
 			"TriggerMailInteraction.cpp.obj",
-			"TriggerScanner.cpp.obj"
+			"TriggerScanner.cpp.obj",
+			"ExitWidget.cpp.obj",
+			"Minigame.cpp.obj"
 		]
 	}
 }
