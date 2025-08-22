@@ -114,7 +114,6 @@ void AArchivist::BeginPlay()
 		}
 	}
 
-	//UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(GetGameInstance());
 	if (GameInstance)
 	{
 		GameInstance->LoadQuestLogData();
@@ -125,6 +124,7 @@ void AArchivist::BeginPlay()
 		bHasFoundDocument1 = GameInstance->bHasFoundDocument1;
 		bHasFoundDocument2 = GameInstance->bHasFoundDocument2;
 		bHasScannedDocuments = GameInstance->bHasScannedDocuments;
+		bHasDeliveredDocuments = GameInstance->bHasDeliveredDocuments;
 
 		if (bHasFoundDocument1)
 		{
@@ -314,15 +314,6 @@ void AArchivist::BeginPlay()
 		MinigameTriggerBox->OnActorEndOverlap.AddDynamic(this, &AArchivist::OnOverlapEnd);
 	}
 
-	for (FPaintingInfo& PaintingInfo : Paintings)
-	{
-		if (PaintingInfo.PaintingTriggerBox)
-		{
-			PaintingInfo.PaintingTriggerBox->OnActorBeginOverlap.AddDynamic(this, &AArchivist::OnPaintingTriggerBeginOverlap);
-			PaintingInfo.PaintingTriggerBox->OnActorEndOverlap.AddDynamic(this, &AArchivist::OnPaintingTriggerEndOverlap);
-		}
-	}
-
 	if (APlayerController* PlayerController = Cast<APlayerController>(GetController()))
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
@@ -460,13 +451,10 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 		if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
 		{
 			GI->bReadyToScanFolderDocuments = true;
-			UE_LOG(LogTemp, Warning, TEXT("Spilleren kan nå scanne folder-dokumentene."));
 		}
 
 		if (FolderDropZone && FolderDropZone->IsOverlappingActor(this))
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Spilleren står i drop zone. Folder slippes."));
-
 			HeldFolder->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
 
 			//Placement n the table 
@@ -493,7 +481,6 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 
 	if (EquippedBook && bPlayOpenBook || bPlayReadBook)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("You need to close the book (press R) before you can put it down."));
 		return;
 	}
 
@@ -514,7 +501,6 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 			bPlayReadBook = false;
 
 			bDidInteract = true;
-			UE_LOG(LogTemp, Warning, TEXT("Book placed!"));
 		}
 	}
 	else if (ABookItem* OverlappingBook = Cast<ABookItem>(OverlappingItems))
@@ -529,7 +515,6 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 
 		SetOverlappingItems(nullptr);
 		bDidInteract = true;
-		UE_LOG(LogTemp, Warning, TEXT("Picked up book: %s"), *OverlappingBook->GetName());
 	}
 
 	ADocumentItem* OverlappingDocument = Cast<ADocumentItem>(OverlappingItems);
@@ -681,19 +666,16 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 
 		if (AFolderItem* Folder = Cast<AFolderItem>(OverlappingItems))
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Found FolderItem to pick up."));
 
 			// Sjekk om database-minispillet er fullført
 			UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance());
 			if (GI && !GI->bDatabaseMinigameComplete)
 			{
-				UE_LOG(LogTemp, Warning, TEXT("Database minispillet er IKKE ferdig. Kan ikke plukke opp folderen."));
 				return;
 			}
 
 			if (!Folder->bIsPickedUp && !HeldFolder)
 			{
-				UE_LOG(LogTemp, Warning, TEXT("Folderen plukkes opp."));
 				Folder->OnPickedUp(GetMesh(), FName("LeftHandSocket2"));
 				HeldFolder = Folder;
 
@@ -871,9 +853,8 @@ void AArchivist::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 		EnhancedInputComponent->BindAction(PickUpAction, ETriggerEvent::Triggered, this, &AArchivist::PickUp);
 
 
-		//Looking at paintings and enter pause menu 
+		//Enter pause menu 
 		EnhancedInputComponent->BindAction(EnterMinigameAction, ETriggerEvent::Triggered, this, &AArchivist::TryEnterMinigame);
-		EnhancedInputComponent->BindAction(LookAtPaintingAction, ETriggerEvent::Triggered, this, &AArchivist::LookAtPainting);
 		EnhancedInputComponent->BindAction(PauseAction, ETriggerEvent::Triggered, this, &AArchivist::TogglePauseMenu);
 
 		//Door
@@ -935,109 +916,6 @@ void AArchivist::TryEnterMinigame()
 	}
 }
 
-//Is near enough to look at paintings 
-void AArchivist::OnPaintingTriggerBeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
-{
-	if (OtherActor == this) 
-	{
-		for (FPaintingInfo& PaintingInfo : Paintings)
-		{
-			if (PaintingInfo.PaintingTriggerBox && PaintingInfo.PaintingTriggerBox->IsOverlappingActor(OtherActor))
-			{
-
-				if (PaintingInfo.PaintingInstructionWidgetClass && !PaintingInfo.PaintingInstructionWidgetInstance)
-				{
-					PaintingInfo.PaintingInstructionWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), PaintingInfo.PaintingInstructionWidgetClass);
-					if (PaintingInfo.PaintingInstructionWidgetInstance)
-					{
-						PaintingInfo.PaintingInstructionWidgetInstance->AddToViewport();
-					}
-				}
-			}
-		}
-	}
-}
-
-//Ending looking paintings 
-void AArchivist::OnPaintingTriggerEndOverlap(AActor* OverlappedActor, AActor* OtherActor)
-{
-	if (!GetWorld() || !GetWorld()->GetFirstPlayerController())
-	{
-		return;
-	}
-
-	APawn* PlayerPawn = GetWorld()->GetFirstPlayerController()->GetPawn();
-	if (OtherActor != PlayerPawn)
-	{
-		return; 
-	}
-
-	for (FPaintingInfo& PaintingInfo : Paintings)
-	{
-		if (!PaintingInfo.PaintingTriggerBox)
-		{
-			continue;
-		}
-
-		if (!PaintingInfo.PaintingTriggerBox->IsOverlappingActor(OtherActor))
-		{
-
-			if (PaintingInfo.PaintingInstructionWidgetInstance && PaintingInfo.PaintingInstructionWidgetInstance->IsInViewport())
-			{
-				PaintingInfo.PaintingInstructionWidgetInstance->RemoveFromParent();
-				PaintingInfo.PaintingInstructionWidgetInstance = nullptr;
-			}
-		}
-	}
-}
-
-//The player can look at several paintings widgets 
-void AArchivist::LookAtPainting(const FInputActionValue& Value)
-{
-	if (bIsInputLocked)
-	{
-		return;
-	}
-
-	for (FPaintingInfo& PaintingInfo : Paintings)
-	{
-		if (PaintingInfo.PaintingTriggerBox && PaintingInfo.PaintingTriggerBox->IsOverlappingActor(this))
-		{
-			if (!PaintingInfo.bIsLookingAtPainting)
-			{
-				PaintingInfo.bIsLookingAtPainting = true;
-				bIsMovementLocked = true;
-
-				if (PaintingInfo.PaintingWidgetClass && !PaintingInfo.PaintingWidgetInstance)
-				{
-					PaintingInfo.PaintingWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), PaintingInfo.PaintingWidgetClass);
-					if (PaintingInfo.PaintingWidgetInstance)
-					{
-						PaintingInfo.PaintingWidgetInstance->AddToViewport();
-					}
-				}
-			}
-			else
-			{
-				PaintingInfo.bIsLookingAtPainting = false;
-
-				if (PaintingInfo.PaintingWidgetInstance)
-				{
-					PaintingInfo.PaintingWidgetInstance->RemoveFromViewport();
-					PaintingInfo.PaintingWidgetInstance = nullptr;
-				}
-
-				bIsMovementLocked = false;
-			}
-
-			bIsInputLocked = true;
-			CurrentInputTime = 0.0f;
-
-			break; 
-		}
-	}
-}
-
 void AArchivist::OnDropZoneBeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
 {
 
@@ -1080,7 +958,6 @@ void AArchivist::DeliverDocuments()
 	bHasDeliveredDocuments = true;
 }
 
-//Can interact with the pause menu widget 
 void AArchivist::TogglePauseMenu()
 {
 	APlayerController* PC = GetWorld()->GetFirstPlayerController();
@@ -1092,21 +969,18 @@ void AArchivist::TogglePauseMenu()
 
 	if (bIsPaused)
 	{
-		// Vis pausemeny
 		if (PauseMenuWidgetClass && !PauseMenuWidget)
 		{
 			PauseMenuWidget = CreateWidget<UPauseMenuWidget>(GetWorld(), PauseMenuWidgetClass);
 			PauseMenuWidget->AddToViewport();
 		}
 
-		// Vis musepeker og tillat UI-input
 		PC->bShowMouseCursor = true;
 		FInputModeGameAndUI InputMode;
 		InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
 		InputMode.SetHideCursorDuringCapture(false);
 		PC->SetInputMode(InputMode);
 
-		// Deaktiver gameplay-input
 		if (Character)
 		{
 			Character->DisableInput(PC);
@@ -1114,18 +988,15 @@ void AArchivist::TogglePauseMenu()
 	}
 	else
 	{
-		// Skjul pausemeny
 		if (PauseMenuWidget)
 		{
 			PauseMenuWidget->RemoveFromParent();
 			PauseMenuWidget = nullptr;
 		}
 
-		// Skjul musepeker og sett tilbake til spillkontroll
 		PC->bShowMouseCursor = false;
 		PC->SetInputMode(FInputModeGameOnly());
 
-		// Aktiver gameplay-input igjen
 		if (Character)
 		{
 			Character->EnableInput(PC);

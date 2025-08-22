@@ -24,7 +24,6 @@ ATriggerScanner::ATriggerScanner()
 	ScannerWidgetInstance = nullptr;
 }
 
-// Called when the game starts or when spawned
 void ATriggerScanner::BeginPlay()
 {
 	Super::BeginPlay();
@@ -149,7 +148,6 @@ void ATriggerScanner::ScanDocuments()
 		ScannerWidgetInstance->RemoveFromParent();
 		ScannerWidgetInstance = nullptr;
 
-		// restore input
 		APlayerController* PC = GetWorld()->GetFirstPlayerController();
 		if (PC)
 		{

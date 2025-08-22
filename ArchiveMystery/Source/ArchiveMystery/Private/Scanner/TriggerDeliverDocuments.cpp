@@ -4,6 +4,7 @@
 #include "Scanner/TriggerDeliverDocuments.h"
 #include "Components/BoxComponent.h"
 #include "Blueprint/UserWidget.h"
+#include "Character/ArchiveGameInstance.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/PlayerController.h"
 #include "Character/Archivist.h"
@@ -50,6 +51,17 @@ void ATriggerDeliverDocuments::ShowDeliverDocumentsWidget()
 				PC->bShowMouseCursor = true;
 			}
 		}
+	}
+
+	AArchivist* Archivist = Cast<AArchivist>(UGameplayStatics::GetPlayerCharacter(this, 0));
+	if (Archivist)
+	{
+		Archivist->bHasDeliveredDocuments = true;
+	}
+	if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
+	{
+		GI->bHasDeliveredDocuments = true;
+		GI->SaveQuestLogData();
 	}
 }
 

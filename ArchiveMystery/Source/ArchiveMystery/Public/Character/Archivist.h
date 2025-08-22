@@ -117,28 +117,7 @@ public:
 	UPROPERTY()
 	FVector LastSavedLocation;
 
-	//---------------------Interaction with paintings--------------------------//
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
-	UInputAction* LookAtPaintingAction;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Painting")
-	TArray<FPaintingInfo> Paintings; 
-
-	ATriggerBox* PaintingTriggerBox;
-
-	bool bIsLookingAtPainting = false;
-
-	UFUNCTION()
-	void OnPaintingTriggerBeginOverlap(AActor* OverlappedActor, AActor* OtherActor);
-	UFUNCTION()
-	void OnPaintingTriggerEndOverlap(AActor* OverlappedActor, AActor* OtherActor);
-
-	void LookAtPainting(const FInputActionValue& Value);
-
 	bool bIsMovementLocked = false;
-
-	UUserWidget* PaintingWidgetInstance; 
 
 	bool bIsInputLocked = false;  
 	float InputLockTime = 0.3f;  

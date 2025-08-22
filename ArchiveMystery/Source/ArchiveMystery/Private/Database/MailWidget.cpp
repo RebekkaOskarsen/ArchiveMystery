@@ -28,7 +28,6 @@ void UMailWidget::NativeConstruct()
             {
                 Button_SeeScannedDocuments->SetVisibility(ESlateVisibility::Visible);
                 Button_SeeScannedDocuments->SetIsEnabled(true);
-                UE_LOG(LogTemp, Warning, TEXT("Knappen for scannede dokumenter er synlig."));
             }
         }
         else
@@ -37,7 +36,6 @@ void UMailWidget::NativeConstruct()
             {
                 Button_SeeScannedDocuments->SetVisibility(ESlateVisibility::Hidden);
                 Button_SeeScannedDocuments->SetIsEnabled(false);
-                UE_LOG(LogTemp, Warning, TEXT("Knappen for scannede dokumenter er skjult."));
             }
         }
     }
@@ -73,7 +71,6 @@ void UMailWidget::OnSeeScannedDocumentsClicked()
 
             ScannedDocumentWidgetInstance = NewWidget;
             ScannedDocumentWidgetInstance->AddToViewport();
-            UE_LOG(LogTemp, Warning, TEXT("ScannedDocument-widget vist."));
         }
     }
 }
@@ -83,13 +80,11 @@ void UMailWidget::ShowSendButton()
     if (Button_Send)
     {
         Button_Send->SetVisibility(ESlateVisibility::Visible);
-        UE_LOG(LogTemp, Warning, TEXT("Send-knappen er nå synlig."));
     }
 }
 
 void UMailWidget::OnSendButtonClicked()
 {
-    UE_LOG(LogTemp, Warning, TEXT("Send-knapp trykket. Viser gratulasjons-widget."));
 
     if (CompletionMessageWidgetClass)
     {
@@ -97,7 +92,7 @@ void UMailWidget::OnSendButtonClicked()
         if (CompletionMessage)
         {
             CompletionMessage->AddToViewport();
-            RemoveFromParent(); // Skjul mail-widget
+            RemoveFromParent(); 
         }
     }
 }

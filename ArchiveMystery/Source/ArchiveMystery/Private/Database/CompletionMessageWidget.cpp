@@ -17,7 +17,6 @@ void UCompletionMessageWidget::NativeConstruct()
 
 void UCompletionMessageWidget::OnReturnToMenuClicked()
 {
-    UE_LOG(LogTemp, Warning, TEXT("Tilbake-knappen trykket. Bytter til Archive-Mystery."));
 
     UGameplayStatics::OpenLevel(GetWorld(), FName("Archive-Mystery"));
 }

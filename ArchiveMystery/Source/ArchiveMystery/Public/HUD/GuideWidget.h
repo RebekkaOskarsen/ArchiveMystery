@@ -20,7 +20,6 @@ class ARCHIVEMYSTERY_API UGuideWidget : public UUserWidget
 protected:
     virtual void NativeConstruct() override;
 
-    // Bind these names to your Blueprint buttons & switcher
     UPROPERTY(meta = (BindWidget))
     UWidgetSwitcher* IntroSwitcher;
 

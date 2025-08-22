@@ -20,7 +20,6 @@ public:
     UPROPERTY(meta = (BindWidget))
     class UButton* Button_BackToMail;
 
-    /** Referanse til MailWidget som åpnet oss */
     UPROPERTY()
     class UMailWidget* ParentMailWidget;
 

@@ -31,14 +31,12 @@ public:
 	UPROPERTY(meta = (BindWidget))
 	UButton* Button_Send;
 
-	// Klassen til scannede dokument-widgeten (sett i Blueprint)
 	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
 	TSubclassOf<UUserWidget> CompletionMessageWidgetClass;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
 	TSubclassOf<UUserWidget> ScannedDocumentWidgetClass;
 
-	// Instans når den er vist
 	UPROPERTY()
 	UUserWidget* ScannedDocumentWidgetInstance;
 

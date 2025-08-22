@@ -26,7 +26,6 @@ void UInfoBookWidget::OnNextClicked()
 
 		PlayAnimation(FlipPageAnim);
 
-		// Vent til halvveis i animasjonen før vi bytter side
 		FTimerHandle TimerHandle;
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, [this]()
 			{
@@ -75,7 +74,6 @@ void UInfoBookWidget::UpdatePage()
 		PageSwitcher->SetActiveWidgetIndex(CurrentPageIndex);
 	}
 
-	// Skjul Forrige/Neste-knapper på første/siste side
 	if (PrevButton) PrevButton->SetVisibility(CurrentPageIndex == 0 ? ESlateVisibility::Hidden : ESlateVisibility::Visible);
 	if (NextButton) NextButton->SetVisibility(CurrentPageIndex == PageSwitcher->GetNumWidgets() - 1 ? ESlateVisibility::Hidden : ESlateVisibility::Visible);
 }

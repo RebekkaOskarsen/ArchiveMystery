@@ -171,7 +171,6 @@ void UDatabaseWidget::NativeConstruct()
 
 void UDatabaseWidget::OnSubmitClicked()
 {
-	UE_LOG(LogTemp, Warning, TEXT("OnOpenInfoClicked called"));
 	if (!SelectComboBox || !FromComboBox || !WhereComboBox || !LikeComboBox || !AndComboBox)
 		return;
 

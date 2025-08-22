@@ -18,14 +18,10 @@ void UScannedDocumentWidget::NativeConstruct()
 
 void UScannedDocumentWidget::OnBackToMailClicked()
 {
-    // Fjern denne widgeten
     RemoveFromParent();
-    UE_LOG(LogTemp, Warning, TEXT("ScannedDocument-widget fjernet."));
 
-    // Vis send-knappen i mail-widgeten
     if (ParentMailWidget)
     {
         ParentMailWidget->ShowSendButton();
-        UE_LOG(LogTemp, Warning, TEXT("Send-knappen i MailWidget aktivert."));
     }
 }

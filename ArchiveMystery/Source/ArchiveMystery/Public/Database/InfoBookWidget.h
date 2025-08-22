@@ -45,7 +45,6 @@ protected:
 
 	void UpdatePage();
 
-	// For å kontrollere UMG-animasjoner
 	UPROPERTY(Transient, meta = (BindWidgetAnim))
 	UWidgetAnimation* FlipPageAnim;
 

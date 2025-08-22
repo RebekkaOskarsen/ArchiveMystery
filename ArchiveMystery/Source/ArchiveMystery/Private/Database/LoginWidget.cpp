@@ -38,18 +38,14 @@ void ULoginWidget::OnLoginClicked()
 		GI->PlayerName = PlayerName;
 	}
 
-	UE_LOG(LogTemp, Warning, TEXT("Login button clicked!"));
-
 	if (!EditableTextBox_PlayerName || !Text_ErrorMessage) return;
 
 	if (PlayerName.IsEmpty())
 	{
-		// Vis feilmelding
 		Text_ErrorMessage->SetVisibility(ESlateVisibility::Visible);
 		return;
 	}
 
-	// Skjul eventuell tidligere feilmelding
 	Text_ErrorMessage->SetVisibility(ESlateVisibility::Hidden);
 
 	if (NextWidgetClass)
@@ -64,7 +60,6 @@ void ULoginWidget::OnLoginClicked()
 
 void ULoginWidget::OnNameCommitted(const FText& Text, ETextCommit::Type CommitMethod)
 {
-	// Sjekk om det var Enter som trigget
 	if (CommitMethod == ETextCommit::OnEnter)
 	{
 		OnLoginClicked();
