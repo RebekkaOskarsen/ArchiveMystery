@@ -1,0 +1,17 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\unrealeditor\\inc\\archivemystery\\uht\\doubledoor.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\x64\\archivemysteryeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderunreal5_3.h.pch",
+        "Includes": [
+            "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\archivemystery\\definitions.archivemystery.h",
+            "c:\\bachelor-project\\archivemystery\\archivemystery\\source\\archivemystery\\public\\door\\doubledoor.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\engine\\classes\\components\\textrendercomponent.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\textrendercomponent.generated.h",
+            "c:\\bachelor-project\\archivemystery\\archivemystery\\intermediate\\build\\win64\\unrealeditor\\inc\\archivemystery\\uht\\doubledoor.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

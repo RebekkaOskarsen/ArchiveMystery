@@ -179,6 +179,7 @@ void AMoldMinigame::CheckWinCondition()
 {
 	if (MoldCount <= 0)
 	{
+		// UI flow
 		if (CurrentPaperIndex == 1)
 		{
 			ShowArrowUI();
@@ -187,6 +188,8 @@ void AMoldMinigame::CheckWinCondition()
 		{
 			ShowExitUI();
 		}
+
+		// Easy unlock
 		if (CurrentDifficulty == EMoldDifficulty::Easy)
 		{
 			if (UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
@@ -195,31 +198,29 @@ void AMoldMinigame::CheckWinCondition()
 				GameInstance->SaveQuestLogData();
 			}
 		}
-	}
 
-	if (CurrentDifficulty == EMoldDifficulty::Hard && CurrentPaperIndex == 2)
-	{
-		GetWorldTimerManager().ClearTimer(CountdownTickHandle);
+		// Hard score handling only when finishing paper 2
+		if (CurrentDifficulty == EMoldDifficulty::Hard && CurrentPaperIndex == 2)
+		{
+			GetWorldTimerManager().ClearTimer(CountdownTickHandle);
+			if (UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
+			{
+				GameInstance->AddMoldScore(CountdownTime);
+				GameInstance->LastMoldScore = CountdownTime;
+			}
+		}
 
-		// Save the remaining time as the score
+		// ? Mark completion ONLY when truly finished
+		if (AArchivist* Archivist = Cast<AArchivist>(UGameplayStatics::GetPlayerCharacter(this, 0)))
+		{
+			Archivist->bHasFinishedMoldMinigame = true;
+		}
+
 		if (UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
 		{
-			GameInstance->AddMoldScore(CountdownTime); // Save to history
-			GameInstance->LastMoldScore = CountdownTime;
+			GameInstance->bMoldGameComplete = true;
+			GameInstance->SaveQuestLogData();
 		}
-	}
-
-	AArchivist* Archivist = Cast<AArchivist>(UGameplayStatics::GetPlayerCharacter(this, 0));
-	if (Archivist)
-	{
-		Archivist->bHasFinishedMoldMinigame = true;
-	}
-
-	UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this));
-	if (GameInstance)
-	{
-		GameInstance->bMoldGameComplete = true;
-		GameInstance->SaveQuestLogData();
 	}
 }
 
@@ -334,6 +335,8 @@ void AMoldMinigame::OnCountdownFinished()
 		CountdownWidget = nullptr;
 	}
 
+	bCanBrush = false;
+
 	if (TryAgainWidgetClass)
 	{
 		TryAgainWidget = CreateWidget<UUserWidget>(GetWorld(), TryAgainWidgetClass);
@@ -375,9 +378,38 @@ void AMoldMinigame::OnTryAgainClicked()
 		TryAgainWidget = nullptr;
 	}
 
-	ResetMold();
+	// Reset to paper 1
+	CurrentPaperIndex = 1;
 
+	if (Paper1) {
+		Paper1->SetActorHiddenInGame(false);
+		Paper1->SetActorEnableCollision(true);
+	}
+	if (Paper2) {
+		Paper2->SetActorHiddenInGame(true);
+		Paper2->SetActorEnableCollision(false);
+	}
+
+	// Hide all mold
+	TArray<AActor*> MoldActors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AMold::StaticClass(), MoldActors);
+	for (AActor* MoldActor : MoldActors)
+	{
+		AMold* Mold = Cast<AMold>(MoldActor);
+		if (Mold)
+		{
+			Mold->ResetMold();
+			Mold->SetActorHiddenInGame(true);
+			Mold->SetActorEnableCollision(false);
+		}
+	}
+
+	// Reset UI and allow brushing
 	ShowTutorial();
+	EnableBrushing();
+
+	// Now respawn mold for paper 1
+	SpawnMoldForCurrentPaper();
 }
 
 void AMoldMinigame::ResetMold()
@@ -392,18 +424,21 @@ void AMoldMinigame::ResetMold()
 		AMold* Mold = Cast<AMold>(MoldActor);
 		if (Mold)
 		{
-			bool bIsCorrectPaper = Mold->PaperIndex == CurrentPaperIndex;
+			// Always reset the mold
+			Mold->ResetMold();
+			Mold->SetMoldMinigame(this);
+
+			bool bIsCorrectPaper = Mold->PaperIndex == 1; // reset for paper 1
 			bool bIsMediumOnly = Mold->ActorHasTag("MediumOnly");
 
-			bool bShouldShow = bIsCorrectPaper && (
-				!bIsMediumOnly ||
-				(CurrentDifficulty == EMoldDifficulty::Medium || CurrentDifficulty == EMoldDifficulty::Hard)
-				);
+			bool bShouldShow =
+				bIsCorrectPaper &&
+				(!bIsMediumOnly || (CurrentDifficulty != EMoldDifficulty::Easy));
 
 			if (bShouldShow)
 			{
-				Mold->ResetMold();
-				Mold->SetMoldMinigame(this);
+				Mold->SetActorHiddenInGame(false);
+				Mold->SetActorEnableCollision(true);
 				MoldCount++;
 			}
 			else
@@ -413,6 +448,20 @@ void AMoldMinigame::ResetMold()
 			}
 		}
 	}
+
+	if (Paper1)
+	{
+		Paper1->SetActorHiddenInGame(false);
+		Paper1->SetActorEnableCollision(true);
+	}
+	if (Paper2)
+	{
+		Paper2->SetActorHiddenInGame(true);
+		Paper2->SetActorEnableCollision(false);
+	}
+
+	// Reset paper index
+	CurrentPaperIndex = 1;
 }
 
 void AMoldMinigame::ShowBrushUI()
@@ -497,9 +546,17 @@ void AMoldMinigame::OnResumeClicked()
 
 void AMoldMinigame::OnExitClicked()
 {
-	if (UArchiveGameInstance* GI =
-		Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
+	if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
 	{
+		// Optional: ensure we do NOT mark completion on manual exit
+		GI->bMoldGameComplete = false;
+
+		// If you mirror this on the character too:
+		if (AArchivist* Arch = Cast<AArchivist>(UGameplayStatics::GetPlayerCharacter(this, 0)))
+		{
+			Arch->bHasFinishedMoldMinigame = false;
+		}
+
 		GI->SaveQuestLogData();
 	}
 
@@ -520,6 +577,11 @@ void AMoldMinigame::ShowIngameTutorial()
 		if (IngameTutorialWidget)
 		{
 			IngameTutorialWidget->AddToViewport();
+
+			if (GetWorldTimerManager().IsTimerActive(CountdownTickHandle))
+			{
+				GetWorldTimerManager().PauseTimer(CountdownTickHandle);
+			}
 		}
 	}
 }
@@ -530,6 +592,12 @@ void AMoldMinigame::HideIngameTutorial()
 	{
 		IngameTutorialWidget->RemoveFromParent();
 		IngameTutorialWidget = nullptr;
+
+	}
+
+	if (GetWorldTimerManager().IsTimerPaused(CountdownTickHandle))
+	{
+		GetWorldTimerManager().UnPauseTimer(CountdownTickHandle);
 	}
 }
 

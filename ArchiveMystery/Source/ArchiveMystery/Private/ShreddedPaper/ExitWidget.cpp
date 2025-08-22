@@ -64,5 +64,5 @@ FText UExitWidget::FormatMMSS(int32 TotalSeconds)
     if (TotalSeconds < 0) TotalSeconds = 0;
     const int32 Minutes = TotalSeconds / 60;
     const int32 Seconds = TotalSeconds % 60;
-    return FText::FromString(FString::Printf(TEXT("%d:%02d"), Minutes, Seconds));
+    return FText::FromString(FString::Printf(TEXT("%02d:%02d"), Minutes, Seconds));
 }

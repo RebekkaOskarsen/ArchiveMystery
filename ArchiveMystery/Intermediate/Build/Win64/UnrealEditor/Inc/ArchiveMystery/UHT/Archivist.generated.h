@@ -15,7 +15,7 @@ class AActor;
 #endif
 #define ARCHIVEMYSTERY_Archivist_generated_h
 
-#define FID_Users_henri_Downloads_torsdag_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_44_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_44_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execShowIntroGuide); \
 	DECLARE_FUNCTION(execOnIntroSequenceFinished); \
 	DECLARE_FUNCTION(execPlayIntroSequenceIfNeeded); \
@@ -30,7 +30,7 @@ class AActor;
 	DECLARE_FUNCTION(execOnOverlapBegin);
 
 
-#define FID_Users_henri_Downloads_torsdag_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_44_INCLASS_NO_PURE_DECLS \
+#define FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_44_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAArchivist(); \
 	friend struct Z_Construct_UClass_AArchivist_Statics; \
@@ -39,7 +39,7 @@ public: \
 	DECLARE_SERIALIZER(AArchivist)
 
 
-#define FID_Users_henri_Downloads_torsdag_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_44_ENHANCED_CONSTRUCTORS \
+#define FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_44_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AArchivist(AArchivist&&); \
@@ -51,13 +51,13 @@ public: \
 	NO_API virtual ~AArchivist();
 
 
-#define FID_Users_henri_Downloads_torsdag_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_41_PROLOG
-#define FID_Users_henri_Downloads_torsdag_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_44_GENERATED_BODY \
+#define FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_41_PROLOG
+#define FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_44_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_henri_Downloads_torsdag_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_44_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Users_henri_Downloads_torsdag_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_44_INCLASS_NO_PURE_DECLS \
-	FID_Users_henri_Downloads_torsdag_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_44_ENHANCED_CONSTRUCTORS \
+	FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_44_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_44_INCLASS_NO_PURE_DECLS \
+	FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h_44_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -65,7 +65,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> ARCHIVEMYSTERY_API UClass* StaticClass<class AArchivist>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Users_henri_Downloads_torsdag_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h
+#define CURRENT_FILE_ID FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_Archivist_h
 
 
 #define FOREACH_ENUM_ECHARACTERSTATE(op) \

@@ -59,5 +59,5 @@ FText UMinigameExitWidget::FormatSecondsMMSS(int32 TotalSeconds)
     TotalSeconds = FMath::Max(0, TotalSeconds);
     const int32 Minutes = TotalSeconds / 60;
     const int32 Seconds = TotalSeconds % 60;
-    return FText::FromString(FString::Printf(TEXT("%d:%02d"), Minutes, Seconds));
+    return FText::FromString(FString::Printf(TEXT("%02d:%02d"), Minutes, Seconds));
 }

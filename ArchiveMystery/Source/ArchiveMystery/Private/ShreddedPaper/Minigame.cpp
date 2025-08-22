@@ -66,8 +66,10 @@ void AMinigame::BeginPlay()
     if (PaperSheet)
     {
         PaperSheet->SetActorHiddenInGame(true);
+        PaperSheetInitialTransform = PaperSheet->GetActorTransform();
     }
 
+    CacheInitialTransforms();
     ShowTutorial();
     HideAllPaperStrips();
 
@@ -299,6 +301,81 @@ void AMinigame::OnExitClicked()
         GI->SaveQuestLogData();
     }
     UGameplayStatics::OpenLevel(this, FName("Archive-Mystery"));
+}
+
+void AMinigame::CacheInitialTransforms()
+{
+    InitialTransforms.Empty();
+
+    for (TActorIterator<AActor> It(GetWorld()); It; ++It)
+    {
+        AActor* A = *It;
+        // strips are tagged "Draggable" + have a specific paperstripXX tag in slot 0
+        if (A->ActorHasTag("Draggable") ||
+            (A->Tags.Num() > 0 && A->Tags[0].ToString().StartsWith("paperstrip")))
+        {
+            if (A->Tags.Num() > 0)
+            {
+                const FString Key = A->Tags[0].ToString(); // e.g. "paperstrip_hard05"
+                InitialTransforms.FindOrAdd(Key) = A->GetActorTransform();
+            }
+        }
+    }
+}
+
+void AMinigame::ResetAllPaperStripsToInitial()
+{
+    for (const TPair<FString, FTransform>& Pair : InitialTransforms)
+    {
+        const FString& TagStr = Pair.Key;
+        const FTransform& T = Pair.Value;
+
+        for (TActorIterator<AActor> It(GetWorld()); It; ++It)
+        {
+            AActor* A = *It;
+            if (A->ActorHasTag(*TagStr))
+            {
+                A->SetActorTransform(T, false, nullptr, ETeleportType::TeleportPhysics);
+
+                // zero any physics drift (if used)
+                if (UPrimitiveComponent* Prim = Cast<UPrimitiveComponent>(A->GetRootComponent()))
+                {
+                    Prim->SetPhysicsLinearVelocity(FVector::ZeroVector);
+                    Prim->SetPhysicsAngularVelocityInDegrees(FVector::ZeroVector);
+                }
+
+                // keep them hidden until ActivatePaperSetForDifficulty() runs
+                A->SetActorHiddenInGame(true);
+                A->SetActorEnableCollision(false);
+                break;
+            }
+        }
+    }
+
+    // reset sheet + fade
+    if (PaperSheet)
+    {
+        PaperSheet->SetActorTransform(PaperSheetInitialTransform);
+        PaperSheet->SetActorHiddenInGame(true);
+        PaperSheet->SetActorEnableCollision(false);
+    }
+    bIsFadingIn = false;
+    CurrentFadeTime = 0.f;
+}
+
+void AMinigame::ResetMinigameState()
+{
+    bIsDragging = false;
+    SelectedMesh = nullptr;
+
+    // clear snapping / union-find state
+    ParentMap.Empty();
+    SnappedPieces.Empty();
+    GroupMap.Empty();
+    LockedPaperstrips.Empty();
+
+    // active tags will be repopulated by ActivatePaperSetForDifficulty()
+    ActivePaperTags.Empty();
 }
 
 //Is handling the dragging of the paperstrips and the snapping logic during eacg frame 
@@ -732,6 +809,9 @@ void AMinigame::OnHardSelected()
     ExpectedPieceCount = 22;
     SnapThreshold = 3.0f;
 
+    ResetAllPaperStripsToInitial(); // ensure fresh layout
+    ResetMinigameState();
+
     StartHardModeTimerUI();
     GetWorldTimerManager().SetTimer(HardModeTimerHandle, this, &AMinigame::OnHardModeTimeUp, HardModeTimeLimit, false);
 
@@ -1007,7 +1087,7 @@ void AMinigame::UpdateTimerDisplay()
     int32 Minutes = RemainingSeconds / 60;
     int32 Seconds = RemainingSeconds % 60;
 
-    FString TimeString = FString::Printf(TEXT("TIME LEFT: %02d:%02d"), Minutes, Seconds);
+    FString TimeString = FString::Printf(TEXT("TIMER: %02d:%02d"), Minutes, Seconds);
 
     if (UTextBlock* CountdownText = Cast<UTextBlock>(TimerWidgetInstance->GetWidgetFromName(TEXT("CountdownText"))))
     {
@@ -1115,6 +1195,8 @@ void AMinigame::OnTryAgainClicked()
     RemainingSeconds = 150;           // reset UI countdown for next Hard attempt
     bHardCountdownPaused = false;     
 
+    ResetAllPaperStripsToInitial(); // <-- important
+    ResetMinigameState();
     HideAllPaperStrips();
 
     ShowTutorial();

@@ -13,6 +13,7 @@ void EmptyLinkFunctionForGeneratedCodeMinigame() {}
 ARCHIVEMYSTERY_API UClass* Z_Construct_UClass_AMinigame();
 ARCHIVEMYSTERY_API UClass* Z_Construct_UClass_AMinigame_NoRegister();
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
+COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FTransform();
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_APawn();
@@ -776,6 +777,12 @@ struct Z_Construct_UClass_AMinigame_Statics
 		{ "ToolTip", "-----------------------Pause Menu------------------------" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InitialTransforms_MetaData[] = {
+		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PaperSheetInitialTransform_MetaData[] = {
+		{ "ModuleRelativePath", "Public/ShreddedPaper/Minigame.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_TopDownCamera;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_IMC_DragAndDrop;
@@ -809,6 +816,10 @@ struct Z_Construct_UClass_AMinigame_Statics
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_SnapThreshold;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PaperSheet;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_PauseMenuWidgetClass;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_InitialTransforms_ValueProp;
+	static const UECodeGen_Private::FStrPropertyParams NewProp_InitialTransforms_Key_KeyProp;
+	static const UECodeGen_Private::FMapPropertyParams NewProp_InitialTransforms;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_PaperSheetInitialTransform;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -875,6 +886,10 @@ const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMinigame_Stati
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_SnapThreshold = { "SnapThreshold", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, SnapThreshold), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SnapThreshold_MetaData), NewProp_SnapThreshold_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_PaperSheet = { "PaperSheet", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, PaperSheet), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PaperSheet_MetaData), NewProp_PaperSheet_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_PauseMenuWidgetClass = { "PauseMenuWidgetClass", nullptr, (EPropertyFlags)0x0024080000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, PauseMenuWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PauseMenuWidgetClass_MetaData), NewProp_PauseMenuWidgetClass_MetaData) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_InitialTransforms_ValueProp = { "InitialTransforms", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 1, Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_InitialTransforms_Key_KeyProp = { "InitialTransforms_Key", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_InitialTransforms = { "InitialTransforms", nullptr, (EPropertyFlags)0x0020080000000000, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, InitialTransforms), EMapPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InitialTransforms_MetaData), NewProp_InitialTransforms_MetaData) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AMinigame_Statics::NewProp_PaperSheetInitialTransform = { "PaperSheetInitialTransform", nullptr, (EPropertyFlags)0x0020080000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMinigame, PaperSheetInitialTransform), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PaperSheetInitialTransform_MetaData), NewProp_PaperSheetInitialTransform_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMinigame_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_TopDownCamera,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_IMC_DragAndDrop,
@@ -906,6 +921,10 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMinigame
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_SnapThreshold,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_PaperSheet,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_PauseMenuWidgetClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_InitialTransforms_ValueProp,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_InitialTransforms_Key_KeyProp,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_InitialTransforms,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMinigame_Statics::NewProp_PaperSheetInitialTransform,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AMinigame_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AMinigame_Statics::DependentSingletons[])() = {
@@ -945,14 +964,14 @@ AMinigame::~AMinigame() {}
 // End Class AMinigame
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_henri_Downloads_torsdag_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_Statics
+struct Z_CompiledInDeferFile_FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMinigame, AMinigame::StaticClass, TEXT("AMinigame"), &Z_Registration_Info_UClass_AMinigame, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMinigame), 331816006U) },
+		{ Z_Construct_UClass_AMinigame, AMinigame::StaticClass, TEXT("AMinigame"), &Z_Registration_Info_UClass_AMinigame, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMinigame), 48571234U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_henri_Downloads_torsdag_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_3331967792(TEXT("/Script/ArchiveMystery"),
-	Z_CompiledInDeferFile_FID_Users_henri_Downloads_torsdag_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_henri_Downloads_torsdag_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_1551503360(TEXT("/Script/ArchiveMystery"),
+	Z_CompiledInDeferFile_FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_ShreddedPaper_Minigame_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

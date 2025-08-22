@@ -289,4 +289,14 @@ protected:
 	UFUNCTION()
 	void OnExitClicked();
 
+	UPROPERTY()
+	TMap<FString, FTransform> InitialTransforms;
+
+	UPROPERTY()
+	FTransform PaperSheetInitialTransform;
+
+	void CacheInitialTransforms();
+	void ResetAllPaperStripsToInitial();
+	void ResetMinigameState();
+
 };
