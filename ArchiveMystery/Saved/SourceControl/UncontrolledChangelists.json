@@ -1,0 +1,24 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/C/LC/YBQLQ4WPG3RI6I48HC2DDN.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/2/X9/X5NKDT5YYUAT2FCQNXQA2B.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/1/XU/ES9CYUBJQ93ZQA4SZZFM76.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/D/SH/8N4O0GZ7S7T1EB8SASSEJS.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/B/VN/UBT5V3XMDOV7KA0YR9UJLZ.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/0/3T/6ENGYB4LOA7FAYORXQDFMX.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/B/IV/PGF0KTC1UA5900MTHC4M57.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/D/O9/XEK1TM3I7H2IBHF5LLXEKA.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/5/W8/OHXRB8P9TAIAJCP1QIJZXG.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/ShreddedPaper_minigame/Blueprints/WBP_DifficultySelect.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/__ExternalActors__/Archive-Mystery/1/EP/BYXC119TG2C5H789BBIWQM.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/Blueprint/Small_Quest_System/W_QuestLog.uasset",
+				"C:/Users/henri/Downloads/torsdag/ArchiveMystery/Content/Minigame-Mold/Blueprint/UI/WBP_DifficultySelection.uasset"
+			]
+		}
+	]
+}
