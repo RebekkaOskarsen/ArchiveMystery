@@ -48,7 +48,7 @@ void AMinigame::BeginPlay()
         PlayerController->Possess(this);
         EnableInput(PlayerController);
 
-        InputComponent->BindKey(EKeys::P, IE_Pressed, this, &AMinigame::TogglePauseMenu);
+        InputComponent->BindKey(EKeys::Escape, IE_Pressed, this, &AMinigame::TogglePauseMenu);
     }
 
 

@@ -176,6 +176,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AActor* KeycardActor;
 
+
+
 	//----------------Book Item-----------------------------//
 	UPROPERTY(EditAnywhere, Category = "Drop Zone")
 	ATriggerBox* BookDropZone = nullptr;

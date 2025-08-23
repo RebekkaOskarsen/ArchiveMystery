@@ -43,7 +43,7 @@ void AMoldMinigame::BeginPlay()
 		PC->SetViewTarget(this);
 
 		EnableInput(PC);
-		InputComponent->BindKey(EKeys::P, IE_Pressed, this, &AMoldMinigame::TogglePause);
+		InputComponent->BindKey(EKeys::Escape, IE_Pressed, this, &AMoldMinigame::TogglePause);
 	}
 
 	//To count all the mold at the start

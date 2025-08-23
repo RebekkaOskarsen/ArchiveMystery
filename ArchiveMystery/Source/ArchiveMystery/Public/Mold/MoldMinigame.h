@@ -74,6 +74,7 @@ public:
 	//Medium
 	void IncreaseMoldForMedium();
 
+	//---------------Try Again-----------------//
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> TryAgainWidgetClass;
 
