@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define ARCHIVEMYSTERY_PaintingInfo_generated_h
 
-#define FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_PaintingInfo_h_16_GENERATED_BODY \
+#define FID_Users_henri_Downloads_torsdag_ArchiveMystery_Source_ArchiveMystery_Public_Character_PaintingInfo_h_16_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPaintingInfo_Statics; \
 	ARCHIVEMYSTERY_API static class UScriptStruct* StaticStruct();
 
@@ -22,7 +22,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 template<> ARCHIVEMYSTERY_API UScriptStruct* StaticStruct<struct FPaintingInfo>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Bachelor_Project_ArchiveMystery_ArchiveMystery_Source_ArchiveMystery_Public_Character_PaintingInfo_h
+#define CURRENT_FILE_ID FID_Users_henri_Downloads_torsdag_ArchiveMystery_Source_ArchiveMystery_Public_Character_PaintingInfo_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

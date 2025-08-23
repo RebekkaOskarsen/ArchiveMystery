@@ -45,4 +45,3 @@
 #include "C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Scanner/TriggerDeliverDocuments.cpp"
 #include "C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Scanner/TriggerMailInteraction.cpp"
 #include "C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/Scanner/TriggerScanner.cpp"
-#include "C:/Bachelor-Project/ArchiveMystery/ArchiveMystery/Source/ArchiveMystery/Private/ShreddedPaper/Minigame.cpp"
