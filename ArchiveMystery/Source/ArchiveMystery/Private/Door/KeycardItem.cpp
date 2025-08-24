@@ -24,14 +24,6 @@ AKeycardItem::AKeycardItem()
 	PressEWidgetComponent->SetDrawAtDesiredSize(true);
 	PressEWidgetComponent->SetVisibility(false);
 
-	// outline trigger (bigger than your sphere)
-	OutlineTrigger = CreateDefaultSubobject<UBoxComponent>(TEXT("OutlineTrigger"));
-	OutlineTrigger->SetupAttachment(RootComponent);
-	OutlineTrigger->SetBoxExtent({ 150,150,150 });
-	OutlineTrigger->SetCollisionProfileName(TEXT("Trigger"));
-	OutlineTrigger->OnComponentBeginOverlap.AddDynamic(this, &AKeycardItem::OnOutlineBegin);
-	OutlineTrigger->OnComponentEndOverlap.AddDynamic(this, &AKeycardItem::OnOutlineEnd);
-
 	// prepare mesh for custom depth but start disabled
 	if (ItemMesh)
 	{
@@ -61,24 +53,6 @@ void AKeycardItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, 
 			Player->SetOverlappingItems(nullptr);
 
 		PressEWidgetComponent->SetVisibility(false);
-	}
-}
-
-void AKeycardItem::OnOutlineBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
-{
-	if (Cast<AArchivist>(OtherActor))
-	{
-		if (ItemMesh)
-			ItemMesh->SetRenderCustomDepth(true);
-	}
-}
-
-void AKeycardItem::OnOutlineEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
-{
-	if (Cast<AArchivist>(OtherActor))
-	{
-		if (ItemMesh)
-			ItemMesh->SetRenderCustomDepth(false);
 	}
 }
 

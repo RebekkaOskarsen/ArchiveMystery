@@ -40,16 +40,6 @@ public:
 		UPrimitiveComponent* OtherComp,
 		int32 OtherBodyIndex) override;
 
-
-	UFUNCTION()
-	void OnOutlineBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
-		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
-		bool bFromSweep, const FHitResult& SweepResult);
-
-	UFUNCTION()
-	void OnOutlineEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
-		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
-
 	//Text
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UTextRenderComponent* KeycardText;
@@ -66,7 +56,4 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
-
-	UPROPERTY(VisibleAnywhere)
-	UBoxComponent* OutlineTrigger;
 };
