@@ -5,7 +5,8 @@
 #include "Mold/Mold.h"
 #include "Engine/World.h"
 #include "DrawDebugHelpers.h"
-#include <Kismet/GameplayStatics.h>
+#include "Kismet/GameplayStatics.h"
+#include "Mold/MoldPlayerController.h"
 
 AMoldBrush::AMoldBrush()
 {
@@ -88,8 +89,10 @@ void AMoldBrush::SetBrushSize(EBrushSize NewSize)
 
 void AMoldBrush::CheckForMold()
 {
+    APlayerController* PC = GetWorld()->GetFirstPlayerController();
+    AMoldPlayerController* MoldPC = Cast<AMoldPlayerController>(PC);
 
-    if (!bCanBrush) return;
+    if (!MoldPC || !MoldPC->bCanBrush) return;
 
     FVector Start = GetActorLocation();
     FVector End = Start - FVector(0, 0, 50);
@@ -103,7 +106,7 @@ void AMoldBrush::CheckForMold()
         AMold* HitMold = Cast<AMold>(Hit.GetActor());
         if (HitMold)
         {
-           //Particle
+            // Play particle
             if (BrushingEffect)
             {
                 UNiagaraFunctionLibrary::SpawnSystemAtLocation(
@@ -119,34 +122,17 @@ void AMoldBrush::CheckForMold()
             {
                 BrushAudioComponent->Play();
             }
-            else
+            else if (BrushSound)
             {
                 UGameplayStatics::PlaySoundAtLocation(GetWorld(), BrushSound, GetActorLocation());
             }
 
-            if (BrushSound)
-            {
-                GetWorld()->GetTimerManager().SetTimer(
-                    FallbackBrushTimerHandle,
-                    this,
-                    &AMoldBrush::ResetBrushCooldown,
-                    BrushSound->GetDuration(),
-                    false
-                );
-            }
-            else
-            {
-                GetWorld()->GetTimerManager().SetTimer(
-                    FallbackBrushTimerHandle,
-                    this,
-                    &AMoldBrush::ResetBrushCooldown,
-                    0.5f,
-                    false
-                );
-            }
-
-            bCanBrush = false;
+            // Tell the mold to take damage
             HitMold->OnBrushed(CurrentBrushSize);
+
+            // Start cooldown on controller (prevents brush switching cheat)
+            float CooldownTime = BrushSound ? BrushSound->GetDuration() : 0.5f;
+            MoldPC->StartBrushCooldown(CooldownTime);
         }
     }
 

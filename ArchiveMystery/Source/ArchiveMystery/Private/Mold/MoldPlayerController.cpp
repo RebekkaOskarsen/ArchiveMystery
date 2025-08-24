@@ -128,3 +128,19 @@ void AMoldPlayerController::BrushMold()
     }
 }
 
+void AMoldPlayerController::StartBrushCooldown(float Duration)
+{
+    bCanBrush = false;
+
+    // Delay duration should match your brush sound length
+    GetWorld()->GetTimerManager().SetTimerForNextTick([this]()
+        {
+            FTimerHandle CooldownHandle;
+            GetWorld()->GetTimerManager().SetTimer(
+                CooldownHandle,
+                [this]() { bCanBrush = true; },
+                1.5f, // Adjust this to match the brush sound duration
+                false
+            );
+        });
+}

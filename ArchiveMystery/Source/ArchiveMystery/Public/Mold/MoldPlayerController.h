@@ -20,6 +20,10 @@ public:
     void ShowBrushUI();
     void HideBrushUI();
 
+    bool bCanBrush = true;
+
+    void StartBrushCooldown(float Duration);
+
 protected:
     virtual void BeginPlay() override;
     virtual void SetupInputComponent() override;
