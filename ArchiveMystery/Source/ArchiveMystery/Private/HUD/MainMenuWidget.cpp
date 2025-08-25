@@ -50,6 +50,7 @@ void UMainMenuWidget::OnStartGameClicked()
     if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
     {
         GI->ResetAllProgress();
+        GI->SaveQuestLogData();
     }
     Cast<UArchiveGameInstance>(GetGameInstance())->ResetAllProgress();
     UGameplayStatics::OpenLevel(this, FName("StartGame"));
