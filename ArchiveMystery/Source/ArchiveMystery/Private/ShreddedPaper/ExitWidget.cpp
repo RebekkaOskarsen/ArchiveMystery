@@ -15,7 +15,7 @@ void UExitWidget::NativeConstruct()
         ViewScoreButton->OnClicked.AddDynamic(this, &UExitWidget::OnViewScoreClicked);
 
 
-    // Show/hide ViewScore depending on last played mode
+    //Show/hide ViewScore depending on last played mode
     if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
     {
         if (ViewScoreButton)

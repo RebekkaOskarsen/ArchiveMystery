@@ -48,13 +48,13 @@ AArchivist::AArchivist()
 
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
 
+	//UI defaults
 	MainMenuWidgetClass = nullptr;
-
 	bIsPaused = false;
 	PauseMenuWidget = nullptr;
 	PauseMenuWidgetClass = nullptr;
 
-
+	//Movement speed default
 	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
 }
 
@@ -65,14 +65,15 @@ void AArchivist::BeginPlay()
 	GetWorld()->GetTimerManager().SetTimerForNextTick(
 		this, &AArchivist::ReinitialiseQuestMarkers);
 
+	//Game instance for save and load
 	UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this));
 	if (!GameInstance) return;
 
-	// Determine current level name
+	//Determine current level name
 	FString CurrentMapName = GetWorld()->GetMapName();
 	CurrentMapName.RemoveFromStart(GetWorld()->StreamingLevelsPrefix); 
 
-	// Prevent duplicate players
+	//Prevent duplicate players
 	if (GetWorld())
 	{
 		TArray<AActor*> FoundArchivists;
@@ -88,7 +89,7 @@ void AArchivist::BeginPlay()
 		}
 	}
 
-	// Show main menu widget if in main menu level
+	//Show main menu widget if in main menu level
 	if (CurrentMapName.Contains("MainMenuLevel"))
 	{
 		if (MainMenuWidgetClass)
@@ -101,6 +102,7 @@ void AArchivist::BeginPlay()
 		}
 	}
 
+	//Locate FolderDropone trigger by tag
 	TArray<AActor*> FoundTriggers;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ATriggerBox::StaticClass(), FoundTriggers);
 
@@ -118,6 +120,7 @@ void AArchivist::BeginPlay()
 	{
 		GameInstance->LoadQuestLogData();
 
+		//Quest booleans
 		bHasPlacedBox = GameInstance->bBoxPlacedBeforeMoldGame;
 		bHasFinishedShreddedPaperMinigame = GameInstance->bShreddedGameComplete;
 		bHasFinishedMoldMinigame = GameInstance->bMoldGameComplete;
@@ -126,6 +129,7 @@ void AArchivist::BeginPlay()
 		bHasScannedDocuments = GameInstance->bHasScannedDocuments;
 		bHasDeliveredDocuments = GameInstance->bHasDeliveredDocuments;
 
+		//Removes documents pickups if already collected
 		if (bHasFoundDocument1)
 		{
 			TArray<AActor*> FoundDocs;
@@ -139,7 +143,7 @@ void AArchivist::BeginPlay()
 			for (AActor* D : FoundDocs) D->Destroy();
 		}
 
-		//Keycards
+		//Removes keycard pickup if already collected
 		if (GameInstance->bHasKeycard)
 		{
 			TArray<AActor*> FoundCard;
@@ -150,7 +154,7 @@ void AArchivist::BeginPlay()
 			}
 		}
 
-		//Box
+		//Restore placed box and keeps the one that is tagged PlacedBox, destoy extras
 		if (GameInstance->bBoxPlacedBeforeMoldGame && GameInstance->PlacedBoxTransform.IsValid())
 		{
 			TArray<AActor*> FoundBoxes;
@@ -208,7 +212,7 @@ void AArchivist::BeginPlay()
 		}
 	}
 
-
+	//----------------Apply material, Skin-----------------//
 	if (GameInstance->bIsCustomizedSkinColor1)
 	{
 		ApplyMaterialToSlot(0, SkinColor1);
@@ -266,6 +270,7 @@ void AArchivist::BeginPlay()
 		ApplyMaterialToSlot(0, SkinColor14);
 	}
 
+	//-------------Apply material, Watch--------------//
 	if (GameInstance->bIsCustomizedWatchColor1)
 	{
 		ApplyMaterialToSlot(3, WatchColor1);
@@ -314,6 +319,7 @@ void AArchivist::BeginPlay()
 		MinigameTriggerBox->OnActorEndOverlap.AddDynamic(this, &AArchivist::OnOverlapEnd);
 	}
 
+	//Add Enhanced Input mapping context for Archivist
 	if (APlayerController* PlayerController = Cast<APlayerController>(GetController()))
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
@@ -321,10 +327,11 @@ void AArchivist::BeginPlay()
 			Subsystem->AddMappingContext(CharacterMappingContext, 0);
 		}
 	} 
+	//Ensure gameplay-only input on non-UI maps
 	{
 		APlayerController* PC = GetWorld()->GetFirstPlayerController();
 		if (PC
-			// skip any UI-only or menu levels:
+			//Skip any UI-only or menu levels:
 			&& !CurrentMapName.Contains("MainMenuLevel")
 			&& !CurrentMapName.Contains("Language_Level")
 			&& !CurrentMapName.Contains("StartGame")
@@ -344,6 +351,7 @@ void AArchivist::BeginPlay()
 		DropZone->OnActorEndOverlap.AddDynamic(this, &AArchivist::OnDropZoneEndOverlap);
 	}
 
+	//Find BookDropZone by tag
 	if (!BookDropZone)
 	{
 		TArray<AActor*> FoundBookTriggers;
@@ -359,22 +367,20 @@ void AArchivist::BeginPlay()
 		}
 	}
 
+	//BookDropZone overlaps
 	if (BookDropZone)
 	{
-		// Bind our overlap handlers to the *actor* events
 		BookDropZone->OnActorBeginOverlap.AddDynamic(this, &AArchivist::OnBookDropBeginOverlap);
 		BookDropZone->OnActorEndOverlap.AddDynamic(this, &AArchivist::OnBookDropEndOverlap);
 	}
-	else
-	{
-		UE_LOG(LogTemp, Error, TEXT("BookDropZone not found or not tagged!"));
-	}
 
+	//Restore location
 	if (!GameInstance->SavedPlayerLocation.IsZero())
 	{
 		SetActorLocation(GameInstance->SavedPlayerLocation);
 	}
 
+	//Play the start sequence 
 	PlayIntroSequenceIfNeeded();
 }
 
@@ -438,16 +444,15 @@ void AArchivist::StopRunning()
 
 void AArchivist::PickUp(const FInputActionValue& Value)
 {
-
+	//Prevent spawn
 	if (bIsInputLocked)
 	{
 		return;
 	}
 
+	//----------Folder: drop to FolderDropZone and lock it for scanning----------//
 	if (HeldFolder)
 	{
-
-
 		if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
 		{
 			GI->bReadyToScanFolderDocuments = true;
@@ -457,7 +462,7 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 		{
 			HeldFolder->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
 
-			//Placement n the table 
+			//Placement on the table 
 			FVector DropLocation = FolderDropZone->GetActorLocation() + FVector(-20, 100, 12.f);
 			FRotator DropRotation = FRotator(90.f, 0.f, 0.f);
 
@@ -472,6 +477,7 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 			HeldFolder->bIsPickedUp = false;
 			HeldFolder = nullptr;
 
+			//Short lock to prevent repeat presses
 			bIsInputLocked = true;
 			CurrentInputTime = 0.0f;
 
@@ -479,6 +485,7 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 		}
 	}
 
+	//If book is in the midle of open and read animation, ignore interaction to avoid conflicts
 	if (EquippedBook && bPlayOpenBook || bPlayReadBook)
 	{
 		return;
@@ -486,6 +493,7 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 
 	bool bDidInteract = false;
 
+	//Book can be put down if it is closed and is inside BookDropZone
 	if (EquippedBook)
 	{
 		if (!bBookIsOpen && bIsInBookDropZone)
@@ -503,24 +511,24 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 			bDidInteract = true;
 		}
 	}
+	//Book pick up
 	else if (ABookItem* OverlappingBook = Cast<ABookItem>(OverlappingItems))
 	{
-		// attach to right hand
+		//Attach to right hand
 		OverlappingBook->EquipBook(GetMesh(), FName("RightHandSocket2"));
 
-		// store so we can drop later
 		EquippedBook = OverlappingBook;
 		CharacterState = ECharacterState::ECS_EquippedOneHanded;
-		// or whatever state you use for “holding one item”
 
 		SetOverlappingItems(nullptr);
 		bDidInteract = true;
 	}
 
+	//Documents: box placed + both minigame completed
 	ADocumentItem* OverlappingDocument = Cast<ADocumentItem>(OverlappingItems);
 	if (OverlappingDocument)
 	{
-		// only allow picking up once all minigames & box placement are done
+		//Only allow picking up once box placed and done both minigames
 		if (bHasPlacedBox && bHasFinishedShreddedPaperMinigame && bHasFinishedMoldMinigame)
 		{
 			FName ID = OverlappingDocument->DocumentID;
@@ -530,13 +538,13 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 				bHasFoundDocument1 = true;
 				PickedUpDocument1 = OverlappingDocument;
 
-				// **persist immediately**
 				if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
 				{
 					GI->bHasFoundDocument1 = true;
 					GI->SaveQuestLogData();
 				}
 
+				//Widget
 				if (DocumentPopupWidgetClass && !DocumentPopupWidgetInstance)
 				{
 					DocumentPopupWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), DocumentPopupWidgetClass);
@@ -556,13 +564,13 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 				bHasFoundDocument2 = true;
 				PickedUpDocument2 = OverlappingDocument;
 
-				// **persist immediately**
 				if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
 				{
 					GI->bHasFoundDocument2 = true;
 					GI->SaveQuestLogData();
 				}
 
+				//Widget
 				if (SecondDocumentPopupWidgetClass && !SecondDocumentPopupWidgetInstance)
 				{
 					SecondDocumentPopupWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), SecondDocumentPopupWidgetClass);
@@ -578,19 +586,21 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 				}
 			}
 
+			//Attach documents to right hand
 			OverlappingDocument->EquipDocument(GetMesh(), FName("RightHandSocket"));
 			SetOverlappingItems(nullptr);
 			bDidInteract = true;
 		}
 	}
 
-
+	//Box placement if carrying and is inside DropZone
 	if (EquippedBox)
 	{
 		if (DropZone && DropZone->IsOverlappingActor(this))
 		{
 			EquippedBox->bHasBeenPlaced = true;
 
+			//Snap to designated target
 			if (BoxSnapTarget)
 			{
 				EquippedBox->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
@@ -629,8 +639,10 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 			bDidInteract = true;
 		}
 	}
+	//If not carrying box, can interact with other pickups
 	else if (OverlappingItems)
 	{
+		//Keycard pickup
 		if (AKeycardItem* Keycard = Cast<AKeycardItem>(OverlappingItems))
 		{
 			if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance()))
@@ -648,6 +660,7 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 			}
 		}
 
+		//Box pickup
 		if (AOpenBox* OverlappingBox = Cast<AOpenBox>(OverlappingItems))
 		{
 			if (!OverlappingBox->bHasBeenPlaced)
@@ -664,6 +677,7 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 			}
 		}
 
+		//Folder pickup if database minigame is completed
 		if (AFolderItem* Folder = Cast<AFolderItem>(OverlappingItems))
 		{
 
@@ -686,6 +700,7 @@ void AArchivist::PickUp(const FInputActionValue& Value)
 
 	}
 
+	//Short input cooldown after successful interaction
 	if (bDidInteract)
 	{
 		bIsInputLocked = true;
@@ -714,24 +729,26 @@ void AArchivist::OnReadBook(const FInputActionValue& Value)
 	ABookItem* Book = Cast<ABookItem>(EquippedBook);
 	if (!Book) return;
 
-	// Character anim BP
+	//Character AnimationBluePrint
 	UArchivistAnimInstance* BI = Cast<UArchivistAnimInstance>(GetMesh()->GetAnimInstance());
 	if (!BI) return;
 
 	if (!bBookIsOpen)
 	{
-		// --- OPEN & START READING ---
+		//---Open and start reading---
 		Book->PlayOpenAndRead();
 
 		BI->bPlayOpenBook = true;
 		bBookIsOpen = true;
 
+		//Delay for opening animation length
 		float delay = 0.8f;
 		if (Book->OpeningAnim)
 		{
 			delay = Book->OpeningAnim->GetPlayLength();
 		}
 
+		//After delay switching from opening to reading and will show reading widget
 		GetWorldTimerManager().ClearTimer(BookOpenTimer);
 		GetWorldTimerManager().SetTimer(
 			BookOpenTimer,
@@ -753,19 +770,20 @@ void AArchivist::OnReadBook(const FInputActionValue& Value)
 			false
 		);
 	}
+	//-------Close and stop reading------------//
 	else
 	{
-		// --- CLOSE & STOP READING ---
 		GetWorldTimerManager().ClearTimer(BookOpenTimer);
 
-		// stop character reading/open flags
+		//Stop reading/open flags
 		BI->bPlayReadBook = false;
 		BI->bPlayOpenBook = false;
 		bBookIsOpen = false;
 
-		// play book’s closing (book mesh)
+		//Play book’s closing (book mesh)
 		Book->PlayClose();
 
+		//Hide reading Widget
 		if (ActiveReadingWidget)
 		{
 			ActiveReadingWidget->RemoveFromParent();
@@ -787,7 +805,7 @@ void AArchivist::Tick(float DeltaTime)
 		}
 	}
 
-	// Update animation state for box holding
+	//Update animation state for box holding
 	if (USkeletalMeshComponent* SkeletalMesh = GetMesh())
 	{
 		if (UArchivistAnimInstance* AnimInstance = Cast<UArchivistAnimInstance>(SkeletalMesh->GetAnimInstance()))
@@ -898,12 +916,13 @@ void AArchivist::OnOverlapEnd(AActor* OverlappedActor, AActor* OtherActor)
 
 void AArchivist::TryEnterMinigame()
 {
-
+	//Require to place the box down first
 	if (BoxToPlaceBeforeMinigame && !BoxToPlaceBeforeMinigame->bHasBeenPlaced)
 	{
 		return;
 	}
 
+	//Enter minigame if Archivist is inside trigger
 	if (MinigameTriggerBox && MinigameTriggerBox->IsOverlappingActor(this))
 	{
 		UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(GetGameInstance());
@@ -938,10 +957,12 @@ void AArchivist::RestoreGameplayInput()
 	bIsMovementLocked = false;
 	bIsInputLocked = false;
 
+	//Re-enable walking
 	GetCharacterMovement()->DisableMovement();
 	GetCharacterMovement()->SetMovementMode(MOVE_Walking);
 }
 
+//DeliverDocuments destroys carried documents actor and sets delivered flag
 void AArchivist::DeliverDocuments()
 {
 	if (PickedUpDocument1)
@@ -969,23 +990,27 @@ void AArchivist::TogglePauseMenu()
 
 	if (bIsPaused)
 	{
+		//Create and show UI
 		if (PauseMenuWidgetClass && !PauseMenuWidget)
 		{
 			PauseMenuWidget = CreateWidget<UPauseMenuWidget>(GetWorld(), PauseMenuWidgetClass);
 			PauseMenuWidget->AddToViewport();
 		}
 
+		//Switch to Game and UI input and show cursor
 		PC->bShowMouseCursor = true;
 		FInputModeGameAndUI InputMode;
 		InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
 		InputMode.SetHideCursorDuringCapture(false);
 		PC->SetInputMode(InputMode);
 
+		//Disable charater input while paused
 		if (Character)
 		{
 			Character->DisableInput(PC);
 		}
 	}
+	//Remove Widget and return to game-only input
 	else
 	{
 		if (PauseMenuWidget)
@@ -1024,6 +1049,7 @@ void AArchivist::SaveProgressBeforeMainMenu()
 			*GI->LastLevelName,
 			*GI->SavedPlayerLocation.ToString());
 
+		//Ghost state
 		TArray<AActor*> Ghosts;
 		UGameplayStatics::GetAllActorsOfClass(GetWorld(), AArchiveGhost::StaticClass(), Ghosts);
 		if (Ghosts.Num() > 0)
@@ -1039,14 +1065,17 @@ void AArchivist::SaveProgressBeforeMainMenu()
 	}
 }
 
+//Intro cutscene:play once and lock input during playback
 void AArchivist::PlayIntroSequenceIfNeeded()
 {
 	UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance());
 	if (!GI) return;
 
+	//Already played, skip
 	if (GI->bIntroCutscenePlayed)
 		return;
 
+	//Find level sequence actor tagged StartCutscene
 	for (TActorIterator<ALevelSequenceActor> It(GetWorld()); It; ++It)
 	{
 		ALevelSequenceActor* SequenceActor = *It;
@@ -1068,6 +1097,7 @@ void AArchivist::PlayIntroSequenceIfNeeded()
 	}
 }
 
+//Intro sequence finishes
 void AArchivist::OnIntroSequenceFinished()
 {
 	auto* GI = Cast<UArchiveGameInstance>(GetGameInstance());
@@ -1093,6 +1123,7 @@ void AArchivist::OnIntroSequenceFinished()
 		}
 	}
 
+	//Show intro guide widget
 	ShowIntroGuide();
 }
 
@@ -1159,7 +1190,6 @@ void AArchivist::OnBookDropBeginOverlap(AActor* OverlappedActor, AActor* OtherAc
 	if (OtherActor == this)
 	{
 		bIsInBookDropZone = true;
-		UE_LOG(LogTemp, Warning, TEXT("Entered BookDropZone"));
 	}
 }
 
@@ -1168,7 +1198,6 @@ void AArchivist::OnBookDropEndOverlap(AActor* OverlappedActor, AActor* OtherActo
 	if (OtherActor == this)
 	{
 		bIsInBookDropZone = false;
-		UE_LOG(LogTemp, Warning, TEXT("Left BookDropZone"));
 	}
 }
 
@@ -1179,6 +1208,8 @@ void AArchivist::ShowIntroGuide()
 		IntroGuideWidgetInstance->RemoveFromParent();
 		IntroGuideWidgetInstance = nullptr;
 	}
+
+	//Create and display the intro guide
 	if (IntroGuideWidgetClass)
 	{
 		IntroGuideWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), IntroGuideWidgetClass);

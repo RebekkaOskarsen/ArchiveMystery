@@ -168,10 +168,6 @@ void AMinigame::ShowTutorial()
             {
                 StartBtn->OnClicked.AddUniqueDynamic(this, &AMinigame::OnTutorialContinue); // Bruk AddUniqueDynamic!
             }
-            else
-            {
-                UE_LOG(LogTemp, Error, TEXT("StartGameButton ikke funnet i TutorialWidget!"));
-            }
         }
     }
 
@@ -217,8 +213,6 @@ void AMinigame::MergeGroups(const FString& NodeA, const FString& NodeB)
 //Checks if two paperstrips are correctly snapped together 
 void AMinigame::ValidateGroups()
 {
-    UE_LOG(LogTemp, Warning, TEXT("ValidateGroups called"));
-
     TMap<FString, int32> GroupCounts;
 
     // Gå bare gjennom aktive biter
@@ -233,16 +227,9 @@ void AMinigame::ValidateGroups()
         UE_LOG(LogTemp, Warning, TEXT("Group %s has %d pieces"), *Pair.Key, Pair.Value);
     }
 
-    UE_LOG(LogTemp, Warning, TEXT("ExpectedPieceCount: %d"), ExpectedPieceCount);
-
     if (GroupCounts.Num() == 1 && GroupCounts.begin()->Value == ExpectedPieceCount)
     {
-        UE_LOG(LogTemp, Warning, TEXT("All pieces snapped together - calling OnAllPiecesSnapped"));
         OnAllPiecesSnapped();
-    }
-    else
-    {
-        UE_LOG(LogTemp, Warning, TEXT("Not all pieces snapped yet"));
     }
 }
 
@@ -310,13 +297,13 @@ void AMinigame::CacheInitialTransforms()
     for (TActorIterator<AActor> It(GetWorld()); It; ++It)
     {
         AActor* A = *It;
-        // strips are tagged "Draggable" + have a specific paperstripXX tag in slot 0
+
         if (A->ActorHasTag("Draggable") ||
             (A->Tags.Num() > 0 && A->Tags[0].ToString().StartsWith("paperstrip")))
         {
             if (A->Tags.Num() > 0)
             {
-                const FString Key = A->Tags[0].ToString(); // e.g. "paperstrip_hard05"
+                const FString Key = A->Tags[0].ToString();
                 InitialTransforms.FindOrAdd(Key) = A->GetActorTransform();
             }
         }
@@ -599,8 +586,6 @@ void AMinigame::OnAllPiecesSnapped()
         GameInstance->bShreddedGameComplete = true;
         GameInstance->SaveQuestLogData();
     }
-
-    UE_LOG(LogTemp, Warning, TEXT("OnAllPiecesSnapped: creating ExitWidget"));
 
     if (ExitWidgetClass)
     {
@@ -996,7 +981,7 @@ void AMinigame::OnHardModeTimeUp()
 
     HideAllPaperStrips();
 
-    // Show the Try Again widget (WBP_ShreddedTryAgain)
+    //Show the Try Again widget (WBP_ShreddedTryAgain)
     if (TryAgainWidgetClass)
     {
         if (IsValid(TryAgainWidgetInstance))
@@ -1119,7 +1104,6 @@ void AMinigame::ShowIngameTutorial()
         bHardCountdownPaused = true;
     }
 
-    // Build/show widget
     if (IsValid(IngameTutorialWidgetInstance))
     {
         IngameTutorialWidgetInstance->RemoveFromParent();
@@ -1160,7 +1144,7 @@ void AMinigame::OnIngameTutorialClose()
         IngameTutorialWidgetInstance = nullptr;
     }
 
-    // Resume timers if they were paused
+    //Resume timers if they were paused
     if (SelectedDifficulty == "Hard" && bHardCountdownPaused)
     {
         GetWorldTimerManager().UnPauseTimer(HardModeTimerHandle);
@@ -1168,7 +1152,7 @@ void AMinigame::OnIngameTutorialClose()
         bHardCountdownPaused = false;
     }
 
-    // Return focus to the game + UI
+    //Return focus to the game and UI
     if (APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0))
     {
         PC->bShowMouseCursor = true;
@@ -1192,10 +1176,10 @@ void AMinigame::OnTryAgainClicked()
         TimerWidgetInstance->RemoveFromParent();
         TimerWidgetInstance = nullptr;
     }
-    RemainingSeconds = 150;           // reset UI countdown for next Hard attempt
+    RemainingSeconds = 150;
     bHardCountdownPaused = false;     
 
-    ResetAllPaperStripsToInitial(); // <-- important
+    ResetAllPaperStripsToInitial();
     ResetMinigameState();
     HideAllPaperStrips();
 

@@ -42,7 +42,6 @@ void AFolderItem::OnPickedUp(USkeletalMeshComponent* AttachToMesh, FName SocketN
 {
     if (bIsScannedAndLocked)
     {
-        UE_LOG(LogTemp, Warning, TEXT("Folderen er låst og kan ikke plukkes opp igjen."));
         return;
     }
 
@@ -53,7 +52,6 @@ void AFolderItem::OnPickedUp(USkeletalMeshComponent* AttachToMesh, FName SocketN
     {
         PickupPromptWidgetInstance->RemoveFromParent();
         PickupPromptWidgetInstance = nullptr;
-        UE_LOG(LogTemp, Warning, TEXT("Pickup prompt widget fjernet fordi folderen ble plukket opp."));
     }
 
     Mesh->SetSimulatePhysics(false);
@@ -89,12 +87,9 @@ void AFolderItem::OnOverlapBegin(
 
     if (OtherActor)
     {
-        UE_LOG(LogTemp, Warning, TEXT("AFolderItem overlappet med: %s"), *OtherActor->GetName());
-
         // Ikke vis prompt hvis allerede plukket opp
         if (bIsPickedUp)
         {
-            UE_LOG(LogTemp, Warning, TEXT("Folder already picked up – viser ikke widget."));
             return;
         }
 
@@ -102,7 +97,6 @@ void AFolderItem::OnOverlapBegin(
         UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this));
         if (GI && !GI->bDatabaseMinigameComplete)
         {
-            UE_LOG(LogTemp, Warning, TEXT("Database minispillet ikke ferdig – viser ikke widget."));
             return;
         }
 
@@ -118,7 +112,6 @@ void AFolderItem::OnOverlapBegin(
                 if (PickupPromptWidgetInstance)
                 {
                     PickupPromptWidgetInstance->AddToViewport();
-                    UE_LOG(LogTemp, Warning, TEXT("Pickup prompt widget vises."));
                 }
             }
         }
@@ -140,7 +133,6 @@ void AFolderItem::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor*
             {
                 PickupPromptWidgetInstance->RemoveFromParent();
                 PickupPromptWidgetInstance = nullptr;
-                UE_LOG(LogTemp, Warning, TEXT("Pickup prompt widget fjernet."));
             }
         }
     }

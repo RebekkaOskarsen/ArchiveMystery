@@ -60,6 +60,7 @@ void AMoldMinigame::BeginPlay()
 	}
 	MoldCount = MoldActors.Num();
 
+	//Find paper actors by tags
 	TArray<AActor*> PaperActors;
 	UGameplayStatics::GetAllActorsWithTag(GetWorld(), TEXT("Paper"), PaperActors);
 
@@ -75,6 +76,7 @@ void AMoldMinigame::BeginPlay()
 		}
 	}
 
+	//Show paper 1 and hide paper 2
 	if (Paper1)
 	{
 		Paper1->SetActorHiddenInGame(false);
@@ -85,16 +87,11 @@ void AMoldMinigame::BeginPlay()
 		Paper2->SetActorHiddenInGame(true);
 	}
 
-	//SpawnMoldForCurrentPaper();
-
+	//Hide brush UI
 	HideBrushUI();
 
+	//Start with tutorial widget
 	ShowTutorial();
-}
-
-void AMoldMinigame::OnHardModeTimeExpired()
-{
-
 }
 
 void AMoldMinigame::Tick(float DeltaTime)
@@ -111,8 +108,6 @@ void AMoldMinigame::OnMoldDestroyed()
 		// Check win only when MoldCount reaches zero
 		if (MoldCount <= 0)
 		{
-			
-
 			CheckWinCondition();
 		}
 	}
@@ -179,7 +174,7 @@ void AMoldMinigame::CheckWinCondition()
 {
 	if (MoldCount <= 0)
 	{
-		// UI flow
+		//UI flow
 		if (CurrentPaperIndex == 1)
 		{
 			ShowArrowUI();
@@ -189,7 +184,7 @@ void AMoldMinigame::CheckWinCondition()
 			ShowExitUI();
 		}
 
-		// Easy unlock
+		//Easy unlock
 		if (CurrentDifficulty == EMoldDifficulty::Easy)
 		{
 			if (UArchiveGameInstance* GameInstance = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
@@ -199,7 +194,7 @@ void AMoldMinigame::CheckWinCondition()
 			}
 		}
 
-		// Hard score handling only when finishing paper 2
+		//Hard score handling only when finishing paper 2
 		if (CurrentDifficulty == EMoldDifficulty::Hard && CurrentPaperIndex == 2)
 		{
 			GetWorldTimerManager().ClearTimer(CountdownTickHandle);
@@ -210,7 +205,6 @@ void AMoldMinigame::CheckWinCondition()
 			}
 		}
 
-		// ? Mark completion ONLY when truly finished
 		if (AArchivist* Archivist = Cast<AArchivist>(UGameplayStatics::GetPlayerCharacter(this, 0)))
 		{
 			Archivist->bHasFinishedMoldMinigame = true;
@@ -378,7 +372,7 @@ void AMoldMinigame::OnTryAgainClicked()
 		TryAgainWidget = nullptr;
 	}
 
-	// Reset to paper 1
+	//Reset to paper 1
 	CurrentPaperIndex = 1;
 
 	if (Paper1) {
@@ -390,7 +384,7 @@ void AMoldMinigame::OnTryAgainClicked()
 		Paper2->SetActorEnableCollision(false);
 	}
 
-	// Hide all mold
+	//Hide all mold
 	TArray<AActor*> MoldActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AMold::StaticClass(), MoldActors);
 	for (AActor* MoldActor : MoldActors)
@@ -404,11 +398,11 @@ void AMoldMinigame::OnTryAgainClicked()
 		}
 	}
 
-	// Reset UI and allow brushing
+	//Reset UI and allow brushing
 	ShowTutorial();
 	EnableBrushing();
 
-	// Now respawn mold for paper 1
+	//Now respawn mold for paper 1
 	SpawnMoldForCurrentPaper();
 }
 
@@ -424,11 +418,11 @@ void AMoldMinigame::ResetMold()
 		AMold* Mold = Cast<AMold>(MoldActor);
 		if (Mold)
 		{
-			// Always reset the mold
+			//Always reset the mold
 			Mold->ResetMold();
 			Mold->SetMoldMinigame(this);
 
-			bool bIsCorrectPaper = Mold->PaperIndex == 1; // reset for paper 1
+			bool bIsCorrectPaper = Mold->PaperIndex == 1; //Reset for paper 1
 			bool bIsMediumOnly = Mold->ActorHasTag("MediumOnly");
 
 			bool bShouldShow =
@@ -460,7 +454,7 @@ void AMoldMinigame::ResetMold()
 		Paper2->SetActorEnableCollision(false);
 	}
 
-	// Reset paper index
+	//Reset paper index
 	CurrentPaperIndex = 1;
 }
 
@@ -548,10 +542,8 @@ void AMoldMinigame::OnExitClicked()
 {
 	if (UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(UGameplayStatics::GetGameInstance(this)))
 	{
-		// Optional: ensure we do NOT mark completion on manual exit
 		GI->bMoldGameComplete = false;
 
-		// If you mirror this on the character too:
 		if (AArchivist* Arch = Cast<AArchivist>(UGameplayStatics::GetPlayerCharacter(this, 0)))
 		{
 			Arch->bHasFinishedMoldMinigame = false;
@@ -673,16 +665,13 @@ void AMoldMinigame::OnCutsceneFinished()
 		WhiteoutTimerHandle, this, &AMoldMinigame::OnWhiteoutFinished, WhiteoutLength, false);
 }
 
-
-
 void AMoldMinigame::OnWhiteoutFinished()
 {
 
 	WhiteoutWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), WhiteoutWidgetClass);
 	if (WhiteoutWidgetInstance)
 	{
-		WhiteoutWidgetInstance->AddToViewport(/*ZOrder=*/10000);
-
+		WhiteoutWidgetInstance->AddToViewport(10000);
 	}
 
 	UGameplayStatics::OpenLevel(this, FName(TEXT("Archive-Mystery")));

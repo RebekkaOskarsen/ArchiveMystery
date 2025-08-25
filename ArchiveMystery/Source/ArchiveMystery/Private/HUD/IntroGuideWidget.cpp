@@ -59,14 +59,14 @@ void UIntroGuideWidget::OnCloseClicked()
 
     if (APlayerController* PC = GetOwningPlayer())
     {
-        // Hide cursor
+        //Hide cursor
         PC->bShowMouseCursor = false;
 
-        // Allow the pawn to receive look/move again
+        //Allow the pawn to receive look/move again
         PC->SetIgnoreLookInput(false);
         PC->SetIgnoreMoveInput(false);
 
-        // Immediately switch back to pure game-only
+        //Switch back to pure game-only
         PC->SetInputMode(FInputModeGameOnly());
     }
 }

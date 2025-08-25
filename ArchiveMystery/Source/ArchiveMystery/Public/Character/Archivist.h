@@ -152,10 +152,6 @@ public:
 
 	UUserWidget* SecondDocumentPopupWidgetInstance;
 
-	//---------------------------------------------------------//
-	UFUNCTION(BlueprintCallable)
-	void RestoreGameplayInput();
-
 	//---------------------Document references--------------------------//
 	UPROPERTY()
 	ADocumentItem* PickedUpDocument1 = nullptr;
@@ -166,6 +162,10 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void DeliverDocuments();
 
+	//---------------------------------------------------------//
+	UFUNCTION(BlueprintCallable)
+	void RestoreGameplayInput();
+
 	//-----References for keycards, marker and customization------------//
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -175,7 +175,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AActor* KeycardActor;
-
 
 
 	//----------------Book Item-----------------------------//
@@ -204,8 +203,9 @@ public:
 	UPROPERTY()
 	UUserWidget* ActiveReadingWidget;
 
-
+	//---------------------//
 	bool bIsPaused;
+
 	//----Saving skin color-------------------------------------------------//
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Customization")
@@ -286,11 +286,11 @@ public:
 
 	void ApplyMaterialToSlot(int32 MaterialSlotIndex, UMaterialInterface* NewMaterial);
 
-	// Saving
+	//-------------Saving------------------//
 	UFUNCTION(BlueprintCallable)
 	void SaveProgressBeforeMainMenu();
 
-	// Sequence
+	//------------------Sequence----------------//
 	UFUNCTION(BlueprintCallable)
 	void PlayIntroSequenceIfNeeded();
 
@@ -299,7 +299,7 @@ public:
 
 	void SetGameplayInputLocked(bool bLock);
 
-	// Tutorial
+	//-------------------Tutorial--------------------//
 	FTimerHandle TutorialTimerHandle;
 
 	UPROPERTY(EditAnywhere, Category = "UI")
@@ -404,9 +404,11 @@ private:
 
 	void TogglePauseMenu();
 
+	//------------Folder------------//
 	UPROPERTY()
 	class AFolderItem* HeldFolder;
 
+	//---------Book boolean----------//
 	bool bBookIsOpen = false;
 
 };

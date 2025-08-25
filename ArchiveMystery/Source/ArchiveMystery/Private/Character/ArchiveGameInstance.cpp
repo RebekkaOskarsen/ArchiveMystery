@@ -496,17 +496,16 @@ void UArchiveGameInstance::AddMoldScore(int32 Seconds)
     LastMoldScore = Seconds;
     MoldScoreHistory.Add(Seconds);
 
-    // Highest first
+    //Highest first
     MoldScoreHistory.Sort([](int32 A, int32 B) { return A > B; });
 
-    // Keep only top 5
+    //Keep only top 5
     if (MoldScoreHistory.Num() > 5)
+    {
         MoldScoreHistory.SetNum(5);
+    }
 
     BestMoldScore = MoldScoreHistory.Num() ? MoldScoreHistory[0] : 0;
-
-    UE_LOG(LogTemp, Log, TEXT("Added score %d | Best %d | Count %d"),
-        Seconds, BestMoldScore, MoldScoreHistory.Num());
 
     SaveQuestLogData();
 }
@@ -515,7 +514,11 @@ void UArchiveGameInstance::AddShreddedScore(int32 SecondsLeft)
 {
     if (SecondsLeft < 0) SecondsLeft = 0;
     ShreddedScoreHistory.Add(SecondsLeft);
+
+    //Highest first
     ShreddedScoreHistory.Sort([](int32 A, int32 B) { return A > B; });
+
+    //Keep only top 5
     if (ShreddedScoreHistory.Num() > 5)
     {
         ShreddedScoreHistory.SetNum(5);

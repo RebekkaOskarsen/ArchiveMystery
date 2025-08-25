@@ -24,12 +24,10 @@ void UMainMenuWidget::NativeConstruct()
     {
         ContinueButton->OnClicked.AddDynamic(this, &UMainMenuWidget::OnContinueClicked);
 
-        // Disable button if there's no saved level
+        //Disable button if there's no saved level
         UArchiveGameInstance* GI = Cast<UArchiveGameInstance>(GetGameInstance());
         if (GI)
         {
-            UE_LOG(LogTemp, Warning, TEXT("MainMenu Loaded: LastLevelName = %s"), *GI->LastLevelName);
-
             if (GI->LastLevelName.IsEmpty())
             {
                 ContinueButton->SetIsEnabled(false);
@@ -64,7 +62,6 @@ void UMainMenuWidget::OnContinueClicked()
     {
 
         UGameplayStatics::OpenLevel(this, FName(*GI->LastLevelName));
-        UE_LOG(LogTemp, Warning, TEXT("Continue Clicked: LastLevelName = %s"), *GI->LastLevelName);
     }
 }
 
